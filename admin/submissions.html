@@ -420,11 +420,36 @@
 </head>
 <body>
     <div class="admin-container">
+        <!-- Login Form (shown when not authenticated) -->
+        <div id="loginContainer" style="display: none;">
+            <div style="max-width: 400px; margin: 100px auto; background: rgba(0, 0, 0, 0.6); padding: 40px; border-radius: 12px; border: 1px solid rgba(0, 168, 255, 0.3);">
+                <h1 style="color: #00a8ff; margin-bottom: 30px; text-align: center;">Admin Login</h1>
+                <form id="loginForm">
+                    <div class="filter-group" style="margin-bottom: 20px;">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <div class="filter-group" style="margin-bottom: 20px;">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <div id="loginError" style="color: #ff4444; margin-bottom: 15px; display: none;"></div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; color: #888;">
+                    <a href="/" style="color: #00a8ff;">← Back to Home</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Admin Content (shown when authenticated) -->
+        <div id="adminContent" style="display: none;">
         <div class="admin-header">
             <h1>Form Submissions</h1>
             <div class="header-actions">
                 <a href="/" class="btn btn-secondary" style="text-decoration: none;">← Home</a>
                 <button class="btn btn-primary" onclick="loadSubmissions()">Refresh</button>
+                <button class="btn btn-secondary" onclick="handleLogout()">Logout</button>
             </div>
         </div>
         
@@ -484,41 +509,88 @@
             <p id="deleteMessage">Are you sure you want to delete the selected submissions? This action cannot be undone.</p>
             <div class="modal-actions">
                 <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
-                <button class="btn btn-danger" onclick="deleteSubmissions()">Delete</button>
+                <button class="btn btn-danger" onclick="handleDeleteSubmissions()">Delete</button>
             </div>
         </div>
     </div>
-    
+        </div> <!-- Close adminContent -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-client.js"></script>
     <script>
         let allSubmissions = [];
         let filteredSubmissions = [];
         let selectedIds = new Set();
-        
-        function loadSubmissions() {
+
+        // Auth state management
+        async function checkAuth() {
+            const session = await getSession();
+            if (session) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+                loadSubmissions();
+            } else {
+                document.getElementById('loginContainer').style.display = 'block';
+                document.getElementById('adminContent').style.display = 'none';
+            }
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+
+            try {
+                await signIn(email, password);
+                errorDiv.style.display = 'none';
+                checkAuth();
+            } catch (error) {
+                errorDiv.textContent = error.message || 'Invalid email or password';
+                errorDiv.style.display = 'block';
+            }
+        });
+
+        // Logout handler
+        async function handleLogout() {
+            await signOut();
+            checkAuth();
+        }
+
+        async function loadSubmissions() {
             document.getElementById('loading').style.display = 'block';
             document.getElementById('submissionsContainer').style.display = 'none';
             document.getElementById('emptyState').style.display = 'none';
-            
-            fetch('/api/submissions', { credentials: 'include' })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load submissions');
+
+            try {
+                const submissions = await getSubmissions();
+                document.getElementById('loading').style.display = 'none';
+
+                // Transform to match old format for compatibility
+                allSubmissions = submissions.map(sub => ({
+                    id: sub.id,
+                    timestamp: sub.created_at,
+                    submission: {
+                        name: sub.name,
+                        email: sub.email,
+                        organization: sub.organization,
+                        role: sub.role,
+                        orgType: sub.org_type,
+                        interest: sub.interest,
+                        timeframe: sub.timeframe,
+                        message: sub.message
                     }
-                    return response.json();
-                })
-                .then(submissions => {
-                    document.getElementById('loading').style.display = 'none';
-                    
-                    allSubmissions = submissions;
-                    selectedIds.clear();
-                    populateFilters(submissions);
-                    applyFilters();
-                })
-                .catch(error => {
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('emptyState').style.display = 'block';
-                    console.error('Error loading submissions:', error);
-                });
+                }));
+
+                selectedIds.clear();
+                populateFilters(allSubmissions);
+                applyFilters();
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('emptyState').style.display = 'block';
+                console.error('Error loading submissions:', error);
+            }
         }
         
         function populateFilters(submissions) {
@@ -795,37 +867,22 @@
             document.getElementById('deleteModal').classList.remove('active');
         }
         
-        function deleteSubmissions() {
+        async function handleDeleteSubmissions() {
             const idsToDelete = Array.from(selectedIds);
-            
+
             closeDeleteModal();
             document.getElementById('loading').style.display = 'block';
             document.getElementById('submissionsContainer').style.display = 'none';
-            
-            fetch('/api/submissions', {
-                method: 'DELETE',
-                credentials: "include",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ids: idsToDelete })
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    selectedIds.clear();
-                    loadSubmissions();
-                } else {
-                    alert('Error deleting submissions: ' + (result.error || 'Unknown error'));
-                    document.getElementById('loading').style.display = 'none';
-                    displaySubmissions(filteredSubmissions);
-                }
-            })
-            .catch(error => {
+
+            try {
+                await deleteSubmissions(idsToDelete);
+                selectedIds.clear();
+                loadSubmissions();
+            } catch (error) {
                 alert('Error deleting submissions: ' + error.message);
                 document.getElementById('loading').style.display = 'none';
                 displaySubmissions(filteredSubmissions);
-            });
+            }
         }
         
         function escapeHtml(text) {
@@ -834,12 +891,13 @@
             return div.innerHTML;
         }
         
-        // Load submissions on page load
-        loadSubmissions();
-        
-        // Auto-refresh every 30 seconds
-        setInterval(() => {
-            if (selectedIds.size === 0) {  // Don't refresh if user is selecting
+        // Check auth on page load
+        checkAuth();
+
+        // Auto-refresh every 30 seconds (only if authenticated and not selecting)
+        setInterval(async () => {
+            const session = await getSession();
+            if (session && selectedIds.size === 0) {
                 loadSubmissions();
             }
         }, 30000);

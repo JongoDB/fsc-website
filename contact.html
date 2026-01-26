@@ -213,11 +213,13 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
     <script src="js/navigation.js"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = {
                 name: document.getElementById('name').value,
@@ -229,41 +231,25 @@
                 timeframe: document.getElementById('timeframe').value,
                 message: document.getElementById('message').value
             };
-            
+
             // Disable submit button
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
-            
-            // Send to backend
-            fetch('/api/submit_form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Show success message
-                    showSuccessMessage();
-                    // Reset form
-                    document.getElementById('contactForm').reset();
-                } else {
-                    // Show error message
-                    alert('Sorry, there was an error sending your message. Please try again or email us directly at info@fightingsmartcyber.com');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                }
-            })
-            .catch(error => {
+
+            try {
+                await submitContactForm(formData);
+                // Show success message
+                showSuccessMessage();
+                // Reset form
+                document.getElementById('contactForm').reset();
+            } catch (error) {
                 console.error('Error:', error);
                 alert('Sorry, there was an error sending your message. Please try again or email us directly at info@fightingsmartcyber.com');
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
-            });
+            }
         });
         
         function showSuccessMessage() {
