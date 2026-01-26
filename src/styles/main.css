@@ -1433,17 +1433,20 @@ textarea:focus {
     }
 }
 
-/* Desktop: hover-based dropdowns */
+/* Desktop: hover-based dropdowns with JS delay for better UX */
 @media (min-width: 969px) {
-    .dropdown:hover > .dropdown-menu {
+    .dropdown:hover > .dropdown-menu,
+    .dropdown.hover-active > .dropdown-menu {
         display: block;
     }
 
-    .dropdown:hover > a {
+    .dropdown:hover > a,
+    .dropdown.hover-active > a {
         color: var(--bright-blue);
     }
 
-    .dropdown:hover > a::after {
+    .dropdown:hover > a::after,
+    .dropdown.hover-active > a::after {
         transform: translateY(-50%) rotate(180deg);
     }
 }
