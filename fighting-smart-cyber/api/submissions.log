@@ -1,0 +1,349 @@
+
+================================================================================
+Timestamp: 2025-11-26T00:10:22.681379
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: Test User
+Email: test@example.com
+Organization: Test Org
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+Test message
+
+---
+Submitted: 2025-11-26 00:10:22
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-11-26T00:11:19.594565
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: testname
+Email: jonathanrannabargar@yahoo.com
+Organization: testorg
+Role/Title: testrole
+
+Organization Type: government
+Interest: consulting
+Timeframe: asap
+
+Message:
+this is a test
+
+---
+Submitted: 2025-11-26 00:11:19
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-11-26T00:16:14.543935
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: Test User
+Email: test@example.com
+Organization: Test Organization
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+This is a test message to verify email delivery
+
+---
+Submitted: 2025-11-26 00:16:14
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:16:34.603544
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: Final Test
+Email: test@example.com
+Organization: Test Org
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+Final test to verify email delivery works
+
+---
+Submitted: 2025-11-26 00:16:34
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:17:22.030439
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: Email Test
+Email: test@example.com
+Organization: Test
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+Testing email delivery
+
+---
+Submitted: 2025-11-26 00:17:22
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:17:39.207429
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: Production Test
+Email: test@example.com
+Organization: Test Org
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+Production test email
+
+---
+Submitted: 2025-11-26 00:17:39
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:17:48.519115
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - soc-self
+New contact form submission received:
+
+Name: Aladeen
+Email: Agaladeen@outlook.com
+Organization: Wadiya
+Role/Title: Admiral/General
+
+Organization Type: government
+Interest: soc-self
+Timeframe: exploring
+
+Message:
+World domination
+
+---
+Submitted: 2025-11-26 00:17:48
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:21:02.848940
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - soc-self
+New contact form submission received:
+
+Name: testname
+Email: jonathanrannabargar@yahoo.com
+Organization: testorg
+Role/Title: testrole
+
+Organization Type: smb
+Interest: soc-self
+Timeframe: 30-days
+
+Message:
+this is a test for email forwarding
+
+---
+Submitted: 2025-11-26 00:21:02
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Timestamp: 2025-11-26T00:25:45.737077
+To: info@fightingsmartcyber.com
+Subject: New Contact Form Submission - consulting
+New contact form submission received:
+
+Name: SMTP Test
+Email: test@example.com
+Organization: Test
+Role/Title: Not provided
+
+Organization Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+
+Message:
+Testing SMTP relay configuration
+
+---
+Submitted: 2025-11-26 00:25:45
+
+================================================================================
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126003734_25854320
+Timestamp: 2025-11-26T00:37:34.933883
+Name: Storage Test
+Email: test@example.com
+Organization: Test Org
+Role: Not provided
+Org Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+Message: Testing local storage
+================================================================================
+
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126003755_37686337
+Timestamp: 2025-11-26T00:37:55.722457
+Name: Another Test
+Email: another@example.com
+Organization: Another Org
+Role: Not provided
+Org Type: enterprise
+Interest: training
+Timeframe: 30-days
+Message: Testing multiple submissions
+================================================================================
+
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126004457_11324381
+Timestamp: 2025-11-26T00:44:57.632488
+Name: test3
+Email: test3@test.com
+Organization: test3
+Role: testrole
+Org Type: government
+Interest: consulting
+Timeframe: asap
+Message: test3
+================================================================================
+
+Email sent successfully via sendmail
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126004833_17015876
+Timestamp: 2025-11-26T00:48:33.717295
+Name: Test User
+Email: test@example.com
+Organization: Test Org
+Role: Not provided
+Org Type: Not provided
+Interest: consulting
+Timeframe: Not provided
+Message: Testing new endpoint
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126010306_75444233
+Timestamp: 2025-11-26T01:03:06.065137
+Name: test4
+Email: test4@test.com
+Organization: testorg
+Role: testrole
+Org Type: critical-infra
+Interest: secure-k8s
+Timeframe: 30-days
+Message: this is another test
+================================================================================
+
+
+================================================================================
+Submission ID: 20251126021923_53830788
+Timestamp: 2025-11-26T02:19:23.564062
+Name: Kaja
+Email: nallkajad@gmail.com
+Organization: Mickey d
+Role: Shef 
+Org Type: enterprise
+Interest: secure-k8s
+Timeframe: exploring
+Message: I Ned help in da kichen plez 
+================================================================================
+
+
+================================================================================
+Submission ID: 20251231195413_53336082
+Timestamp: 2025-12-31T19:54:13.331696
+Name: Production Test
+Email: test@fightingsmartcyber.com
+Organization: Test Org
+Role: Developer
+Org Type: enterprise
+Interest: consulting
+Timeframe: immediate
+Message: Testing updated production site
+================================================================================
+
+
+================================================================================
+Submission ID: 20251231200633_70047171
+Timestamp: 2025-12-31T20:06:33.437691
+Name: test
+Email: jon@fsc.lan
+Organization: testorg
+Role: testrole
+Org Type: contractor
+Interest: secure-k8s
+Timeframe: 60-90-days
+Message: this is a test message
+================================================================================
+
