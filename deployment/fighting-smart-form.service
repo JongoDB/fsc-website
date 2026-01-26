@@ -1,0 +1,14 @@
+[Unit]
+Description=Fighting Smart Cyber Form Submission Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/fighting-smart-cyber/api
+ExecStart=/usr/bin/python3 /root/fighting-smart-cyber/api/form_server.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

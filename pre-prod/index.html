@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fighting Smart Cyber | Operator-Led Cybersecurity Solutions</title>
+    <meta name="description" content="Defend smarter by thinking like an operator. Operator-led cybersecurity training, SOC platforms, and strategic advisory from proven cyber operations leaders.">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <nav class="container" role="navigation" aria-label="Main navigation">
+            <div>
+                <a href="/" class="logo" aria-label="Fighting Smart Cyber Home">Fighting Smart Cyber</a>
+                <div class="tagline">Operator-Led Cybersecurity</div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+                <svg class="hamburger-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="hamburger-line top" d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path class="hamburger-line middle" d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path class="hamburger-line bottom" d="M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li class="dropdown" role="none">
+                    <a href="about/who-we-are" role="menuitem" aria-haspopup="true" aria-expanded="false">About</a>
+                    <ul class="dropdown-menu" role="menu" aria-label="About submenu">
+                        <li role="none"><a href="about/who-we-are" role="menuitem">Who We Are</a></li>
+                        <li role="none"><a href="about/leadership" role="menuitem">Leadership</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" role="none">
+                    <a href="solutions/index" role="menuitem" aria-haspopup="true" aria-expanded="false">Solutions</a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Solutions submenu">
+                        <li role="none"><a href="solutions/consulting" role="menuitem">Consulting</a></li>
+                        <li role="none"><a href="solutions/training" role="menuitem">Training Services</a></li>
+                        <li role="none"><a href="solutions/advisory" role="menuitem">Advisory</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" role="none">
+                    <a href="training/index" role="menuitem" aria-haspopup="true" aria-expanded="false">Training</a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Training submenu">
+                        <li role="none"><a href="training/custom-training" role="menuitem">Custom Training</a></li>
+                        <li role="none"><a href="training/cyber-kill-chain" role="menuitem">Cyber Kill Chain</a></li>
+                        <li role="none"><a href="training/incident-response" role="menuitem">Incident Response</a></li>
+                        <li role="none"><a href="training/kubernetes-security" role="menuitem">Kubernetes Security</a></li>
+                        <li role="none"><a href="training/threat-hunting" role="menuitem">Threat Hunting</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" role="none">
+                    <a href="platforms/index" role="menuitem" aria-haspopup="true" aria-expanded="false">Platforms</a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Platforms submenu">
+                        <li role="none"><a href="platforms/soc-in-a-box" role="menuitem">SOC-in-a-Box</a></li>
+                        <li role="none"><a href="platforms/secure-kubernetes" role="menuitem">Secure Kubernetes</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" role="none">
+                    <a href="bundles/index" role="menuitem" aria-haspopup="true" aria-expanded="false">Bundles</a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Bundles submenu">
+                        <li role="none"><a href="bundles/devsecops-bundle" role="menuitem">DevSecOps Bundle</a></li>
+                        <li role="none"><a href="bundles/dfir-bundle" role="menuitem">DFIR Bundle</a></li>
+                        <li role="none"><a href="bundles/productivity-suite" role="menuitem">Productivity Suite</a></li>
+                        <li role="none"><a href="bundles/soc-stack" role="menuitem">SOC Stack</a></li>
+                        <li role="none"><a href="bundles/request-bundle" role="menuitem">Request Bundle</a></li>
+                    </ul>
+                </li>
+                <li role="none"><a href="resources/index" role="menuitem">Resources</a></li>
+                <li role="none"><a href="contact" class="nav-cta" role="menuitem">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" aria-label="Hero section">
+        <div class="hero-bg-grid" aria-hidden="true"></div>
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
+        <div class="container hero-content">
+            <h1>Defend <span class="highlight">Smarter</span>.<br>Think Like an <span class="highlight">Operator</span>.</h1>
+            <p class="subtitle">Operator-led cybersecurity solutions from proven leaders with TS/SCI-level operational experience</p>
+            <div class="hero-buttons">
+                <a href="solutions/index" class="btn-primary">Explore Solutions</a>
+                <a href="contact" class="btn-secondary">Talk to an Operator</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">20+</span>
+                    <span class="hero-stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">TS/SCI</span>
+                    <span class="hero-stat-label">Clearances</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">100%</span>
+                    <span class="hero-stat-label">Operator-Led</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Choose Your Mission</h2>
+                <p>Select the path that matches your cybersecurity needs. From training to turnkey platforms, we deliver operator-tested solutions.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                        <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Cyber Readiness Assessments</h3>
+                    <p>Comprehensive gap analysis using the <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> framework to identify operational weaknesses.</p>
+                    <a href="solutions/consulting" class="mission-card-link">Learn More →</a>
+                </div>
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M12 14l6.16-3.42a12.1 12.1 0 01.84 4.42V19l-7 4-7-4v-3.98c0-1.56.3-3.09.84-4.42L12 14z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>Operator-Led Training & Labs</h3>
+                    <p>Hands-on training from operators with real-world experience. <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>, IR, threat hunting, red team perspectives, and Kubernetes security.</p>
+                    <a href="training/index" class="mission-card-link">View Courses →</a>
+                </div>
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>SOC-in-a-Box</h3>
+                    <p>Turnkey, accreditation-ready security operations center. Kubernetes-based with integrated <span class="tooltip-trigger">SIEM<span class="tooltip-inline">Security Information and Event Management</span></span>, <span class="tooltip-trigger">EDR<span class="tooltip-inline">Endpoint Detection and Response</span></span>, threat intel, and vulnerability management.</p>
+                    <a href="platforms/soc-in-a-box" class="mission-card-link">Explore Platform →</a>
+                </div>
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>
+                    </svg>
+                    <h3>Secure Kubernetes Core</h3>
+                    <p>Opinionated, secure K8s baseline built with Zero Trust principles, comprehensive observability, and GitOps integration.</p>
+                    <a href="platforms/secure-kubernetes" class="mission-card-link">View Details →</a>
+                </div>
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>App Bundles & Catalog</h3>
+                    <p>Pre-curated software stacks: SOC bundles, <span class="tooltip-trigger">DFIR<span class="tooltip-inline">Digital Forensics and Incident Response</span></span> tools, productivity suites, DevSecOps stacks for any environment.</p>
+                    <a href="bundles/index" class="mission-card-link">Browse Catalog →</a>
+                </div>
+                <div class="mission-card scroll-animate">
+                    <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="14" r="2" fill="currentColor"/>
+                    </svg>
+                    <h3>Advisory & Strategic Consulting</h3>
+                    <p>Capability development, organizational design, acquisition strategy, Zero Trust roadmaps from leaders who've built and operated at scale.</p>
+                    <a href="solutions/advisory" class="mission-card-link">Schedule Call →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text scroll-animate-left">
+                    <h2>Operator-Led. Practitioner-First.</h2>
+                    <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
+                    <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber command experience, a CWO3 with deep <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>/<span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span> expertise, and a senior NCO who's built secure architectures from the ground up.</p>
+                    <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms—understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
+                    <a href="about/who-we-are" class="btn-primary">Learn More About Us</a>
+                </div>
+                <div class="content-text scroll-animate-right">
+                    <h2>Why Fighting Smart?</h2>
+                    <p>Most cybersecurity companies are led by sales teams or career consultants. We're different. Our founders have:</p>
+                    <ul>
+                        <li><strong>Commanded cyber operations</strong> at the highest levels</li>
+                        <li><strong>Conducted real offensive and defensive ops</strong> in classified environments</li>
+                        <li><strong>Designed and built</strong> secure architectures and cyber ranges</li>
+                        <li><strong>Navigated government acquisition</strong> and compliance frameworks</li>
+                        <li><strong>Deployed full stacks</strong> that are production-ready and exercise-tested</li>
+                    </ul>
+                    <p class="quote-text">"We bridge the gap between policy, acquisition, technology, and hands-on execution. That's what makes us different."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Leadership Team</h2>
+                <p>Proven operators with unmatched experience in cyber operations, command, and capability development</p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leadership-card">
+                    <h3>CEO</h3>
+                    <p class="leadership-title">Retired Three-Star General</p>
+                    <p class="leadership-bio">Former elite cyber unit commander and pilot with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber defense.</p>
+                </div>
+                <div class="leadership-card">
+                    <h3>COO</h3>
+                    <p class="leadership-title">Retired CWO3 | Cyber Operations Veteran</p>
+                    <p class="leadership-bio">Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks.</p>
+                </div>
+                <div class="leadership-card">
+                    <h3>CTO</h3>
+                    <p class="leadership-title">Senior NCO | Defense Architecture Specialist</p>
+                    <p class="leadership-bio">Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, and defensive cyber operations.</p>
+                </div>
+            </div>
+            <div class="leadership-cta">
+                <a href="about/leadership" class="btn-primary">View Full Leadership Profiles</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Trusted by Mission-Critical Organizations</h2>
+                <p>Our solutions are built for organizations that can't afford to fail</p>
+            </div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <svg class="trust-badge-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="5" y="11" width="14" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 17v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span class="trust-badge-label">TS/SCI Cleared</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="trust-badge-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="trust-badge-label">Operator-Tested</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="trust-badge-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="trust-badge-label">Production-Ready</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="trust-badge-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span class="trust-badge-label">Accreditation-Ready</span>
+                </div>
+                <div class="trust-badge">
+                    <svg class="trust-badge-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M2 12h20" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="trust-badge-label">Multi-Environment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Defend Smarter?</h2>
+                <p>Let's discuss how Fighting Smart Cyber can help strengthen your cybersecurity posture. Whether you need training, platforms, or strategic advisory, we're here to help.</p>
+                <div class="hero-buttons">
+                    <a href="contact" class="btn-primary">Schedule a Call</a>
+                    <a href="contact" class="btn-secondary">Request Information</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Fighting Smart Cyber</h4>
+                    <p>Defend smarter by thinking like an operator. Operator-led cybersecurity solutions from proven leaders.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="solutions/consulting">Cybersecurity Consulting</a></li>
+                        <li><a href="solutions/training">Operator-Led Training</a></li>
+                        <li><a href="platforms/soc-in-a-box">SOC-in-a-Box Platform</a></li>
+                        <li><a href="platforms/secure-kubernetes">Secure Kubernetes Core</a></li>
+                        <li><a href="bundles/index">App Bundles & Catalog</a></li>
+                        <li><a href="solutions/advisory">Advisory & Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about/who-we-are">Who We Are</a></li>
+                        <li><a href="about/leadership">Leadership</a></li>
+                        <li><a href="resources/index">Resources</a></li>
+                        <li><a href="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="mailto:info@fightingsmartcyber.com">info@fightingsmartcyber.com</a></p>
+                    <p>Ready to discuss your mission? Let's talk.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><a href="/admin/submissions" style="color: inherit; text-decoration: none;" aria-label="Admin access">&copy;</a> 2025 Fighting Smart Cyber. All rights reserved. | Operator-Led Cybersecurity Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/cyber-effects.js"></script>
+    <script src="js/tooltips.js"></script>
+</body>
+</html>

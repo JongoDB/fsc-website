@@ -1,0 +1,15 @@
+[Unit]
+Description=Fighting Smart Cyber Submissions API
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/fighting-smart-cyber/api
+ExecStart=/usr/bin/python3 /root/fighting-smart-cyber/api/submissions_api.py
+Restart=always
+RestartSec=10
+Environment="ADMIN_PASSWORD=FSCyber1775!@"
+
+[Install]
+WantedBy=multi-user.target
