@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const founders = [
+  {
+    role: 'CEO',
+    title: 'Retired Three-Star General | Cyber Domain Leader',
+    description: 'Former elite cyber commander with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber capabilities and defense.',
+    experience: [
+      'Strategic cyber operations command',
+      'Government relations and acquisition',
+      'Operational planning and execution',
+      'Organizational leadership at scale'
+    ]
+  },
+  {
+    role: 'COO',
+    title: 'Retired Chief Warrant Officer | Cyber Operations Technician',
+    description: 'Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks, DCO, OCO, and engineering solutions for complex environments.',
+    experience: [
+      'Offensive and defensive cyber operations',
+      'Network engineering and architecture',
+      'Government acquisition and procurement',
+      'DOTMLPF-P framework implementation'
+    ]
+  },
+  {
+    role: 'CTO',
+    title: 'Military Veteran | Defense Architecture Specialist',
+    description: 'Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, defensive cyber operations, and cyber range design and implementation.',
+    experience: [
+      'Secure network design and implementation',
+      'Defensive cyber operations',
+      'Cyber range and training development',
+      'Infrastructure architecture and security'
+    ]
+  }
+];
+
+const stats = [
+  { value: '20+', label: 'Years Combined Experience' },
+  { value: 'TS/SCI', label: 'Security Clearances' },
+  { value: '100%', label: 'Operator-Led' },
+  { value: '∞', label: 'Real-World Operations' }
+];
+---
+
+<BaseLayout
+  title="Leadership"
+  description="Meet the leadership team at Fighting Smart Cyber - proven operators with unmatched experience in cyber operations, command, and capability development."
+  includeAnimations={false}
+>
+  <Hero
+    title='Our <span class="highlight">Leadership</span>'
+    subtitle="Proven operators with unmatched experience in cyber operations, command, and capability development"
+    compact={true}
+  />
+
+  <section class="dark-section">
+    <div class="container">
+      <SectionHeader
+        title="Founding Team"
+        description="Three leaders with decades of combined experience at the highest levels of defensive and offensive cyber operations"
+      />
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px;">
+        {founders.map((founder) => (
+          <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+            <h3 style="font-size: 28px; margin-bottom: 15px; color: var(--white);">{founder.role}</h3>
+            <p style="font-size: 20px; color: var(--bright-blue); margin-bottom: 25px; font-weight: 600;">{founder.title}</p>
+            <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 25px;">{founder.description}</p>
+            <p style="color: rgba(255,255,255,0.8); line-height: 1.8;"><strong>Key Experience:</strong></p>
+            <ul style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-top: 10px; padding-left: 20px;">
+              {founder.experience.map((exp) => (
+                <li>{exp}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Why Our Leadership Matters"
+        description="Our founding team brings a unique combination of strategic vision, operational experience, and technical expertise"
+      />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Operational Credibility</h3>
+          <p>Our leaders have commanded, planned, and executed cyber operations at the highest levels. They understand what works in the real world, not just in theory.</p>
+          <h3 style="margin-top: 40px;">Government Expertise</h3>
+          <p>Deep understanding of government acquisition processes, security frameworks, compliance requirements, and how to navigate complex procurement environments.</p>
+        </div>
+        <div class="content-text">
+          <h3>Technical Depth</h3>
+          <p>Hands-on experience designing, building, and operating secure architectures, cyber ranges, and defensive capabilities from the ground up.</p>
+          <h3 style="margin-top: 40px;">Holistic Thinking</h3>
+          <p>Ability to think across the entire DOTMLPF-P spectrum, ensuring solutions address not just technology, but all aspects of organizational cybersecurity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Combined Experience" />
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px;">
+        {stats.map((stat) => (
+          <div style="text-align: center; padding: 40px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+            <div style="font-size: 64px; font-weight: 800; color: var(--bright-blue); margin-bottom: 15px;">{stat.value}</div>
+            <div style="font-size: 18px; color: var(--text-light); font-weight: 600;">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Work with Proven Operators"
+    description="Our leadership team is ready to help you defend smarter. Let's discuss your mission."
+    primaryButton={{ text: 'Contact Leadership', href: '/contact' }}
+    secondaryButton={{ text: 'Learn More About Us', href: '/about/who-we-are' }}
+  />
+</BaseLayout>

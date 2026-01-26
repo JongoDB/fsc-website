@@ -1,0 +1,57 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+  linkText: string;
+}
+
+const { icon, title, description, href, linkText } = Astro.props;
+
+// Map icon names to SVG content
+const icons: Record<string, string> = {
+  target: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+           <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+           <circle cx="12" cy="12" r="2" fill="currentColor"/>
+           <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
+  graduation: `<path d="M12 14l9-5-9-5-9 5 9 5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+               <path d="M12 14l6.16-3.42a12.1 12.1 0 01.84 4.42V19l-7 4-7-4v-3.98c0-1.56.3-3.09.84-4.42L12 14z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>`,
+  shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+           <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,
+  kubernetes: `<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+               <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>`,
+  grid: `<rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+         <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+         <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+         <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>`,
+  briefcase: `<rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="14" r="2" fill="currentColor"/>`,
+  monitor: `<rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="17" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M9 10h2M14 10h2" stroke="currentColor" stroke-width="1.5"/>`,
+  layers: `<path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+           <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+           <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>`,
+  document: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+             <path d="M14 2v6h6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+             <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
+  blog: `<path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+         <path d="M16.5 3.5a2.1 2.1 0 113 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>`,
+};
+
+const iconSvg = icons[icon] || icons.target;
+---
+
+<div class="mission-card scroll-animate">
+  <svg class="mission-card-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" set:html={iconSvg}></svg>
+  <h3>{title}</h3>
+  <p set:html={description}></p>
+  <a href={href} class="mission-card-link">{linkText} &rarr;</a>
+</div>

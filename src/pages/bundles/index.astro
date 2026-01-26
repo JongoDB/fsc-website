@@ -1,0 +1,90 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+
+const bundles = [
+  {
+    icon: 'shield',
+    title: 'SOC Stack',
+    description: 'Complete security operations center stack: SIEM, EDR, threat intelligence, vulnerability management, and incident response tools. Ready for production deployment.',
+    href: '/bundles/soc-stack',
+    linkText: 'View Bundle Details'
+  },
+  {
+    icon: 'target',
+    title: 'DFIR Bundle',
+    description: 'Digital forensics and incident response tools: malware analysis, memory forensics, disk imaging, and investigation platforms. Everything you need for incident response.',
+    href: '/bundles/dfir-bundle',
+    linkText: 'View Bundle Details'
+  },
+  {
+    icon: 'grid',
+    title: 'Productivity Suite',
+    description: 'Open-source productivity stack: wiki, issue tracker, Git hosting, and collaboration tools. An open-source alternative to Atlassian\'s suite.',
+    href: '/bundles/productivity-suite',
+    linkText: 'View Bundle Details'
+  },
+  {
+    icon: 'layers',
+    title: 'DevSecOps Bundle',
+    description: 'Complete DevSecOps stack: CI/CD pipelines, security scanning, dependency management, and compliance automation. Secure software delivery from code to production.',
+    href: '/bundles/devsecops-bundle',
+    linkText: 'View Bundle Details'
+  }
+];
+---
+
+<ContentPageLayout
+  title="App Bundles & Catalog"
+  description="Pre-curated software stacks: SOC bundles, DFIR tools, productivity suites, DevSecOps stacks. Ready for deployment."
+  heroTitle='App <span class="highlight">Bundles</span>'
+  heroSubtitle="Pre-curated software stacks ready for deployment"
+  ctaTitle="Ready to Deploy a Bundle?"
+  ctaDescription="Let's discuss which bundle best fits your mission and requirements."
+  ctaPrimaryButton={{ text: 'Request Bundle Information', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View Platforms', href: '/platforms' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="What Are App Bundles?"
+        description="Pre-curated, documented software stacks designed for specific missions"
+      />
+      <div class="content-text" style="max-width: 800px; margin: 0 auto;">
+        <p>Our app bundles are pre-configured software stacks that solve specific operational needs. Each bundle includes all the tools, documentation, and deployment guides you need to get up and running quickly.</p>
+        <p>Bundles are designed to work with our Secure Kubernetes Core platform, but can also be deployed standalone or integrated into existing environments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Available Bundles" />
+      <div class="cards-grid">
+        {bundles.map((bundle) => (
+          <MissionCard
+            icon={bundle.icon}
+            title={bundle.title}
+            description={bundle.description}
+            href={bundle.href}
+            linkText={bundle.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Request a Custom Bundle"
+        description="Don't see what you need? We can create a custom bundle for your specific use case"
+      />
+      <div class="content-text" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <p>If you have a unique set of requirements, we can design and build a custom bundle tailored to your needs. Tell us about your use case, and we'll create a curated stack that fits.</p>
+        <p style="margin-top: 30px;"><a href="/bundles/request-bundle" class="btn-primary">Request a Custom Bundle</a></p>
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

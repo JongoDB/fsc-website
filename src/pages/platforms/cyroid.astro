@@ -1,0 +1,182 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+
+const platformFeatures = [
+  {
+    icon: 'monitor',
+    title: 'VM Template Library',
+    description: '27+ pre-built OS templates including Windows Server 2003-2025, various Linux distributions, Kali Linux, macOS, and Samba AD. Create golden images and snapshots for rapid deployment.',
+    href: '/contact',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'grid',
+    title: 'Network Orchestration',
+    description: 'Dynamic network attach/detach, isolated range networks, and visual topology mapping. Multiple ranges can run simultaneously with identical IP spaces--completely isolated.',
+    href: '/contact',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'layers',
+    title: 'Scenario Automation',
+    description: 'MSEL (Master Scenario Events List) parser for YAML/markdown scenario definitions. Schedule injects, trigger events manually, and automate attack sequences during exercises.',
+    href: '/contact',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'target',
+    title: 'Exercise Monitoring',
+    description: 'Real-time execution console with multi-panel dashboard. WebSocket streaming for live event logging, connection tracking, and deployment progress visualization.',
+    href: '/contact',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'briefcase',
+    title: 'Blueprint Export/Import',
+    description: 'Export complete ranges as portable blueprints including Dockerfiles and offline images. Reproducible environments for consistent training across locations.',
+    href: '/contact',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'shield',
+    title: 'Privacy-First Design',
+    description: 'Data automatically purged after exercise completion. No long-term retention of sensitive training data. Air-gapped deployment support for classified environments.',
+    href: '/contact',
+    linkText: 'Learn More'
+  }
+];
+
+const useCases = [
+  {
+    icon: 'shield',
+    title: 'Military & Government',
+    description: 'Cyber operations training with realistic adversary simulation. Support for classified environments with air-gapped deployment and CAC/PKI authentication.',
+    href: '/contact',
+    linkText: 'Contact Us'
+  },
+  {
+    icon: 'graduation',
+    title: 'Educational Institutions',
+    description: 'Cybersecurity curriculum delivery with hands-on labs. Scale from individual exercises to class-wide competitions with isolated student environments.',
+    href: '/contact',
+    linkText: 'Contact Us'
+  },
+  {
+    icon: 'target',
+    title: 'Red/Blue Team Exercises',
+    description: 'Purple team integration with attack scenario scripting. Realistic threat simulation for defensive team training and incident response practice.',
+    href: '/contact',
+    linkText: 'Contact Us'
+  }
+];
+---
+
+<ContentPageLayout
+  title="CYROID Cyber Range"
+  description="Enterprise cyber range orchestration platform. Deploy isolated, networked cyber training environments in minutes with visual range builder and automated scenario execution."
+  heroTitle='<span class="highlight">CYROID</span> Cyber Range'
+  heroSubtitle="Enterprise cyber range orchestration platform for mission-ready training"
+  ctaTitle="Ready to Transform Your Cyber Training?"
+  ctaDescription="Let's discuss how CYROID can accelerate your cyber range operations."
+  ctaPrimaryButton={{ text: 'Request a Demo', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Platforms', href: '/platforms' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Deploy Cyber Ranges in Minutes, Not Days</h2>
+          <p>Traditional cyber range deployment is slow, expensive, and requires specialized expertise. CYROID changes that. Our platform automates the entire lifecycle of cyber training environments--from planning through execution to teardown.</p>
+          <p>Built on Docker-in-Docker architecture, CYROID provides true network isolation between ranges, allowing multiple concurrent exercises with identical IP address spaces without conflicts. Deploy complex, multi-node training scenarios through an intuitive visual interface.</p>
+          <h3>Key Capabilities</h3>
+          <ul>
+            <li><strong>Visual Range Builder</strong> - Drag-and-drop interface for designing network topologies</li>
+            <li><strong>Complete Isolation</strong> - Docker-in-Docker architecture for true network separation</li>
+            <li><strong>Multi-OS Support</strong> - Linux, Windows, macOS VMs with 27+ pre-built templates</li>
+            <li><strong>Web-Based Console</strong> - VNC access to all VMs through your browser</li>
+            <li><strong>MSEL Automation</strong> - Scenario-based inject triggering and event scheduling</li>
+            <li><strong>Offline-Capable</strong> - Cache images for air-gapped deployments</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>Full Exercise Lifecycle Management</h2>
+          <p>CYROID supports your entire cyber exercise workflow from initial planning through after-action review:</p>
+          <ul>
+            <li><strong>Planning & Design</strong> - Visual topology builder with templating and blueprints</li>
+            <li><strong>Development</strong> - Content library with markdown-based lab walkthroughs</li>
+            <li><strong>Deployment</strong> - One-click range instantiation with progress tracking</li>
+            <li><strong>Execution</strong> - Real-time monitoring, inject management, connection tracking</li>
+            <li><strong>Evidence Collection</strong> - Student submission portal with chain of custody</li>
+            <li><strong>Scoring & Review</strong> - Automated hash verification and evaluator interface</li>
+            <li><strong>Teardown</strong> - Automatic cleanup with privacy-first data purging</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Platform Features" />
+      <div class="cards-grid">
+        {platformFeatures.map((feature) => (
+          <MissionCard
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+            href={feature.href}
+            linkText={feature.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader title="Ideal For" />
+      <div class="cards-grid">
+        {useCases.map((useCase) => (
+          <MissionCard
+            icon={useCase.icon}
+            title={useCase.title}
+            description={useCase.description}
+            href={useCase.href}
+            linkText={useCase.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <SectionHeader
+        title="Technical Architecture"
+        description="Built on a modern, cloud-native stack for reliability and scale"
+      />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Infrastructure</h3>
+          <ul>
+            <li><strong>Orchestration</strong> - Docker 24+ with Docker-in-Docker for range isolation</li>
+            <li><strong>Database</strong> - PostgreSQL 16 with Redis 7 caching</li>
+            <li><strong>Storage</strong> - MinIO for ISOs, templates, and artifacts</li>
+            <li><strong>Proxy</strong> - Traefik 2.11 for HTTP routing and VNC access</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h3>Application</h3>
+          <ul>
+            <li><strong>Frontend</strong> - React 18 + TypeScript + Tailwind CSS</li>
+            <li><strong>Backend</strong> - FastAPI (Python 3.11) with async/await</li>
+            <li><strong>Task Queue</strong> - Dramatiq with Redis broker</li>
+            <li><strong>Deployment</strong> - Cloud, on-premises, or air-gapped</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

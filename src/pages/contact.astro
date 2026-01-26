@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Fighting Smart Cyber. Let's discuss how we can help strengthen your cybersecurity posture."
+  includeSupabase={true}
+  includeAnimations={false}
+>
+  <Hero
+    title='Get in <span class="highlight">Touch</span>'
+    subtitle="Let's discuss how Fighting Smart Cyber can help strengthen your cybersecurity posture"
+    compact={true}
+  />
+
+  <section class="content-section">
+    <div class="container">
+      <div class="contact-form">
+        <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-blue);">Contact Us</h2>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="organization">Organization *</label>
+              <input type="text" id="organization" name="organization" required>
+            </div>
+            <div class="form-group">
+              <label for="role">Role/Title</label>
+              <input type="text" id="role" name="role">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="orgType">Type of Organization *</label>
+            <select id="orgType" name="orgType" required>
+              <option value="">Select an option</option>
+              <option value="government">Government</option>
+              <option value="dib">Defense Industrial Base (DIB)</option>
+              <option value="critical-infra">Critical Infrastructure</option>
+              <option value="smb">Small/Medium Business</option>
+              <option value="enterprise">Enterprise</option>
+              <option value="contractor">Government Contractor</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="interest">I'm interested in *</label>
+            <select id="interest" name="interest" required>
+              <option value="">Select an option</option>
+              <option value="consulting">Cybersecurity Consulting</option>
+              <option value="training">Operator-Led Training</option>
+              <option value="soc-self">SOC-in-a-Box (Self-Service)</option>
+              <option value="soc-managed">SOC-in-a-Box (Managed)</option>
+              <option value="secure-k8s">Secure Kubernetes Core</option>
+              <option value="app-bundles">App Bundles & Catalog</option>
+              <option value="advisory">Advisory & Strategic Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeframe">Urgency/Timeframe *</label>
+            <select id="timeframe" name="timeframe" required>
+              <option value="">Select an option</option>
+              <option value="asap">ASAP</option>
+              <option value="30-days">Within 30 days</option>
+              <option value="60-90-days">60-90 days</option>
+              <option value="exploring">Exploring options</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your mission, requirements, or questions..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Other Ways to Reach Us" />
+      <div class="cards-grid">
+        <div class="mission-card">
+          <span class="mission-card-icon" style="font-size: 48px;">📧</span>
+          <h3>Email</h3>
+          <p>info@fightingsmartcyber.com</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon" style="font-size: 48px;">💬</span>
+          <h3>Schedule a Call</h3>
+          <p>Use the form above to request a call, and we'll reach out to schedule a time that works for you.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon" style="font-size: 48px;">🌐</span>
+          <h3>Location</h3>
+          <p>United States<br>Supporting clients globally</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      organization: document.getElementById('organization').value,
+      role: document.getElementById('role').value,
+      orgType: document.getElementById('orgType').value,
+      interest: document.getElementById('interest').value,
+      timeframe: document.getElementById('timeframe').value,
+      message: document.getElementById('message').value
+    };
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      await submitContactForm(formData);
+      showSuccessMessage();
+      document.getElementById('contactForm').reset();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Sorry, there was an error sending your message. Please try again or email us directly at info@fightingsmartcyber.com');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  function showSuccessMessage() {
+    // Remove existing banner if present
+    const existingBanner = document.getElementById('successBanner');
+    if (existingBanner) existingBanner.remove();
+
+    // Create banner using safe DOM methods
+    const banner = document.createElement('div');
+    banner.id = 'successBanner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,#00a8ff 0%,#00d4ff 100%);color:#000;padding:20px;text-align:center;z-index:10000;box-shadow:0 4px 20px rgba(0,0,0,0.3);animation:slideDown 0.3s ease-out;';
+
+    const container = document.createElement('div');
+    container.style.cssText = 'max-width:1200px;margin:0 auto;';
+
+    const heading = document.createElement('h3');
+    heading.style.cssText = 'margin:0 0 10px 0;font-size:24px;font-weight:700;';
+    heading.textContent = '\u2713 Message Sent Successfully!';
+
+    const message = document.createElement('p');
+    message.style.cssText = 'margin:0;font-size:16px;opacity:0.9;';
+    message.textContent = 'Thank you for reaching out! Your message has been received and we\'ll get back to you soon. We typically respond within 24-48 hours.';
+
+    container.appendChild(heading);
+    container.appendChild(message);
+    banner.appendChild(container);
+
+    // Add animation styles if not present
+    if (!document.getElementById('successBannerStyle')) {
+      const style = document.createElement('style');
+      style.id = 'successBannerStyle';
+      style.textContent = '@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}';
+      document.head.appendChild(style);
+    }
+
+    document.body.appendChild(banner);
+
+    setTimeout(function() {
+      banner.style.animation = 'slideDown 0.3s ease-out reverse';
+      setTimeout(function() {
+        if (banner.parentNode) banner.parentNode.removeChild(banner);
+      }, 300);
+    }, 8000);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>

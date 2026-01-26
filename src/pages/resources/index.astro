@@ -1,0 +1,116 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+
+const whitepapers = [
+  {
+    icon: 'document',
+    title: 'Secure Kubernetes Deployment Guide',
+    description: 'Comprehensive guide to deploying secure Kubernetes clusters with Zero Trust principles, network policies, and comprehensive observability.',
+    href: '#',
+    linkText: 'Coming Soon'
+  },
+  {
+    icon: 'document',
+    title: 'SOC Modernization Roadmap',
+    description: 'Strategic guide to modernizing your security operations center with cloud-native technologies and operator-tested practices.',
+    href: '#',
+    linkText: 'Coming Soon'
+  },
+  {
+    icon: 'document',
+    title: 'Cyber Range Design and Implementation',
+    description: 'Best practices for designing and implementing cyber ranges for training, testing, and exercise scenarios.',
+    href: '#',
+    linkText: 'Coming Soon'
+  }
+];
+
+const blogPosts = [
+  {
+    icon: 'blog',
+    title: 'Thinking Like an Operator',
+    description: 'Why operator-led cybersecurity solutions are more effective than traditional approaches. Learn how to apply operational thinking to your security posture.',
+    href: '#',
+    linkText: 'Coming Soon'
+  },
+  {
+    icon: 'blog',
+    title: 'The DOTMLPF-P Framework',
+    description: 'Understanding how to evaluate cybersecurity holistically across doctrine, organization, training, materiel, leadership, personnel, facilities, and policy.',
+    href: '#',
+    linkText: 'Coming Soon'
+  },
+  {
+    icon: 'blog',
+    title: 'Building Production-Ready SOCs',
+    description: 'Lessons learned from building and operating security operations centers in production environments.',
+    href: '#',
+    linkText: 'Coming Soon'
+  }
+];
+---
+
+<ContentPageLayout
+  title="Resources"
+  description="Cybersecurity resources from Fighting Smart Cyber. Whitepapers, blog posts, case studies, and insights from proven operators."
+  heroTitle="Resources"
+  heroSubtitle="Insights, whitepapers, and case studies from proven operators"
+  ctaTitle="Want to Stay Updated?"
+  ctaDescription="Contact us to be notified when new resources are available."
+  ctaPrimaryButton={{ text: 'Get in Touch', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View Our Solutions', href: '/solutions' }}
+>
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Whitepapers"
+        description="In-depth technical guides and strategic insights"
+      />
+      <div class="cards-grid">
+        {whitepapers.map((paper) => (
+          <MissionCard
+            icon={paper.icon}
+            title={paper.title}
+            description={paper.description}
+            href={paper.href}
+            linkText={paper.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Blog & Insights"
+        description="Thought leadership and operational insights from our team"
+      />
+      <div class="cards-grid">
+        {blogPosts.map((post) => (
+          <MissionCard
+            icon={post.icon}
+            title={post.title}
+            description={post.description}
+            href={post.href}
+            linkText={post.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Case Studies"
+        description="Real-world examples of our solutions in action"
+      />
+      <div class="content-text" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <p>Case studies coming soon. Check back to see how organizations are using our operator-led solutions to strengthen their cybersecurity posture.</p>
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

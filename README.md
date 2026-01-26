@@ -1,62 +1,43 @@
-# Admin Panel - Form Submissions
+# Astro Starter Kit: Minimal
 
-## Access
+```sh
+npm create astro@latest -- --template minimal
+```
 
-Visit: `https://fightingsmartcyber.com/admin/submissions.html`
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-You'll be prompted for a password to access the submissions.
+## 🚀 Project Structure
 
-## Default Password
+Inside of your Astro project, you'll see the following folders and files:
 
-**⚠️ IMPORTANT: Change the default password immediately!**
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-The default password is set in the systemd service file:
-- File: `/etc/systemd/system/fighting-smart-submissions-api.service`
-- Current default: `change-me-123`
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## Changing the Password
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-1. SSH to production and edit the service file:
-   ```bash
-   ssh root@45.79.219.7
-   nano /etc/systemd/system/fighting-smart-submissions-api.service
-   ```
+Any static assets, like images, can be placed in the `public/` directory.
 
-2. Update the `Environment="ADMIN_PASSWORD=your-new-password"` line
+## 🧞 Commands
 
-3. Reload and restart:
-   ```bash
-   systemctl daemon-reload
-   systemctl restart fighting-smart-submissions-api.service
-   ```
+All commands are run from the root of the project, from a terminal:
 
-## Current Password
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-Your current production password is: **`FSCyber1775!@`**
+## 👀 Want to learn more?
 
-This is stored in `/etc/systemd/system/fighting-smart-submissions-api.service` on the production server.
-
-## Features
-
-- **Password Protection**: Simple password-based access
-- **Statistics Dashboard**: View total submissions, top interests, unique organizations
-- **Submission Cards**: Beautiful card-based layout showing all submission details
-- **Auto-refresh**: Automatically refreshes every 30 seconds
-- **Responsive Design**: Works on desktop and mobile
-- **Email Links**: Click email addresses to open your email client
-
-## Security Notes
-
-- The password is passed as a URL parameter (query string)
-- For production, consider implementing:
-  - HTTP Basic Auth via Nginx
-  - Session-based authentication
-  - IP whitelisting
-  - More robust authentication system
-
-## API Endpoint
-
-The admin panel uses: `/api/submissions?password=YOUR_PASSWORD`
-
-This endpoint is served by a separate Python server on port 8081.
-
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

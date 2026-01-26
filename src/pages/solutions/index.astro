@@ -1,0 +1,67 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+
+const solutions = [
+  {
+    icon: 'target',
+    title: 'Consulting',
+    description: 'Comprehensive cyber readiness assessments using the DOTMLPF-P framework. Gap analysis, capability development, and strategic planning from operators who\'ve been there.',
+    href: '/solutions/consulting',
+    linkText: 'Learn More'
+  },
+  {
+    icon: 'graduation',
+    title: 'Training Services',
+    description: 'Operator-led training programs covering DCO, incident response, threat hunting, and more. Hands-on labs with real-world scenarios.',
+    href: '/solutions/training',
+    linkText: 'View Training'
+  },
+  {
+    icon: 'briefcase',
+    title: 'Advisory',
+    description: 'Strategic advisory services for capability development, organizational design, acquisition strategy, and Zero Trust roadmaps.',
+    href: '/solutions/advisory',
+    linkText: 'Schedule Call'
+  },
+  {
+    icon: 'layers',
+    title: 'Custom SaaS Development',
+    description: 'Purpose-built cloud applications tailored to your mission. From workflow automation to specialized security tools.',
+    href: '/solutions/custom-saas',
+    linkText: 'Start a Project'
+  }
+];
+---
+
+<ContentPageLayout
+  title="Solutions"
+  description="Operator-led cybersecurity solutions: consulting, training, advisory, and custom development."
+  heroTitle='Our <span class="highlight">Solutions</span>'
+  heroSubtitle="Comprehensive cybersecurity services from proven operators"
+  ctaTitle="Ready to Get Started?"
+  ctaDescription="Let's discuss how our solutions can address your cybersecurity challenges."
+  ctaPrimaryButton={{ text: 'Contact Us', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View Platforms', href: '/platforms' }}
+>
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="What We Offer"
+        description="From assessments to custom development, we deliver operator-tested solutions"
+      />
+      <div class="cards-grid">
+        {solutions.map((solution) => (
+          <MissionCard
+            icon={solution.icon}
+            title={solution.title}
+            description={solution.description}
+            href={solution.href}
+            linkText={solution.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

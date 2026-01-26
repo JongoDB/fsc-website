@@ -1,0 +1,64 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Operator-Led Training | Fighting Smart Cyber"
+  description="Operator-led cybersecurity training from proven operators. Hands-on labs, real-world scenarios, and comprehensive courses."
+  heroTitle='Operator-Led <span class="highlight">Training</span>'
+  heroSubtitle="Training from operators who've been there"
+  ctaTitle="Ready to Train with Operators?"
+  ctaDescription="Let's discuss which training programs best fit your team's needs."
+  ctaPrimaryButton={{ text: 'Request Training Information', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View Course Catalog', href: '/training' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Learn from Real Operators</h2>
+          <p>Our training programs are designed and delivered by operators who've conducted real cyber operations at the highest levels. We don't teach from textbooks—we teach from experience.</p>
+          <p>Every course includes hands-on labs, real-world scenarios, and practical exercises that mirror actual operational environments. You'll learn to defend against techniques used by real threat actors.</p>
+          <a href="/training" class="btn-primary" style="margin-top: 20px;">View Full Course Catalog</a>
+        </div>
+        <div class="content-text">
+          <h2>Training Focus Areas</h2>
+          <ul>
+            <li><strong>Defensive Cyber Operations (DCO)</strong> - Blue team fundamentals and advanced techniques</li>
+            <li><strong>Incident Response</strong> - Technical and executive tracks</li>
+            <li><strong>Threat Hunting</strong> - Proactive threat detection and analysis</li>
+            <li><strong>Red Team Perspectives</strong> - Understanding attacker methodologies</li>
+            <li><strong>Kubernetes Security</strong> - Container and orchestration security</li>
+            <li><strong>Cyber Kill Chain</strong> - Understanding and disrupting attack chains</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Why Our Training Works" />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Real-World Scenarios"
+          description="All training scenarios are based on actual operations and real threat actor techniques."
+        />
+        <FeatureItem
+          title="Hands-On Labs"
+          description="Comprehensive lab environments and cyber ranges for practical, hands-on learning."
+        />
+        <FeatureItem
+          title="Flexible Delivery"
+          description="On-site, virtual, hybrid, or custom delivery options to fit your schedule and needs."
+        />
+        <FeatureItem
+          title="Operator Instructors"
+          description="Learn from instructors who've conducted real operations, not career trainers."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

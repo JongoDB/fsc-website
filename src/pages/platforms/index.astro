@@ -1,0 +1,101 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+
+const platforms = [
+  {
+    icon: 'shield',
+    title: 'SOC-in-a-Box',
+    description: 'Turnkey, accreditation-ready security operations center platform. Kubernetes-based, production-ready, with integrated SIEM, EDR, threat intel, and vulnerability management.',
+    href: '/platforms/soc-in-a-box',
+    linkText: 'Explore SOC-in-a-Box'
+  },
+  {
+    icon: 'kubernetes',
+    title: 'Secure Kubernetes Core',
+    description: 'Opinionated, secure K8s baseline for business applications. Built with Zero Trust principles, comprehensive observability, and GitOps integration.',
+    href: '/platforms/secure-kubernetes',
+    linkText: 'Explore Secure K8s'
+  },
+  {
+    icon: 'monitor',
+    title: 'CYROID Cyber Range',
+    description: 'Enterprise cyber range orchestration platform. Deploy isolated, networked training environments in minutes with visual range builder, MSEL automation, and web-based VM console access.',
+    href: '/platforms/cyroid',
+    linkText: 'Explore CYROID'
+  }
+];
+
+const features = [
+  {
+    title: 'Operator-Tested',
+    description: 'All platforms are based on real operational experience and tested in production environments.'
+  },
+  {
+    title: 'Production-Ready',
+    description: 'Deploy immediately. Our platforms are ready for production use, not proof-of-concepts.'
+  },
+  {
+    title: 'Accreditation-Ready',
+    description: 'Designed with compliance in mind, supporting NIST, CMMC, FedRAMP, and other frameworks.'
+  },
+  {
+    title: 'Multi-Environment',
+    description: 'Works across cloud, on-premises, hybrid, and air-gapped environments.'
+  },
+  {
+    title: 'Scalable',
+    description: 'Kubernetes-native design scales from SMB to enterprise without redesign.'
+  },
+  {
+    title: 'Comprehensive Documentation',
+    description: 'Full documentation, training, and support to ensure your team can operate and maintain the platform.'
+  }
+];
+---
+
+<ContentPageLayout
+  title="Platforms"
+  description="Production-ready cybersecurity platforms from Fighting Smart Cyber. SOC-in-a-Box, Secure Kubernetes Core, and CYROID Cyber Range."
+  heroTitle='Our <span class="highlight">Platforms</span>'
+  heroSubtitle="Production-ready cybersecurity platforms built by operators, for operators"
+  ctaTitle="Ready to Deploy a Platform?"
+  ctaDescription="Let's discuss which platform best fits your mission and requirements."
+  ctaPrimaryButton={{ text: 'Schedule a Demo', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View App Bundles', href: '/bundles' }}
+>
+  <section class="content-section-alt">
+    <div class="container">
+      <div class="cards-grid">
+        {platforms.map((platform) => (
+          <MissionCard
+            icon={platform.icon}
+            title={platform.title}
+            description={platform.description}
+            href={platform.href}
+            linkText={platform.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Why Our Platforms Work"
+        description="Every platform is designed with real-world operations in mind"
+      />
+      <div class="feature-grid">
+        {features.map((feature) => (
+          <FeatureItem
+            title={feature.title}
+            description={feature.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

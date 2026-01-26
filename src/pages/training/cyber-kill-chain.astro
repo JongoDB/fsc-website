@@ -1,0 +1,74 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Cyber Kill Chain Workshop | Fighting Smart Cyber"
+  description="Deep dive into how attackers operate from initial reconnaissance through data exfiltration. Hands-on training with real-world scenarios."
+  heroTitle='Cyber Kill Chain <span class="highlight">Workshop</span>'
+  heroSubtitle="Learn to identify and disrupt each phase of the attack chain"
+  ctaTitle="Ready to Master the Cyber Kill Chain?"
+  ctaDescription="Request a syllabus or schedule a discovery call to learn more about this course."
+  ctaPrimaryButton={{ text: 'Request Syllabus', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Courses', href: '/training' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Course Overview</h2>
+          <p>Deep dive into how attackers operate from initial reconnaissance through data exfiltration. Students learn to identify and disrupt each phase of the attack chain using real-world scenarios based on actual operations.</p>
+          <p>This workshop includes hands-on labs where students defend against simulated advanced persistent threats, learning to recognize attacker behavior patterns and implement effective countermeasures.</p>
+          <h3>Course Details</h3>
+          <ul>
+            <li><strong>Duration:</strong> 3-5 days</li>
+            <li><strong>Format:</strong> Hybrid classroom & hands-on labs</li>
+            <li><strong>Audience:</strong> Security teams, SOC analysts, incident responders</li>
+            <li><strong>Prerequisites:</strong> Basic understanding of network security and incident response</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>What You'll Learn</h2>
+          <ul>
+            <li><strong>Reconnaissance</strong> - How attackers gather information about your organization</li>
+            <li><strong>Weaponization</strong> - Understanding attack payloads and delivery mechanisms</li>
+            <li><strong>Delivery</strong> - Identifying attack vectors and entry points</li>
+            <li><strong>Exploitation</strong> - Recognizing and preventing system compromises</li>
+            <li><strong>Installation</strong> - Detecting persistent access mechanisms</li>
+            <li><strong>Command & Control</strong> - Identifying and disrupting C2 communications</li>
+            <li><strong>Actions on Objectives</strong> - Preventing data exfiltration and damage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Hands-On Labs"
+        description="Real-world scenarios based on actual operations"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Lab 1: Reconnaissance Detection"
+          description="Identify and respond to active reconnaissance activities targeting your network."
+        />
+        <FeatureItem
+          title="Lab 2: Phishing Campaign Defense"
+          description="Detect and neutralize weaponized email campaigns before they reach users."
+        />
+        <FeatureItem
+          title="Lab 3: Exploit Prevention"
+          description="Implement controls to prevent exploitation of known and unknown vulnerabilities."
+        />
+        <FeatureItem
+          title="Lab 4: C2 Disruption"
+          description="Identify and disrupt command and control communications in real-time."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

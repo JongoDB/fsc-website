@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  primaryButton?: { text: string; href: string };
+  secondaryButton?: { text: string; href: string };
+}
+
+const { title, description, primaryButton, secondaryButton } = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <div class="hero-buttons">
+        {primaryButton && <a href={primaryButton.href} class="btn-primary">{primaryButton.text}</a>}
+        {secondaryButton && <a href={secondaryButton.href} class="btn-secondary">{secondaryButton.text}</a>}
+      </div>
+    </div>
+  </div>
+</section>

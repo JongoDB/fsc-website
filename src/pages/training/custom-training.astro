@@ -1,0 +1,70 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Custom Training Packages | Fighting Smart Cyber"
+  description="Custom training programs tailored to your organization's needs, environment, and skill levels."
+  heroTitle='Custom <span class="highlight">Training</span> Packages'
+  heroSubtitle="Tailored training programs designed specifically for your organization"
+  ctaTitle="Ready to Design Your Custom Training Program?"
+  ctaDescription="Let's discuss your organization's specific training needs and design a program that fits."
+  ctaPrimaryButton={{ text: 'Schedule Discovery Call', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View Standard Courses', href: '/training' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Training Tailored to Your Needs</h2>
+          <p>We can design custom training programs tailored to your specific needs, environment, and skill levels. Whether you need executive cyber risk workshops, technical deep-dives, or comprehensive security team training, we'll create a curriculum that fits.</p>
+          <p>Our custom training programs are designed by operators who understand real-world requirements. We'll work with you to identify your team's specific needs and create a training program that addresses them directly.</p>
+          <h3>Custom Training Options</h3>
+          <ul>
+            <li><strong>Executive Workshops</strong> - Cyber risk management for leadership</li>
+            <li><strong>Technical Deep-Dives</strong> - Advanced topics for experienced teams</li>
+            <li><strong>Comprehensive Programs</strong> - Multi-week training for entire security teams</li>
+            <li><strong>Environment-Specific</strong> - Training tailored to your specific infrastructure</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>Our Process</h2>
+          <ul>
+            <li><strong>Discovery</strong> - Understand your organization's needs, environment, and skill levels</li>
+            <li><strong>Curriculum Design</strong> - Create a custom curriculum addressing your specific requirements</li>
+            <li><strong>Lab Environment</strong> - Build training environments that mirror your infrastructure</li>
+            <li><strong>Delivery</strong> - Flexible delivery options: on-site, virtual, or hybrid</li>
+            <li><strong>Assessment</strong> - Measure learning outcomes and adjust as needed</li>
+            <li><strong>Follow-Up</strong> - Ongoing support and additional training as your needs evolve</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="Custom Training Examples" />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Executive Cyber Risk Workshop"
+          description="Half-day or full-day workshops for leadership teams covering cyber risk management, incident response decision-making, and strategic planning."
+        />
+        <FeatureItem
+          title="Platform-Specific Training"
+          description="Training tailored to your specific security platforms, tools, and infrastructure. Learn to operate and maintain your specific technology stack."
+        />
+        <FeatureItem
+          title="Red Team vs Blue Team"
+          description="Comprehensive training programs that teach both offensive and defensive techniques, helping teams understand both sides of cybersecurity."
+        />
+        <FeatureItem
+          title="Compliance-Focused Training"
+          description="Training programs designed to help teams meet specific compliance requirements: NIST, CMMC, FedRAMP, HIPAA, and more."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

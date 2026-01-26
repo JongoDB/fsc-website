@@ -1,0 +1,174 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Custom SaaS Development | Fighting Smart Cyber"
+  description="Purpose-built cloud applications tailored to your mission. Custom SaaS development from workflow automation to specialized security tools."
+  heroTitle='Custom <span class="highlight">SaaS</span> Development'
+  heroSubtitle="Purpose-built applications tailored to your mission requirements"
+  ctaTitle="Have a Project in Mind?"
+  ctaDescription="Let's discuss your requirements and explore how we can build the solution you need."
+  ctaPrimaryButton={{ text: 'Start a Conversation', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Solutions', href: '/solutions' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Your Requirements, Our Expertise</h2>
+          <p>Off-the-shelf software doesn't always fit mission-critical requirements. When you need a solution that doesn't exist—or need to integrate multiple systems into a unified workflow—we build it.</p>
+          <p>Our development team combines deep security expertise with modern cloud-native engineering practices. We design, build, and deploy secure SaaS applications that solve your unique operational challenges.</p>
+          <h3>What We Build</h3>
+          <ul>
+            <li><strong>Workflow Automation</strong> - Streamline complex processes with custom automation tools</li>
+            <li><strong>Security Operations Tools</strong> - Purpose-built applications for SOC analysts and security teams</li>
+            <li><strong>Data Integration Platforms</strong> - Unify disparate systems into cohesive workflows</li>
+            <li><strong>Compliance & Reporting</strong> - Automated compliance tracking and reporting dashboards</li>
+            <li><strong>Training & Exercise Platforms</strong> - Custom learning management and exercise execution systems</li>
+            <li><strong>Mission-Specific Applications</strong> - Whatever your unique requirements demand</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>Built for Security & Scale</h2>
+          <p>Every application we build follows security-first development practices:</p>
+          <ul>
+            <li><strong>Secure by Design</strong> - Security integrated from architecture through deployment</li>
+            <li><strong>Cloud-Native Architecture</strong> - Built on Kubernetes for reliability and scalability</li>
+            <li><strong>Zero Trust Principles</strong> - Identity-centric security with least-privilege access</li>
+            <li><strong>Compliance-Ready</strong> - Designed to meet NIST, CMMC, FedRAMP requirements</li>
+            <li><strong>Multi-Environment Support</strong> - Deploy to cloud, on-premises, or air-gapped environments</li>
+          </ul>
+          <p style="margin-top: 30px;">We don't just deliver code—we deliver operational capability. Every project includes documentation, training, and support to ensure your team can operate and maintain the solution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Our Development Process"
+        description="From concept to deployment, we follow a proven methodology"
+      />
+      <div class="cards-grid">
+        <div class="mission-card">
+          <span class="mission-card-icon">1</span>
+          <h3>Discovery & Requirements</h3>
+          <p>We work closely with your team to understand your operational challenges, existing systems, and desired outcomes. This phase defines the scope, architecture, and success criteria.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">2</span>
+          <h3>Design & Architecture</h3>
+          <p>Our architects design a secure, scalable solution that integrates with your existing infrastructure. You approve the approach before development begins.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">3</span>
+          <h3>Agile Development</h3>
+          <p>We build in iterative sprints with regular demos and feedback cycles. You see progress continuously and can adjust priorities as requirements evolve.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">4</span>
+          <h3>Testing & Security Review</h3>
+          <p>Comprehensive testing including functional, integration, performance, and security assessments. We identify and remediate vulnerabilities before deployment.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">5</span>
+          <h3>Deployment & Training</h3>
+          <p>We deploy to your environment and train your team on operations and maintenance. You receive complete documentation and runbooks.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">6</span>
+          <h3>Ongoing Support</h3>
+          <p>Post-deployment support ensures your application continues to meet operational needs. We're available for enhancements, maintenance, and troubleshooting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Technology Stack"
+        description="Modern, secure, and proven technologies"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Frontend"
+          description="React, TypeScript, Tailwind CSS for responsive, accessible interfaces that work across devices."
+        />
+        <FeatureItem
+          title="Backend"
+          description="Python (FastAPI), Go, or Node.js depending on requirements. RESTful and GraphQL APIs."
+        />
+        <FeatureItem
+          title="Data"
+          description="PostgreSQL, Redis, Elasticsearch, and time-series databases for diverse data requirements."
+        />
+        <FeatureItem
+          title="Infrastructure"
+          description="Kubernetes-native deployment with Helm charts, GitOps workflows, and Infrastructure as Code."
+        />
+        <FeatureItem
+          title="Security"
+          description="OAuth 2.0/OIDC, RBAC, secrets management, encryption at rest and in transit, audit logging."
+        />
+        <FeatureItem
+          title="Observability"
+          description="Integrated monitoring, logging, and tracing for operational visibility and troubleshooting."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <SectionHeader
+        title="Example Projects"
+        description="The kinds of applications we build"
+      />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Security Operations</h3>
+          <ul>
+            <li>Custom SOAR platforms for automated incident response</li>
+            <li>Threat intelligence aggregation and correlation tools</li>
+            <li>Vulnerability management dashboards with custom workflows</li>
+            <li>Security metrics and KPI tracking systems</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h3>Training & Operations</h3>
+          <ul>
+            <li>Learning management systems for cyber training</li>
+            <li>Exercise planning and execution platforms</li>
+            <li>Skills tracking and certification management</li>
+            <li>After-action review and lessons learned systems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-grid" style="margin-top: 40px;">
+        <div class="content-text">
+          <h3>Data & Integration</h3>
+          <ul>
+            <li>Multi-source data aggregation platforms</li>
+            <li>API gateways and integration middleware</li>
+            <li>Real-time data processing pipelines</li>
+            <li>Custom reporting and analytics dashboards</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h3>Compliance & Governance</h3>
+          <ul>
+            <li>Automated compliance evidence collection</li>
+            <li>Policy management and attestation systems</li>
+            <li>Risk assessment and tracking platforms</li>
+            <li>Audit preparation and documentation tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

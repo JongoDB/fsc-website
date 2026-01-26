@@ -1,0 +1,107 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Who We Are"
+  description="Learn about Fighting Smart Cyber - an operator-led cybersecurity company founded by proven leaders with TS/SCI-level operational experience."
+  heroTitle='Who <span class="highlight">We Are</span>'
+  heroSubtitle="Operator-led cybersecurity solutions from proven leaders"
+  ctaTitle="Ready to Work with Operators?"
+  ctaDescription="Let's discuss how our operator-led approach can strengthen your cybersecurity posture."
+  ctaPrimaryButton={{ text: 'Get in Touch', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'Meet Our Leadership', href: '/about/leadership' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Operator-Led. Practitioner-First.</h2>
+          <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
+          <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber and operational command experience, a CWO3 with deep DCO/OCO expertise, and a senior NCO who's built secure architectures and cyber ranges from the ground up.</p>
+          <p>We think holistically in <strong>DOTMLPF-P</strong> terms—understanding that effective cybersecurity requires alignment across:</p>
+          <ul>
+            <li><strong>Doctrine</strong> - Policies, procedures, and operational frameworks</li>
+            <li><strong>Organization</strong> - Structure, roles, and responsibilities</li>
+            <li><strong>Training</strong> - Skills development and knowledge transfer</li>
+            <li><strong>Materiel</strong> - Tools, platforms, and technology solutions</li>
+            <li><strong>Leadership</strong> - Strategic direction and decision-making</li>
+            <li><strong>Personnel</strong> - Talent acquisition and team development</li>
+            <li><strong>Facilities</strong> - Infrastructure and physical security</li>
+            <li><strong>Policy</strong> - Governance, compliance, and regulatory alignment</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>Our Mission</h2>
+          <p style="font-size: 24px; font-style: italic; color: var(--primary-blue); margin-bottom: 30px; font-weight: 600;">"Defend smarter by thinking like an operator."</p>
+          <p>We help network owners, CISOs, IT leaders, and mission owners across on-prem, virtual, cloud, and hybrid networks identify operational gaps in their cyber posture and design solutions that work in the real world.</p>
+          <h3 style="margin-top: 40px; margin-bottom: 20px;">What Makes Us Different</h3>
+          <ul>
+            <li><strong>Real operators, not career theorists</strong> - We've been in the trenches</li>
+            <li><strong>Experience in both offense and defense</strong> - We know how attackers think</li>
+            <li><strong>Ability to bridge policy, acquisition, technology, and execution</strong> - We speak all languages</li>
+            <li><strong>Production-ready solutions</strong> - We deploy full stacks that work</li>
+            <li><strong>TS/SCI-level experience</strong> - We've operated at the highest levels</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Our Approach"
+        description="We take a holistic, operator-first approach to cybersecurity"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Operational Focus"
+          description="Every solution is designed with real-world operations in mind. We don't build theoretical frameworks—we build capabilities that work under pressure."
+        />
+        <FeatureItem
+          title="Holistic Thinking"
+          description="We evaluate cybersecurity through the DOTMLPF-P lens, ensuring all aspects of your organization are aligned for effective defense."
+        />
+        <FeatureItem
+          title="Practitioner-Led"
+          description="Our training and solutions are based on actual tactics, techniques, and procedures used in real operations, not textbook scenarios."
+        />
+        <FeatureItem
+          title="Production-Ready"
+          description="We don't deliver proof-of-concepts. We deliver turnkey platforms and solutions that are ready for production deployment."
+        />
+        <FeatureItem
+          title="Multi-Environment"
+          description="Our solutions work across cloud, on-premises, hybrid, and air-gapped environments. We understand that one size doesn't fit all."
+        />
+        <FeatureItem
+          title="Knowledge Transfer"
+          description="We don't just deliver solutions—we train your team to operate and maintain them, ensuring long-term success."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader title="Our Values" />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Mission-First</h3>
+          <p>We understand that cybersecurity is about protecting missions, not just networks. Every solution we design is evaluated through the lens of operational impact.</p>
+          <h3 style="margin-top: 40px;">Integrity</h3>
+          <p>We operate with the highest standards of integrity. Our TS/SCI clearances and operational backgrounds reflect our commitment to trust and security.</p>
+        </div>
+        <div class="content-text">
+          <h3>Excellence</h3>
+          <p>We don't accept "good enough." Our solutions are operator-tested, production-ready, and built to the highest standards of quality and reliability.</p>
+          <h3 style="margin-top: 40px;">Innovation</h3>
+          <p>We combine proven operational experience with cutting-edge technology to deliver solutions that are both battle-tested and forward-thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

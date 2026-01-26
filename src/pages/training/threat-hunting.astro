@@ -1,0 +1,74 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Advanced Threat Hunting | Fighting Smart Cyber"
+  description="Elite training in proactive threat hunting methodologies. Learn to hunt for advanced threats using SIEM, EDR, and network analysis."
+  heroTitle='Advanced <span class="highlight">Threat Hunting</span>'
+  heroSubtitle="Elite training in proactive threat hunting methodologies and techniques"
+  ctaTitle="Ready to Become an Elite Threat Hunter?"
+  ctaDescription="Request a syllabus or schedule a discovery call to learn more about this advanced course."
+  ctaPrimaryButton={{ text: 'Request Syllabus', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Courses', href: '/training' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Course Overview</h2>
+          <p>Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using SIEM, EDR, and network traffic analysis.</p>
+          <p>Curriculum includes hunting for APT techniques, living-off-the-land binaries, and sophisticated evasion tactics. This is advanced training for experienced security professionals.</p>
+          <h3>Course Details</h3>
+          <ul>
+            <li><strong>Duration:</strong> 5 days</li>
+            <li><strong>Format:</strong> Advanced lab-based training</li>
+            <li><strong>Audience:</strong> Senior SOC analysts, threat hunters, blue team leads</li>
+            <li><strong>Prerequisites:</strong> 2+ years experience in security operations, familiarity with SIEM and EDR tools</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>What You'll Learn</h2>
+          <ul>
+            <li><strong>Hunting Methodologies</strong> - Hypothesis-driven and data-driven hunting approaches</li>
+            <li><strong>APT Techniques</strong> - Recognizing and hunting for advanced persistent threat behaviors</li>
+            <li><strong>Living-off-the-Land</strong> - Detecting attackers using legitimate system tools</li>
+            <li><strong>Evasion Tactics</strong> - Identifying sophisticated evasion and obfuscation techniques</li>
+            <li><strong>SIEM Analysis</strong> - Advanced querying and correlation techniques</li>
+            <li><strong>EDR Deep Dive</strong> - Leveraging endpoint detection for threat hunting</li>
+            <li><strong>Network Analysis</strong> - Traffic analysis and anomaly detection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Hands-On Exercises"
+        description="Real-world threat hunting scenarios"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Exercise 1: APT Campaign Hunt"
+          description="Hunt for indicators of an advanced persistent threat campaign across multiple data sources."
+        />
+        <FeatureItem
+          title="Exercise 2: Living-off-the-Land Detection"
+          description="Identify attackers using legitimate system tools to evade detection."
+        />
+        <FeatureItem
+          title="Exercise 3: Lateral Movement Tracking"
+          description="Track and map lateral movement across enterprise networks."
+        />
+        <FeatureItem
+          title="Exercise 4: Data Exfiltration Hunt"
+          description="Detect and prevent data exfiltration attempts before they succeed."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

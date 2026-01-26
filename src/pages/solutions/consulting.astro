@@ -1,0 +1,74 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Cybersecurity Consulting | Fighting Smart Cyber"
+  description="Comprehensive cybersecurity consulting services. Gap analysis, assessments, and strategic guidance using the DOTMLPF-P framework."
+  heroTitle='Cybersecurity <span class="highlight">Consulting</span>'
+  heroSubtitle="Comprehensive assessments and strategic guidance from proven operators"
+  ctaTitle="Ready for a Comprehensive Assessment?"
+  ctaDescription="Let's identify the gaps in your cybersecurity posture and design a roadmap for improvement."
+  ctaPrimaryButton={{ text: 'Schedule Consultation', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Solutions', href: '/solutions' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Identify Operational Gaps</h2>
+          <p>Our cybersecurity consulting services help network owners, CISOs, IT leaders, and mission owners identify operational gaps in their cyber posture using the DOTMLPF-P framework.</p>
+          <p>We don't just look at technology—we evaluate your entire cybersecurity ecosystem across doctrine, organization, training, materiel, leadership, personnel, facilities, and policy.</p>
+          <h3>Our Consulting Services</h3>
+          <ul>
+            <li><strong>Cyber Readiness Assessments</strong> - Comprehensive gap analysis across all DOTMLPF-P domains</li>
+            <li><strong>On-Prem, Cloud, and Hybrid Assessments</strong> - Evaluate your entire infrastructure</li>
+            <li><strong>Cyber Range Design and Implementation</strong> - Build training and testing environments</li>
+            <li><strong>SOC and Enterprise Architecture Modernization</strong> - Design next-generation security operations</li>
+            <li><strong>Compliance and Accreditation Support</strong> - Navigate NIST, CMMC, FedRAMP, and other frameworks</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>The DOTMLPF-P Advantage</h2>
+          <p>Most cybersecurity assessments focus only on technology. We take a holistic approach:</p>
+          <ul>
+            <li><strong>Doctrine</strong> - Are your policies and procedures aligned with best practices?</li>
+            <li><strong>Organization</strong> - Is your structure optimized for effective cybersecurity?</li>
+            <li><strong>Training</strong> - Do your teams have the skills they need?</li>
+            <li><strong>Materiel</strong> - Are your tools and platforms effective?</li>
+            <li><strong>Leadership</strong> - Is strategic direction clear and actionable?</li>
+            <li><strong>Personnel</strong> - Do you have the right people in the right roles?</li>
+            <li><strong>Facilities</strong> - Is your infrastructure secure and resilient?</li>
+            <li><strong>Policy</strong> - Are governance and compliance frameworks effective?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader title="What You Get" />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Comprehensive Assessment"
+          description="Detailed evaluation of your cybersecurity posture across all DOTMLPF-P domains, with actionable recommendations."
+        />
+        <FeatureItem
+          title="Operational Focus"
+          description="We evaluate solutions based on real-world operational effectiveness, not just compliance checkboxes."
+        />
+        <FeatureItem
+          title="Strategic Roadmap"
+          description="Clear, prioritized roadmap for improving your cybersecurity posture with realistic timelines and resource requirements."
+        />
+        <FeatureItem
+          title="Executive Briefings"
+          description="Clear, concise briefings for leadership that translate technical findings into business impact."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

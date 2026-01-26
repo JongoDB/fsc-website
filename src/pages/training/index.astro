@@ -1,0 +1,156 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MissionCard from '../../components/MissionCard.astro';
+
+const courses = [
+  {
+    title: 'Cyber Kill Chain Workshop',
+    duration: '3-5 days',
+    format: 'Hybrid classroom & hands-on labs',
+    audience: 'Security teams, SOC analysts, incident responders',
+    description: 'Deep dive into how attackers operate from initial reconnaissance through data exfiltration. Students learn to identify and disrupt each phase of the attack chain using real-world scenarios based on actual operations. Includes hands-on labs where students defend against simulated advanced persistent threats.',
+    href: '/training/cyber-kill-chain'
+  },
+  {
+    title: 'Advanced Threat Hunting',
+    duration: '5 days',
+    format: 'Advanced lab-based training',
+    audience: 'Senior SOC analysts, threat hunters, blue team leads',
+    description: 'Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using SIEM, EDR, and network traffic analysis. Curriculum includes hunting for APT techniques, living-off-the-land binaries, and sophisticated evasion tactics.',
+    href: '/training/threat-hunting'
+  },
+  {
+    title: 'Incident Response Training',
+    duration: '3-4 days',
+    format: 'Classroom & tabletop exercises',
+    audience: 'IT professionals, security teams, executives',
+    description: 'Foundational training in cyber incident response methodologies, playbooks, and procedures. Covers preparation, detection, analysis, containment, eradication, and recovery. Includes tabletop exercises simulating ransomware, data breaches, and insider threats based on real incidents.',
+    href: '/training/incident-response'
+  },
+  {
+    title: 'Kubernetes Security Fundamentals',
+    duration: '2-3 days',
+    format: 'Technical workshop with lab environments',
+    audience: 'DevOps engineers, cloud architects, platform teams',
+    description: 'Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, RBAC, secrets management, runtime security, and compliance frameworks. Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies.',
+    href: '/training/kubernetes-security'
+  },
+  {
+    title: 'Custom Training Packages',
+    duration: 'Tailored to your needs',
+    format: 'Flexible delivery options',
+    audience: 'Your organization',
+    description: 'We can design custom training programs tailored to your specific needs, environment, and skill levels. Whether you need executive cyber risk workshops, technical deep-dives, or comprehensive security team training, we\'ll create a curriculum that fits.',
+    href: '/training/custom-training',
+    linkText: 'Request Custom Training'
+  }
+];
+
+const deliveryOptions = [
+  {
+    icon: 'briefcase',
+    title: 'On-Site',
+    description: 'Instructor-led training at your facilities. Perfect for teams that want hands-on, in-person instruction with their own equipment and environments.',
+    href: '/contact',
+    linkText: 'Request On-Site'
+  },
+  {
+    icon: 'monitor',
+    title: 'Virtual',
+    description: 'Remote training with cloud-based lab environments. Access our cyber ranges and training platforms from anywhere in the world.',
+    href: '/contact',
+    linkText: 'Request Virtual'
+  },
+  {
+    icon: 'layers',
+    title: 'Hybrid',
+    description: 'Combine virtual theory sessions with on-site hands-on labs. Get the best of both worlds with flexible scheduling.',
+    href: '/contact',
+    linkText: 'Request Hybrid'
+  },
+  {
+    icon: 'target',
+    title: 'Custom',
+    description: 'Tailored training programs designed specifically for your organization\'s needs, environment, and skill levels.',
+    href: '/training/custom-training',
+    linkText: 'Learn More'
+  }
+];
+---
+
+<ContentPageLayout
+  title="Training Academy | Fighting Smart Cyber"
+  description="Operator-led cybersecurity training from proven operators. Hands-on labs, real-world scenarios, and comprehensive course catalog."
+  heroTitle='Training <span class="highlight">Academy</span>'
+  heroSubtitle="Operator-led training from operators who've been there"
+  ctaTitle="Ready to Train with Operators?"
+  ctaDescription="Let's discuss which training courses best fit your team's needs and skill levels."
+  ctaPrimaryButton={{ text: 'Request Training Information', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Solutions', href: '/solutions' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Why Operator-Led Training?"
+        description="Our instructors aren't career trainers - they're operators who've conducted real cyber operations at the highest levels"
+      />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Real-World Experience</h3>
+          <p>Every course is based on actual tactics, techniques, and procedures used in real operations. We don't teach from textbooks - we teach from experience.</p>
+          <h3 style="margin-top: 40px;">Hands-On Labs</h3>
+          <p>Our training includes hands-on lab environments, cyber ranges, and simulations that mirror real-world scenarios. You'll practice defending against actual attack techniques.</p>
+        </div>
+        <div class="content-text">
+          <h3>Flexible Delivery</h3>
+          <p>We offer training in the format that works best for your organization: on-site, virtual, hybrid, or custom tailored to your specific needs.</p>
+          <h3 style="margin-top: 40px;">Comprehensive Curriculum</h3>
+          <p>From foundational courses to advanced threat hunting, we cover the full spectrum of cybersecurity operations, defense, and incident response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Course Catalog"
+        description="Comprehensive cybersecurity training designed by operators for defenders"
+      />
+      <div class="course-list">
+        {courses.map((course) => (
+          <div class="course-card">
+            <h3>{course.title}</h3>
+            <div class="course-meta">
+              <div class="course-meta-item"><strong>Duration:</strong> {course.duration}</div>
+              <div class="course-meta-item"><strong>Format:</strong> {course.format}</div>
+              <div class="course-meta-item"><strong>Audience:</strong> {course.audience}</div>
+            </div>
+            <p>{course.description}</p>
+            <a href={course.href} class="mission-card-link" style="margin-top: 20px; display: inline-block;">
+              {course.linkText || 'View Course Details'} &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader title="Delivery Options" />
+      <div class="cards-grid">
+        {deliveryOptions.map((option) => (
+          <MissionCard
+            icon={option.icon}
+            title={option.title}
+            description={option.description}
+            href={option.href}
+            linkText={option.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

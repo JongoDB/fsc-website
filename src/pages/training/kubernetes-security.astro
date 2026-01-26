@@ -1,0 +1,74 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Kubernetes Security Fundamentals | Fighting Smart Cyber"
+  description="Comprehensive introduction to securing Kubernetes deployments. Build and secure a Kubernetes cluster from the ground up."
+  heroTitle='Kubernetes Security <span class="highlight">Fundamentals</span>'
+  heroSubtitle="Comprehensive introduction to securing Kubernetes deployments"
+  ctaTitle="Ready to Secure Your Kubernetes Deployments?"
+  ctaDescription="Request a syllabus or schedule a discovery call to learn more about this course."
+  ctaPrimaryButton={{ text: 'Request Syllabus', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Courses', href: '/training' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Course Overview</h2>
+          <p>Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, RBAC, secrets management, runtime security, and compliance frameworks.</p>
+          <p>Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies. This is hands-on technical training for DevOps engineers and platform teams.</p>
+          <h3>Course Details</h3>
+          <ul>
+            <li><strong>Duration:</strong> 2-3 days</li>
+            <li><strong>Format:</strong> Technical workshop with lab environments</li>
+            <li><strong>Audience:</strong> DevOps engineers, cloud architects, platform teams</li>
+            <li><strong>Prerequisites:</strong> Basic understanding of Kubernetes and containerization</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>What You'll Learn</h2>
+          <ul>
+            <li><strong>Container Security</strong> - Image scanning, runtime security, and best practices</li>
+            <li><strong>Network Policies</strong> - Implementing Zero Trust network segmentation</li>
+            <li><strong>RBAC</strong> - Role-based access control and service account management</li>
+            <li><strong>Secrets Management</strong> - Secure secret storage and rotation</li>
+            <li><strong>Runtime Security</strong> - Detecting and preventing runtime threats</li>
+            <li><strong>Compliance</strong> - Meeting NIST, CIS, and other security frameworks</li>
+            <li><strong>Observability</strong> - Security monitoring and logging</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Hands-On Labs"
+        description="Build and secure a Kubernetes cluster from scratch"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Lab 1: Cluster Hardening"
+          description="Configure a Kubernetes cluster with security best practices from the ground up."
+        />
+        <FeatureItem
+          title="Lab 2: Network Policy Implementation"
+          description="Implement network policies to segment and secure pod-to-pod communications."
+        />
+        <FeatureItem
+          title="Lab 3: RBAC Configuration"
+          description="Configure role-based access control and service accounts following least privilege principles."
+        />
+        <FeatureItem
+          title="Lab 4: Secrets Management"
+          description="Implement secure secret management and rotation practices."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>

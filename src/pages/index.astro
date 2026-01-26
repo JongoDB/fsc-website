@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import MissionCard from '../components/MissionCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import LeadershipCard from '../components/LeadershipCard.astro';
+import TrustBadge from '../components/TrustBadge.astro';
+import CTASection from '../components/CTASection.astro';
+import { homepageTiles } from '../data/navigation';
+
+const leaders = [
+  {
+    role: 'CEO',
+    title: 'Retired Three-Star General',
+    bio: 'Former elite cyber unit commander and pilot with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber defense.'
+  },
+  {
+    role: 'COO',
+    title: 'Retired CWO3 | Cyber Operations Veteran',
+    bio: 'Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks.'
+  },
+  {
+    role: 'CTO',
+    title: 'Senior NCO | Defense Architecture Specialist',
+    bio: 'Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, and defensive cyber operations.'
+  }
+];
+
+const trustBadges = [
+  { icon: 'lock', label: 'TS/SCI Cleared' },
+  { icon: 'target', label: 'Operator-Tested' },
+  { icon: 'lightning', label: 'Production-Ready' },
+  { icon: 'shield', label: 'Accreditation-Ready' },
+  { icon: 'globe', label: 'Multi-Environment' }
+];
+---
+
+<BaseLayout title="Fighting Smart Cyber | Operator-Led Cybersecurity Solutions">
+  <Hero
+    title='Defend <span class="highlight">Smarter</span>.<br>Think Like an <span class="highlight">Operator</span>.'
+    subtitle="Operator-led cybersecurity solutions from proven leaders with TS/SCI-level operational experience"
+    showStats={true}
+    showButtons={true}
+    primaryButton={{ text: 'Explore Solutions', href: '/solutions' }}
+    secondaryButton={{ text: 'Talk to an Operator', href: '/contact' }}
+  />
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Choose Your Mission"
+        description="Select the path that matches your cybersecurity needs. From training to turnkey platforms, we deliver operator-tested solutions."
+      />
+      <div class="cards-grid">
+        {homepageTiles.map((tile) => (
+          <MissionCard
+            icon={tile.icon}
+            title={tile.title}
+            description={tile.description}
+            href={tile.href}
+            linkText={tile.linkText}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text scroll-animate-left">
+          <h2>Operator-Led. Practitioner-First.</h2>
+          <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
+          <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber command experience, a CWO3 with deep <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>/<span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span> expertise, and a senior NCO who's built secure architectures from the ground up.</p>
+          <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms—understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
+          <a href="/about/who-we-are" class="btn-primary">Learn More About Us</a>
+        </div>
+        <div class="content-text scroll-animate-right">
+          <h2>Why Fighting Smart?</h2>
+          <p>Most cybersecurity companies are led by sales teams or career consultants. We're different. Our founders have:</p>
+          <ul>
+            <li><strong>Commanded cyber operations</strong> at the highest levels</li>
+            <li><strong>Conducted real offensive and defensive ops</strong> in classified environments</li>
+            <li><strong>Designed and built</strong> secure architectures and cyber ranges</li>
+            <li><strong>Navigated government acquisition</strong> and compliance frameworks</li>
+            <li><strong>Deployed full stacks</strong> that are production-ready and exercise-tested</li>
+          </ul>
+          <p class="quote-text">"We bridge the gap between policy, acquisition, technology, and hands-on execution. That's what makes us different."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <SectionHeader
+        title="Leadership Team"
+        description="Proven operators with unmatched experience in cyber operations, command, and capability development"
+      />
+      <div class="leadership-grid">
+        {leaders.map((leader) => (
+          <LeadershipCard role={leader.role} title={leader.title} bio={leader.bio} />
+        ))}
+      </div>
+      <div class="leadership-cta">
+        <a href="/about/leadership" class="btn-primary">View Full Leadership Profiles</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Trusted by Mission-Critical Organizations"
+        description="Our solutions are built for organizations that can't afford to fail"
+      />
+      <div class="trust-badges">
+        {trustBadges.map((badge) => (
+          <TrustBadge icon={badge.icon} label={badge.label} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to Defend Smarter?"
+    description="Let's discuss how Fighting Smart Cyber can help strengthen your cybersecurity posture. Whether you need training, platforms, or strategic advisory, we're here to help."
+    primaryButton={{ text: 'Schedule a Call', href: '/contact' }}
+    secondaryButton={{ text: 'Request Information', href: '/contact' }}
+  />
+</BaseLayout>
