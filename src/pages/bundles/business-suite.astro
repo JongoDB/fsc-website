@@ -1,0 +1,144 @@
+---
+import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeatureItem from '../../components/FeatureItem.astro';
+---
+
+<ContentPageLayout
+  title="Business Management Suite"
+  description="Complete business operations stack for startups and small companies: CRM, accounting, invoicing, inventory management, marketing automation, and analytics dashboards."
+  heroTitle='Business Management <span class="highlight">Suite</span>'
+  heroSubtitle="Complete business operations stack for startups and small companies"
+  ctaTitle="Ready to Deploy the Business Suite?"
+  ctaDescription="Request bundle specifications or discuss your business requirements with our team."
+  ctaPrimaryButton={{ text: 'Request Bundle Spec', href: '/contact' }}
+  ctaSecondaryButton={{ text: 'View All Bundles', href: '/bundles' }}
+>
+  <section class="content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>All-in-One Business Operations</h2>
+          <p>The Business Management Suite is a comprehensive, open-source stack designed for startups and small companies. It provides all the tools you need to manage your business operations without expensive SaaS subscriptions.</p>
+          <p>All applications are pre-configured, integrated, and ready for deployment. Self-host for complete data ownership and privacy, or deploy to your preferred cloud provider.</p>
+          <h3>What's Included</h3>
+          <ul>
+            <li><strong>CRM</strong> - Customer relationship management and sales pipeline</li>
+            <li><strong>Accounting & Invoicing</strong> - Financial management, invoicing, and expense tracking</li>
+            <li><strong>Inventory Management</strong> - Product and stock management</li>
+            <li><strong>Marketing Automation</strong> - Email campaigns, lead nurturing, and analytics</li>
+            <li><strong>HR & Payroll</strong> - Employee management and payroll processing</li>
+            <li><strong>Analytics Dashboard</strong> - Business intelligence and reporting</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h2>Benefits</h2>
+          <p>The Business Management Suite offers compelling advantages for growing businesses:</p>
+          <ul>
+            <li><strong>Cost-Effective</strong> - Eliminate per-user licensing fees and expensive subscriptions</li>
+            <li><strong>Data Ownership</strong> - Your business data stays on your infrastructure</li>
+            <li><strong>Integrated</strong> - All applications work together with single sign-on</li>
+            <li><strong>Customizable</strong> - Open-source tools you can modify for your needs</li>
+            <li><strong>Scalable</strong> - Grows with your business from startup to enterprise</li>
+            <li><strong>Compliant</strong> - Meet data privacy regulations (GDPR, CCPA, etc.)</li>
+          </ul>
+          <h3 style="margin-top: 40px;">Who It's For</h3>
+          <p>Startups, small businesses, and growing companies that want professional-grade business tools without the enterprise price tag. Ideal for businesses that value data ownership and operational independence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Bundle Components"
+        description="Complete business operations stack"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Customer Relationship Management"
+          description="Track leads, manage contacts, automate sales pipelines, and nurture customer relationships with a full-featured CRM."
+        />
+        <FeatureItem
+          title="Accounting & Financial Management"
+          description="Double-entry accounting, invoicing, expense tracking, bank reconciliation, and financial reporting."
+        />
+        <FeatureItem
+          title="Inventory & Warehouse Management"
+          description="Track stock levels, manage multiple warehouses, automate reordering, and integrate with sales channels."
+        />
+        <FeatureItem
+          title="Marketing Automation"
+          description="Email campaigns, landing pages, lead scoring, marketing analytics, and automated workflows."
+        />
+        <FeatureItem
+          title="HR & Employee Management"
+          description="Employee directory, time tracking, leave management, payroll integration, and performance tracking."
+        />
+        <FeatureItem
+          title="Business Intelligence & Analytics"
+          description="Custom dashboards, KPI tracking, sales forecasting, and data visualization across all business operations."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        title="Technology Stack"
+        description="Built on proven open-source technologies"
+      />
+      <div class="content-grid">
+        <div class="content-text">
+          <h3>Core Applications</h3>
+          <ul>
+            <li><strong>ERPNext / Odoo</strong> - Core ERP and business management</li>
+            <li><strong>Invoice Ninja / Akaunting</strong> - Invoicing and accounting</li>
+            <li><strong>Monica / EspoCRM</strong> - Customer relationship management</li>
+            <li><strong>Mautic</strong> - Marketing automation platform</li>
+            <li><strong>Metabase / Apache Superset</strong> - Business intelligence</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <h3>Infrastructure</h3>
+          <ul>
+            <li><strong>PostgreSQL / MySQL</strong> - Relational database</li>
+            <li><strong>Redis</strong> - Caching and session management</li>
+            <li><strong>Keycloak</strong> - Identity and access management (SSO)</li>
+            <li><strong>Traefik / Nginx</strong> - Reverse proxy and load balancing</li>
+            <li><strong>Docker / Kubernetes</strong> - Container orchestration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <SectionHeader
+        title="Deployment Options"
+        description="Flexible deployment to match your requirements"
+      />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Self-Hosted On-Premises"
+          description="Deploy on your own servers for complete control and data sovereignty. Perfect for businesses with strict compliance requirements."
+        />
+        <FeatureItem
+          title="Cloud Deployment"
+          description="Deploy to AWS, Azure, GCP, or any cloud provider. We provide Terraform modules and deployment automation."
+        />
+        <FeatureItem
+          title="Hybrid Deployment"
+          description="Keep sensitive data on-premises while leveraging cloud for scalability. Flexible architecture for complex requirements."
+        />
+        <FeatureItem
+          title="Managed Service"
+          description="Let us manage the infrastructure while you focus on your business. Optional managed hosting with SLA guarantees."
+        />
+      </div>
+    </div>
+  </section>
+</ContentPageLayout>
