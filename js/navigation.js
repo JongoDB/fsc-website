@@ -55,9 +55,39 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// Dropdown toggle for mobile only (desktop uses CSS hover)
+// Dropdown toggle for mobile only (desktop uses CSS hover with JS delay)
 document.addEventListener("DOMContentLoaded", function() {
     const dropdowns = document.querySelectorAll(".dropdown > a");
+    const dropdownContainers = document.querySelectorAll(".dropdown");
+
+    // Desktop: Add hover delay to prevent menu from closing too quickly
+    const HOVER_DELAY = 300; // milliseconds before menu closes
+
+    dropdownContainers.forEach(dropdown => {
+        let closeTimeout = null;
+
+        dropdown.addEventListener("mouseenter", function() {
+            // Cancel any pending close
+            if (closeTimeout) {
+                clearTimeout(closeTimeout);
+                closeTimeout = null;
+            }
+            // Add hover class for desktop
+            if (window.innerWidth > 968) {
+                this.classList.add("hover-active");
+            }
+        });
+
+        dropdown.addEventListener("mouseleave", function() {
+            const self = this;
+            // Delay closing on desktop
+            if (window.innerWidth > 968) {
+                closeTimeout = setTimeout(function() {
+                    self.classList.remove("hover-active");
+                }, HOVER_DELAY);
+            }
+        });
+    });
 
     dropdowns.forEach(dropdown => {
         dropdown.addEventListener("click", function(e) {
