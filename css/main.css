@@ -1400,13 +1400,12 @@ textarea:focus {
     outline-offset: 2px;
 }
 
-/* ===== DROPDOWN NAVIGATION (Click-to-Expand on All Platforms) ===== */
+/* ===== DROPDOWN NAVIGATION (Hover on Desktop, Click on Mobile) ===== */
 
 .dropdown {
     position: relative;
 }
 
-/* Remove hover-based dropdowns - make it click-only */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -1434,6 +1433,22 @@ textarea:focus {
     }
 }
 
+/* Desktop: hover-based dropdowns */
+@media (min-width: 969px) {
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown:hover > a {
+        color: var(--bright-blue);
+    }
+
+    .dropdown:hover > a::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+}
+
+/* Mobile: click-based dropdowns (uses .active class from JS) */
 .dropdown.active > .dropdown-menu {
     display: block;
 }

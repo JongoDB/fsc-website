@@ -55,42 +55,46 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// Dropdown toggle for all platforms (desktop and mobile)
+// Dropdown toggle for mobile only (desktop uses CSS hover)
 document.addEventListener("DOMContentLoaded", function() {
     const dropdowns = document.querySelectorAll(".dropdown > a");
-    
+
     dropdowns.forEach(dropdown => {
         dropdown.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Prevent event bubbling
-            const parent = this.parentElement;
-            const wasActive = parent.classList.contains("active");
-            
-            // Close all other dropdowns
-            document.querySelectorAll(".dropdown.active").forEach(d => {
-                if (d !== parent) {
-                    d.classList.remove("active");
+            // Only handle clicks on mobile (desktop uses hover)
+            if (window.innerWidth <= 968) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parent = this.parentElement;
+                const wasActive = parent.classList.contains("active");
+
+                // Close all other dropdowns
+                document.querySelectorAll(".dropdown.active").forEach(d => {
+                    if (d !== parent) {
+                        d.classList.remove("active");
+                    }
+                });
+
+                // Toggle current dropdown
+                if (wasActive) {
+                    parent.classList.remove("active");
+                } else {
+                    parent.classList.add("active");
                 }
-            });
-            
-            // Toggle current dropdown
-            if (wasActive) {
-                parent.classList.remove("active");
-            } else {
-                parent.classList.add("active");
             }
+            // On desktop, allow default link behavior (navigate to page)
         });
     });
-    
-    // Close dropdowns when clicking outside (but not the parent nav)
+
+    // Close dropdowns when clicking outside (mobile only)
     document.addEventListener("click", function(e) {
-        if (!e.target.closest(".dropdown")) {
+        if (window.innerWidth <= 968 && !e.target.closest(".dropdown")) {
             document.querySelectorAll(".dropdown.active").forEach(d => {
                 d.classList.remove("active");
             });
         }
     });
-    
+
     // Close dropdown when clicking a dropdown menu item (actual navigation)
     document.querySelectorAll(".dropdown-menu a").forEach(link => {
         link.addEventListener("click", function() {
