@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYROID Cyber Range | Fighting Smart Cyber</title>
+    <meta name="description" content="Enterprise cyber range orchestration platform. Deploy isolated, networked cyber training environments in minutes with visual range builder and automated scenario execution.">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div>
+                <a href="/" class="logo">Fighting Smart Cyber</a>
+                <div class="tagline">Operator-Led Cybersecurity</div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li class="dropdown">
+                    <a href="../about/who-we-are">About</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are">Who We Are</a></li>
+                        <li><a href="../about/leadership">Leadership</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../solutions/index">Solutions</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../solutions/consulting">Consulting</a></li>
+                        <li><a href="../solutions/training">Training Services</a></li>
+                        <li><a href="../solutions/advisory">Advisory</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../training/index">Training</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../training/custom-training">Custom Training</a></li>
+                        <li><a href="../training/cyber-kill-chain">Cyber Kill Chain</a></li>
+                        <li><a href="../training/incident-response">Incident Response</a></li>
+                        <li><a href="../training/kubernetes-security">Kubernetes Security</a></li>
+                        <li><a href="../training/threat-hunting">Threat Hunting</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../platforms/index">Platforms</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../platforms/soc-in-a-box">SOC-in-a-Box</a></li>
+                        <li><a href="../platforms/secure-kubernetes">Secure Kubernetes</a></li>
+                        <li><a href="../platforms/cyroid">CYROID Cyber Range</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../bundles/index">Bundles</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../bundles/devsecops-bundle">DevSecOps Bundle</a></li>
+                        <li><a href="../bundles/dfir-bundle">DFIR Bundle</a></li>
+                        <li><a href="../bundles/productivity-suite">Productivity Suite</a></li>
+                        <li><a href="../bundles/soc-stack">SOC Stack</a></li>
+                        <li><a href="../bundles/request-bundle">Request Bundle</a></li>
+                    </ul>
+                </li>
+                <li><a href="../resources/index">Resources</a></li>
+                <li><a href="../contact" class="nav-cta">Contact</a></li>
+        </nav>
+    </header>
+
+    <section class="hero" style="padding: 140px 0 100px;">
+        <div class="container hero-content">
+            <h1><span class="highlight">CYROID</span> Cyber Range</h1>
+            <p class="subtitle">Enterprise cyber range orchestration platform for mission-ready training</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Deploy Cyber Ranges in Minutes, Not Days</h2>
+                    <p>Traditional cyber range deployment is slow, expensive, and requires specialized expertise. CYROID changes that. Our platform automates the entire lifecycle of cyber training environments—from planning through execution to teardown.</p>
+                    <p>Built on Docker-in-Docker architecture, CYROID provides true network isolation between ranges, allowing multiple concurrent exercises with identical IP address spaces without conflicts. Deploy complex, multi-node training scenarios through an intuitive visual interface.</p>
+                    <h3>Key Capabilities</h3>
+                    <ul>
+                        <li><strong>Visual Range Builder</strong> - Drag-and-drop interface for designing network topologies</li>
+                        <li><strong>Complete Isolation</strong> - Docker-in-Docker architecture for true network separation</li>
+                        <li><strong>Multi-OS Support</strong> - Linux, Windows, macOS VMs with 27+ pre-built templates</li>
+                        <li><strong>Web-Based Console</strong> - VNC access to all VMs through your browser</li>
+                        <li><strong>MSEL Automation</strong> - Scenario-based inject triggering and event scheduling</li>
+                        <li><strong>Offline-Capable</strong> - Cache images for air-gapped deployments</li>
+                    </ul>
+                </div>
+                <div class="content-text">
+                    <h2>Full Exercise Lifecycle Management</h2>
+                    <p>CYROID supports your entire cyber exercise workflow from initial planning through after-action review:</p>
+                    <ul>
+                        <li><strong>Planning & Design</strong> - Visual topology builder with templating and blueprints</li>
+                        <li><strong>Development</strong> - Content library with markdown-based lab walkthroughs</li>
+                        <li><strong>Deployment</strong> - One-click range instantiation with progress tracking</li>
+                        <li><strong>Execution</strong> - Real-time monitoring, inject management, connection tracking</li>
+                        <li><strong>Evidence Collection</strong> - Student submission portal with chain of custody</li>
+                        <li><strong>Scoring & Review</strong> - Automated hash verification and evaluator interface</li>
+                        <li><strong>Teardown</strong> - Automatic cleanup with privacy-first data purging</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Platform Features</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="mission-card">
+                    <span class="mission-card-icon">🖥️</span>
+                    <h3>VM Template Library</h3>
+                    <p>27+ pre-built OS templates including Windows Server 2003-2025, various Linux distributions, Kali Linux, macOS, and Samba AD. Create golden images and snapshots for rapid deployment.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">🌐</span>
+                    <h3>Network Orchestration</h3>
+                    <p>Dynamic network attach/detach, isolated range networks, and visual topology mapping. Multiple ranges can run simultaneously with identical IP spaces—completely isolated.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">📋</span>
+                    <h3>Scenario Automation</h3>
+                    <p>MSEL (Master Scenario Events List) parser for YAML/markdown scenario definitions. Schedule injects, trigger events manually, and automate attack sequences during exercises.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">📊</span>
+                    <h3>Exercise Monitoring</h3>
+                    <p>Real-time execution console with multi-panel dashboard. WebSocket streaming for live event logging, connection tracking, and deployment progress visualization.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">📦</span>
+                    <h3>Blueprint Export/Import</h3>
+                    <p>Export complete ranges as portable blueprints including Dockerfiles and offline images. Reproducible environments for consistent training across locations.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">🔒</span>
+                    <h3>Privacy-First Design</h3>
+                    <p>Data automatically purged after exercise completion. No long-term retention of sensitive training data. Air-gapped deployment support for classified environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ideal For</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="mission-card">
+                    <span class="mission-card-icon">🎖️</span>
+                    <h3>Military & Government</h3>
+                    <p>Cyber operations training with realistic adversary simulation. Support for classified environments with air-gapped deployment and CAC/PKI authentication.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">🎓</span>
+                    <h3>Educational Institutions</h3>
+                    <p>Cybersecurity curriculum delivery with hands-on labs. Scale from individual exercises to class-wide competitions with isolated student environments.</p>
+                </div>
+                <div class="mission-card">
+                    <span class="mission-card-icon">🔴</span>
+                    <h3>Red/Blue Team Exercises</h3>
+                    <p>Purple team integration with attack scenario scripting. Realistic threat simulation for defensive team training and incident response practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical Architecture</h2>
+                <p>Built on a modern, cloud-native stack for reliability and scale</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li><strong>Orchestration</strong> - Docker 24+ with Docker-in-Docker for range isolation</li>
+                        <li><strong>Database</strong> - PostgreSQL 16 with Redis 7 caching</li>
+                        <li><strong>Storage</strong> - MinIO for ISOs, templates, and artifacts</li>
+                        <li><strong>Proxy</strong> - Traefik 2.11 for HTTP routing and VNC access</li>
+                    </ul>
+                </div>
+                <div class="content-text">
+                    <h3>Application</h3>
+                    <ul>
+                        <li><strong>Frontend</strong> - React 18 + TypeScript + Tailwind CSS</li>
+                        <li><strong>Backend</strong> - FastAPI (Python 3.11) with async/await</li>
+                        <li><strong>Task Queue</strong> - Dramatiq with Redis broker</li>
+                        <li><strong>Deployment</strong> - Cloud, on-premises, or air-gapped</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Cyber Training?</h2>
+                <p>Let's discuss how CYROID can accelerate your cyber range operations.</p>
+                <div class="hero-buttons">
+                    <a href="../contact" class="btn-primary">Request a Demo</a>
+                    <a href="../platforms/index" class="btn-secondary">View All Platforms</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Fighting Smart Cyber</h4>
+                    <p>Defend smarter by thinking like an operator. Operator-led cybersecurity solutions from proven leaders.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="../solutions/consulting">Cybersecurity Consulting</a></li>
+                        <li><a href="../solutions/training">Operator-Led Training</a></li>
+                        <li><a href="../platforms/soc-in-a-box">SOC-in-a-Box Platform</a></li>
+                        <li><a href="../platforms/secure-kubernetes">Secure Kubernetes Core</a></li>
+                        <li><a href="../platforms/cyroid">CYROID Cyber Range</a></li>
+                        <li><a href="../bundles/index">App Bundles & Catalog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../about/who-we-are">Who We Are</a></li>
+                        <li><a href="../about/leadership">Leadership</a></li>
+                        <li><a href="../resources/index">Resources</a></li>
+                        <li><a href="../contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@fightingsmartcyber.com<br>
+                    Ready to discuss your mission?<br>
+                    Let's talk.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><a href="/admin/submissions" style="color: inherit; text-decoration: none;">&copy;</a> 2025 Fighting Smart Cyber. All rights reserved. | Operator-Led Cybersecurity Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
