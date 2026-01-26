@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const dropdownContainers = document.querySelectorAll(".dropdown");
 
     // Desktop: Add hover delay to prevent menu from closing too quickly
-    const HOVER_DELAY = 300; // milliseconds before menu closes
+    const HOVER_DELAY = 150; // milliseconds before menu closes
 
     dropdownContainers.forEach(dropdown => {
         let closeTimeout = null;
