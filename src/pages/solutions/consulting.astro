@@ -5,11 +5,11 @@ import FeatureItem from '../../components/FeatureItem.astro';
 ---
 
 <ContentPageLayout
-  title="Cybersecurity Consulting | Fighting Smart Cyber"
-  description="Comprehensive cybersecurity consulting services. Gap analysis, assessments, and strategic guidance using the DOTMLPF-P framework."
-  heroTitle='Cybersecurity <span class="highlight">Consulting</span>'
+  title="Consulting & Advisory | Fighting Smart Cyber"
+  description="Comprehensive cybersecurity consulting and strategic advisory services. Gap analysis, assessments, capability development, and strategic guidance using the DOTMLPF-P framework."
+  heroTitle='Consulting & <span class="highlight">Advisory</span>'
   heroSubtitle="Comprehensive assessments and strategic guidance from proven operators"
-  ctaTitle="Ready for a Comprehensive Assessment?"
+  ctaTitle="Ready for Strategic Guidance?"
   ctaDescription="Let's identify the gaps in your cybersecurity posture and design a roadmap for improvement."
   ctaPrimaryButton={{ text: 'Schedule Consultation', href: '/contact' }}
   ctaSecondaryButton={{ text: 'View All Solutions', href: '/solutions' }}
@@ -19,7 +19,7 @@ import FeatureItem from '../../components/FeatureItem.astro';
       <div class="content-grid">
         <div class="content-text">
           <h2>Identify Operational Gaps</h2>
-          <p>Our cybersecurity consulting services help network owners, <span class="tooltip-trigger">CISOs<span class="tooltip-inline">Chief Information Security Officers</span></span>, IT leaders, and mission owners identify operational gaps in their cyber posture using the <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> framework.</p>
+          <p>Our cybersecurity consulting services help network owners, <span class="tooltip-trigger">CISOs<span class="tooltip-inline">Chief Information Security Officers</span></span>, <span class="tooltip-trigger">IT<span class="tooltip-inline">Information Technology</span></span> leaders, and mission owners identify operational gaps in their cyber posture using the <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> framework.</p>
           <p>We don't just look at technology—we evaluate your entire cybersecurity ecosystem across doctrine, organization, training, materiel, leadership, personnel, facilities, and policy.</p>
           <h3>Our Consulting Services</h3>
           <ul>
@@ -31,17 +31,17 @@ import FeatureItem from '../../components/FeatureItem.astro';
           </ul>
         </div>
         <div class="content-text">
-          <h2>The DOTMLPF-P Advantage</h2>
-          <p>Most cybersecurity assessments focus only on technology. We take a holistic approach:</p>
+          <h2>Strategic Advisory</h2>
+          <p>Our advisory services help organizations develop comprehensive cybersecurity capabilities, design effective organizational structures, and navigate complex acquisition and compliance requirements.</p>
+          <p>We bring the perspective of leaders who've commanded cyber operations, built security operations centers, and navigated government acquisition processes.</p>
+          <h3>Advisory Services</h3>
           <ul>
-            <li><strong>Doctrine</strong> - Are your policies and procedures aligned with best practices?</li>
-            <li><strong>Organization</strong> - Is your structure optimized for effective cybersecurity?</li>
-            <li><strong>Training</strong> - Do your teams have the skills they need?</li>
-            <li><strong>Materiel</strong> - Are your tools and platforms effective?</li>
-            <li><strong>Leadership</strong> - Is strategic direction clear and actionable?</li>
-            <li><strong>Personnel</strong> - Do you have the right people in the right roles?</li>
-            <li><strong>Facilities</strong> - Is your infrastructure secure and resilient?</li>
-            <li><strong>Policy</strong> - Are governance and compliance frameworks effective?</li>
+            <li><strong>Capability Development</strong> - Design and implement SOC, <span class="tooltip-trigger">C2<span class="tooltip-inline">Command and Control</span></span>, and cyber range capabilities</li>
+            <li><strong>Organizational Design</strong> - Structure security teams for maximum effectiveness</li>
+            <li><strong>Acquisition Strategy</strong> - Navigate government procurement and vendor selection</li>
+            <li><strong>Zero Trust Roadmaps</strong> - Design and implement Zero Trust architectures</li>
+            <li><strong>Cloud Modernization</strong> - Strategic guidance for cloud security transformation</li>
+            <li><strong>Executive Advisory</strong> - C-level coaching and strategic planning</li>
           </ul>
         </div>
       </div>
@@ -50,7 +50,47 @@ import FeatureItem from '../../components/FeatureItem.astro';
 
   <section class="content-section-alt">
     <div class="container">
-      <SectionHeader title="What You Get" />
+      <SectionHeader title="The DOTMLPF-P Advantage" description="Most cybersecurity assessments focus only on technology. We take a holistic approach." />
+      <div class="feature-grid">
+        <FeatureItem
+          title="Doctrine"
+          description="Are your policies and procedures aligned with best practices and operational reality?"
+        />
+        <FeatureItem
+          title="Organization"
+          description="Is your structure optimized for effective cybersecurity operations and response?"
+        />
+        <FeatureItem
+          title="Training"
+          description="Do your teams have the skills they need to defend against real-world threats?"
+        />
+        <FeatureItem
+          title="Materiel"
+          description="Are your tools, platforms, and technologies effective and properly integrated?"
+        />
+        <FeatureItem
+          title="Leadership"
+          description="Is strategic direction clear, actionable, and supported with the right resources?"
+        />
+        <FeatureItem
+          title="Personnel"
+          description="Do you have the right people in the right roles with the right authorities?"
+        />
+        <FeatureItem
+          title="Facilities"
+          description="Is your infrastructure secure, resilient, and capable of supporting your mission?"
+        />
+        <FeatureItem
+          title="Policy"
+          description="Are governance and compliance frameworks effective and enforceable?"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader title="What You Get" description="From tactical assessment to strategic transformation" />
       <div class="feature-grid">
         <FeatureItem
           title="Comprehensive Assessment"
@@ -62,12 +102,33 @@ import FeatureItem from '../../components/FeatureItem.astro';
         />
         <FeatureItem
           title="Strategic Roadmap"
-          description="Clear, prioritized roadmap for improving your cybersecurity posture with realistic timelines and resource requirements."
+          description="Clear, prioritized roadmap for improving your cybersecurity posture with realistic resource requirements."
         />
         <FeatureItem
           title="Executive Briefings"
           description="Clear, concise briefings for leadership that translate technical findings into business impact."
         />
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container">
+      <SectionHeader title="Why Our Advisory is Different" />
+      <div class="content-grid">
+        <div class="content-text">
+          <p>Most cybersecurity advisors are career consultants. Our team includes:</p>
+          <ul>
+            <li><strong>A retired three-star general</strong> with strategic command experience</li>
+            <li><strong>Operational leaders</strong> who've built and run capabilities in production</li>
+            <li><strong>Acquisition experts</strong> who understand government procurement</li>
+            <li><strong>Technical specialists</strong> who can bridge strategy and execution</li>
+          </ul>
+        </div>
+        <div class="content-text">
+          <p>We don't just provide recommendations—we help you implement them. Our advisory services often lead to platform deployments, training programs, or capability development projects.</p>
+          <p>From initial assessment through full implementation, we stay engaged to ensure your investment delivers operational results.</p>
+        </div>
       </div>
     </div>
   </section>

@@ -5,11 +5,29 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Initialize Supabase client (use different name to avoid conflict with CDN global)
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Submit contact form
+// Submit contact form (handles both contact and bundle request forms)
 async function submitContactForm(formData) {
-    const { data, error } = await supabaseClient
-        .from('submissions')
-        .insert([{
+    let record;
+
+    if (formData.formType === 'bundle-request') {
+        // Bundle request form - map fields into existing columns
+        const messageParts = [];
+        if (formData.useCase) messageParts.push('Use Case:\n' + formData.useCase);
+        if (formData.requirements) messageParts.push('Requirements:\n' + formData.requirements);
+
+        record = {
+            name: formData.name,
+            email: formData.email,
+            organization: formData.organization,
+            role: formData.role || null,
+            org_type: formData.environment || null,
+            interest: 'Custom Bundle Request',
+            timeframe: formData.timeframe || null,
+            message: messageParts.join('\n\n') || null
+        };
+    } else {
+        // Standard contact form
+        record = {
             name: formData.name,
             email: formData.email,
             organization: formData.organization,
@@ -18,7 +36,12 @@ async function submitContactForm(formData) {
             interest: formData.interest,
             timeframe: formData.timeframe,
             message: formData.message
-        }]);
+        };
+    }
+
+    const { data, error } = await supabaseClient
+        .from('submissions')
+        .insert([record]);
 
     if (error) {
         console.error('Error submitting form:', error);

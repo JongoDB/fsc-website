@@ -32,9 +32,8 @@ export const navigation: NavEntry[] = [
     title: 'Solutions',
     href: '/solutions',
     items: [
-      { title: 'Consulting', href: '/solutions/consulting' },
+      { title: 'Consulting & Advisory', href: '/solutions/consulting' },
       { title: 'Training Services', href: '/solutions/training' },
-      { title: 'Advisory', href: '/solutions/advisory' },
       { title: 'Custom SaaS Development', href: '/solutions/custom-saas' },
     ],
   },
@@ -121,7 +120,7 @@ export const homepageTiles: HomepageTile[] = [
     icon: 'briefcase',
     title: 'Advisory & Strategic Consulting',
     description: 'Capability development, organizational design, acquisition strategy, Zero Trust roadmaps from leaders who\'ve built and operated at scale.',
-    href: '/solutions/advisory',
+    href: '/solutions/consulting',
     linkText: 'Schedule Call',
   },
   {
@@ -147,7 +146,7 @@ export const footerSolutions: NavItem[] = [
   { title: 'SOC-in-a-Box Platform', href: '/platforms/soc-in-a-box' },
   { title: 'Secure Kubernetes Core', href: '/platforms/secure-kubernetes' },
   { title: 'App Bundles & Catalog', href: '/bundles' },
-  { title: 'Advisory & Strategy', href: '/solutions/advisory' },
+  { title: 'Consulting & Advisory', href: '/solutions/consulting' },
 ];
 
 // Footer navigation - Company section

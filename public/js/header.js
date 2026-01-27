@@ -40,7 +40,7 @@ function generateFooter() {
                         <li><a href="/platforms/soc-in-a-box.html">SOC-in-a-Box Platform</a></li>
                         <li><a href="/platforms/secure-kubernetes.html">Secure Kubernetes Core</a></li>
                         <li><a href="/bundles/index.html">App Bundles & Catalog</a></li>
-                        <li><a href="/solutions/advisory.html">Advisory & Strategy</a></li>
+                        <li><a href="/solutions/consulting.html">Consulting & Advisory</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
