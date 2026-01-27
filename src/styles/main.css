@@ -1653,14 +1653,14 @@ textarea:focus {
 
 .hero-stat {
     text-align: center;
-    padding: 35px 20px 40px;
+    padding: 44px 28px 48px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(0, 168, 255, 0.3);
     border-radius: 12px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     position: relative;
-    width: 200px;
+    width: 220px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -1675,7 +1675,7 @@ textarea:focus {
 }
 
 .hero-stat-number {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 800;
     background: linear-gradient(135deg, var(--bright-blue) 0%, var(--cyan) 100%);
     -webkit-background-clip: text;
@@ -1687,7 +1687,7 @@ textarea:focus {
 }
 
 .hero-stat.highlight-stat .hero-stat-number {
-    font-size: 52px;
+    font-size: 68px;
 }
 
 .hero-stat:hover .hero-stat-number {
@@ -1698,7 +1698,7 @@ textarea:focus {
 }
 
 .hero-stat-label {
-    font-size: 9px;
+    font-size: 13px;
     opacity: 0.85;
     text-transform: uppercase;
     letter-spacing: 2.5px;
@@ -1718,17 +1718,18 @@ textarea:focus {
     }
 
     .hero-stat {
-        padding: 20px 15px;
+        padding: 32px 20px;
+        width: auto;
     }
 
     .hero-stat-number,
     .hero-stat.highlight-stat .hero-stat-number {
-        font-size: 36px;
+        font-size: 48px;
     }
 
     .hero-stat-label {
-        font-size: 11px;
-        letter-spacing: 1px;
+        font-size: 12px;
+        letter-spacing: 1.5px;
     }
 }
 
