@@ -19,12 +19,12 @@ const founders = [
   {
     role: 'CTO',
     title: 'Senior Officer | Cyber Operations Technician',
-    description: 'Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks, DCO, OCO, and engineering solutions for complex environments.',
+    description: 'Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> frameworks, <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>, <span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span>, and engineering solutions for complex environments.',
     experience: [
       'Offensive and defensive cyber operations',
       'Network engineering and architecture',
       'Government acquisition and procurement',
-      'DOTMLPF-P framework implementation'
+      '<span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> framework implementation'
     ]
   },
   {
@@ -70,11 +70,11 @@ const stats = [
           <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
             <h3 style="font-size: 28px; margin-bottom: 15px; color: var(--white);">{founder.role}</h3>
             <p style="font-size: 20px; color: var(--bright-blue); margin-bottom: 25px; font-weight: 600;">{founder.title}</p>
-            <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 25px;">{founder.description}</p>
+            <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 25px;" set:html={founder.description}></p>
             <p style="color: rgba(255,255,255,0.8); line-height: 1.8;"><strong>Key Experience:</strong></p>
             <ul style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-top: 10px; padding-left: 20px;">
               {founder.experience.map((exp) => (
-                <li>{exp}</li>
+                <li set:html={exp}></li>
               ))}
             </ul>
           </div>
@@ -100,7 +100,7 @@ const stats = [
           <h3>Technical Depth</h3>
           <p>Hands-on experience designing, building, and operating secure architectures, cyber ranges, and defensive capabilities from the ground up.</p>
           <h3 style="margin-top: 40px;">Holistic Thinking</h3>
-          <p>Ability to think across the entire DOTMLPF-P spectrum, ensuring solutions address not just technology, but all aspects of organizational cybersecurity.</p>
+          <p>Ability to think across the entire <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> spectrum, ensuring solutions address not just technology, but all aspects of organizational cybersecurity.</p>
         </div>
       </div>
     </div>

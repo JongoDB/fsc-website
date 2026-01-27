@@ -9,5 +9,5 @@ const { title, description } = Astro.props;
 
 <div class="feature-item">
   <h4>{title}</h4>
-  <p>{description}</p>
+  <p set:html={description}></p>
 </div>

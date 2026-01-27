@@ -17,7 +17,7 @@ const courses = [
     duration: '5 days',
     format: 'Advanced lab-based training',
     audience: 'Senior SOC analysts, threat hunters, blue team leads',
-    description: 'Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using SIEM, EDR, and network traffic analysis. Curriculum includes hunting for APT techniques, living-off-the-land binaries, and sophisticated evasion tactics.',
+    description: 'Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using <span class="tooltip-trigger">SIEM<span class="tooltip-inline">Security Information and Event Management</span></span>, <span class="tooltip-trigger">EDR<span class="tooltip-inline">Endpoint Detection and Response</span></span>, and network traffic analysis. Curriculum includes hunting for <span class="tooltip-trigger">APT<span class="tooltip-inline">Advanced Persistent Threat</span></span> techniques, living-off-the-land binaries, and sophisticated evasion tactics.',
     href: '/training/threat-hunting'
   },
   {
@@ -33,7 +33,7 @@ const courses = [
     duration: '2-3 days',
     format: 'Technical workshop with lab environments',
     audience: 'DevOps engineers, cloud architects, platform teams',
-    description: 'Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, RBAC, secrets management, runtime security, and compliance frameworks. Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies.',
+    description: 'Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, <span class="tooltip-trigger">RBAC<span class="tooltip-inline">Role-Based Access Control</span></span>, secrets management, runtime security, and compliance frameworks. Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies.',
     href: '/training/kubernetes-security'
   },
   {
@@ -127,7 +127,7 @@ const deliveryOptions = [
               <div class="course-meta-item"><strong>Format:</strong> {course.format}</div>
               <div class="course-meta-item"><strong>Audience:</strong> {course.audience}</div>
             </div>
-            <p>{course.description}</p>
+            <p set:html={course.description}></p>
             <a href={course.href} class="mission-card-link" style="margin-top: 20px; display: inline-block;">
               {course.linkText || 'View Course Details'} &rarr;
             </a>
