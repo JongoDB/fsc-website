@@ -917,6 +917,11 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .mission-card {
+        aspect-ratio: auto;
+        overflow: visible;
+    }
+
     .content-section,
     .content-section-alt,
     .dark-section {
