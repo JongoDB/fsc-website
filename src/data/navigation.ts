@@ -33,6 +33,7 @@ export const navigation: NavEntry[] = [
     href: '/solutions',
     items: [
       { title: 'Consulting & Advisory', href: '/solutions/consulting' },
+      { title: 'Security Assessments', href: '/solutions/security-assessments' },
       { title: 'Training Services', href: '/solutions/training' },
       { title: 'Custom SaaS Development', href: '/solutions/custom-saas' },
     ],
@@ -137,11 +138,19 @@ export const homepageTiles: HomepageTile[] = [
     href: '/solutions/custom-saas',
     linkText: 'Start a Project',
   },
+  {
+    icon: 'radar',
+    title: 'Security Assessments',
+    description: 'Operator-led penetration testing, vulnerability assessments, and red team exercises. Find your weaknesses before adversaries do.',
+    href: '/solutions/security-assessments',
+    linkText: 'Learn More',
+  },
 ];
 
 // Footer navigation - Solutions section
 export const footerSolutions: NavItem[] = [
   { title: 'Cybersecurity Consulting', href: '/solutions/consulting' },
+  { title: 'Security Assessments', href: '/solutions/security-assessments' },
   { title: 'Operator-Led Training', href: '/solutions/training' },
   { title: 'SOC-in-a-Box Platform', href: '/platforms/soc-in-a-box' },
   { title: 'Secure Kubernetes Core', href: '/platforms/secure-kubernetes' },
@@ -160,7 +169,7 @@ export const footerCompany: NavItem[] = [
 // Site metadata
 export const siteConfig = {
   name: 'Fighting Smart Cyber',
-  tagline: 'Operator-Led Offensive & Defensive Cyber',
+  tagline: 'Operator-Led Offensive & Defensive Cyber Solutions',
   email: 'info@fightingsmartcyber.com',
   description: 'Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber solutions from proven cyber operations leaders.',
 };

@@ -47,6 +47,11 @@ const icons: Record<string, string> = {
   chart: `<path d="M3 3v18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M7 16l4-4 4 4 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="20" cy="10" r="2" stroke="currentColor" stroke-width="2"/>`,
+  radar: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 12l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
 };
 
 const iconSvg = icons[icon] || icons.target;
