@@ -19,7 +19,12 @@ import { navigation, isDropdown, siteConfig } from '../data/navigation';
       {navigation.map((entry) => (
         isDropdown(entry) ? (
           <li class="dropdown" role="none">
-            <a href={entry.href} role="menuitem" aria-haspopup="true" aria-expanded="false">{entry.title}</a>
+            <div class="dropdown-header">
+              <a href={entry.href} role="menuitem">{entry.title}</a>
+              <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label={`Toggle ${entry.title} submenu`}>
+                <span class="dropdown-caret"></span>
+              </button>
+            </div>
             <ul class="dropdown-menu" role="menu" aria-label={`${entry.title} submenu`}>
               {entry.items.map((item) => (
                 <li role="none"><a href={item.href} role="menuitem">{item.title}</a></li>

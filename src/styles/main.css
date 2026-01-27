@@ -1546,13 +1546,13 @@ textarea:focus {
         display: block;
     }
 
-    .dropdown:hover > a,
-    .dropdown.hover-active > a {
+    .dropdown:hover > .dropdown-header > a,
+    .dropdown.hover-active > .dropdown-header > a {
         color: var(--bright-blue);
     }
 
-    .dropdown:hover > a::after,
-    .dropdown.hover-active > a::after {
+    .dropdown:hover > .dropdown-header > a::after,
+    .dropdown.hover-active > .dropdown-header > a::after {
         transform: translateY(-50%) rotate(180deg);
     }
 }
@@ -1581,14 +1581,25 @@ textarea:focus {
     padding-left: 25px;
 }
 
-/* Clear downward caret indicator */
-.dropdown > a {
+/* Dropdown header: flex row for link + toggle button */
+.dropdown-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop: the toggle button is hidden; caret shows on the <a> */
+.dropdown-toggle {
+    display: none;
+}
+
+/* Clear downward caret indicator (desktop only via ::after on a) */
+.dropdown > .dropdown-header > a {
     cursor: pointer;
     position: relative;
     padding-right: 24px !important;
 }
 
-.dropdown > a::after {
+.dropdown > .dropdown-header > a::after {
     content: "";
     position: absolute;
     right: 8px;
@@ -1603,13 +1614,14 @@ textarea:focus {
     opacity: 0.8;
 }
 
-/* Rotate caret when dropdown is active */
-.dropdown.active > a::after {
+/* Rotate caret when dropdown is active (desktop hover) */
+.dropdown.active > .dropdown-header > a::after,
+.dropdown.hover-active > .dropdown-header > a::after {
     transform: translateY(-50%) rotate(180deg);
 }
 
 /* Highlight active dropdown parent */
-.dropdown.active > a {
+.dropdown.active > .dropdown-header > a {
     color: var(--bright-blue);
 }
 
@@ -1659,29 +1671,81 @@ textarea:focus {
         background: rgba(0, 168, 255, 0.15);
     }
     
+    /* Mobile nav list items take full width */
+    .nav-links > li {
+        width: 100%;
+    }
+
     /* Main nav links - better touch targets */
     .nav-links > li > a {
         padding: 16px 20px;
         min-height: 48px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
     }
-    
+
+    /* Dropdown header: stretch link + show toggle button */
+    .dropdown-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 8px 0 20px;
+    }
+
+    .dropdown-header > a {
+        flex: 1;
+        padding: 16px 0 !important;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Hide the desktop caret on the <a> on mobile */
+    .dropdown > .dropdown-header > a::after {
+        display: none !important;
+    }
+
+    /* Show the toggle button on mobile */
+    .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Caret inside the toggle button */
+    .dropdown-caret {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid var(--white);
+        transition: transform 0.3s ease;
+        opacity: 0.8;
+    }
+
+    /* Rotate caret when dropdown is open */
+    .dropdown.active .dropdown-caret {
+        transform: rotate(180deg);
+    }
+
     /* Active state for mobile nav items */
-    .nav-links > li.active > a,
+    .nav-links > li.active > .dropdown-header > a,
     .nav-links > li > a:active {
         background: rgba(0, 168, 255, 0.1);
     }
-    
-    /* Caret stays on the right on mobile */
-    .dropdown > a::after {
-        position: absolute;
-        right: 20px;
-    }
 }
 /* Fix: Prevent underline on dropdown parent links (they have arrows instead) */
-.dropdown > a::after {
+.dropdown > .dropdown-header > a::after {
     content: "" !important;
     position: absolute !important;
     right: 4px !important;
@@ -1699,27 +1763,31 @@ textarea:focus {
     left: auto !important;
 }
 
-.dropdown > a:hover::after {
+.dropdown > .dropdown-header > a:hover::after {
     width: 0 !important;
     background: none !important;
 }
 
 /* Clear downward caret indicator - more space for text */
-.dropdown > a {
+.dropdown > .dropdown-header > a {
     cursor: pointer !important;
     position: relative !important;
     padding-right: 28px !important;
 }
 
 /* Rotate caret when dropdown is active */
-.dropdown.active > a::after {
+.dropdown.active > .dropdown-header > a::after {
     transform: translateY(-50%) rotate(180deg) !important;
 }
 
-/* Mobile arrow positioning fix */
+/* Mobile: hide desktop caret, toggle button handles it */
 @media (max-width: 968px) {
-    .dropdown > a::after {
-        right: 12px !important;
+    .dropdown > .dropdown-header > a::after {
+        display: none !important;
+    }
+
+    .dropdown > .dropdown-header > a {
+        padding-right: 0 !important;
     }
 }
 

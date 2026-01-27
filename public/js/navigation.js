@@ -45,13 +45,12 @@ function closeMobileNav() {
     }
 }
 
-// Close menu when clicking a link (but NOT dropdown parents)
+// Close menu when clicking any nav link (all links navigate now)
 document.addEventListener("DOMContentLoaded", function() {
     const navLinks = document.querySelectorAll(".nav-links a");
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
-            // Only close menu if NOT a dropdown parent
-            if (!link.parentElement.classList.contains("dropdown")) {
+            if (window.innerWidth <= 968) {
                 closeMobileNav();
             }
         });
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Dropdown toggle for mobile only (desktop uses CSS hover with JS delay)
 document.addEventListener("DOMContentLoaded", function() {
-    const dropdowns = document.querySelectorAll(".dropdown > a");
+    const toggleButtons = document.querySelectorAll(".dropdown-toggle");
     const dropdownContainers = document.querySelectorAll(".dropdown");
 
     // Desktop: Add hover delay to prevent menu from closing too quickly
@@ -126,30 +125,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    dropdowns.forEach(dropdown => {
-        dropdown.addEventListener("click", function(e) {
-            // Only handle clicks on mobile (desktop uses hover)
-            if (window.innerWidth <= 968) {
-                e.preventDefault();
-                e.stopPropagation();
-                const parent = this.parentElement;
-                const wasActive = parent.classList.contains("active");
+    // Mobile: toggle button opens/closes the submenu
+    toggleButtons.forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const parent = this.closest(".dropdown");
+            const wasActive = parent.classList.contains("active");
 
-                // Close all other dropdowns
-                document.querySelectorAll(".dropdown.active").forEach(d => {
-                    if (d !== parent) {
-                        d.classList.remove("active");
-                    }
-                });
-
-                // Toggle current dropdown
-                if (wasActive) {
-                    parent.classList.remove("active");
-                } else {
-                    parent.classList.add("active");
+            // Close all other dropdowns and reset their toggle buttons
+            document.querySelectorAll(".dropdown.active").forEach(d => {
+                if (d !== parent) {
+                    d.classList.remove("active");
+                    const otherBtn = d.querySelector(".dropdown-toggle");
+                    if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
                 }
+            });
+
+            // Toggle current dropdown
+            if (wasActive) {
+                parent.classList.remove("active");
+                this.setAttribute("aria-expanded", "false");
+            } else {
+                parent.classList.add("active");
+                this.setAttribute("aria-expanded", "true");
             }
-            // On desktop, allow default link behavior (navigate to page)
         });
     });
 
@@ -158,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (window.innerWidth <= 968 && !e.target.closest(".dropdown")) {
             document.querySelectorAll(".dropdown.active").forEach(d => {
                 d.classList.remove("active");
+                const btn = d.querySelector(".dropdown-toggle");
+                if (btn) btn.setAttribute("aria-expanded", "false");
             });
         }
     });
@@ -169,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const dropdown = this.closest(".dropdown");
             if (dropdown) {
                 dropdown.classList.remove("active");
+                const btn = dropdown.querySelector(".dropdown-toggle");
+                if (btn) btn.setAttribute("aria-expanded", "false");
             }
             // Close mobile menu
             if (window.innerWidth <= 968) {
