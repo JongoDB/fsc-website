@@ -161,7 +161,7 @@ export const footerCompany: NavItem[] = [
 // Site metadata
 export const siteConfig = {
   name: 'Fighting Smart Cyber',
-  tagline: 'Operator-Led Cybersecurity',
+  tagline: 'Operator-Led Offensive & Defensive Cyber',
   email: 'info@fightingsmartcyber.com',
-  description: 'Defend smarter by thinking like an operator. Operator-led cybersecurity solutions from proven leaders.',
+  description: 'Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber solutions from proven leaders.',
 };

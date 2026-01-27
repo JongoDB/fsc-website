@@ -5,7 +5,7 @@ function generateHeader() {
         <nav class="container">
             <div>
                 <a href="/" class="logo">Fighting Smart Cyber</a>
-                <div class="tagline">Operator-Led Cybersecurity</div>
+                <div class="tagline">Operator-Led Offensive & Defensive Cyber</div>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
             <ul class="nav-links" id="navLinks">
@@ -60,7 +60,7 @@ function generateFooter() {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Fighting Smart Cyber. All rights reserved. | Operator-Led Cybersecurity Solutions</p>
+                <p>&copy; 2025 Fighting Smart Cyber. All rights reserved. | Operator-Led Offensive and Defensive Cyber Solutions</p>
             </div>
         </div>
     </footer>
