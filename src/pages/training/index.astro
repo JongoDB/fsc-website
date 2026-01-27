@@ -8,7 +8,7 @@ const courses = [
     title: 'Cyber Kill Chain Workshop',
     duration: '3-5 days',
     format: 'Hybrid classroom & hands-on labs',
-    audience: 'Security teams, SOC analysts, incident responders',
+    audience: 'Security teams, <span class="tooltip-trigger">SOC<span class="tooltip-inline">Security Operations Center</span></span> analysts, incident responders',
     description: 'Deep dive into how attackers operate from initial reconnaissance through data exfiltration. Students learn to identify and disrupt each phase of the attack chain using real-world scenarios based on actual operations. Includes hands-on labs where students defend against simulated advanced persistent threats.',
     href: '/training/cyber-kill-chain'
   },
@@ -16,7 +16,7 @@ const courses = [
     title: 'Advanced Threat Hunting',
     duration: '5 days',
     format: 'Advanced lab-based training',
-    audience: 'Senior SOC analysts, threat hunters, blue team leads',
+    audience: 'Senior <span class="tooltip-trigger">SOC<span class="tooltip-inline">Security Operations Center</span></span> analysts, threat hunters, blue team leads',
     description: 'Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using <span class="tooltip-trigger">SIEM<span class="tooltip-inline">Security Information and Event Management</span></span>, <span class="tooltip-trigger">EDR<span class="tooltip-inline">Endpoint Detection and Response</span></span>, and network traffic analysis. Curriculum includes hunting for <span class="tooltip-trigger">APT<span class="tooltip-inline">Advanced Persistent Threat</span></span> techniques, living-off-the-land binaries, and sophisticated evasion tactics.',
     href: '/training/threat-hunting'
   },
@@ -24,7 +24,7 @@ const courses = [
     title: 'Incident Response Training',
     duration: '3-4 days',
     format: 'Classroom & tabletop exercises',
-    audience: 'IT professionals, security teams, executives',
+    audience: '<span class="tooltip-trigger">IT<span class="tooltip-inline">Information Technology</span></span> professionals, security teams, executives',
     description: 'Foundational training in cyber incident response methodologies, playbooks, and procedures. Covers preparation, detection, analysis, containment, eradication, and recovery. Includes tabletop exercises simulating ransomware, data breaches, and insider threats based on real incidents.',
     href: '/training/incident-response'
   },
@@ -125,7 +125,7 @@ const deliveryOptions = [
             <div class="course-meta">
               <div class="course-meta-item"><strong>Duration:</strong> {course.duration}</div>
               <div class="course-meta-item"><strong>Format:</strong> {course.format}</div>
-              <div class="course-meta-item"><strong>Audience:</strong> {course.audience}</div>
+              <div class="course-meta-item"><strong>Audience:</strong> <Fragment set:html={course.audience} /></div>
             </div>
             <p set:html={course.description}></p>
             <a href={course.href} class="mission-card-link" style="margin-top: 20px; display: inline-block;">

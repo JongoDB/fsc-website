@@ -9,7 +9,7 @@ import FeatureItem from '../../components/FeatureItem.astro';
   description="Learn about Fighting Smart Cyber - an operator-led cybersecurity company founded by proven leaders with TS/SCI-level operational experience."
   heroTitle='Who <span class="highlight">We Are</span>'
   heroSubtitle="Operator-led offensive and defensive cyber solutions from proven cyber operations leaders"
-  ctaTitle="Let's Build Your Cyber Edge"
+  ctaTitle="Let's Build Your Smart Solution"
   ctaDescription="Tell us about your mission and we'll design a solution that fits."
   ctaPrimaryButton={{ text: 'Get in Touch', href: '/contact' }}
   ctaSecondaryButton={{ text: 'Meet Our Leadership', href: '/about/leadership' }}
@@ -83,7 +83,7 @@ import FeatureItem from '../../components/FeatureItem.astro';
         />
         <FeatureItem
           title="Threat-Informed Defense"
-          description="Our offensive experience shapes our defensive strategies. We build defenses that address real adversary TTPs, not theoretical vulnerabilities."
+          description={`Our offensive experience shapes our defensive strategies. We build defenses that address real adversary <span class="tooltip-trigger">TTPs<span class="tooltip-inline">Tactics, Techniques, and Procedures</span></span>, not theoretical vulnerabilities.`}
         />
         <FeatureItem
           title="Mission Assurance"
