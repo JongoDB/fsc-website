@@ -199,88 +199,111 @@
             align-items: center;
         }
 
-        .submissions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .submission-card {
+        /* Table Layout */
+        .submissions-table-wrap {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(0, 168, 255, 0.2);
             border-radius: 12px;
-            padding: 0;
-            transition: all 0.3s;
             overflow: hidden;
         }
 
-        .submission-card:hover {
-            border-color: #00a8ff;
-            box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
+        .submissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
         }
 
-        .submission-card.selected {
-            border-color: #00d4ff;
+        .submissions-table thead {
+            background: rgba(0, 168, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+        }
+
+        .submissions-table th {
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00a8ff;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .submissions-table th:hover {
+            color: #00d4ff;
+        }
+
+        .submissions-table th.th-checkbox {
+            width: 40px;
+            cursor: default;
+        }
+
+        .submissions-table th.th-expand {
+            width: 40px;
+            cursor: default;
+        }
+
+        .submissions-table td {
+            padding: 12px 16px;
+            color: #ccc;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        .submissions-table tbody tr {
+            transition: background 0.15s;
+        }
+
+        .submissions-table tbody tr:hover {
             background: rgba(0, 168, 255, 0.05);
         }
 
-        .submission-card-inner {
-            display: flex;
-            gap: 20px;
-            padding: 24px;
+        .submissions-table tbody tr.selected {
+            background: rgba(0, 168, 255, 0.08);
         }
 
-        .submission-checkbox {
-            display: flex;
-            align-items: flex-start;
-            padding-top: 2px;
-            flex-shrink: 0;
+        .submissions-table tbody tr.selected td {
+            border-top-color: rgba(0, 168, 255, 0.15);
         }
 
-        .submission-checkbox input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+        .submissions-table input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
             cursor: pointer;
             accent-color: #00a8ff;
         }
 
-        .submission-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .submission-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(0, 168, 255, 0.15);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .submission-header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .submission-name {
-            font-size: 18px;
-            font-weight: 700;
+        .td-name {
+            font-weight: 600;
             color: #fff;
+        }
+
+        .td-email a {
+            color: #00a8ff;
+            text-decoration: none;
+        }
+
+        .td-email a:hover {
+            text-decoration: underline;
+        }
+
+        .td-date {
+            white-space: nowrap;
+            color: #888;
+            font-size: 13px;
         }
 
         .submission-badge {
             display: inline-block;
             padding: 3px 10px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .submission-badge.contact {
@@ -295,52 +318,87 @@
             border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        .submission-timestamp {
-            font-size: 13px;
-            color: #666;
+        .expand-btn {
+            background: none;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            color: #00a8ff;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
 
-        .submission-fields-grid {
+        .expand-btn:hover {
+            background: rgba(0, 168, 255, 0.15);
+            border-color: #00a8ff;
+        }
+
+        .expand-btn.open {
+            background: rgba(0, 168, 255, 0.15);
+            transform: rotate(90deg);
+        }
+
+        .detail-row td {
+            padding: 0;
+            border-top: none;
+        }
+
+        .detail-content {
+            padding: 16px 16px 20px 56px;
+            display: none;
+            border-top: 1px solid rgba(0, 168, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-content.open {
+            display: block;
+        }
+
+        .detail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px 24px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px 28px;
             margin-bottom: 16px;
         }
 
-        .submission-field {
-            margin-bottom: 0;
-        }
-
-        .submission-field label {
+        .detail-field label {
             display: block;
             color: #00a8ff;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 4px;
-            opacity: 0.8;
+            margin-bottom: 3px;
+            opacity: 0.7;
         }
 
-        .submission-field .value {
-            color: #fff;
-            font-size: 15px;
-            line-height: 1.4;
-            word-break: break-word;
-        }
-
-        .submission-field .value.empty {
-            color: #555;
-            font-style: italic;
-        }
-
-        .submission-message {
-            background: rgba(0, 168, 255, 0.08);
-            padding: 16px;
-            border-radius: 8px;
-            border-left: 3px solid #00a8ff;
-            margin-top: 4px;
-            line-height: 1.6;
+        .detail-field .detail-value {
+            color: #ddd;
             font-size: 14px;
+        }
+
+        .detail-message {
+            background: rgba(0, 168, 255, 0.06);
+            padding: 14px 16px;
+            border-radius: 8px;
+            border-left: 3px solid rgba(0, 168, 255, 0.4);
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .detail-message-label {
+            color: #00a8ff;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.7;
         }
 
         .loading {
@@ -442,18 +500,21 @@
                 font-size: 24px;
             }
 
-            .submission-card-inner {
-                flex-direction: column;
-                gap: 15px;
+            .submissions-table-wrap {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
-            .submission-fields-grid {
-                grid-template-columns: 1fr !important;
+            .submissions-table {
+                min-width: 700px;
             }
 
-            .submission-checkbox input[type="checkbox"] {
-                width: 24px;
-                height: 24px;
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-content {
+                padding-left: 16px;
             }
 
             .bulk-actions {
@@ -555,7 +616,6 @@
 
         <div class="bulk-actions" id="bulkActions">
             <div class="bulk-actions-left">
-                <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
                 <span id="selectedCount">0 selected</span>
             </div>
             <button class="btn btn-danger" id="deleteSelected" onclick="confirmDelete()" disabled>Delete Selected</button>
@@ -564,7 +624,26 @@
         <div class="stats" id="statsContainer"></div>
 
         <div id="loading" class="loading">Loading submissions...</div>
-        <div id="submissionsContainer" class="submissions-list" style="display: none;"></div>
+        <div id="submissionsContainer" style="display: none;">
+            <div class="submissions-table-wrap">
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th class="th-checkbox"><input type="checkbox" id="selectAllTable" onchange="toggleSelectAll()"></th>
+                            <th class="th-expand"></th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Organization</th>
+                            <th>Interest</th>
+                            <th>Timeframe</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
         <div id="emptyState" class="empty-state" style="display: none;">
             <h2>No submissions found</h2>
             <p>Try adjusting your filters or check back later.</p>
@@ -787,51 +866,45 @@
             statsContainer.appendChild(createStatCard('Unique Organizations', String(uniqueOrgs)));
         }
 
-        function createSubmissionField(labelText, valueText, isEmail, isMessage) {
-            const field = document.createElement('div');
-            field.className = 'submission-field';
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
 
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        function createDetailField(labelText, valueText) {
+            const field = document.createElement('div');
+            field.className = 'detail-field';
             const label = document.createElement('label');
             label.textContent = labelText;
+            const value = document.createElement('div');
+            value.className = 'detail-value';
+            value.textContent = valueText;
             field.appendChild(label);
-
-            const valueDiv = document.createElement('div');
-            valueDiv.className = 'value';
-
-            if (isMessage) {
-                valueDiv.className = 'submission-message value';
-            }
-
-            if (isEmail && valueText) {
-                const link = document.createElement('a');
-                link.href = 'mailto:' + valueText;
-                link.style.color = '#00a8ff';
-                link.textContent = valueText;
-                valueDiv.appendChild(link);
-            } else {
-                // Handle line breaks for messages
-                if (isMessage && valueText) {
-                    const lines = valueText.split('\n');
-                    lines.forEach((line, index) => {
-                        valueDiv.appendChild(document.createTextNode(line));
-                        if (index < lines.length - 1) {
-                            valueDiv.appendChild(document.createElement('br'));
-                        }
-                    });
-                } else {
-                    valueDiv.textContent = valueText || 'Not provided';
-                }
-            }
-
-            field.appendChild(valueDiv);
+            field.appendChild(value);
             return field;
+        }
+
+        function toggleDetail(id) {
+            const detail = document.getElementById('detail-' + id);
+            const btn = document.getElementById('expand-' + id);
+            if (detail) {
+                detail.classList.toggle('open');
+                btn.classList.toggle('open');
+            }
         }
 
         function displaySubmissions(submissions) {
             const container = document.getElementById('submissionsContainer');
-            container.textContent = '';
+            const tbody = document.getElementById('tableBody');
+            tbody.textContent = '';
 
             if (submissions.length === 0) {
+                container.style.display = 'none';
                 document.getElementById('emptyState').style.display = 'block';
                 return;
             }
@@ -842,91 +915,133 @@
             submissions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
             submissions.forEach(sub => {
-                const card = document.createElement('div');
-                card.className = 'submission-card' + (selectedIds.has(sub.id) ? ' selected' : '');
-                card.dataset.id = sub.id;
+                const isBundleRequest = sub.submission.interest === 'Custom Bundle Request';
+                const hasDetails = sub.submission.message || sub.submission.role || sub.submission.orgType;
 
-                const inner = document.createElement('div');
-                inner.className = 'submission-card-inner';
+                // Main row
+                const tr = document.createElement('tr');
+                tr.dataset.id = sub.id;
+                if (selectedIds.has(sub.id)) tr.classList.add('selected');
 
-                // Checkbox container
-                const checkboxDiv = document.createElement('div');
-                checkboxDiv.className = 'submission-checkbox';
+                // Checkbox
+                const tdCheck = document.createElement('td');
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.checked = selectedIds.has(sub.id);
                 checkbox.onchange = function() { toggleSelection(sub.id); };
-                checkboxDiv.appendChild(checkbox);
-                inner.appendChild(checkboxDiv);
+                tdCheck.appendChild(checkbox);
+                tr.appendChild(tdCheck);
 
-                // Content container
-                const content = document.createElement('div');
-                content.className = 'submission-content';
+                // Expand button
+                const tdExpand = document.createElement('td');
+                if (hasDetails) {
+                    const expandBtn = document.createElement('button');
+                    expandBtn.className = 'expand-btn';
+                    expandBtn.id = 'expand-' + sub.id;
+                    expandBtn.textContent = '\u25B6';
+                    expandBtn.onclick = function() { toggleDetail(sub.id); };
+                    tdExpand.appendChild(expandBtn);
+                }
+                tr.appendChild(tdExpand);
 
-                // Header with name, badge, and timestamp
-                const header = document.createElement('div');
-                header.className = 'submission-header';
+                // Date
+                const tdDate = document.createElement('td');
+                tdDate.className = 'td-date';
+                tdDate.appendChild(document.createTextNode(formatDate(sub.timestamp)));
+                tdDate.appendChild(document.createElement('br'));
+                tdDate.appendChild(document.createTextNode(formatTime(sub.timestamp)));
+                tr.appendChild(tdDate);
 
-                const headerLeft = document.createElement('div');
-                headerLeft.className = 'submission-header-left';
-
-                const nameSpan = document.createElement('span');
-                nameSpan.className = 'submission-name';
-                nameSpan.textContent = sub.submission.name || 'Anonymous';
-                headerLeft.appendChild(nameSpan);
-
-                // Badge for form type
-                const isBundleRequest = sub.submission.interest === 'Custom Bundle Request';
+                // Type badge
+                const tdType = document.createElement('td');
                 const badge = document.createElement('span');
                 badge.className = 'submission-badge ' + (isBundleRequest ? 'bundle' : 'contact');
-                badge.textContent = isBundleRequest ? 'Bundle Request' : 'Contact';
-                headerLeft.appendChild(badge);
+                badge.textContent = isBundleRequest ? 'Bundle' : 'Contact';
+                tdType.appendChild(badge);
+                tr.appendChild(tdType);
 
-                header.appendChild(headerLeft);
+                // Name
+                const tdName = document.createElement('td');
+                tdName.className = 'td-name';
+                tdName.textContent = sub.submission.name || '\u2014';
+                tr.appendChild(tdName);
 
-                const timestampDiv = document.createElement('div');
-                timestampDiv.className = 'submission-timestamp';
-                const date = new Date(sub.timestamp);
-                timestampDiv.textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' at ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-                header.appendChild(timestampDiv);
-
-                content.appendChild(header);
-
-                // Fields in a grid layout
-                const fieldsGrid = document.createElement('div');
-                fieldsGrid.className = 'submission-fields-grid';
-
-                fieldsGrid.appendChild(createSubmissionField('Email', sub.submission.email, true, false));
-
-                if (sub.submission.organization) {
-                    fieldsGrid.appendChild(createSubmissionField('Organization', sub.submission.organization, false, false));
+                // Email
+                const tdEmail = document.createElement('td');
+                tdEmail.className = 'td-email';
+                if (sub.submission.email) {
+                    const link = document.createElement('a');
+                    link.href = 'mailto:' + sub.submission.email;
+                    link.textContent = sub.submission.email;
+                    tdEmail.appendChild(link);
+                } else {
+                    tdEmail.textContent = '\u2014';
                 }
-                if (sub.submission.role) {
-                    fieldsGrid.appendChild(createSubmissionField('Role', sub.submission.role, false, false));
-                }
-                if (sub.submission.orgType) {
-                    fieldsGrid.appendChild(createSubmissionField(isBundleRequest ? 'Environment' : 'Org Type', sub.submission.orgType, false, false));
-                }
-                if (sub.submission.interest && !isBundleRequest) {
-                    fieldsGrid.appendChild(createSubmissionField('Interest', sub.submission.interest, false, false));
-                }
-                if (sub.submission.timeframe) {
-                    fieldsGrid.appendChild(createSubmissionField('Timeframe', sub.submission.timeframe, false, false));
-                }
+                tr.appendChild(tdEmail);
 
-                content.appendChild(fieldsGrid);
+                // Organization
+                const tdOrg = document.createElement('td');
+                tdOrg.textContent = sub.submission.organization || '\u2014';
+                tr.appendChild(tdOrg);
 
-                // Message in its own full-width section
-                if (sub.submission.message) {
-                    content.appendChild(createSubmissionField(isBundleRequest ? 'Details' : 'Message', sub.submission.message, false, true));
+                // Interest
+                const tdInterest = document.createElement('td');
+                tdInterest.textContent = isBundleRequest ? 'Custom Bundle' : (sub.submission.interest || '\u2014');
+                tr.appendChild(tdInterest);
+
+                // Timeframe
+                const tdTime = document.createElement('td');
+                tdTime.textContent = sub.submission.timeframe || '\u2014';
+                tr.appendChild(tdTime);
+
+                tbody.appendChild(tr);
+
+                // Detail/expandable row
+                if (hasDetails) {
+                    const detailTr = document.createElement('tr');
+                    detailTr.className = 'detail-row';
+                    const detailTd = document.createElement('td');
+                    detailTd.colSpan = 9;
+
+                    const detailContent = document.createElement('div');
+                    detailContent.className = 'detail-content';
+                    detailContent.id = 'detail-' + sub.id;
+
+                    // Extra fields grid
+                    const hasExtraFields = sub.submission.role || sub.submission.orgType;
+                    if (hasExtraFields) {
+                        const grid = document.createElement('div');
+                        grid.className = 'detail-grid';
+
+                        if (sub.submission.role) {
+                            grid.appendChild(createDetailField('Role / Title', sub.submission.role));
+                        }
+                        if (sub.submission.orgType) {
+                            grid.appendChild(createDetailField(isBundleRequest ? 'Environment' : 'Org Type', sub.submission.orgType));
+                        }
+                        detailContent.appendChild(grid);
+                    }
+
+                    // Message
+                    if (sub.submission.message) {
+                        const msgLabel = document.createElement('div');
+                        msgLabel.className = 'detail-message-label';
+                        msgLabel.textContent = isBundleRequest ? 'Details' : 'Message';
+                        detailContent.appendChild(msgLabel);
+
+                        const msgDiv = document.createElement('div');
+                        msgDiv.className = 'detail-message';
+                        msgDiv.textContent = sub.submission.message;
+                        detailContent.appendChild(msgDiv);
+                    }
+
+                    detailTd.appendChild(detailContent);
+                    detailTr.appendChild(detailTd);
+                    tbody.appendChild(detailTr);
                 }
-
-                inner.appendChild(content);
-                card.appendChild(inner);
-                container.appendChild(card);
             });
 
-            container.style.display = 'flex';
+            container.style.display = 'block';
         }
 
         function toggleSelection(id) {
@@ -937,39 +1052,40 @@
             }
             updateBulkActions();
 
-            // Update card styling
-            const card = document.querySelector('.submission-card[data-id="' + id + '"]');
-            if (card) {
-                const checkbox = card.querySelector('input[type="checkbox"]');
+            // Update row styling
+            const row = document.querySelector('tr[data-id="' + id + '"]');
+            if (row) {
+                const checkbox = row.querySelector('input[type="checkbox"]');
                 if (checkbox) checkbox.checked = selectedIds.has(id);
                 if (selectedIds.has(id)) {
-                    card.classList.add('selected');
+                    row.classList.add('selected');
                 } else {
-                    card.classList.remove('selected');
+                    row.classList.remove('selected');
                 }
             }
         }
 
         function toggleSelectAll() {
-            const selectAll = document.getElementById('selectAll').checked;
+            const selectAllEl = document.getElementById('selectAllTable');
+            const isChecked = selectAllEl.checked;
 
-            if (selectAll) {
+            if (isChecked) {
                 filteredSubmissions.forEach(sub => selectedIds.add(sub.id));
             } else {
                 selectedIds.clear();
             }
 
-            // Update checkboxes
-            document.querySelectorAll('.submission-card input[type="checkbox"]').forEach(cb => {
-                cb.checked = selectAll;
+            // Update all row checkboxes
+            document.querySelectorAll('#tableBody tr[data-id] input[type="checkbox"]').forEach(cb => {
+                cb.checked = isChecked;
             });
 
-            // Update card styling
-            document.querySelectorAll('.submission-card').forEach(card => {
-                if (selectAll) {
-                    card.classList.add('selected');
+            // Update row styling
+            document.querySelectorAll('#tableBody tr[data-id]').forEach(row => {
+                if (isChecked) {
+                    row.classList.add('selected');
                 } else {
-                    card.classList.remove('selected');
+                    row.classList.remove('selected');
                 }
             });
 
@@ -981,18 +1097,18 @@
             const bulkActions = document.getElementById('bulkActions');
             const deleteBtn = document.getElementById('deleteSelected');
             const selectedCount = document.getElementById('selectedCount');
-            const selectAll = document.getElementById('selectAll');
+            const selectAllEl = document.getElementById('selectAllTable');
 
             if (count > 0) {
                 bulkActions.classList.add('active');
                 deleteBtn.disabled = false;
                 selectedCount.textContent = count + ' selected';
-                selectAll.checked = count === filteredSubmissions.length && filteredSubmissions.length > 0;
+                selectAllEl.checked = count === filteredSubmissions.length && filteredSubmissions.length > 0;
             } else {
                 bulkActions.classList.remove('active');
                 deleteBtn.disabled = true;
                 selectedCount.textContent = '0 selected';
-                selectAll.checked = false;
+                selectAllEl.checked = false;
             }
         }
 

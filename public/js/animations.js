@@ -292,9 +292,85 @@ class NavbarEffect {
     }
 }
 
+// Full-page background particle system (subtle, behind all content)
+class BackgroundParticles {
+    constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.id = 'bg-particles';
+        this.canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.4;';
+        document.body.prepend(this.canvas);
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.particleCount = 35;
+        this.connectionDistance = 180;
+        this.resize();
+        this.init();
+        this.animate();
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    init() {
+        this.particles = [];
+        for (let i = 0; i < this.particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.5 + 0.5
+            });
+        }
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw connections
+        for (let i = 0; i < this.particles.length; i++) {
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < this.connectionDistance) {
+                    const opacity = (1 - dist / this.connectionDistance) * 0.15;
+                    this.ctx.beginPath();
+                    this.ctx.strokeStyle = 'rgba(0, 212, 255, ' + opacity + ')';
+                    this.ctx.lineWidth = 0.5;
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.stroke();
+                }
+            }
+        }
+
+        // Draw particles
+        for (let p of this.particles) {
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = 'rgba(0, 168, 255, 0.35)';
+            this.ctx.fill();
+
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
+        }
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
 // Initialize all effects when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize particle system
+    // Initialize full-page background particles
+    new BackgroundParticles();
+
+    // Initialize hero particle system
     new ParticleSystem('particle-canvas');
 
     // Initialize scroll animations
