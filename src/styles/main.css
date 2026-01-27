@@ -1950,21 +1950,23 @@ textarea:focus {
 
 /* Trust Badges - New Dark Theme Design */
 .trust-badges {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
     margin-top: 50px;
 }
 
 .trust-badge {
     text-align: center;
-    padding: 30px 25px;
+    padding: 24px 16px;
     background: linear-gradient(135deg, rgba(0, 10, 20, 0.6) 0%, rgba(10, 37, 64, 0.6) 100%);
     border: 1px solid rgba(0, 168, 255, 0.3);
     border-radius: 16px;
-    min-width: 180px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     backdrop-filter: blur(10px);
     transition: all 0.4s ease;
     position: relative;
@@ -2014,6 +2016,26 @@ textarea:focus {
     display: block;
     position: relative;
     z-index: 1;
+}
+
+@media (max-width: 968px) {
+    .trust-badges {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .trust-badges {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .trust-badge {
+        padding: 16px 12px;
+    }
+    .trust-badge-label {
+        font-size: 13px;
+    }
 }
 
 /* Tooltip System */
