@@ -22,7 +22,7 @@
             color: #fff;
         }
         .admin-container {
-            max-width: 1400px;
+            max-width: 1800px;
             margin: 0 auto;
             padding: 40px 20px;
         }
@@ -204,11 +204,13 @@
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(0, 168, 255, 0.2);
             border-radius: 12px;
-            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .submissions-table {
             width: 100%;
+            min-width: 1600px;
             border-collapse: collapse;
             font-size: 14px;
         }
@@ -236,11 +238,6 @@
         }
 
         .submissions-table th.th-checkbox {
-            width: 40px;
-            cursor: default;
-        }
-
-        .submissions-table th.th-expand {
             width: 40px;
             cursor: default;
         }
@@ -295,6 +292,13 @@
             font-size: 13px;
         }
 
+        .td-message {
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .submission-badge {
             display: inline-block;
             padding: 3px 10px;
@@ -316,89 +320,6 @@
             background: rgba(0, 212, 255, 0.15);
             color: #00d4ff;
             border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .expand-btn {
-            background: none;
-            border: 1px solid rgba(0, 168, 255, 0.3);
-            color: #00a8ff;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .expand-btn:hover {
-            background: rgba(0, 168, 255, 0.15);
-            border-color: #00a8ff;
-        }
-
-        .expand-btn.open {
-            background: rgba(0, 168, 255, 0.15);
-            transform: rotate(90deg);
-        }
-
-        .detail-row td {
-            padding: 0;
-            border-top: none;
-        }
-
-        .detail-content {
-            padding: 16px 16px 20px 56px;
-            display: none;
-            border-top: 1px solid rgba(0, 168, 255, 0.1);
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .detail-content.open {
-            display: block;
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 14px 28px;
-            margin-bottom: 16px;
-        }
-
-        .detail-field label {
-            display: block;
-            color: #00a8ff;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 3px;
-            opacity: 0.7;
-        }
-
-        .detail-field .detail-value {
-            color: #ddd;
-            font-size: 14px;
-        }
-
-        .detail-message {
-            background: rgba(0, 168, 255, 0.06);
-            padding: 14px 16px;
-            border-radius: 8px;
-            border-left: 3px solid rgba(0, 168, 255, 0.4);
-            color: #ccc;
-            font-size: 14px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
-
-        .detail-message-label {
-            color: #00a8ff;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            opacity: 0.7;
         }
 
         .loading {
@@ -503,18 +424,6 @@
             .submissions-table-wrap {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
-            }
-
-            .submissions-table {
-                min-width: 1000px;
-            }
-
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .detail-content {
-                padding-left: 16px;
             }
 
             .bulk-actions {
@@ -630,15 +539,18 @@
                     <thead>
                         <tr>
                             <th class="th-checkbox"><input type="checkbox" id="selectAllTable" onchange="toggleSelectAll()"></th>
-                            <th class="th-expand"></th>
                             <th>Date</th>
                             <th>Type</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Organization</th>
+                            <th>Role</th>
                             <th>Org Type</th>
                             <th>Interest</th>
                             <th>Timeframe</th>
+                            <th>Use Case</th>
+                            <th>Environment</th>
+                            <th>Requirements</th>
                             <th>Message</th>
                         </tr>
                     </thead>
@@ -716,10 +628,10 @@
                 const submissions = await getSubmissions();
                 document.getElementById('loading').style.display = 'none';
 
-                // Transform to match old format for compatibility
                 allSubmissions = submissions.map(sub => ({
                     id: sub.id,
                     timestamp: sub.created_at,
+                    formType: sub.form_type || (sub.interest === 'Custom Bundle Request' ? 'bundle-request' : 'contact'),
                     submission: {
                         name: sub.name,
                         email: sub.email,
@@ -728,7 +640,10 @@
                         orgType: sub.org_type,
                         interest: sub.interest,
                         timeframe: sub.timeframe,
-                        message: sub.message
+                        message: sub.message,
+                        useCase: sub.use_case,
+                        environment: sub.environment,
+                        requirements: sub.requirements
                     }
                 }));
 
@@ -878,28 +793,6 @@
             return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
         }
 
-        function createDetailField(labelText, valueText) {
-            const field = document.createElement('div');
-            field.className = 'detail-field';
-            const label = document.createElement('label');
-            label.textContent = labelText;
-            const value = document.createElement('div');
-            value.className = 'detail-value';
-            value.textContent = valueText;
-            field.appendChild(label);
-            field.appendChild(value);
-            return field;
-        }
-
-        function toggleDetail(id) {
-            const detail = document.getElementById('detail-' + id);
-            const btn = document.getElementById('expand-' + id);
-            if (detail) {
-                detail.classList.toggle('open');
-                btn.classList.toggle('open');
-            }
-        }
-
         function displaySubmissions(submissions) {
             const container = document.getElementById('submissionsContainer');
             const tbody = document.getElementById('tableBody');
@@ -917,8 +810,7 @@
             submissions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
             submissions.forEach(sub => {
-                const isBundleRequest = sub.submission.interest === 'Custom Bundle Request';
-                const hasDetails = sub.submission.message || sub.submission.role || sub.submission.orgType;
+                const isBundleRequest = sub.formType === 'bundle-request' || sub.submission.interest === 'Custom Bundle Request';
 
                 // Main row
                 const tr = document.createElement('tr');
@@ -934,17 +826,7 @@
                 tdCheck.appendChild(checkbox);
                 tr.appendChild(tdCheck);
 
-                // Expand button
-                const tdExpand = document.createElement('td');
-                if (hasDetails) {
-                    const expandBtn = document.createElement('button');
-                    expandBtn.className = 'expand-btn';
-                    expandBtn.id = 'expand-' + sub.id;
-                    expandBtn.textContent = '\u25B6';
-                    expandBtn.onclick = function() { toggleDetail(sub.id); };
-                    tdExpand.appendChild(expandBtn);
-                }
-                tr.appendChild(tdExpand);
+                // (expand column removed — all data is in columns now)
 
                 // Date
                 const tdDate = document.createElement('td');
@@ -986,6 +868,11 @@
                 tdOrg.textContent = sub.submission.organization || '\u2014';
                 tr.appendChild(tdOrg);
 
+                // Role
+                const tdRole = document.createElement('td');
+                tdRole.textContent = sub.submission.role || '\u2014';
+                tr.appendChild(tdRole);
+
                 // Org Type
                 const tdOrgType = document.createElement('td');
                 tdOrgType.textContent = sub.submission.orgType || '\u2014';
@@ -993,7 +880,7 @@
 
                 // Interest
                 const tdInterest = document.createElement('td');
-                tdInterest.textContent = isBundleRequest ? 'Custom Bundle' : (sub.submission.interest || '\u2014');
+                tdInterest.textContent = sub.submission.interest || '\u2014';
                 tr.appendChild(tdInterest);
 
                 // Timeframe
@@ -1001,62 +888,34 @@
                 tdTime.textContent = sub.submission.timeframe || '\u2014';
                 tr.appendChild(tdTime);
 
-                // Message (truncated)
+                // Use Case
+                const tdUseCase = document.createElement('td');
+                tdUseCase.className = 'td-message';
+                tdUseCase.textContent = sub.submission.useCase || '\u2014';
+                if (sub.submission.useCase) tdUseCase.title = sub.submission.useCase;
+                tr.appendChild(tdUseCase);
+
+                // Environment
+                const tdEnv = document.createElement('td');
+                tdEnv.textContent = sub.submission.environment || '\u2014';
+                tr.appendChild(tdEnv);
+
+                // Requirements
+                const tdReq = document.createElement('td');
+                tdReq.className = 'td-message';
+                tdReq.textContent = sub.submission.requirements || '\u2014';
+                if (sub.submission.requirements) tdReq.title = sub.submission.requirements;
+                tr.appendChild(tdReq);
+
+                // Message
                 const tdMsg = document.createElement('td');
                 tdMsg.className = 'td-message';
-                if (sub.submission.message) {
-                    tdMsg.textContent = sub.submission.message.length > 60 ? sub.submission.message.substring(0, 60) + '\u2026' : sub.submission.message;
-                    tdMsg.title = sub.submission.message;
-                } else {
-                    tdMsg.textContent = '\u2014';
-                }
+                tdMsg.textContent = sub.submission.message || '\u2014';
+                if (sub.submission.message) tdMsg.title = sub.submission.message;
                 tr.appendChild(tdMsg);
 
                 tbody.appendChild(tr);
 
-                // Detail/expandable row (for full message + role)
-                if (hasDetails) {
-                    const detailTr = document.createElement('tr');
-                    detailTr.className = 'detail-row';
-                    const detailTd = document.createElement('td');
-                    detailTd.colSpan = 11;
-
-                    const detailContent = document.createElement('div');
-                    detailContent.className = 'detail-content';
-                    detailContent.id = 'detail-' + sub.id;
-
-                    // Extra fields grid
-                    const hasExtraFields = sub.submission.role || sub.submission.orgType;
-                    if (hasExtraFields) {
-                        const grid = document.createElement('div');
-                        grid.className = 'detail-grid';
-
-                        if (sub.submission.role) {
-                            grid.appendChild(createDetailField('Role / Title', sub.submission.role));
-                        }
-                        if (sub.submission.orgType) {
-                            grid.appendChild(createDetailField(isBundleRequest ? 'Environment' : 'Org Type', sub.submission.orgType));
-                        }
-                        detailContent.appendChild(grid);
-                    }
-
-                    // Message
-                    if (sub.submission.message) {
-                        const msgLabel = document.createElement('div');
-                        msgLabel.className = 'detail-message-label';
-                        msgLabel.textContent = isBundleRequest ? 'Details' : 'Message';
-                        detailContent.appendChild(msgLabel);
-
-                        const msgDiv = document.createElement('div');
-                        msgDiv.className = 'detail-message';
-                        msgDiv.textContent = sub.submission.message;
-                        detailContent.appendChild(msgDiv);
-                    }
-
-                    detailTd.appendChild(detailContent);
-                    detailTr.appendChild(detailTd);
-                    tbody.appendChild(detailTr);
-                }
             });
 
             container.style.display = 'block';

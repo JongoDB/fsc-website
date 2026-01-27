@@ -10,24 +10,21 @@ async function submitContactForm(formData) {
     let record;
 
     if (formData.formType === 'bundle-request') {
-        // Bundle request form - map fields into existing columns
-        const messageParts = [];
-        if (formData.useCase) messageParts.push('Use Case:\n' + formData.useCase);
-        if (formData.requirements) messageParts.push('Requirements:\n' + formData.requirements);
-
         record = {
+            form_type: 'bundle-request',
             name: formData.name,
             email: formData.email,
             organization: formData.organization,
             role: formData.role || null,
-            org_type: formData.environment || null,
             interest: 'Custom Bundle Request',
             timeframe: formData.timeframe || null,
-            message: messageParts.join('\n\n') || null
+            use_case: formData.useCase || null,
+            environment: formData.environment || null,
+            requirements: formData.requirements || null
         };
     } else {
-        // Standard contact form
         record = {
+            form_type: 'contact',
             name: formData.name,
             email: formData.email,
             organization: formData.organization,
