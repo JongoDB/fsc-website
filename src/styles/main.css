@@ -351,13 +351,17 @@ nav {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
-    overflow: visible;
+    overflow: hidden;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .mission-card::before {
@@ -1755,7 +1759,7 @@ textarea:focus {
 
 .hero-stat {
     text-align: center;
-    padding: 44px 40px 48px;
+    padding: 24px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(0, 168, 255, 0.3);
     border-radius: 12px;
@@ -1763,6 +1767,7 @@ textarea:focus {
     transition: all 0.3s ease;
     position: relative;
     width: 248px;
+    aspect-ratio: 1;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -1810,28 +1815,31 @@ textarea:focus {
     font-weight: 500;
 }
 
-/* Mobile Hero Stats - 2x2 Grid */
+/* Mobile Hero Stats - 2x2 Grid of Squares */
 @media (max-width: 640px) {
     .hero-stats {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
         margin-top: 40px;
         padding-top: 40px;
     }
 
     .hero-stat {
-        padding: 32px 20px;
+        padding: 16px;
         width: auto;
+        aspect-ratio: 1;
     }
 
     .hero-stat-number,
     .hero-stat.highlight-stat .hero-stat-number {
-        font-size: 48px;
+        font-size: 36px;
+        margin-bottom: 10px;
     }
 
     .hero-stat-label {
-        font-size: 12px;
-        letter-spacing: 1.5px;
+        font-size: 10px;
+        letter-spacing: 1.2px;
     }
 }
 
@@ -2221,10 +2229,16 @@ button:focus-visible {
 
 .stat-card {
     text-align: center;
-    padding: 48px 24px;
+    padding: 24px;
     background: var(--white);
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .stat-value {
@@ -2249,14 +2263,14 @@ button:focus-visible {
 
 @media (max-width: 480px) {
     .stat-card {
-        padding: 40px 16px;
+        padding: 12px;
     }
 
     .stat-value {
-        font-size: 56px;
+        font-size: 36px;
     }
 
     .stat-label {
-        font-size: 17px;
+        font-size: 13px;
     }
 }

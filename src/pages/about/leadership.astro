@@ -65,9 +65,9 @@ const stats = [
         title="Founding Team"
         description="Three leaders with decades of combined experience at the highest levels of defensive and offensive cyber operations"
       />
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); gap: 40px; margin-top: 60px;">
         {founders.map((founder) => (
-          <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+          <div style="background: rgba(255,255,255,0.05); padding: clamp(24px, 5vw, 50px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
             <h3 style="font-size: 28px; margin-bottom: 15px; color: var(--white);">{founder.role}</h3>
             <p style="font-size: 20px; color: var(--bright-blue); margin-bottom: 25px; font-weight: 600;">{founder.title}</p>
             <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 25px;" set:html={founder.description}></p>
