@@ -208,16 +208,14 @@
         .submission-card {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(0, 168, 255, 0.2);
-            border-radius: 8px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 0;
             transition: all 0.3s;
-            display: flex;
-            gap: 20px;
+            overflow: hidden;
         }
 
         .submission-card:hover {
             border-color: #00a8ff;
-            transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
         }
 
@@ -226,10 +224,17 @@
             background: rgba(0, 168, 255, 0.05);
         }
 
+        .submission-card-inner {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+        }
+
         .submission-checkbox {
             display: flex;
             align-items: flex-start;
-            padding-top: 5px;
+            padding-top: 2px;
+            flex-shrink: 0;
         }
 
         .submission-checkbox input[type="checkbox"] {
@@ -241,52 +246,101 @@
 
         .submission-content {
             flex: 1;
+            min-width: 0;
         }
 
         .submission-header {
             display: flex;
             justify-content: space-between;
-            align-items: start;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 168, 255, 0.15);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .submission-id {
-            font-size: 12px;
-            color: #888;
-            font-family: monospace;
+        .submission-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .submission-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .submission-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submission-badge.contact {
+            background: rgba(0, 168, 255, 0.15);
+            color: #00a8ff;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+        }
+
+        .submission-badge.bundle {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .submission-timestamp {
-            font-size: 14px;
-            color: #888;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .submission-fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px 24px;
+            margin-bottom: 16px;
         }
 
         .submission-field {
-            margin-bottom: 15px;
+            margin-bottom: 0;
         }
 
         .submission-field label {
             display: block;
             color: #00a8ff;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            opacity: 0.8;
         }
 
         .submission-field .value {
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .submission-field .value.empty {
+            color: #555;
+            font-style: italic;
         }
 
         .submission-message {
-            background: rgba(0, 168, 255, 0.1);
-            padding: 15px;
-            border-radius: 6px;
+            background: rgba(0, 168, 255, 0.08);
+            padding: 16px;
+            border-radius: 8px;
             border-left: 3px solid #00a8ff;
-            margin-top: 10px;
+            margin-top: 4px;
+            line-height: 1.6;
+            font-size: 14px;
         }
 
         .loading {
@@ -388,9 +442,13 @@
                 font-size: 24px;
             }
 
-            .submission-card {
+            .submission-card-inner {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .submission-fields-grid {
+                grid-template-columns: 1fr !important;
             }
 
             .submission-checkbox input[type="checkbox"] {
@@ -788,6 +846,9 @@
                 card.className = 'submission-card' + (selectedIds.has(sub.id) ? ' selected' : '');
                 card.dataset.id = sub.id;
 
+                const inner = document.createElement('div');
+                inner.className = 'submission-card-inner';
+
                 // Checkbox container
                 const checkboxDiv = document.createElement('div');
                 checkboxDiv.className = 'submission-checkbox';
@@ -796,51 +857,72 @@
                 checkbox.checked = selectedIds.has(sub.id);
                 checkbox.onchange = function() { toggleSelection(sub.id); };
                 checkboxDiv.appendChild(checkbox);
-                card.appendChild(checkboxDiv);
+                inner.appendChild(checkboxDiv);
 
                 // Content container
                 const content = document.createElement('div');
                 content.className = 'submission-content';
 
-                // Header
+                // Header with name, badge, and timestamp
                 const header = document.createElement('div');
                 header.className = 'submission-header';
-                const headerInfo = document.createElement('div');
-                const idDiv = document.createElement('div');
-                idDiv.className = 'submission-id';
-                idDiv.textContent = 'ID: ' + sub.id;
+
+                const headerLeft = document.createElement('div');
+                headerLeft.className = 'submission-header-left';
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'submission-name';
+                nameSpan.textContent = sub.submission.name || 'Anonymous';
+                headerLeft.appendChild(nameSpan);
+
+                // Badge for form type
+                const isBundleRequest = sub.submission.interest === 'Custom Bundle Request';
+                const badge = document.createElement('span');
+                badge.className = 'submission-badge ' + (isBundleRequest ? 'bundle' : 'contact');
+                badge.textContent = isBundleRequest ? 'Bundle Request' : 'Contact';
+                headerLeft.appendChild(badge);
+
+                header.appendChild(headerLeft);
+
                 const timestampDiv = document.createElement('div');
                 timestampDiv.className = 'submission-timestamp';
-                timestampDiv.textContent = new Date(sub.timestamp).toLocaleString();
-                headerInfo.appendChild(idDiv);
-                headerInfo.appendChild(timestampDiv);
-                header.appendChild(headerInfo);
+                const date = new Date(sub.timestamp);
+                timestampDiv.textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' at ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                header.appendChild(timestampDiv);
+
                 content.appendChild(header);
 
-                // Fields
-                content.appendChild(createSubmissionField('Name', sub.submission.name || 'Not provided', false, false));
-                content.appendChild(createSubmissionField('Email', sub.submission.email, true, false));
+                // Fields in a grid layout
+                const fieldsGrid = document.createElement('div');
+                fieldsGrid.className = 'submission-fields-grid';
+
+                fieldsGrid.appendChild(createSubmissionField('Email', sub.submission.email, true, false));
 
                 if (sub.submission.organization) {
-                    content.appendChild(createSubmissionField('Organization', sub.submission.organization, false, false));
+                    fieldsGrid.appendChild(createSubmissionField('Organization', sub.submission.organization, false, false));
                 }
                 if (sub.submission.role) {
-                    content.appendChild(createSubmissionField('Role/Title', sub.submission.role, false, false));
+                    fieldsGrid.appendChild(createSubmissionField('Role', sub.submission.role, false, false));
                 }
                 if (sub.submission.orgType) {
-                    content.appendChild(createSubmissionField('Organization Type', sub.submission.orgType, false, false));
+                    fieldsGrid.appendChild(createSubmissionField(isBundleRequest ? 'Environment' : 'Org Type', sub.submission.orgType, false, false));
                 }
-                if (sub.submission.interest) {
-                    content.appendChild(createSubmissionField('Interest', sub.submission.interest, false, false));
+                if (sub.submission.interest && !isBundleRequest) {
+                    fieldsGrid.appendChild(createSubmissionField('Interest', sub.submission.interest, false, false));
                 }
                 if (sub.submission.timeframe) {
-                    content.appendChild(createSubmissionField('Timeframe', sub.submission.timeframe, false, false));
-                }
-                if (sub.submission.message) {
-                    content.appendChild(createSubmissionField('Message', sub.submission.message, false, true));
+                    fieldsGrid.appendChild(createSubmissionField('Timeframe', sub.submission.timeframe, false, false));
                 }
 
-                card.appendChild(content);
+                content.appendChild(fieldsGrid);
+
+                // Message in its own full-width section
+                if (sub.submission.message) {
+                    content.appendChild(createSubmissionField(isBundleRequest ? 'Details' : 'Message', sub.submission.message, false, true));
+                }
+
+                inner.appendChild(content);
+                card.appendChild(inner);
                 container.appendChild(card);
             });
 

@@ -308,7 +308,7 @@ nav {
 /* Section Styles */
 .section-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 48px;
 }
 
 .section-header h2 {
@@ -327,11 +327,11 @@ nav {
 }
 
 .content-section {
-    padding: 120px 0;
+    padding: 80px 0;
 }
 
 .content-section-alt {
-    padding: 120px 0;
+    padding: 80px 0;
     background: var(--light-gray);
 }
 
@@ -515,7 +515,7 @@ nav {
 
 /* Dark Sections */
 .dark-section {
-    padding: 120px 0;
+    padding: 80px 0;
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-gray) 100%);
     color: var(--white);
 }
@@ -693,7 +693,7 @@ footer {
 
 /* CTA Section */
 .cta-section {
-    padding: 120px 0;
+    padding: 80px 0;
     background: linear-gradient(135deg, var(--dark) 0%, var(--primary-blue) 100%);
     color: var(--white);
     text-align: center;
@@ -875,7 +875,7 @@ footer {
     .content-section,
     .content-section-alt,
     .dark-section {
-        padding: 80px 0;
+        padding: 60px 0;
     }
     
     .cta-content h2 {
@@ -1641,26 +1641,26 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 20px;
+    gap: 24px;
     margin-top: 60px;
     padding-top: 60px;
     border-top: 1px solid rgba(0, 168, 255, 0.2);
     flex-wrap: wrap;
-    max-width: 1100px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .hero-stat {
     text-align: center;
-    padding: 44px 28px 48px;
+    padding: 44px 40px 48px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(0, 168, 255, 0.3);
     border-radius: 12px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     position: relative;
-    width: 220px;
+    width: 248px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
