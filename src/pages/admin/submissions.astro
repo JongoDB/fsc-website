@@ -506,7 +506,7 @@
             }
 
             .submissions-table {
-                min-width: 700px;
+                min-width: 1000px;
             }
 
             .detail-grid {
@@ -636,8 +636,10 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Organization</th>
+                            <th>Org Type</th>
                             <th>Interest</th>
                             <th>Timeframe</th>
+                            <th>Message</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody"></tbody>
@@ -984,6 +986,11 @@
                 tdOrg.textContent = sub.submission.organization || '\u2014';
                 tr.appendChild(tdOrg);
 
+                // Org Type
+                const tdOrgType = document.createElement('td');
+                tdOrgType.textContent = sub.submission.orgType || '\u2014';
+                tr.appendChild(tdOrgType);
+
                 // Interest
                 const tdInterest = document.createElement('td');
                 tdInterest.textContent = isBundleRequest ? 'Custom Bundle' : (sub.submission.interest || '\u2014');
@@ -994,14 +1001,25 @@
                 tdTime.textContent = sub.submission.timeframe || '\u2014';
                 tr.appendChild(tdTime);
 
+                // Message (truncated)
+                const tdMsg = document.createElement('td');
+                tdMsg.className = 'td-message';
+                if (sub.submission.message) {
+                    tdMsg.textContent = sub.submission.message.length > 60 ? sub.submission.message.substring(0, 60) + '\u2026' : sub.submission.message;
+                    tdMsg.title = sub.submission.message;
+                } else {
+                    tdMsg.textContent = '\u2014';
+                }
+                tr.appendChild(tdMsg);
+
                 tbody.appendChild(tr);
 
-                // Detail/expandable row
+                // Detail/expandable row (for full message + role)
                 if (hasDetails) {
                     const detailTr = document.createElement('tr');
                     detailTr.className = 'detail-row';
                     const detailTd = document.createElement('td');
-                    detailTd.colSpan = 9;
+                    detailTd.colSpan = 11;
 
                     const detailContent = document.createElement('div');
                     detailContent.className = 'detail-content';
