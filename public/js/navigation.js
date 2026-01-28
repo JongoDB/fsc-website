@@ -10,7 +10,7 @@ function toggleMenu() {
         if (header) {
             navLinks.style.top = header.offsetHeight + "px";
         }
-        // Save scroll position before locking body
+        // Save scroll position and lock body
         document.body.dataset.scrollY = window.scrollY;
         document.body.style.top = "-" + window.scrollY + "px";
         navLinks.classList.add("active");
@@ -36,6 +36,7 @@ function closeMobileNav() {
         nav.classList.remove("active");
         document.body.classList.remove("nav-open");
         document.body.style.top = "";
+        nav.style.top = "";
         window.scrollTo(0, parseInt(document.body.dataset.scrollY || "0"));
         const toggle = document.querySelector(".menu-toggle");
         if (toggle) {
