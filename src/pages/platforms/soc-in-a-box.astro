@@ -70,3 +70,10 @@ import MissionCard from '../../components/MissionCard.astro';
     </div>
   </section>
 </ContentPageLayout>
+
+<style>
+  /* Override square aspect ratio for 2-card layout */
+  :global(.cards-grid .mission-card) {
+    aspect-ratio: auto;
+  }
+</style>
