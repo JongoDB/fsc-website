@@ -26,8 +26,38 @@ const ceo = {
   linkedin: 'https://www.linkedin.com/in/fighting-smart/'
 };
 
-// Full executive team data preserved in _leadership-full.astro
-const executives = [];
+const executives = [
+  {
+    name: '[Name]',
+    role: 'Chief Technology Officer',
+    rank: '[Rank], [Branch]',
+    photo: null,
+    bio: '[1-2 paragraph bio covering technical expertise, operational experience in DCO/OCO, engineering background, and specific accomplishments. Include DOTMLPF-P expertise, network architecture experience, and hands-on cyber operations.]',
+    highlights: [
+      'Offensive and defensive cyber operations',
+      'Network engineering and secure architecture',
+      'Government acquisition and procurement',
+      'DOTMLPF-P framework implementation'
+    ],
+    credentials: ['[Certifications]', '[Clearance]'],
+    linkedin: null
+  },
+  {
+    name: 'Jon Rannabargar',
+    role: 'Chief Operating Officer',
+    rank: 'U.S. Marine Corps',
+    photo: '/images/leadership/jon-rannabargar.jpg',
+    bio: 'Jon brings over a decade of DoD experience spanning defensive cyber operations, signals intelligence, and capability development. From serving as a Host Analyst on a Cyber Protection Team to directing multi-million dollar programs delivering secure and resilient cyber capabilities, he has operated at every level—building the tactical, technical, and operational perspective needed to solve complex problems. Having led cross-functional development teams as both a Scrum Master and a Product Manager, he understands how to translate mission needs into agile, deliverable solutions. He has designed and deployed enterprise networks, instantiated global VPN architectures to support remote DCO missions, and productized capabilities across classified and unclassified enclaves. If it needs to be built, secured, and delivered—he knows how to make it happen.',
+    highlights: [
+      'Enterprise network & VPN architecture — enabled global remote ops',
+      'DCO capability development — DevSecOps delivery at the tactical edge',
+      'Cyber range engineering — 100+ environments for training & rehearsal',
+      'Joint exercises & experimentation — CJADC2 integration validation'
+    ],
+    credentials: ['TS/SCI w/ CI Poly', 'SAFe® Certified', 'DevSecOps'],
+    linkedin: null
+  }
+];
 
 const advisors = [
   // Placeholder for future advisors
@@ -108,8 +138,7 @@ const advisors = [
     </div>
   </section>
 
-  <!-- Executive Team (Hidden until populated) -->
-  {executives.length > 0 && (
+  <!-- Executive Team -->
   <section class="content-section">
     <div class="container">
       <SectionHeader
@@ -167,7 +196,6 @@ const advisors = [
       </div>
     </div>
   </section>
-  )}
 
   <!-- Board of Advisors (Hidden until populated) -->
   {advisors.length > 0 && (
