@@ -709,22 +709,10 @@ footer {
     gap: 20px;
 }
 
-.footer-logo-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
 .footer-logo {
-    height: 50px;
+    height: 80px;
     width: auto;
     object-fit: contain;
-}
-
-.footer-company-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--bright-blue);
 }
 
 .footer-bottom {
@@ -1069,15 +1057,7 @@ footer {
     }
 
     .footer-logo {
-        height: 40px;
-    }
-
-    .footer-company-name {
-        font-size: 18px;
-    }
-
-    .footer-logo-row {
-        gap: 8px;
+        height: 60px;
     }
 
     .content-text h2 {
