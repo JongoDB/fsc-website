@@ -62,18 +62,29 @@ nav {
     position: relative;
 }
 
-.logo {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--cyan) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.logo a {
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     background: linear-gradient(135deg, var(--bright-blue) 0%, var(--cyan) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -692,6 +703,30 @@ footer {
     line-height: 1.8;
 }
 
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-company-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bright-blue);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 40px;
@@ -798,8 +833,12 @@ footer {
         font-size: 12px;
     }
 
-    .logo {
-        font-size: 28px;
+    .logo-image {
+        height: 36px;
+    }
+
+    .logo-text {
+        font-size: 20px;
     }
 }
 
@@ -852,8 +891,16 @@ footer {
         z-index: 1000;
     }
 
+    .logo-image {
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
     .logo {
-        font-size: 26px;
+        gap: 8px;
     }
 
     .hero,
@@ -1009,8 +1056,28 @@ footer {
         padding: 12px 0;
     }
 
+    .logo-image {
+        height: 28px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
     .logo {
-        font-size: 22px;
+        gap: 6px;
+    }
+
+    .footer-logo {
+        height: 40px;
+    }
+
+    .footer-company-name {
+        font-size: 18px;
+    }
+
+    .footer-logo-row {
+        gap: 8px;
     }
 
     .content-text h2 {
@@ -1373,13 +1440,12 @@ footer {
 }
 
 /* Enhanced logo with cyber glow */
-.logo {
-    position: relative;
+.logo-image {
     filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
     transition: filter 0.3s;
 }
 
-.logo:hover {
+.logo:hover .logo-image {
     filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
 }
 
@@ -1493,12 +1559,16 @@ footer {
     .hero {
         padding: 60px 0 40px !important;
     }
-    
+
     /* Logo smaller on mobile */
-    .logo {
-        font-size: 24px !important;
+    .logo-image {
+        height: 28px !important;
     }
-    
+
+    .logo-text {
+        font-size: 16px !important;
+    }
+
     /* Navigation menu positioning is handled dynamically by JS (navigation.js)
        to align below the header regardless of header height */
 }

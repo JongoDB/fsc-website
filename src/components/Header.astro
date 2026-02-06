@@ -4,8 +4,11 @@ import { navigation, isDropdown, siteConfig } from '../data/navigation';
 
 <header>
   <nav class="container" role="navigation" aria-label="Main navigation">
-    <div>
-      <a href="/" class="logo" aria-label="Fighting Smart Cyber Home">{siteConfig.name}</a>
+    <div class="logo-container">
+      <a href="/" class="logo" aria-label="Fighting Smart Cyber Home">
+        <img src="/images/brand/white.png" alt="FSC" class="logo-image" />
+        <span class="logo-text">{siteConfig.name}</span>
+      </a>
       <div class="tagline">{siteConfig.tagline}</div>
     </div>
     <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
