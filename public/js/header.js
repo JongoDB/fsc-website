@@ -54,7 +54,7 @@ function generateFooter() {
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Email: support@fightingsmartcyber.com<br>
+                    <p>Email: team@fightingsmartcyber.com<br>
                     Ready to discuss your mission?<br>
                     Let's talk.</p>
                 </div>
