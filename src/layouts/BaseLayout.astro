@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Analytics from '@vercel/analytics/astro';
 import '../styles/main.css';
 import '../styles/modern.css';
+import '../styles/visuals.css';
 
 interface Props {
   title: string;
@@ -50,6 +51,8 @@ const fullTitle = title.includes('Fighting Smart Cyber') ? title : `${title} | F
   {includeAnimations && (
     <>
       <script is:inline src="/js/animations.js"></script>
+      <script is:inline src="/js/hero-interactive.js"></script>
+      <script is:inline src="/js/scroll-animation.js"></script>
       <script is:inline src="/js/cyber-effects.js"></script>
       <script is:inline src="/js/tooltips.js"></script>
     </>

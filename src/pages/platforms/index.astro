@@ -74,8 +74,10 @@ const features = [
   ctaPrimaryButton={{ text: 'Schedule a Demo', href: '/contact' }}
   ctaSecondaryButton={{ text: 'View App Bundles', href: '/bundles' }}
 >
-  <section class="content-section-alt">
-    <div class="container">
+  <section class="bg-image-section overlay-full" style="padding: 80px 0;">
+    <img src="/images/site/soc-empty.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
+    <div class="container" style="position: relative; z-index: 2;">
       <div class="cards-grid">
         {platforms.map((platform) => (
           <MissionCard

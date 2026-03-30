@@ -203,9 +203,6 @@ class CardHoverEffect {
 
 // Initialize all effects when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize hero particle system
-    new ParticleSystem('particle-canvas');
-
     // Initialize scroll animations
     new ScrollAnimator();
 
