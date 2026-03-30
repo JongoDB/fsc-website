@@ -215,26 +215,13 @@ html::-webkit-scrollbar-thumb:hover {
     margin-right: auto;
 }
 
-/* --- Bento Grid for Mission Cards --- */
+/* --- 3x3 Grid for Mission Cards --- */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: auto;
-    gap: 16px;
+    gap: 20px;
     margin-top: 48px;
-}
-
-/* Featured cards span 2 columns */
-.cards-grid .mission-card:nth-child(1) {
-    grid-column: span 2;
-}
-
-.cards-grid .mission-card:nth-child(5) {
-    grid-column: span 2;
-}
-
-.cards-grid .mission-card:nth-child(7) {
-    grid-column: span 2;
 }
 
 .mission-card {
@@ -523,17 +510,22 @@ html::-webkit-scrollbar-thumb:hover {
     letter-spacing: 0.5px;
 }
 
-/* --- CTA Section refinement --- */
+/* --- CTA Section refinement - centered --- */
 .cta-section {
     padding: 120px 0;
     background: var(--dark);
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .cta-section::before {
     background:
         radial-gradient(ellipse 60% 80% at 50% 100%, rgba(0, 168, 255, 0.1) 0%, transparent 60%);
+}
+
+.cta-content {
+    text-align: center;
 }
 
 .cta-content h2 {
@@ -549,6 +541,263 @@ html::-webkit-scrollbar-thumb:hover {
     opacity: 0.6;
     max-width: 560px;
     line-height: 1.7;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-section .hero-buttons,
+.cta-content .hero-buttons {
+    justify-content: center;
+}
+
+/* --- Darker content-section-alt variant --- */
+.content-section-alt.dark-bg {
+    background: linear-gradient(180deg, #0d1520 0%, #0a1628 100%);
+    color: var(--white);
+}
+
+.content-section-alt.dark-bg .section-header h2 {
+    color: var(--white);
+}
+
+.content-section-alt.dark-bg .section-header p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.content-section-alt.dark-bg .feature-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-left-color: rgba(0, 168, 255, 0.4);
+}
+
+.content-section-alt.dark-bg .feature-item h4 {
+    color: var(--white);
+}
+
+.content-section-alt.dark-bg .feature-item p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.content-section-alt.dark-bg .feature-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-left-color: var(--bright-blue);
+}
+
+/* --- Delivery options as list instead of tiles --- */
+.delivery-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.delivery-option {
+    display: flex;
+    gap: 20px;
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.delivery-option:hover {
+    border-color: rgba(0, 168, 255, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.delivery-option-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 168, 255, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bright-blue);
+}
+
+.delivery-option h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 6px;
+}
+
+.delivery-option p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Training tracks as content cards instead of tiles --- */
+.track-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.track-card {
+    padding: 32px;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    border-top: 3px solid var(--bright-blue);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.track-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.track-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+}
+
+.track-card p {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.track-card a {
+    color: var(--bright-blue);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.track-card a:hover {
+    text-decoration: underline;
+}
+
+/* --- Platform feature list (non-tile) --- */
+.feature-list-compact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+}
+
+.feature-list-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.feature-list-item:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.feature-list-item .feature-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 168, 255, 0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bright-blue);
+}
+
+.feature-list-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 4px;
+}
+
+.feature-list-item p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Dark variant */
+.dark-section .feature-list-compact .feature-list-item,
+.content-section-alt.dark-bg .feature-list-compact .feature-list-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark-section .feature-list-item h4 {
+    color: var(--white);
+}
+
+.dark-section .feature-list-item p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Integration section improvement --- */
+.integration-section {
+    max-width: 800px;
+    margin: 40px auto 0;
+    text-align: center;
+    padding: 48px;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+}
+
+.integration-section p {
+    font-size: 17px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+/* --- Use case cards (non-tile format) --- */
+.use-case-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.use-case-card {
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.use-case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.use-case-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.use-case-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* --- Buttons refinement --- */
@@ -713,13 +962,20 @@ footer {
     letter-spacing: 0.01em;
 }
 
-/* --- Header refinement --- */
+/* --- Header refinement - dark with subtle transparency on scroll --- */
 header {
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--dark);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+header.scrolled {
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: none;
 }
 
 /* --- Contact form refinement --- */
@@ -742,10 +998,20 @@ header {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .cards-grid .mission-card:nth-child(1),
-    .cards-grid .mission-card:nth-child(5),
-    .cards-grid .mission-card:nth-child(7) {
-        grid-column: span 1;
+    .delivery-list {
+        grid-template-columns: 1fr;
+    }
+
+    .track-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-list-compact {
+        grid-template-columns: 1fr;
+    }
+
+    .use-case-list {
+        grid-template-columns: 1fr;
     }
 
     .hero-stats {

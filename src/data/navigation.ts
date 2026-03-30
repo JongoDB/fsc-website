@@ -54,8 +54,8 @@ export const navigation: NavEntry[] = [
     href: '/platforms',
     items: [
       { title: 'SOC-in-a-Box', href: '/platforms/soc-in-a-box' },
-      { title: 'Secure Kubernetes', href: '/platforms/secure-kubernetes' },
-      { title: 'CYROID Cyber Range', href: '/platforms/cyroid' },
+      { title: 'Secure Runtime', href: '/platforms/secure-kubernetes' },
+      { title: 'CYROID', href: '/platforms/cyroid' },
     ],
   },
   {
@@ -105,7 +105,7 @@ export const homepageTiles: HomepageTile[] = [
   },
   {
     icon: 'kubernetes',
-    title: 'Secure Kubernetes Core',
+    title: 'Secure Runtime Environment',
     description: 'Opinionated, secure <span class="tooltip-trigger">K8s<span class="tooltip-inline">Kubernetes</span></span> baseline built with Zero Trust principles, comprehensive observability, and GitOps integration.',
     href: '/platforms/secure-kubernetes',
     linkText: 'View Details',
@@ -126,7 +126,7 @@ export const homepageTiles: HomepageTile[] = [
   },
   {
     icon: 'monitor',
-    title: 'CYROID Cyber Range',
+    title: 'CYROID',
     description: 'Enterprise cyber range orchestration platform. Deploy isolated, networked training environments in minutes with visual range builder, <span class="tooltip-trigger">MSEL<span class="tooltip-inline">Master Scenario Events List</span></span> automation, and web-based <span class="tooltip-trigger">VM<span class="tooltip-inline">Virtual Machine</span></span> console access.',
     href: '/platforms/cyroid',
     linkText: 'Explore CYROID',
@@ -153,7 +153,7 @@ export const footerSolutions: NavItem[] = [
   { title: 'Security Assessments', href: '/solutions/security-assessments' },
   { title: 'Operator-Led Training', href: '/solutions/training' },
   { title: 'SOC-in-a-Box Platform', href: '/platforms/soc-in-a-box' },
-  { title: 'Secure Kubernetes Core', href: '/platforms/secure-kubernetes' },
+  { title: 'Secure Runtime Environment', href: '/platforms/secure-kubernetes' },
   { title: 'App Bundles & Catalog', href: '/bundles' },
   { title: 'Consulting & Advisory', href: '/solutions/consulting' },
 ];

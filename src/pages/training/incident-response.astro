@@ -49,21 +49,17 @@ import FeatureItem from '../../components/FeatureItem.astro';
   <section class="content-section-alt">
     <div class="container">
       <SectionHeader title="Training Tracks" />
-      <div class="cards-grid" style="max-width: 800px; margin: 0 auto;">
-        <MissionCard
-          icon="target"
-          title="Technical Track"
-          description="Hands-on technical training for security analysts and incident responders. Deep dive into tools, techniques, and procedures for investigating and responding to cyber incidents."
-          href="/contact"
-          linkText="Request Info"
-        />
-        <MissionCard
-          icon="briefcase"
-          title="Executive Track"
-          description="Strategic overview for executives and leadership. Focus on decision-making, resource allocation, and communication during incidents. Includes tabletop exercises."
-          href="/contact"
-          linkText="Request Info"
-        />
+      <div class="track-cards">
+        <div class="track-card">
+          <h4>Technical Track</h4>
+          <p>Hands-on technical training for security analysts and incident responders. Deep dive into tools, techniques, and procedures for investigating and responding to cyber incidents.</p>
+          <a href="/contact">Request Info &rarr;</a>
+        </div>
+        <div class="track-card">
+          <h4>Executive Track</h4>
+          <p>Strategic overview for executives and leadership. Focus on decision-making, resource allocation, and communication during incidents. Includes tabletop exercises.</p>
+          <a href="/contact">Request Info &rarr;</a>
+        </div>
       </div>
     </div>
   </section>

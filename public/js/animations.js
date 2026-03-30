@@ -168,11 +168,9 @@ class NavbarEffect {
     init() {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                this.header.style.background = 'rgba(0, 0, 0, 0.95)';
-                this.header.style.backdropFilter = 'blur(24px)';
+                this.header.classList.add('scrolled');
             } else {
-                this.header.style.background = 'rgba(0, 0, 0, 0.8)';
-                this.header.style.backdropFilter = 'blur(20px)';
+                this.header.classList.remove('scrolled');
             }
         });
     }
