@@ -67,97 +67,28 @@
     50% { transform: translate(-35px, -25px) scale(1.1); }
 }
 
-/* --- Floating Geometric Shapes --- */
-.hero-shapes {
+/* --- Cursor-following glow --- */
+.hero-cursor-glow {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: 0;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.shape {
+/* --- Interactive node network canvas --- */
+#hero-network {
     position: absolute;
-    opacity: 0.6;
-    will-change: transform;
-}
-
-.shape-hex {
-    width: 120px;
-    height: 120px;
-    top: 12%;
-    right: 8%;
-    animation: shapeFloat 12s ease-in-out infinite, shapeSpin 30s linear infinite;
-}
-
-.shape-circle {
-    width: 80px;
-    height: 80px;
-    bottom: 20%;
-    right: 15%;
-    animation: shapeFloat 10s ease-in-out infinite 2s;
-}
-
-.shape-diamond {
-    width: 60px;
-    height: 60px;
-    top: 55%;
-    right: 30%;
-    animation: shapeFloat 14s ease-in-out infinite 4s, shapeSpin 40s linear infinite reverse;
-}
-
-.shape-ring {
-    width: 180px;
-    height: 180px;
-    top: 8%;
-    right: 25%;
-    animation: shapeFloat 16s ease-in-out infinite 1s;
-    opacity: 0.4;
-}
-
-.shape-nodes {
-    width: 300px;
-    height: 300px;
-    bottom: 5%;
-    right: 5%;
-    animation: shapeFloat 20s ease-in-out infinite 3s;
-    opacity: 0.5;
-}
-
-@keyframes shapeFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes shapeSpin {
-    from { transform: rotate(0deg) translateY(0); }
-    to { transform: rotate(360deg) translateY(0); }
-}
-
-/* Combine float and spin properly */
-.shape-hex {
-    animation: shapeFloatSpin1 12s ease-in-out infinite;
-}
-
-.shape-diamond {
-    animation: shapeFloatSpin2 14s ease-in-out infinite;
-}
-
-@keyframes shapeFloatSpin1 {
-    0% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-12px) rotate(3deg); }
-    50% { transform: translateY(-20px) rotate(0deg); }
-    75% { transform: translateY(-8px) rotate(-3deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-}
-
-@keyframes shapeFloatSpin2 {
-    0% { transform: translateY(0) rotate(45deg); }
-    50% { transform: translateY(-16px) rotate(50deg); }
-    100% { transform: translateY(0) rotate(45deg); }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* --- SVG Illustration Component --- */
@@ -170,8 +101,12 @@
 
 .section-illustration svg {
     width: 100%;
-    max-width: 420px;
+    max-width: 480px;
     height: auto;
+}
+
+.section-illustration.illustration-large svg {
+    max-width: 560px;
 }
 
 /* --- Operator Shield Illustration --- */
@@ -301,10 +236,6 @@
         order: 0;
     }
 
-    .shape-hex, .shape-ring, .shape-nodes {
-        display: none;
-    }
-
     .blob-1 { width: 400px; height: 400px; }
     .blob-2 { width: 300px; height: 300px; }
     .blob-3 { display: none; }
@@ -315,19 +246,22 @@
 }
 
 @media (max-width: 768px) {
-    .shape-circle, .shape-diamond {
-        display: none;
-    }
-
     .glass-panel {
         padding: 28px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .gradient-blob,
-    .shape {
+    .gradient-blob {
         animation: none !important;
+    }
+
+    #hero-network {
+        display: none;
+    }
+
+    .hero-cursor-glow {
+        display: none;
     }
 
     .illustration-shield .shield-glow,
