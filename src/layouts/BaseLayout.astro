@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/main.css';
 
 interface Props {
@@ -52,5 +53,6 @@ const fullTitle = title.includes('Fighting Smart Cyber') ? title : `${title} | F
       <script is:inline src="/js/tooltips.js"></script>
     </>
   )}
+  <Analytics />
 </body>
 </html>
