@@ -1,82 +1,13 @@
 ---
 import ContentPageLayout from '../../layouts/ContentPageLayout.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
-import MissionCard from '../../components/MissionCard.astro';
-
-const platformFeatures = [
-  {
-    icon: 'monitor',
-    title: 'VM Template Library',
-    description: '27+ pre-built OS templates including Windows Server 2003-2025, various Linux distributions, Kali Linux, macOS, and Samba AD. Create golden images and snapshots for rapid deployment.',
-    href: '/contact',
-    linkText: 'Learn More'
-  },
-  {
-    icon: 'grid',
-    title: 'Network Orchestration',
-    description: 'Dynamic network attach/detach, isolated range networks, and visual topology mapping. Multiple ranges can run simultaneously with identical IP spaces--completely isolated.',
-    href: '/contact',
-    linkText: 'Learn More'
-  },
-  {
-    icon: 'layers',
-    title: 'Scenario Automation',
-    description: '<span class="tooltip-trigger">MSEL<span class="tooltip-inline">Master Scenario Events List</span></span> parser for YAML/markdown scenario definitions. Schedule injects, trigger events manually, and automate attack sequences during exercises.',
-    href: '/contact',
-    linkText: 'Learn More'
-  },
-  {
-    icon: 'target',
-    title: 'Exercise Monitoring',
-    description: 'Real-time execution console with multi-panel dashboard. WebSocket streaming for live event logging, connection tracking, and deployment progress visualization.',
-    href: '/contact',
-    linkText: 'Learn More'
-  },
-  {
-    icon: 'briefcase',
-    title: 'Blueprint Export/Import',
-    description: 'Export complete ranges as portable blueprints including Dockerfiles and offline images. Reproducible environments for consistent training across locations.',
-    href: '/contact',
-    linkText: 'Learn More'
-  },
-  {
-    icon: 'shield',
-    title: 'Privacy-First Design',
-    description: 'Data automatically purged after exercise completion. No long-term retention of sensitive training data. Air-gapped deployment support for classified environments.',
-    href: '/contact',
-    linkText: 'Learn More'
-  }
-];
-
-const useCases = [
-  {
-    icon: 'shield',
-    title: 'Military & Government',
-    description: 'Cyber operations training with realistic adversary simulation. Support for classified environments with air-gapped deployment and <span class="tooltip-trigger">CAC<span class="tooltip-inline">Common Access Card</span></span>/<span class="tooltip-trigger">PKI<span class="tooltip-inline">Public Key Infrastructure</span></span> authentication.',
-    href: '/contact',
-    linkText: 'Contact Us'
-  },
-  {
-    icon: 'graduation',
-    title: 'Educational Institutions',
-    description: 'Cybersecurity curriculum delivery with hands-on labs. Scale from individual exercises to class-wide competitions with isolated student environments.',
-    href: '/contact',
-    linkText: 'Contact Us'
-  },
-  {
-    icon: 'target',
-    title: 'Red/Blue Team Exercises',
-    description: 'Purple team integration with attack scenario scripting. Realistic threat simulation for defensive team training and incident response practice.',
-    href: '/contact',
-    linkText: 'Contact Us'
-  }
-];
+import FeatureItem from '../../components/FeatureItem.astro';
 ---
 
 <ContentPageLayout
-  title="CYROID Cyber Range"
+  title="CYROID | Fighting Smart Cyber"
   description="Enterprise cyber range orchestration platform. Deploy isolated, networked cyber training environments in minutes with visual range builder and automated scenario execution."
-  heroTitle='<span class="highlight">CYROID</span> Cyber Range'
+  heroTitle='<span class="highlight">CYROID</span>'
   heroSubtitle="Enterprise cyber range orchestration platform for mission-ready training"
   ctaTitle="Ready to Transform Your Cyber Training?"
   ctaDescription="Let's discuss how CYROID can accelerate your cyber range operations."
@@ -117,19 +48,34 @@ const useCases = [
     </div>
   </section>
 
-  <section class="content-section-alt">
+  <section class="content-section-alt dark-bg">
     <div class="container">
       <SectionHeader title="Platform Features" />
-      <div class="cards-grid">
-        {platformFeatures.map((feature) => (
-          <MissionCard
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-            href={feature.href}
-            linkText={feature.linkText}
-          />
-        ))}
+      <div class="feature-grid">
+        <FeatureItem
+          title="VM Template Library"
+          description="27+ pre-built OS templates including Windows Server 2003-2025, various Linux distributions, Kali Linux, macOS, and Samba AD. Create golden images and snapshots for rapid deployment."
+        />
+        <FeatureItem
+          title="Network Orchestration"
+          description="Dynamic network attach/detach, isolated range networks, and visual topology mapping. Multiple ranges can run simultaneously with identical IP spaces--completely isolated."
+        />
+        <FeatureItem
+          title="Scenario Automation"
+          description="MSEL parser for YAML/markdown scenario definitions. Schedule injects, trigger events manually, and automate attack sequences during exercises."
+        />
+        <FeatureItem
+          title="Exercise Monitoring"
+          description="Real-time execution console with multi-panel dashboard. WebSocket streaming for live event logging, connection tracking, and deployment progress visualization."
+        />
+        <FeatureItem
+          title="Blueprint Export/Import"
+          description="Export complete ranges as portable blueprints including Dockerfiles and offline images. Reproducible environments for consistent training across locations."
+        />
+        <FeatureItem
+          title="Privacy-First Design"
+          description="Data automatically purged after exercise completion. No long-term retention of sensitive training data. Air-gapped deployment support for classified environments."
+        />
       </div>
     </div>
   </section>
@@ -137,16 +83,19 @@ const useCases = [
   <section class="content-section">
     <div class="container">
       <SectionHeader title="Ideal For" />
-      <div class="cards-grid">
-        {useCases.map((useCase) => (
-          <MissionCard
-            icon={useCase.icon}
-            title={useCase.title}
-            description={useCase.description}
-            href={useCase.href}
-            linkText={useCase.linkText}
-          />
-        ))}
+      <div class="use-case-list">
+        <div class="use-case-card">
+          <h4>Military & Government</h4>
+          <p>Cyber operations training with realistic adversary simulation. Support for classified environments with air-gapped deployment and <span class="tooltip-trigger">CAC<span class="tooltip-inline">Common Access Card</span></span>/<span class="tooltip-trigger">PKI<span class="tooltip-inline">Public Key Infrastructure</span></span> authentication.</p>
+        </div>
+        <div class="use-case-card">
+          <h4>Educational Institutions</h4>
+          <p>Cybersecurity curriculum delivery with hands-on labs. Scale from individual exercises to class-wide competitions with isolated student environments.</p>
+        </div>
+        <div class="use-case-card">
+          <h4>Red/Blue Team Exercises</h4>
+          <p>Purple team integration with attack scenario scripting. Realistic threat simulation for defensive team training and incident response practice.</p>
+        </div>
       </div>
     </div>
   </section>

@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import MissionCard from '../components/MissionCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import LeadershipCard from '../components/LeadershipCard.astro';
-import TrustBadge from '../components/TrustBadge.astro';
 import CTASection from '../components/CTASection.astro';
 import { homepageTiles } from '../data/navigation';
 
@@ -32,12 +31,20 @@ const trustBadges = [
   { icon: 'shield', label: 'Accreditation-Ready' },
   { icon: 'globe', label: 'Multi-Environment' }
 ];
+
+const trustIcons: Record<string, string> = {
+  lock: `<rect x="5" y="11" width="14" height="11" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>`,
+  target: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="2" fill="currentColor"/>`,
+  shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>`,
+  globe: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M2 12h20" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2" fill="none"/>`,
+};
 ---
 
 <BaseLayout title="Fighting Smart Cyber | Operator-Led Offensive and Defensive Cyber Solutions">
   <Hero
+    overline="Operator-Led Cyber Solutions"
     title='Fight <span class="highlight">Smarter</span>.<br>Think Like an <span class="highlight">Operator</span>.'
-    subtitle="Operator-led offensive and defensive cyber solutions from proven cyber operations leaders with TS/SCI-level operational experience"
+    subtitle="Offensive and defensive cyber solutions from proven operations leaders with TS/SCI-level experience. We build, deploy, and operate — not just advise."
     showStats={true}
     showButtons={true}
     primaryButton={{ text: 'Explore Solutions', href: '/solutions' }}
@@ -48,9 +55,9 @@ const trustBadges = [
     <div class="container">
       <SectionHeader
         title="Choose Your Mission"
-        description="Select the path that matches your cybersecurity needs. From training to turnkey platforms, we deliver operator-tested solutions."
+        description="Select the capability that matches your cybersecurity needs. From training to turnkey platforms, every solution is operator-tested."
       />
-      <div class="cards-grid">
+      <div class="cards-grid stagger-children scroll-animate">
         {homepageTiles.map((tile) => (
           <MissionCard
             icon={tile.icon}
@@ -68,10 +75,10 @@ const trustBadges = [
     <div class="container">
       <div class="content-grid">
         <div class="content-text scroll-animate-left">
-          <h2>Operator-Led. Practitioner-First.</h2>
+          <h2>Operator-Led.<br>Practitioner-First.</h2>
           <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
           <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber command experience, a senior officer with deep <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>/<span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span> expertise, and a senior enlisted leader who's built secure architectures from the ground up.</p>
-          <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms—understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
+          <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms — understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
           <a href="/about/who-we-are" class="btn-primary">Learn More About Us</a>
         </div>
         <div class="content-text scroll-animate-right">
@@ -96,7 +103,7 @@ const trustBadges = [
         title="Leadership Team"
         description="Proven operators with unmatched experience in cyber operations, command, and capability development"
       />
-      <div class="leadership-grid">
+      <div class="leadership-grid stagger-children scroll-animate">
         {leaders.map((leader) => (
           <LeadershipCard role={leader.role} title={leader.title} bio={leader.bio} />
         ))}
@@ -107,15 +114,14 @@ const trustBadges = [
     </div>
   </section>
 
-  <section class="content-section-alt">
-    <div class="container">
-      <SectionHeader
-        title="Trusted by Mission-Critical Organizations"
-        description="Our solutions are built for organizations that can't afford to fail"
-      />
-      <div class="trust-badges">
-        {trustBadges.map((badge) => (
-          <TrustBadge icon={badge.icon} label={badge.label} />
+  <section class="trust-section-modern" aria-label="Trusted credentials">
+    <div class="trust-marquee-wrapper">
+      <div class="trust-marquee-track">
+        {[...trustBadges, ...trustBadges, ...trustBadges, ...trustBadges].map((badge) => (
+          <div class="trust-marquee-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" set:html={trustIcons[badge.icon]}></svg>
+            <span>{badge.label}</span>
+          </div>
         ))}
       </div>
     </div>
@@ -123,7 +129,7 @@ const trustBadges = [
 
   <CTASection
     title="Ready to Fight Smarter?"
-    description="Let's discuss how Fighting Smart Cyber can help strengthen your cybersecurity posture. Whether you need training, platforms, or strategic advisory, we're here to help."
+    description="Let's discuss how Fighting Smart Cyber can strengthen your cybersecurity posture. Training, platforms, or strategic advisory — we're here to help."
     primaryButton={{ text: 'Schedule a Call', href: '/contact' }}
     secondaryButton={{ text: 'Request Information', href: '/contact' }}
   />

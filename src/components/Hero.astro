@@ -2,6 +2,7 @@
 interface Props {
   title: string;
   subtitle?: string;
+  overline?: string;
   showStats?: boolean;
   showButtons?: boolean;
   primaryButton?: { text: string; href: string };
@@ -12,6 +13,7 @@ interface Props {
 const {
   title,
   subtitle,
+  overline,
   showStats = false,
   showButtons = false,
   primaryButton,
@@ -26,6 +28,7 @@ const heroClass = compact ? 'hero hero-compact' : 'hero';
   <div class="hero-bg-grid" aria-hidden="true"></div>
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
   <div class="container hero-content">
+    {overline && <div class="hero-overline">{overline}</div>}
     <h1 set:html={title}></h1>
     {subtitle && <p class="subtitle" set:html={subtitle}></p>}
     {showButtons && (primaryButton || secondaryButton) && (

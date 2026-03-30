@@ -87,7 +87,7 @@ const deliveryOptions = [
   ctaTitle="Ready to Train with Operators?"
   ctaDescription="Let's discuss which training courses best fit your team's needs and skill levels."
   ctaPrimaryButton={{ text: 'Request Training Information', href: '/contact' }}
-  ctaSecondaryButton={{ text: 'View All Solutions', href: '/solutions' }}
+  ctaSecondaryButton={{ text: 'View Course Catalog', href: '/training' }}
 >
   <section class="content-section">
     <div class="container">
@@ -140,15 +140,17 @@ const deliveryOptions = [
   <section class="content-section">
     <div class="container">
       <SectionHeader title="Delivery Options" />
-      <div class="cards-grid">
+      <div class="delivery-list">
         {deliveryOptions.map((option) => (
-          <MissionCard
-            icon={option.icon}
-            title={option.title}
-            description={option.description}
-            href={option.href}
-            linkText={option.linkText}
-          />
+          <div class="delivery-option">
+            <div class="delivery-option-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+            </div>
+            <div>
+              <h4>{option.title}</h4>
+              <p>{option.description}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
