@@ -1,146 +1,254 @@
 ---
-// Cyber shield with DOTMLPF-P words orbiting in a 3D Saturn-ring style
-// Words pass behind the shield (clipped) and emerge on the other side
+// Complex cyber shield with DOTMLPF-P words orbiting in 3 rings
+// Each word uses animateMotion to travel an elliptical path while staying upright
+// Words pass behind the shield via layered rendering (back orbit → shield → front orbit)
 ---
 <div class="section-illustration illustration-shield">
-  <svg viewBox="0 0 480 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Background glow -->
-    <circle class="shield-glow" cx="240" cy="220" r="200" fill="url(#shieldGlow)" opacity="0.12"/>
+  <svg viewBox="0 0 500 460" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-    <!-- Faint concentric rings for depth -->
-    <ellipse cx="240" cy="220" rx="210" ry="80" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"/>
-    <ellipse cx="240" cy="220" rx="180" ry="68" stroke="rgba(0,212,255,0.03)" stroke-width="0.5"/>
+    <!-- Background ambient glow -->
+    <circle class="shield-glow" cx="250" cy="220" r="220" fill="url(#ambientGlow)" opacity="0.1"/>
 
-    <!-- === BACK ORBIT HALF (behind shield) === -->
-    <!-- Orbit ellipse path for reference - tilted ring -->
-    <ellipse cx="240" cy="230" rx="220" ry="85" stroke="rgba(0,168,255,0.06)" stroke-width="0.5" stroke-dasharray="3 5" transform="rotate(-8 240 230)"/>
+    <!-- ============================================ -->
+    <!-- BACK ORBIT WORDS (rendered first, behind shield) -->
+    <!-- These are the dim versions visible when "behind" -->
+    <!-- ============================================ -->
 
-    <!-- Back-half orbit words (clipped to only show behind shield area) -->
-    <g clip-path="url(#behindShieldClip)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 240 230" to="360 240 230" dur="45s" repeatCount="indefinite"/>
-        <!-- 8 words distributed around an elliptical path -->
-        <!-- Using transform to place on ellipse: x = cx + rx*cos(angle), y = cy + ry*sin(angle) -->
-        <!-- Rotated -8deg to match the orbit tilt -->
-        <g transform="rotate(-8 240 230)">
-          <text x="460" y="234" text-anchor="middle" fill="rgba(0,168,255,0.55)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Doctrine</text>
-          <text x="395" y="165" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Organization</text>
-          <text x="240" y="145" text-anchor="middle" fill="rgba(0,168,255,0.55)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Training</text>
-          <text x="85" y="165" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Materiel</text>
-          <text x="20" y="234" text-anchor="middle" fill="rgba(0,168,255,0.55)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Leadership</text>
-          <text x="85" y="299" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Personnel</text>
-          <text x="240" y="319" text-anchor="middle" fill="rgba(0,168,255,0.55)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Facilities</text>
-          <text x="395" y="299" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Policy</text>
-        </g>
-      </g>
+    <!-- Inner ring back (Doctrine, Organization, Training) -->
+    <g opacity="0.3">
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="0s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Doctrine
+      </text>
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="-10.67s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Organization
+      </text>
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="-21.33s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Training
+      </text>
     </g>
 
-    <!-- === SHIELD (middle layer) === -->
+    <!-- Middle ring back (Materiel, Leadership, Personnel) -->
+    <g opacity="0.25">
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-5s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Materiel
+      </text>
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-18.33s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Leadership
+      </text>
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-31.67s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Personnel
+      </text>
+    </g>
 
-    <!-- Shield outer glow/halo -->
-    <path d="M240 75 L345 125 L345 250 C345 315 240 375 240 375 C240 375 135 315 135 250 L135 125 Z"
-          fill="none" stroke="rgba(0,168,255,0.06)" stroke-width="8" filter="url(#shieldBlur)"/>
+    <!-- Outer ring back (Facilities, Policy) -->
+    <g opacity="0.2">
+      <text font-size="9.5" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="50s" repeatCount="indefinite" begin="-8s" path="M480,236 A230,92 0 1,1 20,236 A230,92 0 1,1 480,236"/>
+        Facilities
+      </text>
+      <text font-size="9.5" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="50s" repeatCount="indefinite" begin="-33s" path="M480,236 A230,92 0 1,1 20,236 A230,92 0 1,1 480,236"/>
+        Policy
+      </text>
+    </g>
 
-    <!-- Shield main body -->
-    <path d="M240 80 L340 128 L340 248 C340 310 240 368 240 368 C240 368 140 310 140 248 L140 128 Z"
-          fill="url(#shieldBodyFill)" stroke="url(#shieldBodyStroke)" stroke-width="2"/>
+    <!-- Orbit ring traces (decorative) -->
+    <ellipse cx="250" cy="228" rx="160" ry="62" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"/>
+    <ellipse cx="250" cy="232" rx="195" ry="78" stroke="rgba(0,212,255,0.035)" stroke-width="0.5"/>
+    <ellipse cx="250" cy="236" rx="230" ry="92" stroke="rgba(0,168,255,0.03)" stroke-width="0.5"/>
 
-    <!-- Shield inner border -->
-    <path d="M240 105 L318 143 L318 242 C318 293 240 342 240 342 C240 342 162 293 162 242 L162 143 Z"
+    <!-- ============================================ -->
+    <!-- SHIELD (middle layer - covers back orbit) -->
+    <!-- ============================================ -->
+
+    <!-- Shield outer glow halo -->
+    <path d="M250 68 L358 120 L358 252 C358 318 250 380 250 380 C250 380 142 318 142 252 L142 120 Z"
+          fill="none" stroke="rgba(0,168,255,0.05)" stroke-width="12" filter="url(#outerBlur)"/>
+
+    <!-- Shield body - main shape -->
+    <path d="M250 72 L355 122 L355 250 C355 314 250 375 250 375 C250 375 145 314 145 250 L145 122 Z"
+          fill="url(#shieldBody)" stroke="url(#shieldEdge)" stroke-width="2.5"/>
+
+    <!-- Shield secondary inner border -->
+    <path d="M250 98 L332 139 L332 244 C332 296 250 348 250 348 C250 348 168 296 168 244 L168 139 Z"
           fill="none" stroke="rgba(0,168,255,0.1)" stroke-width="1"/>
 
-    <!-- Shield surface detail - horizontal scan lines -->
-    <line x1="165" y1="170" x2="315" y2="170" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"/>
-    <line x1="158" y1="200" x2="322" y2="200" stroke="rgba(0,168,255,0.05)" stroke-width="0.5"/>
-    <line x1="152" y1="230" x2="328" y2="230" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"/>
-    <line x1="160" y1="260" x2="320" y2="260" stroke="rgba(0,168,255,0.03)" stroke-width="0.5"/>
-    <line x1="175" y1="290" x2="305" y2="290" stroke="rgba(0,168,255,0.03)" stroke-width="0.5"/>
+    <!-- Shield tertiary inner frame -->
+    <path d="M250 118 L312 152 L312 238 C312 278 250 322 250 322 C250 322 188 278 188 238 L188 152 Z"
+          fill="rgba(0,168,255,0.02)" stroke="rgba(0,168,255,0.06)" stroke-width="0.8"/>
 
-    <!-- Shield circuit/tech pattern -->
-    <path d="M200 160 L200 180 L220 180" stroke="rgba(0,168,255,0.12)" stroke-width="1" stroke-linecap="round"/>
-    <path d="M280 160 L280 175 L260 175" stroke="rgba(0,212,255,0.1)" stroke-width="1" stroke-linecap="round"/>
-    <path d="M190 240 L210 240 L210 260" stroke="rgba(0,168,255,0.1)" stroke-width="1" stroke-linecap="round"/>
-    <path d="M290 240 L270 240 L270 260" stroke="rgba(0,212,255,0.08)" stroke-width="1" stroke-linecap="round"/>
-    <circle cx="200" cy="160" r="2" fill="rgba(0,168,255,0.2)"/>
-    <circle cx="280" cy="160" r="2" fill="rgba(0,212,255,0.18)"/>
-    <circle cx="210" cy="260" r="1.5" fill="rgba(0,168,255,0.15)"/>
-    <circle cx="270" cy="260" r="1.5" fill="rgba(0,212,255,0.13)"/>
-
-    <!-- Inner hexagonal detail -->
-    <polygon points="240,155 268,170 268,200 240,215 212,200 212,170"
-             stroke="rgba(0,168,255,0.1)" stroke-width="0.8" fill="none"/>
-
-    <!-- Checkmark with glow -->
-    <path d="M215 215 L235 238 L272 192" stroke="rgba(0,168,255,0.15)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <path d="M215 215 L235 238 L272 192" stroke="#00a8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-    <!-- Shield top accent -->
-    <path d="M200 105 L240 88 L280 105" stroke="rgba(0,212,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-    <!-- Corner accent nodes -->
-    <circle cx="240" cy="80" r="3" fill="rgba(0,168,255,0.3)"/>
-    <circle cx="340" cy="128" r="2.5" fill="rgba(0,168,255,0.2)"/>
-    <circle cx="140" cy="128" r="2.5" fill="rgba(0,212,255,0.2)"/>
-
-    <!-- Animated pulse ring around shield -->
-    <path d="M240 80 L340 128 L340 248 C340 310 240 368 240 368 C240 368 140 310 140 248 L140 128 Z"
-          fill="none" stroke="rgba(0,168,255,0.15)" stroke-width="1">
-      <animate attributeName="stroke-opacity" values="0.15;0.02;0.15" dur="4s" repeatCount="indefinite"/>
-    </path>
-
-    <!-- === FRONT ORBIT HALF (in front of shield) === -->
-    <g clip-path="url(#frontShieldClip)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 240 230" to="360 240 230" dur="45s" repeatCount="indefinite"/>
-        <g transform="rotate(-8 240 230)">
-          <text x="460" y="234" text-anchor="middle" fill="rgba(0,168,255,0.8)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Doctrine</text>
-          <text x="395" y="165" text-anchor="middle" fill="rgba(0,212,255,0.75)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Organization</text>
-          <text x="240" y="145" text-anchor="middle" fill="rgba(0,168,255,0.8)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Training</text>
-          <text x="85" y="165" text-anchor="middle" fill="rgba(0,212,255,0.75)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Materiel</text>
-          <text x="20" y="234" text-anchor="middle" fill="rgba(0,168,255,0.8)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Leadership</text>
-          <text x="85" y="299" text-anchor="middle" fill="rgba(0,212,255,0.75)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Personnel</text>
-          <text x="240" y="319" text-anchor="middle" fill="rgba(0,168,255,0.8)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Facilities</text>
-          <text x="395" y="299" text-anchor="middle" fill="rgba(0,212,255,0.75)" font-size="10" font-weight="700" font-family="Inter, sans-serif">Policy</text>
-        </g>
-      </g>
+    <!-- Hex mesh pattern inside shield -->
+    <g opacity="0.06" stroke="#00a8ff" stroke-width="0.5">
+      <polygon points="230,150 240,144 250,150 250,162 240,168 230,162"/>
+      <polygon points="250,150 260,144 270,150 270,162 260,168 250,162"/>
+      <polygon points="220,162 230,156 240,162 240,174 230,180 220,174"/>
+      <polygon points="240,162 250,156 260,162 260,174 250,180 240,174"/>
+      <polygon points="260,162 270,156 280,162 280,174 270,180 260,174"/>
+      <polygon points="230,174 240,168 250,174 250,186 240,192 230,186"/>
+      <polygon points="250,174 260,168 270,174 270,186 260,192 250,186"/>
     </g>
 
-    <!-- Defs -->
+    <!-- Horizontal scan lines -->
+    <g opacity="0.04" stroke="#00d4ff" stroke-width="0.5">
+      <line x1="170" y1="165" x2="330" y2="165"/>
+      <line x1="165" y1="190" x2="335" y2="190"/>
+      <line x1="160" y1="215" x2="340" y2="215"/>
+      <line x1="158" y1="240" x2="342" y2="240"/>
+      <line x1="165" y1="265" x2="335" y2="265"/>
+      <line x1="180" y1="290" x2="320" y2="290"/>
+      <line x1="200" y1="315" x2="300" y2="315"/>
+    </g>
+
+    <!-- Circuit traces -->
+    <g stroke-linecap="round">
+      <!-- Top-left circuit -->
+      <path d="M195 145 L195 162 L212 162" stroke="rgba(0,168,255,0.15)" stroke-width="1"/>
+      <path d="M212 162 L212 175" stroke="rgba(0,168,255,0.1)" stroke-width="0.8"/>
+      <circle cx="195" cy="145" r="2" fill="rgba(0,168,255,0.25)"/>
+      <circle cx="212" cy="175" r="1.5" fill="rgba(0,168,255,0.2)"/>
+
+      <!-- Top-right circuit -->
+      <path d="M305 145 L305 158 L288 158" stroke="rgba(0,212,255,0.13)" stroke-width="1"/>
+      <path d="M288 158 L288 172" stroke="rgba(0,212,255,0.09)" stroke-width="0.8"/>
+      <circle cx="305" cy="145" r="2" fill="rgba(0,212,255,0.22)"/>
+      <circle cx="288" cy="172" r="1.5" fill="rgba(0,212,255,0.18)"/>
+
+      <!-- Bottom-left circuit -->
+      <path d="M190 255 L205 255 L205 272 L218 272" stroke="rgba(0,168,255,0.12)" stroke-width="0.8"/>
+      <circle cx="190" cy="255" r="1.5" fill="rgba(0,168,255,0.18)"/>
+      <circle cx="218" cy="272" r="1.5" fill="rgba(0,168,255,0.15)"/>
+
+      <!-- Bottom-right circuit -->
+      <path d="M310 255 L295 255 L295 268 L282 268" stroke="rgba(0,212,255,0.1)" stroke-width="0.8"/>
+      <circle cx="310" cy="255" r="1.5" fill="rgba(0,212,255,0.16)"/>
+      <circle cx="282" cy="268" r="1.5" fill="rgba(0,212,255,0.13)"/>
+
+      <!-- Center vertical data line -->
+      <path d="M250 130 L250 195" stroke="rgba(0,168,255,0.06)" stroke-width="0.5" stroke-dasharray="2 3"/>
+      <path d="M250 245 L250 310" stroke="rgba(0,168,255,0.06)" stroke-width="0.5" stroke-dasharray="2 3"/>
+    </g>
+
+    <!-- Central lock icon -->
+    <g transform="translate(250, 218)">
+      <!-- Lock body -->
+      <rect x="-18" y="-4" width="36" height="28" rx="4" stroke="#00a8ff" stroke-width="1.8" fill="rgba(0,168,255,0.06)"/>
+      <!-- Lock shackle -->
+      <path d="M-10 -4 L-10 -14 A10 10 0 0 1 10 -14 L10 -4" stroke="#00a8ff" stroke-width="1.8" fill="none"/>
+      <!-- Keyhole -->
+      <circle cx="0" cy="8" r="4" fill="rgba(0,168,255,0.2)" stroke="#00a8ff" stroke-width="1"/>
+      <rect x="-1.5" y="10" width="3" height="8" rx="1" fill="rgba(0,168,255,0.2)" stroke="#00a8ff" stroke-width="0.8"/>
+    </g>
+
+    <!-- Status dots on shield edge -->
+    <circle cx="250" cy="72" r="3.5" fill="rgba(0,168,255,0.3)" stroke="rgba(0,168,255,0.5)" stroke-width="1">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="355" cy="186" r="2.5" fill="rgba(0,212,255,0.25)">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="145" cy="186" r="2.5" fill="rgba(0,168,255,0.25)">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Shield breathing pulse -->
+    <path d="M250 72 L355 122 L355 250 C355 314 250 375 250 375 C250 375 145 314 145 250 L145 122 Z"
+          fill="none" stroke="rgba(0,168,255,0.1)" stroke-width="1.5">
+      <animate attributeName="stroke-opacity" values="0.1;0.02;0.1" dur="4s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- ============================================ -->
+    <!-- FRONT ORBIT WORDS (rendered last, in front of shield) -->
+    <!-- These show when words are on the near side of the orbit -->
+    <!-- Clip to bottom portion of each ellipse = "in front" -->
+    <!-- ============================================ -->
+
+    <!-- Inner ring front -->
+    <g clip-path="url(#frontClipInner)">
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="0s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Doctrine
+      </text>
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="-10.67s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Organization
+      </text>
+      <text font-size="11" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="32s" repeatCount="indefinite" begin="-21.33s" path="M410,228 A160,62 0 1,1 90,228 A160,62 0 1,1 410,228"/>
+        Training
+      </text>
+    </g>
+
+    <!-- Middle ring front -->
+    <g clip-path="url(#frontClipMiddle)">
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-5s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Materiel
+      </text>
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-18.33s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Leadership
+      </text>
+      <text font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="40s" repeatCount="indefinite" begin="-31.67s" path="M445,232 A195,78 0 1,1 55,232 A195,78 0 1,1 445,232"/>
+        Personnel
+      </text>
+    </g>
+
+    <!-- Outer ring front -->
+    <g clip-path="url(#frontClipOuter)">
+      <text font-size="9.5" font-weight="700" font-family="Inter, sans-serif" fill="#00a8ff" text-anchor="middle">
+        <animateMotion dur="50s" repeatCount="indefinite" begin="-8s" path="M480,236 A230,92 0 1,1 20,236 A230,92 0 1,1 480,236"/>
+        Facilities
+      </text>
+      <text font-size="9.5" font-weight="700" font-family="Inter, sans-serif" fill="#00d4ff" text-anchor="middle">
+        <animateMotion dur="50s" repeatCount="indefinite" begin="-33s" path="M480,236 A230,92 0 1,1 20,236 A230,92 0 1,1 480,236"/>
+        Policy
+      </text>
+    </g>
+
+    <!-- ============================================ -->
+    <!-- DEFS -->
+    <!-- ============================================ -->
     <defs>
-      <radialGradient id="shieldGlow">
-        <stop offset="0%" stop-color="#00a8ff" stop-opacity="0.25"/>
+      <radialGradient id="ambientGlow">
+        <stop offset="0%" stop-color="#00a8ff" stop-opacity="0.2"/>
         <stop offset="100%" stop-color="#00a8ff" stop-opacity="0"/>
       </radialGradient>
 
-      <linearGradient id="shieldBodyFill" x1="240" y1="80" x2="240" y2="368" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="rgba(0,168,255,0.1)"/>
-        <stop offset="40%" stop-color="rgba(0,168,255,0.05)"/>
-        <stop offset="100%" stop-color="rgba(10,37,64,0.15)"/>
+      <linearGradient id="shieldBody" x1="250" y1="72" x2="250" y2="375" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(0,212,255,0.12)"/>
+        <stop offset="25%" stop-color="rgba(0,168,255,0.08)"/>
+        <stop offset="50%" stop-color="rgba(10,37,64,0.2)"/>
+        <stop offset="100%" stop-color="rgba(0,10,20,0.25)"/>
       </linearGradient>
 
-      <linearGradient id="shieldBodyStroke" x1="140" y1="80" x2="340" y2="368" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.5"/>
-        <stop offset="30%" stop-color="#00a8ff" stop-opacity="0.35"/>
-        <stop offset="70%" stop-color="#00d4ff" stop-opacity="0.25"/>
-        <stop offset="100%" stop-color="#00a8ff" stop-opacity="0.4"/>
+      <linearGradient id="shieldEdge" x1="145" y1="72" x2="355" y2="375" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.6"/>
+        <stop offset="25%" stop-color="#00a8ff" stop-opacity="0.4"/>
+        <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.25"/>
+        <stop offset="75%" stop-color="#00a8ff" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.5"/>
       </linearGradient>
 
-      <filter id="shieldBlur">
-        <feGaussianBlur stdDeviation="4"/>
+      <filter id="outerBlur">
+        <feGaussianBlur stdDeviation="6"/>
       </filter>
 
-      <!-- Clip: area BEHIND the shield (everything outside the shield path) -->
-      <!-- We invert by using a full rect minus the shield -->
-      <clipPath id="behindShieldClip">
-        <path d="M0 0 H480 V440 H0 Z M240 80 L140 128 L140 248 C140 310 240 368 240 368 C240 368 340 310 340 248 L340 128 Z" fill-rule="evenodd"/>
+      <!-- Front clips: bottom half of each orbit ellipse (words "in front" of shield) -->
+      <clipPath id="frontClipInner">
+        <rect x="0" y="228" width="500" height="232"/>
       </clipPath>
-
-      <!-- Clip: area IN FRONT of the shield (inside the shield path only) -->
-      <!-- Actually we want the sides - words visible on left/right outside shield, hidden when behind -->
-      <!-- For a Saturn ring effect: front = bottom half of the orbit, back = top half -->
-      <!-- Front clip: below the shield's equator line -->
-      <clipPath id="frontShieldClip">
-        <rect x="0" y="230" width="480" height="210"/>
+      <clipPath id="frontClipMiddle">
+        <rect x="0" y="232" width="500" height="228"/>
+      </clipPath>
+      <clipPath id="frontClipOuter">
+        <rect x="0" y="236" width="500" height="224"/>
       </clipPath>
     </defs>
   </svg>
