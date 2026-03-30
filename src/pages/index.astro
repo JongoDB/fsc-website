@@ -5,7 +5,6 @@ import MissionCard from '../components/MissionCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import LeadershipCard from '../components/LeadershipCard.astro';
 import CTASection from '../components/CTASection.astro';
-import ShieldNetwork from '../components/illustrations/ShieldNetwork.astro';
 import MissionMap from '../components/illustrations/MissionMap.astro';
 import { homepageTiles } from '../data/navigation';
 
@@ -53,7 +52,24 @@ const trustIcons: Record<string, string> = {
     secondaryButton={{ text: 'Talk to an Operator', href: '/contact' }}
   />
 
-  <section class="content-section-alt">
+  <!-- Scroll-based operator animation section -->
+  <section class="scroll-animation-section" id="scroll-animation">
+    <div class="scroll-animation-sticky">
+      <canvas id="scroll-canvas" class="scroll-canvas"></canvas>
+      <div class="scroll-animation-overlay">
+        <div class="container">
+          <div class="scroll-animation-content scroll-animate">
+            <div class="hero-overline" style="margin-bottom: 16px;">Command & Control</div>
+            <h2>See the Full Picture.<br>Act with Precision.</h2>
+            <p>Our operators monitor, analyze, and respond across the entire threat landscape — with the tools, training, and experience to make every decision count.</p>
+            <a href="/solutions" class="btn-primary">View Our Solutions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt mission-section">
     <div class="container">
       <SectionHeader
         title="Choose Your Mission"
@@ -83,8 +99,8 @@ const trustIcons: Record<string, string> = {
           <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms — understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
           <a href="/about/who-we-are" class="btn-primary">Learn More About Us</a>
         </div>
-        <div class="scroll-animate-right">
-          <ShieldNetwork />
+        <div class="scroll-animate-right section-image-wrapper">
+          <img src="/images/site/operator-silhouette.jpg" alt="Cyber operations command center" class="section-image" loading="lazy" />
         </div>
       </div>
     </div>

@@ -141,6 +141,118 @@
     50% { r: 6; opacity: 1; }
 }
 
+/* --- Scroll-based frame animation --- */
+.scroll-animation-section {
+    height: 200vh;
+    position: relative;
+}
+
+.scroll-animation-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.scroll-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.scroll-animation-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 45%, transparent 70%);
+    display: flex;
+    align-items: center;
+}
+
+.scroll-animation-content {
+    max-width: 520px;
+    color: var(--white);
+}
+
+.scroll-animation-content h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.scroll-animation-content p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 28px;
+}
+
+/* --- Section images --- */
+.section-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-image {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.12);
+}
+
+/* Dark overlay variant for background images */
+.section-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.section-bg-image-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Mission section with tactical map background --- */
+.mission-section {
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 968px) {
+    .scroll-animation-section {
+        height: 100vh;
+    }
+
+    .scroll-animation-overlay {
+        background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+        align-items: flex-end;
+        padding-bottom: 60px;
+    }
+
+    .section-image {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-animation-content h2 {
+        font-size: 28px;
+    }
+}
+
 /* --- Frosted Glass Panels (like Booz Allen) --- */
 .glass-panel {
     background: rgba(255, 255, 255, 0.03);
