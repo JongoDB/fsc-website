@@ -185,13 +185,18 @@ class CardHoverEffect {
 
     init() {
         this.cards.forEach(card => {
+            // Detect if card is inside a dark background section
+            const isDark = card.closest('.bg-image-section') || card.closest('.dark-section');
+            const baseBg = isDark ? 'rgba(255,255,255,0.06)' : 'var(--white)';
+            const glowAlpha = isDark ? '0.08' : '0.04';
+
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
                 const y = ((e.clientY - rect.top) / rect.height) * 100;
                 card.style.setProperty('--mouse-x', x + '%');
                 card.style.setProperty('--mouse-y', y + '%');
-                card.style.background = `radial-gradient(600px circle at ${x}% ${y}%, rgba(0, 168, 255, 0.04), transparent 40%), var(--white)`;
+                card.style.background = `radial-gradient(600px circle at ${x}% ${y}%, rgba(0, 168, 255, ${glowAlpha}), transparent 40%), ${baseBg}`;
             });
 
             card.addEventListener('mouseleave', () => {
