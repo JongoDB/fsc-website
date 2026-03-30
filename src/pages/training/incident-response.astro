@@ -64,8 +64,10 @@ import FeatureItem from '../../components/FeatureItem.astro';
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="container">
+  <section class="bg-image-section overlay-full">
+    <img src="/images/site/incident-response-bg.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
+    <div class="container" style="position: relative; z-index: 2;">
       <SectionHeader
         title="Tabletop Exercises"
         description="Real-world scenarios based on actual incidents"

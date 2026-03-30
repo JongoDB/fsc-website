@@ -62,8 +62,10 @@ const blogPosts = [
   ctaPrimaryButton={{ text: 'Get in Touch', href: '/contact' }}
   ctaSecondaryButton={{ text: 'View Our Solutions', href: '/solutions' }}
 >
-  <section class="content-section-alt">
-    <div class="container">
+  <section class="bg-image-section overlay-full">
+    <img src="/images/site/resources-bg.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
+    <div class="container" style="position: relative; z-index: 2;">
       <SectionHeader
         title="Whitepapers"
         description="In-depth technical guides and strategic insights"

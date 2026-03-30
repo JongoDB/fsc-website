@@ -59,8 +59,10 @@ const solutions = [
   ctaPrimaryButton={{ text: 'Contact Us', href: '/contact' }}
   ctaSecondaryButton={{ text: 'View Platforms', href: '/platforms' }}
 >
-  <section class="content-section-alt">
-    <div class="container">
+  <section class="bg-image-section overlay-full">
+    <img src="/images/site/solutions-bg.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
+    <div class="container" style="position: relative; z-index: 2;">
       <SectionHeader
         title="What We Offer"
         description="From assessments to custom development, we deliver operator-tested solutions"

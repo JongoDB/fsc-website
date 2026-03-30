@@ -93,8 +93,10 @@ import SectionHeader from '../components/SectionHeader.astro';
     </div>
   </section>
 
-  <section class="content-section-alt">
-    <div class="container">
+  <section class="bg-image-section overlay-full">
+    <img src="/images/site/contact-bg.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
+    <div class="container" style="position: relative; z-index: 2;">
       <SectionHeader title="Other Ways to Reach Us" />
       <div class="cards-grid">
         <div class="mission-card">

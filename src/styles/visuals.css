@@ -366,6 +366,112 @@
     }
 }
 
+/* --- bg-image-section child element overrides for dark backgrounds --- */
+.bg-image-section .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-image-section .section-header h2 {
+    color: var(--white);
+}
+
+.bg-image-section .section-header p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-image-section .feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: rgba(0, 168, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.bg-image-section .feature-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--bright-blue);
+}
+
+.bg-image-section .feature-item h4 {
+    color: var(--white);
+}
+
+.bg-image-section .feature-item p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-image-section .mission-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.bg-image-section .mission-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 168, 255, 0.3);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+.bg-image-section .mission-card h3 {
+    color: var(--white);
+}
+
+.bg-image-section .mission-card p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-image-section .mission-card-link {
+    background: rgba(0, 168, 255, 0.15);
+    color: var(--bright-blue);
+    border-color: rgba(0, 168, 255, 0.3);
+}
+
+.bg-image-section .mission-card-link:hover {
+    background: var(--bright-blue);
+    color: var(--white);
+}
+
+.bg-image-section .course-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--bright-blue);
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.bg-image-section .course-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.bg-image-section .course-card h3 {
+    color: var(--white);
+}
+
+.bg-image-section .course-card p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-image-section .course-meta-item {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.bg-image-section .course-meta-item strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.bg-image-section .content-text h2,
+.bg-image-section .content-text h3 {
+    color: var(--white);
+}
+
+.bg-image-section .content-text p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 /* --- Frosted Glass Panels (like Booz Allen) --- */
 .glass-panel {
     background: rgba(255, 255, 255, 0.03);
