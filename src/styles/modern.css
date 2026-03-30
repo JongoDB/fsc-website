@@ -1112,6 +1112,55 @@ header.scrolled {
     }
 }
 
+/* --- Bundle integration grid --- */
+.bundle-integration-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+}
+
+.bundle-integration-card {
+    padding: 28px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bundle-integration-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 168, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+.bundle-integration-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bright-blue);
+    margin-bottom: 8px;
+}
+
+.bundle-integration-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 968px) {
+    .bundle-integration-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .bundle-integration-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* --- Reduced motion overrides --- */
 @media (prefers-reduced-motion: reduce) {
     .hero-content > * {

@@ -6,7 +6,7 @@ import SectionHeader from '../../components/SectionHeader.astro';
 <ContentPageLayout
   title="Secure Runtime Environment"
   description="Opinionated, secure Kubernetes baseline for business applications. Zero Trust principles, comprehensive observability, and GitOps integration."
-  heroTitle='Secure <span class="highlight">Runtime</span> Environment'
+  heroTitle='Secure Runtime <span class="highlight">Environment</span>'
   heroSubtitle='Opinionated, secure <span class="tooltip-trigger">K8s<span class="tooltip-inline">Kubernetes</span></span> baseline for business applications'
   ctaTitle="Ready to Deploy a Secure Runtime?"
   ctaDescription="Let's discuss how the Secure Runtime Environment can provide a secure foundation for your applications."
@@ -47,15 +47,32 @@ import SectionHeader from '../../components/SectionHeader.astro';
     </div>
   </section>
 
-  <section class="content-section-alt">
+  <section class="content-section-alt dark-bg">
     <div class="container">
       <SectionHeader
         title="Seamless Bundle Integration"
-        description="Extend your runtime with pre-curated application stacks"
+        description="Your runtime is the foundation — bundles are the capabilities you layer on top"
       />
-      <div class="integration-section">
-        <p>The Secure Runtime Environment is designed as the foundation layer for our entire App Bundles catalog. Deploy the runtime, then layer on the capabilities you need &mdash; SOC stack for security operations, DFIR tools for incident response, productivity suites for your team, or DevSecOps stacks for your pipeline.</p>
-        <p>Each bundle is pre-tested against the runtime environment for seamless deployment and guaranteed compatibility.</p>
+      <div class="bundle-integration-grid">
+        <div class="bundle-integration-card">
+          <h4>SOC Stack</h4>
+          <p>SIEM, EDR, threat intel, and vulnerability management for full security operations</p>
+        </div>
+        <div class="bundle-integration-card">
+          <h4>DFIR Tools</h4>
+          <p>Malware analysis, memory forensics, disk imaging, and investigation platforms</p>
+        </div>
+        <div class="bundle-integration-card">
+          <h4>Productivity Suite</h4>
+          <p>Wiki, issue tracker, Git hosting, and collaboration tools for your team</p>
+        </div>
+        <div class="bundle-integration-card">
+          <h4>DevSecOps Stack</h4>
+          <p>CI/CD pipelines, security scanning, dependency management, and compliance automation</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <p style="color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 16px;">Each bundle is pre-tested against the runtime for seamless deployment and guaranteed compatibility.</p>
         <a href="/bundles" class="btn-primary">Browse App Bundles</a>
       </div>
     </div>
