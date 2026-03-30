@@ -1,0 +1,73 @@
+---
+// Abstract mission/capability map - represents breadth of operations
+---
+<div class="section-illustration">
+  <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Concentric radar rings -->
+    <circle cx="200" cy="160" r="140" stroke="rgba(0,168,255,0.06)" stroke-width="0.5"/>
+    <circle cx="200" cy="160" r="100" stroke="rgba(0,168,255,0.08)" stroke-width="0.5"/>
+    <circle cx="200" cy="160" r="60" stroke="rgba(0,168,255,0.1)" stroke-width="0.5"/>
+
+    <!-- Radar sweep -->
+    <path d="M200 160 L200 20" stroke="rgba(0,168,255,0.05)" stroke-width="0.5"/>
+    <path d="M200 160 L340 160" stroke="rgba(0,168,255,0.05)" stroke-width="0.5"/>
+    <path d="M200 160 L200 300" stroke="rgba(0,168,255,0.05)" stroke-width="0.5"/>
+    <path d="M200 160 L60 160" stroke="rgba(0,168,255,0.05)" stroke-width="0.5"/>
+
+    <!-- Sweep arc with animation -->
+    <line x1="200" y1="160" x2="200" y2="20" stroke="url(#sweepGrad)" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 160" to="360 200 160" dur="8s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- Sweep glow trail -->
+    <path d="M200 160 L200 20" stroke="none">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 160" to="360 200 160" dur="8s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Capability markers on rings -->
+    <!-- Inner ring - core capabilities -->
+    <g>
+      <circle cx="200" cy="100" r="8" fill="rgba(0,168,255,0.12)" stroke="#00a8ff" stroke-width="1.5"/>
+      <text x="200" y="82" text-anchor="middle" fill="rgba(0,168,255,0.6)" font-size="7" font-weight="600" font-family="Inter, sans-serif">TRAIN</text>
+    </g>
+    <g>
+      <circle cx="260" cy="160" r="8" fill="rgba(0,212,255,0.12)" stroke="#00d4ff" stroke-width="1.5"/>
+      <text x="278" y="155" text-anchor="start" fill="rgba(0,212,255,0.6)" font-size="7" font-weight="600" font-family="Inter, sans-serif">DEPLOY</text>
+    </g>
+    <g>
+      <circle cx="200" cy="220" r="8" fill="rgba(0,168,255,0.12)" stroke="#00a8ff" stroke-width="1.5"/>
+      <text x="200" y="240" text-anchor="middle" fill="rgba(0,168,255,0.6)" font-size="7" font-weight="600" font-family="Inter, sans-serif">DEFEND</text>
+    </g>
+    <g>
+      <circle cx="140" cy="160" r="8" fill="rgba(0,212,255,0.12)" stroke="#00d4ff" stroke-width="1.5"/>
+      <text x="122" y="155" text-anchor="end" fill="rgba(0,212,255,0.6)" font-size="7" font-weight="600" font-family="Inter, sans-serif">ADVISE</text>
+    </g>
+
+    <!-- Middle ring markers -->
+    <circle cx="240" cy="80" r="3" fill="rgba(0,168,255,0.4)"/>
+    <circle cx="300" cy="120" r="3" fill="rgba(0,212,255,0.35)"/>
+    <circle cx="300" cy="210" r="3" fill="rgba(0,168,255,0.3)"/>
+    <circle cx="240" cy="250" r="3" fill="rgba(0,212,255,0.35)"/>
+    <circle cx="160" cy="250" r="3" fill="rgba(0,168,255,0.3)"/>
+    <circle cx="100" cy="210" r="3" fill="rgba(0,212,255,0.35)"/>
+    <circle cx="100" cy="120" r="3" fill="rgba(0,168,255,0.4)"/>
+    <circle cx="160" cy="80" r="3" fill="rgba(0,212,255,0.35)"/>
+
+    <!-- Connection arcs between capabilities -->
+    <path d="M208 100 Q 250 120 260 152" stroke="rgba(0,168,255,0.12)" stroke-width="0.8" fill="none"/>
+    <path d="M260 168 Q 240 200 208 220" stroke="rgba(0,212,255,0.1)" stroke-width="0.8" fill="none"/>
+    <path d="M192 220 Q 160 200 140 168" stroke="rgba(0,168,255,0.12)" stroke-width="0.8" fill="none"/>
+    <path d="M140 152 Q 160 120 192 100" stroke="rgba(0,212,255,0.1)" stroke-width="0.8" fill="none"/>
+
+    <!-- Center -->
+    <circle cx="200" cy="160" r="20" fill="rgba(0,168,255,0.06)" stroke="rgba(0,168,255,0.3)" stroke-width="1.5"/>
+    <text x="200" y="164" text-anchor="middle" fill="#00a8ff" font-size="10" font-weight="800" font-family="Inter, sans-serif">FSC</text>
+
+    <defs>
+      <linearGradient id="sweepGrad" x1="200" y1="160" x2="200" y2="20" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00a8ff" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#00a8ff" stop-opacity="0.4"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>

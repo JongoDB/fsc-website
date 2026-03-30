@@ -5,6 +5,8 @@ import MissionCard from '../components/MissionCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import LeadershipCard from '../components/LeadershipCard.astro';
 import CTASection from '../components/CTASection.astro';
+import ShieldNetwork from '../components/illustrations/ShieldNetwork.astro';
+import MissionMap from '../components/illustrations/MissionMap.astro';
 import { homepageTiles } from '../data/navigation';
 
 const leaders = [
@@ -73,7 +75,7 @@ const trustIcons: Record<string, string> = {
 
   <section class="content-section">
     <div class="container">
-      <div class="content-grid">
+      <div class="content-with-illustration">
         <div class="content-text scroll-animate-left">
           <h2>Operator-Led.<br>Practitioner-First.</h2>
           <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
@@ -81,6 +83,16 @@ const trustIcons: Record<string, string> = {
           <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms — understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
           <a href="/about/who-we-are" class="btn-primary">Learn More About Us</a>
         </div>
+        <div class="scroll-animate-right">
+          <ShieldNetwork />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section-alt">
+    <div class="container">
+      <div class="content-with-illustration reverse">
         <div class="content-text scroll-animate-right">
           <h2>Why Fighting Smart?</h2>
           <p>Most cybersecurity companies are led by sales teams or career consultants. We're different. Our founders have:</p>
@@ -92,6 +104,9 @@ const trustIcons: Record<string, string> = {
             <li><strong>Deployed full stacks</strong> that are production-ready and exercise-tested</li>
           </ul>
           <p class="quote-text">"We bridge the gap between policy, acquisition, technology, and hands-on execution. That's what makes us different."</p>
+        </div>
+        <div class="scroll-animate-left">
+          <MissionMap />
         </div>
       </div>
     </div>

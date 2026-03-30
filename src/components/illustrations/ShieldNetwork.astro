@@ -1,0 +1,62 @@
+---
+// Animated cyber shield with network nodes - represents defense/protection
+---
+<div class="section-illustration illustration-shield">
+  <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background glow -->
+    <circle class="shield-glow" cx="200" cy="200" r="180" fill="url(#shieldGradient)" opacity="0.15"/>
+
+    <!-- Network connection lines -->
+    <line x1="80" y1="120" x2="200" y2="80" stroke="rgba(0,168,255,0.15)" stroke-width="1"/>
+    <line x1="320" y1="130" x2="200" y2="80" stroke="rgba(0,168,255,0.12)" stroke-width="1"/>
+    <line x1="80" y1="120" x2="120" y2="280" stroke="rgba(0,212,255,0.1)" stroke-width="1"/>
+    <line x1="320" y1="130" x2="280" y2="290" stroke="rgba(0,168,255,0.1)" stroke-width="1"/>
+    <line x1="120" y1="280" x2="200" y2="340" stroke="rgba(0,212,255,0.12)" stroke-width="1"/>
+    <line x1="280" y1="290" x2="200" y2="340" stroke="rgba(0,168,255,0.12)" stroke-width="1"/>
+    <line x1="60" y1="200" x2="80" y2="120" stroke="rgba(0,168,255,0.08)" stroke-width="0.5"/>
+    <line x1="340" y1="210" x2="320" y2="130" stroke="rgba(0,212,255,0.08)" stroke-width="0.5"/>
+
+    <!-- Shield shape -->
+    <path d="M200 60 L300 110 L300 220 C300 280 200 340 200 340 C200 340 100 280 100 220 L100 110 Z"
+          fill="url(#shieldFill)" stroke="url(#shieldStroke)" stroke-width="2"/>
+
+    <!-- Shield inner detail -->
+    <path d="M200 90 L275 130 L275 215 C275 260 200 310 200 310 C200 310 125 260 125 215 L125 130 Z"
+          fill="none" stroke="rgba(0,168,255,0.15)" stroke-width="1"/>
+
+    <!-- Checkmark inside shield -->
+    <path d="M165 200 L190 225 L240 170" stroke="var(--bright-blue)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- Network nodes -->
+    <circle class="node-pulse" cx="80" cy="120" r="4" fill="#00a8ff"/>
+    <circle class="node-pulse" cx="320" cy="130" r="4" fill="#00d4ff"/>
+    <circle class="node-pulse" cx="120" cy="280" r="3.5" fill="#00a8ff"/>
+    <circle class="node-pulse" cx="280" cy="290" r="3.5" fill="#00d4ff"/>
+    <circle cx="200" cy="80" r="3" fill="#00a8ff"/>
+    <circle cx="200" cy="340" r="3" fill="#00d4ff"/>
+    <circle cx="60" cy="200" r="2.5" fill="rgba(0,168,255,0.5)"/>
+    <circle cx="340" cy="210" r="2.5" fill="rgba(0,212,255,0.5)"/>
+
+    <!-- Outer ring markers -->
+    <circle cx="200" cy="30" r="2" fill="rgba(0,168,255,0.3)"/>
+    <circle cx="370" cy="200" r="2" fill="rgba(0,212,255,0.25)"/>
+    <circle cx="30" cy="200" r="2" fill="rgba(0,168,255,0.25)"/>
+    <circle cx="200" cy="370" r="2" fill="rgba(0,212,255,0.3)"/>
+
+    <defs>
+      <radialGradient id="shieldGradient">
+        <stop offset="0%" stop-color="#00a8ff" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#00a8ff" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="shieldFill" x1="200" y1="60" x2="200" y2="340" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(0,168,255,0.08)"/>
+        <stop offset="100%" stop-color="rgba(0,168,255,0.02)"/>
+      </linearGradient>
+      <linearGradient id="shieldStroke" x1="100" y1="60" x2="300" y2="340" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00a8ff" stop-opacity="0.5"/>
+        <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#00a8ff" stop-opacity="0.5"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
