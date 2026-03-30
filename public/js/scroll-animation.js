@@ -16,7 +16,7 @@
 
     // Set canvas size
     canvas.width = 1280;
-    canvas.height = 720;
+    canvas.height = 683;
 
     // Preload all frames
     for (let i = 0; i < FRAME_COUNT; i++) {

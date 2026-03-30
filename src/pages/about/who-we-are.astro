@@ -14,11 +14,12 @@ import FeatureItem from '../../components/FeatureItem.astro';
   ctaPrimaryButton={{ text: 'Get in Touch', href: '/contact' }}
   ctaSecondaryButton={{ text: 'Meet Our Leadership', href: '/about/leadership' }}
 >
-  <section class="content-section">
+  <section class="bg-image-section overlay-left">
+    <img src="/images/site/team-ops.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
     <div class="container">
-      <div class="content-with-illustration">
-        <div class="content-text">
-          <h2>Operator-Led.<br>Practitioner-First.</h2>
+      <div class="bg-content">
+        <h2>Operator-Led.<br>Practitioner-First.</h2>
           <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
           <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber and operational command experience, a senior officer with deep <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>/<span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span> expertise, and a senior enlisted leader who's built secure architectures and cyber ranges from the ground up.</p>
           <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms—understanding that effective cybersecurity requires alignment across:</p>
@@ -33,16 +34,13 @@ import FeatureItem from '../../components/FeatureItem.astro';
             <li><strong>Policy</strong> - Governance, compliance, and regulatory alignment</li>
           </ul>
         </div>
-        <div class="section-image-wrapper">
-          <img src="/images/site/team-ops.jpg" alt="Fighting Smart Cyber team in operations center" class="section-image" loading="lazy" />
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="content-section-alt">
+  <section class="content-section">
     <div class="container">
-      <div class="content-with-illustration reverse">
+      <div class="content-grid">
         <div class="content-text">
           <h2>Our Mission</h2>
           <p style="font-size: 24px; font-style: italic; color: var(--primary-blue); margin-bottom: 30px; font-weight: 600;">"Fight smarter by thinking like an operator."</p>

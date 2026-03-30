@@ -14,11 +14,12 @@ import FeatureItem from '../../components/FeatureItem.astro';
   ctaPrimaryButton={{ text: 'Request Bundle Spec', href: '/contact' }}
   ctaSecondaryButton={{ text: 'View All Bundles', href: '/bundles' }}
 >
-  <section class="content-section">
+  <section class="bg-image-section overlay-left">
+    <img src="/images/site/devsecops-pipeline.jpg" alt="" class="bg-image" loading="lazy" />
+    <div class="bg-image-overlay"></div>
     <div class="container">
-      <div class="content-with-illustration">
-        <div class="content-text">
-          <h2>Complete DevSecOps Stack</h2>
+      <div class="bg-content">
+        <h2>Complete DevSecOps Stack</h2>
           <p>The DevSecOps Bundle includes everything you need for secure software delivery: <span class="tooltip-trigger">CI/CD<span class="tooltip-inline">Continuous Integration / Continuous Deployment</span></span> pipelines, security scanning, dependency management, and compliance automation.</p>
           <p>All tools are pre-configured, integrated, and ready for deployment. Secure software delivery from code to production.</p>
           <h3>What's Included</h3>
@@ -31,16 +32,13 @@ import FeatureItem from '../../components/FeatureItem.astro';
             <li><strong>Secret Management</strong> - Secure secret storage and rotation</li>
           </ul>
         </div>
-        <div class="section-image-wrapper">
-          <img src="/images/site/devsecops-pipeline.jpg" alt="DevSecOps CI/CD pipeline visualization" class="section-image" loading="lazy" />
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="content-section-alt">
+  <section class="content-section">
     <div class="container">
-      <div class="content-with-illustration reverse">
+      <div class="content-grid">
         <div class="content-text">
           <h2>Security Throughout the Pipeline</h2>
           <p>The DevSecOps Bundle integrates security at every stage:</p>
