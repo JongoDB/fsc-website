@@ -332,11 +332,15 @@
 
 @media (max-width: 968px) {
     .bg-image-section {
-        padding: 80px 0;
+        padding: 72px 0;
     }
 
     .bg-image-section.overlay-left .bg-image-overlay,
     .bg-image-section.overlay-right .bg-image-overlay {
+        background: rgba(0, 10, 20, 0.88);
+    }
+
+    .bg-image-section.overlay-full .bg-image-overlay {
         background: rgba(0, 10, 20, 0.85);
     }
 
@@ -344,25 +348,143 @@
         max-width: 100%;
     }
 
+    .bg-image-section .bg-content h2 {
+        font-size: 28px;
+    }
+
+    .bg-image-section .bg-content p {
+        font-size: 15px;
+    }
+
+    /* Cards inside bg-image-sections: stack to single column */
+    .bg-image-section .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Feature grid inside bg-image-sections: stack to single column */
+    .bg-image-section .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-with-illustration {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .content-with-illustration.reverse .section-illustration {
+        order: 0;
+    }
+
     .scroll-animation-section {
         height: 100vh;
     }
 
     .scroll-animation-overlay {
-        background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+        background: linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 100%);
         align-items: flex-end;
         padding-bottom: 60px;
+    }
+
+    .scroll-animation-content {
+        max-width: 100%;
     }
 
     .section-image {
         max-width: 100%;
         border-radius: 12px;
     }
+
+    .section-illustration svg {
+        max-width: 280px;
+    }
+
+    .illustration-large svg {
+        max-width: 320px;
+    }
 }
 
 @media (max-width: 768px) {
-    .scroll-animation-content h2 {
+    .bg-image-section {
+        padding: 56px 0;
+    }
+
+    .bg-image-section.overlay-full .bg-image-overlay {
+        background: rgba(0, 10, 20, 0.88);
+    }
+
+    .bg-image-section .section-header h2 {
         font-size: 28px;
+    }
+
+    .bg-image-section .section-header p {
+        font-size: 15px;
+    }
+
+    .bg-image-section .feature-item {
+        padding: 20px;
+    }
+
+    .bg-image-section .feature-item h4 {
+        font-size: 16px;
+    }
+
+    .bg-image-section .feature-item p {
+        font-size: 14px;
+    }
+
+    .bg-image-section .mission-card {
+        padding: 24px;
+    }
+
+    .bg-image-section .course-card {
+        padding: 24px;
+    }
+
+    .bg-image-section .course-card h3 {
+        font-size: 22px;
+    }
+
+    .scroll-animation-content h2 {
+        font-size: 24px;
+    }
+
+    .scroll-animation-content p {
+        font-size: 15px;
+    }
+
+    .scroll-animation-overlay {
+        padding-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bg-image-section {
+        padding: 40px 0;
+    }
+
+    .bg-image-section .bg-content h2 {
+        font-size: 24px;
+    }
+
+    .bg-image-section .bg-content h3 {
+        font-size: 18px;
+    }
+
+    .bg-image-section .section-header {
+        margin-bottom: 32px;
+    }
+
+    .bg-image-section .section-header h2 {
+        font-size: 24px;
+    }
+
+    .scroll-animation-content h2 {
+        font-size: 22px;
+        letter-spacing: -0.5px;
+    }
+
+    .scroll-animation-content .hero-overline {
+        font-size: 10px;
     }
 }
 
@@ -579,6 +701,35 @@
 @media (max-width: 768px) {
     .glass-panel {
         padding: 28px;
+    }
+}
+
+/* --- Mobile: bg-image links, buttons, hero network --- */
+@media (max-width: 768px) {
+    .bg-image-section .mission-card-link {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .bg-image-section .course-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .bg-image-section .btn-primary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    #hero-network {
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero-network {
+        opacity: 0.25;
     }
 }
 
