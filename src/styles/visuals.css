@@ -91,6 +91,22 @@
     pointer-events: none;
 }
 
+/* --- Content with Illustration Layout --- */
+.content-with-illustration {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.content-with-illustration.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.content-with-illustration.reverse .section-illustration {
+    order: -1;
+}
+
 /* --- SVG Illustration Component --- */
 .section-illustration {
     display: flex;
@@ -633,22 +649,6 @@
     pointer-events: none;
     z-index: 0;
     opacity: 0.03;
-}
-
-/* --- Content with Illustration Layout --- */
-.content-with-illustration {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-}
-
-.content-with-illustration.reverse {
-    grid-template-columns: 1fr 1fr;
-}
-
-.content-with-illustration.reverse .section-illustration {
-    order: -1;
 }
 
 /* --- Animated stat counters --- */
