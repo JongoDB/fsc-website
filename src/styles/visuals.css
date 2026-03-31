@@ -383,12 +383,12 @@
     }
 
     .content-with-illustration {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
     }
 
     .content-with-illustration.reverse > :last-child {
-        order: 1;
+        order: -1 !important;
     }
 
     .scroll-animation-section {
@@ -685,12 +685,12 @@
 /* --- Responsive --- */
 @media (max-width: 968px) {
     .content-with-illustration {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
     }
 
     .content-with-illustration.reverse > :last-child {
-        order: 1;
+        order: -1 !important;
     }
 
     .blob-1 { width: 400px; height: 400px; }
