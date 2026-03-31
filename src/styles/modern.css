@@ -818,6 +818,7 @@ html::-webkit-scrollbar-thumb:hover {
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(0, 168, 255, 0.2);
     letter-spacing: 0.01em;
+    text-align: center;
 }
 
 .btn-primary::before {
@@ -836,6 +837,7 @@ html::-webkit-scrollbar-thumb:hover {
     font-weight: 600;
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
 }
 
 .btn-secondary::before {
