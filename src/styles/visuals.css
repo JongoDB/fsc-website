@@ -371,8 +371,10 @@
         gap: 40px;
     }
 
-    .content-with-illustration.reverse .section-illustration {
-        order: 0;
+    .content-with-illustration.reverse .section-illustration,
+    .content-with-illustration.reverse .illustration-large,
+    .content-with-illustration.reverse > :last-child {
+        order: -1;
     }
 
     .scroll-animation-section {
@@ -398,8 +400,12 @@
         max-width: 280px;
     }
 
+    .illustration-large {
+        margin: 0 auto;
+    }
+
     .illustration-large svg {
-        max-width: 320px;
+        max-width: 340px;
     }
 }
 
@@ -685,8 +691,10 @@
         gap: 40px;
     }
 
-    .content-with-illustration.reverse .section-illustration {
-        order: 0;
+    .content-with-illustration.reverse .section-illustration,
+    .content-with-illustration.reverse .illustration-large,
+    .content-with-illustration.reverse > :last-child {
+        order: -1;
     }
 
     .blob-1 { width: 400px; height: 400px; }
