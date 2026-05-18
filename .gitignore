@@ -30,3 +30,6 @@ pnpm-debug.log*
 
 # stray favicon preview artifact
 /favicon-preview.png
+
+# Claude Code runtime artifacts
+.claude/
