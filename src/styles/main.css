@@ -89,6 +89,7 @@ nav {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .tagline {
@@ -103,7 +104,7 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 26px;
     align-items: center;
     flex-wrap: nowrap;
 }
@@ -2426,4 +2427,161 @@ button:focus-visible {
     .stat-label {
         font-size: 13px;
     }
+}
+
+/* Legal / long-form prose pages (Terms, AUP, Privacy) */
+.legal-content {
+    max-width: 820px;
+    margin: 0 auto;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.legal-meta {
+    background: var(--light-gray);
+    border-left: 4px solid var(--accent-blue);
+    padding: 18px 24px;
+    margin-bottom: 48px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.legal-meta p { margin: 0; color: var(--text-light); }
+.legal-meta strong { color: var(--primary-blue); }
+
+.legal-content h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-top: 56px;
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+    scroll-margin-top: 140px;
+}
+
+.legal-content h2:first-of-type { margin-top: 0; }
+
+.legal-content h3 {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+.legal-content p { margin-bottom: 18px; }
+.legal-content ul, .legal-content ol { margin: 0 0 20px 28px; }
+.legal-content li { margin-bottom: 10px; }
+.legal-content strong { color: var(--primary-blue); font-weight: 600; }
+
+.legal-content a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.legal-content a:hover { color: var(--bright-blue); }
+
+.legal-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 56px 0;
+}
+
+.legal-content .legal-emphasis {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.legal-toc {
+    background: var(--light-gray);
+    padding: 24px 28px;
+    border-radius: 8px;
+    margin-bottom: 48px;
+}
+
+.legal-toc h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+.legal-toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0 0 0 22px;
+    font-size: 14px;
+}
+
+.legal-toc li { margin-bottom: 6px; break-inside: avoid; }
+.legal-toc a { color: var(--accent-blue); text-decoration: none; }
+.legal-toc a:hover { text-decoration: underline; }
+
+.legal-contact-block {
+    background: var(--light-gray);
+    padding: 24px 28px;
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
+.legal-contact-block p { margin-bottom: 6px; }
+
+@media (max-width: 720px) {
+    .legal-content { font-size: 15px; }
+    .legal-content h2 { font-size: 22px; margin-top: 44px; }
+    .legal-toc ol { columns: 1; }
+}
+
+/* Footer legal links row (Terms · AUP · Privacy) */
+.footer-legal-links {
+    margin-top: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-legal-links a:hover { color: var(--cyan); }
+
+.footer-legal-sep {
+    margin: 0 10px;
+    color: rgba(255,255,255,0.3);
+}
+
+/* Header "Client Portal" sign-in button — outline secondary,
+   sits next to the bright .nav-cta Contact button without competing */
+.nav-portal {
+    background: transparent;
+    color: var(--white) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.nav-portal:hover {
+    background: rgba(0, 168, 255, 0.12);
+    border-color: var(--bright-blue);
+    color: var(--bright-blue) !important;
+}
+
+.nav-portal::after { display: none !important; }
+
+@media (max-width: 1100px) {
+    .nav-portal { padding: 8px 14px; font-size: 13px; }
 }

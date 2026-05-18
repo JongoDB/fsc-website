@@ -32,6 +32,7 @@ export const navigation: NavEntry[] = [
     title: 'Solutions',
     href: '/solutions',
     items: [
+      { title: 'AI Readiness Assessment', href: '/solutions/ai-readiness-assessment' },
       { title: 'Consulting & Advisory', href: '/solutions/consulting' },
       { title: 'Security Assessments', href: '/solutions/security-assessments' },
       { title: 'Training Services', href: '/solutions/training' },
@@ -149,13 +150,13 @@ export const homepageTiles: HomepageTile[] = [
 
 // Footer navigation - Solutions section
 export const footerSolutions: NavItem[] = [
+  { title: 'AI Readiness Assessment', href: '/solutions/ai-readiness-assessment' },
   { title: 'Cybersecurity Consulting', href: '/solutions/consulting' },
   { title: 'Security Assessments', href: '/solutions/security-assessments' },
   { title: 'Operator-Led Training', href: '/solutions/training' },
   { title: 'SOC-in-a-Box Platform', href: '/platforms/soc-in-a-box' },
   { title: 'Secure Runtime Environment', href: '/platforms/secure-kubernetes' },
   { title: 'App Bundles & Catalog', href: '/bundles' },
-  { title: 'Consulting & Advisory', href: '/solutions/consulting' },
 ];
 
 // Footer navigation - Company section
@@ -163,7 +164,15 @@ export const footerCompany: NavItem[] = [
   { title: 'Who We Are', href: '/about/who-we-are' },
   { title: 'Leadership', href: '/about/leadership' },
   { title: 'Resources', href: '/resources' },
+  { title: 'Client Portal', href: '/client-portal' },
   { title: 'Contact', href: '/contact' },
+];
+
+// Footer navigation - Legal section
+export const footerLegal: NavItem[] = [
+  { title: 'Terms & Conditions', href: '/terms' },
+  { title: 'Acceptable Use Policy', href: '/aup' },
+  { title: 'Privacy & Data Handling', href: '/privacy' },
 ];
 
 // Site metadata
@@ -172,4 +181,15 @@ export const siteConfig = {
   tagline: 'Operator-Led Offensive & Defensive Cyber Solutions',
   email: 'team@fightingsmartcyber.com',
   description: 'Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber solutions from proven cyber operations leaders.',
+
+  // Zoho Books Client Portal — primary billing portal (invoices, estimates,
+  // statements). To rename the slug: Zoho Books → Settings → Preferences →
+  // General → "Portal Name".
+  zohoPortalUrl: 'https://books.fightingsmartcyber.com/portal/fscbilling',
+
+  // Stripe Customer Portal — reserved for subscription management once SaaS /
+  // recurring training plans launch. Replace stripePortalLoginUrl with the URL
+  // from Stripe Dashboard → Settings → Customer portal → "Login link".
+  stripePortalRootUrl: 'https://portal.fightingsmartcyber.com',
+  stripePortalLoginUrl: 'https://portal.fightingsmartcyber.com/p/login/REPLACE_ME',
 };

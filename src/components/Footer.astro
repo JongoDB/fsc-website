@@ -1,5 +1,5 @@
 ---
-import { footerSolutions, footerCompany, siteConfig } from '../data/navigation';
+import { footerSolutions, footerCompany, footerLegal, siteConfig } from '../data/navigation';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -35,6 +35,14 @@ const currentYear = new Date().getFullYear();
     </div>
     <div class="footer-bottom">
       <p><a href="/admin/submissions" style="color: inherit; text-decoration: none;" aria-label="Admin access">&copy;</a> {currentYear} {siteConfig.name}. All rights reserved. | {siteConfig.tagline}</p>
+      <p class="footer-legal-links">
+        {footerLegal.map((item, idx) => (
+          <>
+            {idx > 0 && <span class="footer-legal-sep">·</span>}
+            <a href={item.href}>{item.title}</a>
+          </>
+        ))}
+      </p>
     </div>
   </div>
 </footer>
