@@ -1,32 +1,25 @@
 // Vercel serverless function for the contact and bundle-request forms.
 //
-// Responsibilities:
-//   1. Insert the submission into Supabase (preserves existing admin view)
-//   2. Send a notification email to team@fightingsmartcyber.com via Resend
+// Sends a notification email to team@fightingsmartcyber.com via Resend.
+// No database persistence — submissions live in the recipient's inbox.
 //
-// Required env vars (set in Vercel project → Settings → Environment Variables):
-//   - RESEND_API_KEY            Resend API key. If missing, email step is
-//                               skipped and only the Supabase insert happens
-//                               (the form does not break — graceful degrade).
-//   - SUPABASE_URL              Optional. Defaults to the existing project URL.
-//   - SUPABASE_ANON_KEY         Optional. Defaults to the existing anon key.
+// Required env var (set in Vercel → Settings → Environment Variables):
+//   - RESEND_API_KEY            Resend API key. The function returns 503
+//                               with a clear message until this is set.
 //
 // Optional env vars (sane defaults applied):
 //   - CONTACT_TO_EMAIL          Where notifications go. Default: team@…
 //   - CONTACT_FROM_EMAIL        From: address. Must be on a Resend-verified
 //                               domain. Default: forms@fightingsmartcyber.com.
 
-const DEFAULT_SUPABASE_URL = 'https://voplzrnyqmolehjwuijr.supabase.co';
-const DEFAULT_SUPABASE_ANON_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvcGx6cm55cW1vbGVoand1aWpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0NTE0MTUsImV4cCI6MjA4NTAyNzQxNX0.JbsiQajhIJxRY1aoGylcc2wrdtQPd7_gOpI3lEBTd8s';
 const DEFAULT_TO = 'team@fightingsmartcyber.com';
 const DEFAULT_FROM = 'FSC Forms <forms@fightingsmartcyber.com>';
 
 const isEmail = (s) =>
   typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
-// Read the request body explicitly. Vercel's auto-parsing has bitten us in
-// the past, so we just consume the raw stream and parse JSON ourselves.
+// Read the request body explicitly — Vercel's auto-parse has been
+// unreliable here, so we just consume the raw stream and parse JSON.
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
     return req.body;
@@ -42,34 +35,6 @@ async function readJsonBody(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
-function buildRecord(body) {
-  const isBundle = body.formType === 'bundle-request';
-  const base = {
-    form_type: isBundle ? 'bundle-request' : 'contact',
-    name: body.name,
-    email: body.email,
-    organization: body.organization,
-    role: body.role || null,
-  };
-  if (isBundle) {
-    return {
-      ...base,
-      interest: 'Custom Bundle Request',
-      timeframe: body.timeframe || null,
-      use_case: body.useCase || null,
-      environment: body.environment || null,
-      requirements: body.requirements || null,
-    };
-  }
-  return {
-    ...base,
-    org_type: body.orgType,
-    interest: body.interest,
-    timeframe: body.timeframe,
-    message: body.message,
-  };
-}
-
 function escapeHtml(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -78,9 +43,7 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function renderEmailHtml(record) {
-  const isBundle = record.form_type === 'bundle-request';
-
+function renderEmailHtml(body, isBundle) {
   const rows = (entries) =>
     entries
       .filter(([, v]) => v !== null && v !== undefined && v !== '')
@@ -99,29 +62,29 @@ function renderEmailHtml(record) {
 
   const fields = isBundle
     ? [
-        ['Name', record.name],
-        ['Email', record.email],
-        ['Organization', record.organization],
-        ['Role', record.role],
-        ['Timeframe', record.timeframe],
-        ['Use Case', record.use_case],
-        ['Environment', record.environment],
-        ['Requirements', record.requirements],
+        ['Name', body.name],
+        ['Email', body.email],
+        ['Organization', body.organization],
+        ['Role', body.role],
+        ['Timeframe', body.timeframe],
+        ['Use Case', body.useCase],
+        ['Environment', body.environment],
+        ['Requirements', body.requirements],
       ]
     : [
-        ['Name', record.name],
-        ['Email', record.email],
-        ['Organization', record.organization],
-        ['Role', record.role],
-        ['Org Type', record.org_type],
-        ['Interest', record.interest],
-        ['Timeframe', record.timeframe],
-        ['Message', record.message],
+        ['Name', body.name],
+        ['Email', body.email],
+        ['Organization', body.organization],
+        ['Role', body.role],
+        ['Org Type', body.orgType],
+        ['Interest', body.interest],
+        ['Timeframe', body.timeframe],
+        ['Message', body.message],
       ];
 
   const title = isBundle
-    ? 'New bundle request from ' + escapeHtml(record.name)
-    : 'New contact form submission from ' + escapeHtml(record.name);
+    ? 'New bundle request from ' + escapeHtml(body.name)
+    : 'New contact form submission from ' + escapeHtml(body.name);
 
   return (
     '<!doctype html><html><body style="margin:0;padding:24px;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#24292f;">' +
@@ -161,62 +124,25 @@ export default async function handler(req, res) {
     if (!body || typeof body !== 'object') body = {};
 
     if (!body.name || !isEmail(body.email) || !body.organization) {
-      return res.status(400).json({ error: 'Missing required fields (name, email, organization)' });
+      return res
+        .status(400)
+        .json({ error: 'Missing required fields (name, email, organization)' });
     }
 
-    const record = buildRecord(body);
-    const supabaseUrl = process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
-
-    // 1. Persist to Supabase.
-    let supabaseRes;
-    try {
-      supabaseRes = await fetch(supabaseUrl + '/rest/v1/submissions', {
-        method: 'POST',
-        headers: {
-          apikey: supabaseKey,
-          Authorization: 'Bearer ' + supabaseKey,
-          'Content-Type': 'application/json',
-          Prefer: 'return=minimal',
-        },
-        body: JSON.stringify(record),
-      });
-    } catch (netErr) {
-      const cause = netErr && netErr.cause ? String(netErr.cause) : null;
-      console.error('Supabase network error', netErr, 'cause:', cause);
-      return res.status(502).json({
-        error: 'Network error reaching Supabase',
-        phase: 'supabase_fetch',
-        url_host: new URL(supabaseUrl).host,
-        message: netErr && netErr.message,
-        cause,
-      });
-    }
-
-    if (!supabaseRes.ok) {
-      const detail = await supabaseRes.text().catch(() => '');
-      console.error('Supabase insert failed', supabaseRes.status, detail);
-      return res.status(500).json({
-        error: 'Supabase rejected insert',
-        phase: 'supabase_response',
-        supabase_status: supabaseRes.status,
-        detail,
-      });
-    }
-
-    // 2. Send email via Resend (graceful skip if not configured).
     const resendKey = process.env.RESEND_API_KEY;
     if (!resendKey) {
-      console.warn('RESEND_API_KEY not set — skipping email notification');
-      return res.status(200).json({ success: true, emailed: false, reason: 'no_resend_key' });
+      console.error('RESEND_API_KEY not set');
+      return res.status(503).json({
+        error: 'Email service not configured. Please set RESEND_API_KEY.',
+      });
     }
 
+    const isBundle = body.formType === 'bundle-request';
     const toEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
     const fromEmail = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
-    const subject =
-      record.form_type === 'bundle-request'
-        ? 'New bundle request from ' + record.name
-        : 'New contact form submission from ' + record.name;
+    const subject = isBundle
+      ? 'New bundle request from ' + body.name
+      : 'New contact form submission from ' + body.name;
 
     let emailRes;
     try {
@@ -229,25 +155,28 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           from: fromEmail,
           to: [toEmail],
-          reply_to: record.email,
+          reply_to: body.email,
           subject,
-          html: renderEmailHtml(record),
+          html: renderEmailHtml(body, isBundle),
         }),
       });
     } catch (netErr) {
-      console.error('Resend network error', netErr);
+      const cause = netErr && netErr.cause ? String(netErr.cause) : null;
+      console.error('Resend network error', netErr, 'cause:', cause);
       return res
-        .status(200)
-        .json({ success: true, emailed: false, reason: 'resend_network_error', message: netErr && netErr.message });
+        .status(502)
+        .json({ error: 'Network error reaching Resend', message: netErr && netErr.message, cause });
     }
 
     if (!emailRes.ok) {
       const detail = await emailRes.text().catch(() => '');
-      console.error('Resend send failed', emailRes.status, detail);
-      return res.status(200).json({ success: true, emailed: false, resend_status: emailRes.status, detail });
+      console.error('Resend rejected send', emailRes.status, detail);
+      return res
+        .status(502)
+        .json({ error: 'Resend rejected the message', resend_status: emailRes.status, detail });
     }
 
-    return res.status(200).json({ success: true, emailed: true });
+    return res.status(200).json({ success: true });
   } catch (err) {
     const cause = err && err.cause ? String(err.cause) : null;
     console.error('Unhandled error in /api/submit', err && err.stack ? err.stack : err, 'cause:', cause);

@@ -9,14 +9,12 @@ import '../styles/visuals.css';
 interface Props {
   title: string;
   description?: string;
-  includeSupabase?: boolean;
   includeAnimations?: boolean;
 }
 
 const {
   title,
   description = 'Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber training, SOC platforms, and strategic advisory from proven cyber operations leaders.',
-  includeSupabase = false,
   includeAnimations = true
 } = Astro.props;
 
@@ -41,12 +39,6 @@ const fullTitle = title.includes('Fighting Smart Cyber') ? title : `${title} | F
 
   <Footer />
 
-  {includeSupabase && (
-    <>
-      <script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-      <script is:inline src="/js/supabase-client.js"></script>
-    </>
-  )}
   <script is:inline src="/js/navigation.js"></script>
   {includeAnimations && (
     <>
