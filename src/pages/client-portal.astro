@@ -13,127 +13,90 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   heroTitle='Client <span class="highlight">Portal</span>'
   heroSubtitle="View invoices, accept estimates, manage recurring payments, and pay securely."
 >
-  <!-- IBM Plex Mono for tactical labels / endpoint metadata. Inter is
-       already loaded site-wide for body and display copy. -->
-  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
-  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link slot="head" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <section class="content-section console-section">
+  <section class="content-section portal-section">
     <div class="container">
 
-      <!-- Two primary portal endpoints, side by side -->
-      <div class="console-grid">
+      <!-- Two primary portal options -->
+      <div class="portal-grid">
 
-        <article class="console-card console-card--primary">
-          <div class="console-card-glow console-card-glow--cyan" aria-hidden="true"></div>
-          <div class="console-card-meta">
-            <span class="console-route">ROUTE&nbsp;/&nbsp;01</span>
-            <span class="console-status"><span class="console-status-dot"></span>LIVE</span>
+        <article class="portal-card">
+          <div class="portal-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="13" y2="17"/>
+            </svg>
           </div>
-
-          <h2 class="console-card-title">Billing Portal</h2>
-          <p class="console-card-lead">For invoices, estimates, statements, and one-off payments.</p>
-
-          <ul class="console-pillset">
-            <li>Invoices</li>
-            <li>Estimates</li>
-            <li>Statements</li>
-            <li>ACH / Card</li>
-          </ul>
-
-          <dl class="console-endpoint">
-            <dt>HOSTED&nbsp;BY</dt>
-            <dd>Zoho Books</dd>
-            <dt>ENDPOINT</dt>
-            <dd><code>books.fightingsmartcyber.com</code></dd>
-          </dl>
-
-          <a href={zohoPortalUrl} class="console-cta" target="_blank" rel="noopener">
-            <span class="console-cta-label">Sign In</span>
-            <svg class="console-cta-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <h2>Billing Portal</h2>
+          <p>Sign in to view invoices, accept estimates, download statements, and pay securely. Hosted by <strong>Zoho Books</strong>.</p>
+          <a href={zohoPortalUrl} class="portal-card-cta" target="_blank" rel="noopener">
+            Sign In to Portal
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-
-          <p class="console-fineprint">Sign in with the email on your account. First-time users: check your invoice email for a portal invite.</p>
         </article>
 
         {stripeSubscriptionsLive && (
-          <article class="console-card console-card--secondary">
-            <div class="console-card-glow console-card-glow--blue" aria-hidden="true"></div>
-            <div class="console-card-meta">
-              <span class="console-route">ROUTE&nbsp;/&nbsp;02</span>
-              <span class="console-status"><span class="console-status-dot"></span>LIVE</span>
+          <article class="portal-card">
+            <div class="portal-card-icon portal-card-icon--alt" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
             </div>
-
-            <h2 class="console-card-title">Recurring Payments</h2>
-            <p class="console-card-lead">For any monthly, quarterly, annual, or other recurring payment plan.</p>
-
-            <ul class="console-pillset">
-              <li>Monthly</li>
-              <li>Quarterly</li>
-              <li>Annual</li>
-              <li>Card-on-file</li>
-            </ul>
-
-            <dl class="console-endpoint">
-              <dt>HOSTED&nbsp;BY</dt>
-              <dd>Stripe</dd>
-              <dt>ENDPOINT</dt>
-              <dd><code>portal.fightingsmartcyber.com</code></dd>
-            </dl>
-
-            <a href={stripePortalLoginUrl} class="console-cta" target="_blank" rel="noopener">
-              <span class="console-cta-label">Open Portal</span>
-              <svg class="console-cta-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <h2>Recurring Payments</h2>
+            <p>For monthly, quarterly, annual, or any other recurring plan — manage your subscription, view history, or update your card on file. Hosted by <strong>Stripe</strong>.</p>
+            <a href={stripePortalLoginUrl} class="portal-card-cta" target="_blank" rel="noopener">
+              Open Stripe Portal
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-
-            <p class="console-fineprint">A one-time sign-in link is sent to your inbox. No password required.</p>
           </article>
         )}
       </div>
 
-      <!-- Utility row: resend request -->
-      <aside class="console-utility">
-        <div class="console-utility-meta">
-          <span class="console-route">UTILITY&nbsp;/&nbsp;RESEND</span>
+      <!-- Resend invoice request — slim bar treatment below the cards -->
+      <div class="portal-resend">
+        <div class="portal-resend-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="22 6 12 13 2 6"/>
+          </svg>
         </div>
-        <div class="console-utility-body">
-          <div class="console-utility-text">
-            <h3>Misplaced an invoice?</h3>
-            <p>Drop your email and we'll resend the most recent invoice and Stripe payment link.</p>
-          </div>
-          <div class="console-utility-action">
-            <button type="button" class="console-cta console-cta--ghost" id="resendToggle">
-              <span class="console-cta-label">Request Resend</span>
-              <svg class="console-cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <div class="portal-resend-text">
+          <h3>Misplaced an invoice?</h3>
+          <p>Drop your email and we'll resend the most recent invoice and Stripe payment link.</p>
+        </div>
+        <div class="portal-resend-action">
+          <button type="button" class="portal-resend-toggle" id="resendToggle">
+            Request Resend
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <form id="resendForm" class="portal-resend-form" hidden>
+            <label for="resendEmail" class="visually-hidden">Your email address</label>
+            <input type="email" id="resendEmail" name="email" placeholder="your@email.com" autocomplete="email" required />
+            <button type="submit" class="portal-resend-submit" id="resendSubmit">
+              <span class="portal-resend-submit-label">Send</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-            <form id="resendForm" class="console-resend-form" hidden>
-              <label for="resendEmail" class="visually-hidden">Your email address</label>
-              <input type="email" id="resendEmail" name="email" placeholder="your@email.com" autocomplete="email" required />
-              <button type="submit" class="console-cta" id="resendSubmit">
-                <span class="console-cta-label">Send</span>
-                <svg class="console-cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </button>
-            </form>
-            <p class="console-resend-status" id="resendStatus" role="status" aria-live="polite"></p>
-          </div>
+          </form>
+          <p class="portal-resend-status" id="resendStatus" role="status" aria-live="polite"></p>
         </div>
-      </aside>
+      </div>
 
     </div>
   </section>
 
   <!-- ==================================================================
-       Capabilities manifest — single panel with a numbered list of
-       what the portal does. Less card-grid, more "spec sheet."
+       Capabilities — single panel, numbered list, not a card grid.
        ================================================================== -->
   <section class="content-section-alt manifest-section">
     <div class="container">
       <div class="manifest">
         <div class="manifest-header">
-          <p class="manifest-eyebrow">CAPABILITIES / 06</p>
+          <p class="manifest-eyebrow">Capabilities</p>
           <h2 class="manifest-title">Everything your portal does, in one place.</h2>
-          <p class="manifest-lead">Self-service for the whole billing relationship. Each item below works the same way it would in any modern finance tool — just hosted on our domain, on our infrastructure.</p>
+          <p class="manifest-lead">Self-service for the whole billing relationship — invoices, payments, statements, account details — all from any device, anytime.</p>
         </div>
 
         <ol class="manifest-list">
@@ -226,7 +189,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     var form = document.getElementById('resendForm');
     var input = document.getElementById('resendEmail');
     var submitBtn = document.getElementById('resendSubmit');
-    var submitLabel = submitBtn && submitBtn.querySelector('.console-cta-label');
+    var submitLabel = submitBtn && submitBtn.querySelector('.portal-resend-submit-label');
     var status = document.getElementById('resendStatus');
     if (!toggle || !form || !input || !submitBtn || !submitLabel || !status) return;
 
@@ -244,7 +207,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
       var originalLabel = submitLabel.textContent;
       submitBtn.disabled = true;
       submitLabel.textContent = 'Sending...';
-      status.className = 'console-resend-status';
+      status.className = 'portal-resend-status';
       status.textContent = '';
 
       try {
@@ -262,10 +225,10 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
           throw new Error(detail);
         }
         form.hidden = true;
-        status.className = 'console-resend-status success';
+        status.className = 'portal-resend-status success';
         status.textContent = '✓ Request received. Resending invoice to ' + email + '.';
       } catch (err) {
-        status.className = 'console-resend-status error';
+        status.className = 'portal-resend-status error';
         status.textContent =
           (err && err.message) ||
           'Sorry, something went wrong. Please email team@fightingsmartcyber.com directly.';
@@ -278,399 +241,282 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 
 <style>
   /* ==================================================================
-     CLIENT PORTAL — "Operations Console" aesthetic
-     ------------------------------------------------------------------
-     Two primary portal endpoints in a console-card grid up top, plus a
-     subordinate utility row beneath them for the resend request. Mono
-     accents (IBM Plex Mono) for tactical labels, route IDs, and
-     endpoint URLs. Each card has a unique corner glow + a subtle dot
-     pattern for depth.
+     CLIENT PORTAL — clean & refined
+     Two light cards on top, slim resend bar below, capabilities
+     manifest, trust block. No dashboard chrome, no mono accent fonts,
+     no tactical metadata. Just organized, pretty, intuitive.
      ================================================================== */
 
-  .console-section {
-    --bg-card: #0a2540;
-    --bg-card-2: #0d2e52;
-    --ink: #ffffff;
-    --ink-soft: rgba(255, 255, 255, 0.7);
-    --ink-dim: rgba(255, 255, 255, 0.45);
-    --rule: rgba(0, 168, 255, 0.18);
-    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  }
+  /* --- Two portal cards --------------------------------------------- */
 
-  .console-grid {
+  .portal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 28px;
   }
 
   @media (max-width: 820px) {
-    .console-grid {
+    .portal-grid {
       grid-template-columns: 1fr;
     }
   }
 
-  .console-card {
+  .portal-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    background:
-      radial-gradient(at 0% 0%, rgba(0, 212, 255, 0.06) 0%, transparent 45%),
-      linear-gradient(160deg, var(--bg-card) 0%, var(--bg-card-2) 70%, #11375f 100%);
-    color: var(--ink);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 32px 32px 28px 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px 36px 32px;
+    box-shadow: 0 4px 24px rgba(10, 37, 64, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     overflow: hidden;
-    isolation: isolate;
-    transition: border-color 0.25s ease, transform 0.25s ease;
   }
 
-  .console-card:hover {
-    border-color: rgba(0, 212, 255, 0.45);
-    transform: translateY(-2px);
-  }
-
-  /* Subtle dot-grid background — tactical "console" texture without
-     screaming "tech background". 18px grid, very low opacity. */
-  .console-card::before {
+  .portal-card::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(0, 212, 255, 0.08) 1px, transparent 0);
-    background-size: 18px 18px;
-    pointer-events: none;
-    z-index: -1;
-    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) 70%, transparent);
-            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) 70%, transparent);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--bright-blue), var(--cyan));
+    opacity: 0.85;
   }
 
-  /* Per-card corner glow — distinct positions so the two cards have
-     different visual centers of gravity. */
-  .console-card-glow {
-    position: absolute;
-    pointer-events: none;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.55;
-    z-index: -1;
+  .portal-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 168, 255, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 168, 255, 0.12);
   }
 
-  .console-card-glow--cyan {
-    top: -80px;
-    right: -80px;
-    width: 260px;
-    height: 260px;
-    background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
-  }
-
-  .console-card-glow--blue {
-    bottom: -100px;
-    left: -80px;
-    width: 280px;
-    height: 280px;
-    background: radial-gradient(circle, var(--bright-blue) 0%, transparent 70%);
-  }
-
-  /* --- Card header strip (route + status) --------------------------- */
-
-  .console-card-meta {
+  .portal-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(0, 168, 255, 0.08));
+    border: 1px solid rgba(0, 168, 255, 0.2);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 18px;
-    margin-bottom: 24px;
-    border-bottom: 1px dashed var(--rule);
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    justify-content: center;
+    color: var(--accent-blue);
+    margin-bottom: 22px;
   }
 
-  .console-route {
-    color: var(--cyan);
+  .portal-card-icon--alt {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(0, 168, 255, 0.06));
+    color: var(--bright-blue);
   }
 
-  .console-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: rgba(0, 255, 174, 0.85);
-    text-transform: uppercase;
-  }
-
-  .console-status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #00ffae;
-    box-shadow: 0 0 8px #00ffae;
-    animation: console-pulse 2.4s ease-in-out infinite;
-  }
-
-  @keyframes console-pulse {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
-  }
-
-  /* --- Typography --------------------------------------------------- */
-
-  .console-card-title {
-    margin: 0 0 10px 0;
-    font-size: 32px;
-    line-height: 1.05;
+  .portal-card h2 {
+    margin: 0 0 12px 0;
+    font-size: 26px;
     font-weight: 800;
-    letter-spacing: -0.7px;
-    color: var(--ink);
+    color: var(--primary-blue);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
   }
 
-  .console-card-lead {
-    margin: 0 0 22px 0;
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 38ch;
+  .portal-card p {
+    margin: 0 0 28px 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--text-light);
+    flex-grow: 1;
   }
 
-  /* --- Pill list of capabilities ------------------------------------ */
-
-  .console-pillset {
-    list-style: none;
-    margin: 0 0 22px 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 8px;
+  .portal-card p strong {
+    color: var(--primary-blue);
+    font-weight: 600;
   }
 
-  .console-pillset li {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: 0.3px;
-    padding: 5px 10px;
-    color: var(--cyan);
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 3px;
-  }
-
-  /* --- Endpoint metadata block -------------------------------------- */
-
-  .console-endpoint {
-    margin: 0 0 26px 0;
-    padding: 14px 16px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.18);
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 4px 16px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  .console-endpoint dt {
-    color: var(--ink-dim);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  .console-endpoint dd {
-    margin: 0;
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  .console-endpoint code {
-    color: var(--cyan);
-    background: transparent;
-    padding: 0;
-    font: inherit;
-  }
-
-  /* --- CTAs --------------------------------------------------------- */
-
-  .console-cta {
+  .portal-card-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: auto;
-    margin-bottom: 14px;
-    padding: 13px 22px;
+    gap: 8px;
+    padding: 14px 24px;
     background: var(--bright-blue);
     color: var(--dark);
-    font-family: var(--mono);
-    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 15px;
     text-decoration: none;
-    border: 1px solid var(--bright-blue);
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 8px;
     transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    align-self: flex-start;
   }
 
-  .console-cta:hover {
+  .portal-card-cta:hover {
     background: var(--cyan);
-    border-color: var(--cyan);
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(0, 168, 255, 0.35);
+    box-shadow: 0 6px 18px rgba(0, 168, 255, 0.3);
   }
 
-  .console-cta-icon {
+  .portal-card-cta svg {
     transition: transform 0.2s ease;
   }
 
-  .console-cta:hover .console-cta-icon {
+  .portal-card-cta:hover svg {
     transform: translateX(3px);
   }
 
-  .console-cta--ghost {
-    background: transparent;
-    color: var(--cyan);
-    border-color: rgba(0, 212, 255, 0.45);
-  }
+  /* --- Resend bar (slim, sits beneath the two cards) ---------------- */
 
-  .console-cta--ghost:hover {
-    background: rgba(0, 212, 255, 0.1);
-    color: var(--cyan);
-    border-color: var(--cyan);
-    box-shadow: 0 6px 18px rgba(0, 212, 255, 0.2);
-  }
-
-  /* --- Fineprint inside card ---------------------------------------- */
-
-  .console-fineprint {
-    margin: 0;
-    font-size: 11.5px;
-    line-height: 1.55;
-    color: var(--ink-dim);
-    font-family: var(--mono);
-    letter-spacing: 0.2px;
-  }
-
-  /* ==================================================================
-     UTILITY ROW (Resend request) — subordinate visual treatment
-     ================================================================== */
-
-  .console-utility {
+  .portal-resend {
     margin-top: 24px;
-    padding: 24px 28px;
-    background:
-      radial-gradient(at 100% 100%, rgba(0, 168, 255, 0.06) 0%, transparent 50%),
-      linear-gradient(180deg, rgba(10, 37, 64, 0.45) 0%, rgba(10, 37, 64, 0.7) 100%);
-    border: 1px dashed var(--rule);
-    border-radius: 6px;
-    color: var(--ink);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .console-utility-meta {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    color: var(--bright-blue);
-    margin-bottom: 14px;
-  }
-
-  .console-utility-body {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
+    grid-template-columns: 44px 1fr auto;
     align-items: center;
+    gap: 20px;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.05), rgba(0, 168, 255, 0.02));
+    border: 1px solid rgba(0, 168, 255, 0.18);
+    border-radius: 12px;
   }
 
   @media (max-width: 720px) {
-    .console-utility-body {
+    .portal-resend {
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 16px;
+      padding: 22px;
+      text-align: left;
     }
   }
 
-  .console-utility-text h3 {
-    margin: 0 0 6px 0;
-    font-size: 22px;
+  .portal-resend-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(0, 168, 255, 0.1);
+    border: 1px solid rgba(0, 168, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+  }
+
+  .portal-resend-text h3 {
+    margin: 0 0 2px 0;
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--ink);
+    color: var(--primary-blue);
+    letter-spacing: -0.2px;
   }
 
-  .console-utility-text p {
+  .portal-resend-text p {
     margin: 0;
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 56ch;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-light);
   }
 
-  .console-utility-action {
-    min-width: 280px;
+  .portal-resend-action {
+    min-width: 240px;
   }
 
   @media (max-width: 720px) {
-    .console-utility-action {
-      width: 100%;
+    .portal-resend-action {
       min-width: 0;
+      width: 100%;
     }
   }
 
-  .console-utility [hidden] {
+  .portal-resend [hidden] {
     display: none !important;
   }
 
-  .console-utility .console-cta {
-    margin-top: 0;
-    margin-bottom: 0;
+  .portal-resend-toggle,
+  .portal-resend-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    font-family: inherit;
     width: 100%;
   }
 
-  .console-resend-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .portal-resend-toggle {
+    background: transparent;
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
   }
 
-  .console-resend-form input {
-    padding: 12px 14px;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(0, 0, 0, 0.25);
-    color: var(--ink);
+  .portal-resend-toggle:hover {
+    background: var(--accent-blue);
+    color: var(--white);
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+  }
+
+  .portal-resend-toggle svg {
+    transition: transform 0.2s ease;
+  }
+
+  .portal-resend-toggle:hover svg {
+    transform: translateX(2px);
+  }
+
+  .portal-resend-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .portal-resend-form input {
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text);
     font-size: 14px;
     font-family: inherit;
     width: 100%;
   }
 
-  .console-resend-form input::placeholder {
-    color: var(--ink-dim);
+  .portal-resend-form input::placeholder {
+    color: #97a4b3;
   }
 
-  .console-resend-form input:focus {
+  .portal-resend-form input:focus {
     outline: none;
-    border-color: var(--cyan);
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.16);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
   }
 
-  .console-resend-status {
-    margin: 10px 0 0 0;
-    font-size: 12.5px;
+  .portal-resend-submit {
+    background: var(--bright-blue);
+    color: var(--dark);
+    border: 1px solid var(--bright-blue);
+  }
+
+  .portal-resend-submit:hover {
+    background: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  .portal-resend-status {
+    margin: 8px 0 0 0;
+    font-size: 13px;
     line-height: 1.5;
-    color: var(--ink-soft);
-    font-family: var(--mono);
+    color: var(--text-light);
     min-height: 1em;
   }
 
-  .console-resend-status.success {
-    color: var(--cyan);
+  .portal-resend-status.success {
+    color: #1a7f37;
+    font-weight: 600;
   }
 
-  .console-resend-status.error {
-    color: #ff8080;
+  .portal-resend-status.error {
+    color: #d1242f;
+    font-weight: 500;
   }
 
   .visually-hidden {
@@ -685,12 +531,8 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   /* ==================================================================
-     CAPABILITIES MANIFEST — single panel, numbered list, less card-y
+     CAPABILITIES MANIFEST — single panel, numbered list
      ================================================================== */
-
-  .manifest-section {
-    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  }
 
   .manifest {
     max-width: 980px;
@@ -698,27 +540,24 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .manifest-header {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     margin-bottom: 44px;
     padding-bottom: 28px;
-    border-bottom: 1px solid rgba(10, 37, 64, 0.12);
+    border-bottom: 1px solid rgba(10, 37, 64, 0.1);
   }
 
   .manifest-eyebrow {
-    margin: 0;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 1.6px;
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--accent-blue);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .manifest-title {
     margin: 0;
     font-size: 36px;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.8px;
     color: var(--primary-blue);
     font-weight: 800;
@@ -726,7 +565,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .manifest-lead {
-    margin: 4px 0 0 0;
+    margin: 14px 0 0 0;
     font-size: 16px;
     line-height: 1.65;
     color: var(--text-light);
@@ -737,17 +576,14 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
   }
 
   .manifest-item {
     display: grid;
     grid-template-columns: 56px 56px 1fr;
     align-items: center;
-    gap: 20px;
-    padding: 22px 4px;
+    gap: 22px;
+    padding: 22px 6px;
     border-bottom: 1px solid rgba(10, 37, 64, 0.08);
     transition: background 0.2s ease, padding 0.2s ease;
   }
@@ -757,25 +593,25 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .manifest-item:hover {
-    background: rgba(0, 168, 255, 0.03);
-    padding-left: 14px;
-    padding-right: 14px;
+    background: rgba(0, 168, 255, 0.04);
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .manifest-num {
-    font-family: var(--mono);
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--accent-blue);
-    opacity: 0.7;
+    opacity: 0.55;
     text-align: center;
+    letter-spacing: 0.5px;
   }
 
   .manifest-icon {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(0, 168, 255, 0.08), rgba(0, 102, 204, 0.04));
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(0, 102, 204, 0.04));
     border: 1px solid rgba(0, 168, 255, 0.22);
     display: flex;
     align-items: center;
@@ -786,7 +622,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .manifest-item:hover .manifest-icon {
-    transform: scale(1.05);
+    transform: scale(1.06);
     color: var(--bright-blue);
     border-color: var(--bright-blue);
   }
@@ -808,24 +644,15 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   @media (max-width: 680px) {
-    .manifest-title {
-      font-size: 28px;
-    }
+    .manifest-title { font-size: 28px; }
     .manifest-item {
-      grid-template-columns: 36px 44px 1fr;
+      grid-template-columns: 32px 44px 1fr;
       gap: 14px;
       padding: 18px 4px;
     }
-    .manifest-num {
-      font-size: 16px;
-    }
-    .manifest-icon {
-      width: 44px;
-      height: 44px;
-    }
-    .manifest-body h3 {
-      font-size: 17px;
-    }
+    .manifest-num { font-size: 14px; }
+    .manifest-icon { width: 44px; height: 44px; }
+    .manifest-body h3 { font-size: 17px; }
   }
 
   /* ==================================================================
@@ -865,9 +692,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   @media (max-width: 640px) {
-    .portal-trust-icon {
-      margin: 0 auto;
-    }
+    .portal-trust-icon { margin: 0 auto; }
   }
 
   .portal-trust-content h3 {
@@ -882,12 +707,7 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     line-height: 1.7;
   }
 
-  .portal-trust-content code {
-    background: rgba(0, 168, 255, 0.12);
-    color: var(--bright-blue);
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  .portal-trust-content strong {
+    color: var(--primary-blue);
   }
 </style>
