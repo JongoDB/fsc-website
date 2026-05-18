@@ -169,21 +169,39 @@ export default async function handler(req, res) {
     const supabaseKey = process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
 
     // 1. Persist to Supabase.
-    const supabaseRes = await fetch(supabaseUrl + '/rest/v1/submissions', {
-      method: 'POST',
-      headers: {
-        apikey: supabaseKey,
-        Authorization: 'Bearer ' + supabaseKey,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify(record),
-    });
+    let supabaseRes;
+    try {
+      supabaseRes = await fetch(supabaseUrl + '/rest/v1/submissions', {
+        method: 'POST',
+        headers: {
+          apikey: supabaseKey,
+          Authorization: 'Bearer ' + supabaseKey,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(record),
+      });
+    } catch (netErr) {
+      const cause = netErr && netErr.cause ? String(netErr.cause) : null;
+      console.error('Supabase network error', netErr, 'cause:', cause);
+      return res.status(502).json({
+        error: 'Network error reaching Supabase',
+        phase: 'supabase_fetch',
+        url_host: new URL(supabaseUrl).host,
+        message: netErr && netErr.message,
+        cause,
+      });
+    }
 
     if (!supabaseRes.ok) {
       const detail = await supabaseRes.text().catch(() => '');
       console.error('Supabase insert failed', supabaseRes.status, detail);
-      return res.status(500).json({ error: 'Failed to save submission', supabase_status: supabaseRes.status });
+      return res.status(500).json({
+        error: 'Supabase rejected insert',
+        phase: 'supabase_response',
+        supabase_status: supabaseRes.status,
+        detail,
+      });
     }
 
     // 2. Send email via Resend (graceful skip if not configured).
@@ -200,32 +218,43 @@ export default async function handler(req, res) {
         ? 'New bundle request from ' + record.name
         : 'New contact form submission from ' + record.name;
 
-    const emailRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + resendKey,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: record.email,
-        subject,
-        html: renderEmailHtml(record),
-      }),
-    });
+    let emailRes;
+    try {
+      emailRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + resendKey,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: fromEmail,
+          to: [toEmail],
+          reply_to: record.email,
+          subject,
+          html: renderEmailHtml(record),
+        }),
+      });
+    } catch (netErr) {
+      console.error('Resend network error', netErr);
+      return res
+        .status(200)
+        .json({ success: true, emailed: false, reason: 'resend_network_error', message: netErr && netErr.message });
+    }
 
     if (!emailRes.ok) {
       const detail = await emailRes.text().catch(() => '');
       console.error('Resend send failed', emailRes.status, detail);
-      return res.status(200).json({ success: true, emailed: false, resend_status: emailRes.status });
+      return res.status(200).json({ success: true, emailed: false, resend_status: emailRes.status, detail });
     }
 
     return res.status(200).json({ success: true, emailed: true });
   } catch (err) {
-    console.error('Unhandled error in /api/submit', err && err.stack ? err.stack : err);
-    return res
-      .status(500)
-      .json({ error: 'Internal error', message: err && err.message ? err.message : String(err) });
+    const cause = err && err.cause ? String(err.cause) : null;
+    console.error('Unhandled error in /api/submit', err && err.stack ? err.stack : err, 'cause:', cause);
+    return res.status(500).json({
+      error: 'Internal error',
+      message: err && err.message ? err.message : String(err),
+      cause,
+    });
   }
 }
