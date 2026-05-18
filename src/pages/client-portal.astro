@@ -11,47 +11,45 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 
 <ContentPageLayout
   title="Client Portal | Fighting Smart Cyber"
-  description="Sign in to your Fighting Smart Cyber client portal to view invoices, accept estimates, download statements, and pay securely."
+  description="Sign in to your Fighting Smart Cyber client portal to view invoices, accept estimates, manage recurring payments, and pay securely."
   heroTitle='Client <span class="highlight">Portal</span>'
-  heroSubtitle="View invoices, accept estimates, download statements, and pay securely."
+  heroSubtitle="View invoices, accept estimates, manage recurring payments, and pay securely."
 >
   <section class="content-section">
     <div class="container">
-      <div class={stripeSubscriptionsLive ? 'portal-grid portal-grid-three' : 'portal-grid'}>
-        <div class="portal-card portal-card-primary">
-          <div class="portal-badge">Existing Customer</div>
+
+      <!-- Two portal sign-in tiles, side by side -->
+      <div class="portal-grid">
+        <div class="portal-card portal-card-billing">
+          <div class="portal-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="13" y2="17"/>
+            </svg>
+          </div>
+          <div class="portal-eyebrow">Existing Customer</div>
           <h2>Sign in to your billing portal</h2>
-          <p>View open and historical invoices, accept estimates, download statements, and pay securely. Hosted by Zoho Books on our custom <code>books.fightingsmartcyber.com</code> domain.</p>
+          <p>View open and historical invoices, accept estimates, download statements, and pay securely. Hosted by Zoho Books on <code>books.fightingsmartcyber.com</code>.</p>
           <a href={zohoPortalUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
             Sign In to Portal &rarr;
           </a>
           <p class="portal-fineprint">Sign in with the email on your account. First-time users: check your invoice email for a portal invite.</p>
         </div>
 
-        <div class="portal-card portal-card-resend">
-          <div class="portal-badge portal-badge-alt">Have an Invoice?</div>
-          <h2>Pay directly from your invoice email</h2>
-          <p>Every invoice we send includes a secure Stripe payment link — pay by ACH or card without signing in to anything.</p>
-          <p>Misplaced it? Click below and we'll resend it.</p>
-
-          <button type="button" class="btn-secondary portal-cta-secondary" id="resendToggle">
-            Request a Resend
-          </button>
-
-          <form id="resendForm" class="portal-resend-form" hidden>
-            <label for="resendEmail" class="visually-hidden">Your email address</label>
-            <input type="email" id="resendEmail" name="email" placeholder="your@email.com" autocomplete="email" required />
-            <button type="submit" class="btn-primary portal-resend-submit" id="resendSubmit">Send Request</button>
-          </form>
-
-          <p class="portal-resend-status" id="resendStatus" role="status" aria-live="polite"></p>
-        </div>
-
         {stripeSubscriptionsLive && (
-          <div class="portal-card portal-card-primary portal-card-stripe">
-            <div class="portal-badge">Subscriptions</div>
-            <h2>Manage your subscription</h2>
-            <p>For recurring SaaS, training, or managed-service plans — change plans, view subscription history, or update the card or bank account on file. Hosted by Stripe on <code>portal.fightingsmartcyber.com</code>.</p>
+          <div class="portal-card portal-card-recurring">
+            <div class="portal-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+            </div>
+            <div class="portal-eyebrow">Recurring Payments</div>
+            <h2>Manage your recurring payments</h2>
+            <p>For any monthly, quarterly, annual, or other recurring payment plan — change your subscription, view payment history, or update the card or bank account on file. Hosted by Stripe on <code>portal.fightingsmartcyber.com</code>.</p>
             <a href={stripePortalLoginUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
               Open Stripe Portal &rarr;
             </a>
@@ -59,6 +57,35 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
           </div>
         )}
       </div>
+
+      <!-- Full-width "request a resend" tile beneath the portal tiles -->
+      <div class="portal-card portal-card-resend">
+        <div class="portal-resend-inner">
+          <div class="portal-resend-text">
+            <div class="portal-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="22 6 12 13 2 6"/>
+              </svg>
+            </div>
+            <div class="portal-eyebrow">Have an Invoice?</div>
+            <h2>Pay directly from your invoice email</h2>
+            <p>Every invoice we send includes a secure Stripe payment link — pay by ACH or card without signing in to anything. Misplaced it? Drop your email and we'll resend it.</p>
+          </div>
+          <div class="portal-resend-action">
+            <button type="button" class="btn-secondary portal-cta-secondary" id="resendToggle">
+              Request a Resend
+            </button>
+            <form id="resendForm" class="portal-resend-form" hidden>
+              <label for="resendEmail" class="visually-hidden">Your email address</label>
+              <input type="email" id="resendEmail" name="email" placeholder="your@email.com" autocomplete="email" required />
+              <button type="submit" class="btn-primary portal-resend-submit" id="resendSubmit">Send Request</button>
+            </form>
+            <p class="portal-resend-status" id="resendStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -171,6 +198,13 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 </script>
 
 <style>
+  /* ------------------------------------------------------------------
+     Two portal tiles on top (Billing · Recurring), one full-width
+     resend tile below. All cards share the same dark navy brand base;
+     differentiation comes from icons, eyebrow text, and a thin top
+     accent stripe.
+     ------------------------------------------------------------------ */
+
   .portal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -178,136 +212,155 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     align-items: stretch;
   }
 
-  .portal-grid-three {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media (max-width: 1100px) {
-    .portal-grid-three {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
   @media (max-width: 720px) {
-    .portal-grid,
-    .portal-grid-three {
+    .portal-grid {
       grid-template-columns: 1fr;
     }
   }
 
   .portal-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.05);
     position: relative;
     display: flex;
     flex-direction: column;
-  }
-
-  .portal-card-primary {
-    background: linear-gradient(135deg, #0a2540 0%, #1e4d7b 100%);
+    background: linear-gradient(155deg, #0a2540 0%, #0d2e52 55%, #1e4d7b 100%);
     color: var(--white);
-    border-color: rgba(0, 168, 255, 0.25);
-    box-shadow: 0 8px 32px rgba(10, 37, 64, 0.2);
+    border: 1px solid rgba(0, 168, 255, 0.22);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.28);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
+  .portal-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 168, 255, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 168, 255, 0.18);
+  }
+
+  /* Resend card sits below the grid and spans full width */
+  .portal-card-resend {
+    margin-top: 28px;
+  }
+
+  /* Per-card top accent stripe — subtle differentiator. */
+  .portal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--bright-blue) 100%);
+    opacity: 0.9;
+  }
+
+  .portal-card-recurring::before {
+    background: linear-gradient(90deg, var(--accent-blue) 0%, var(--cyan) 100%);
+  }
+
+  .portal-card-resend::before {
+    background: linear-gradient(90deg, var(--bright-blue) 0%, var(--accent-blue) 100%);
+  }
+
+  /* Icon block (top of card) */
+  .portal-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan);
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.22);
+    margin-bottom: 18px;
+    flex-shrink: 0;
+  }
+
+  .portal-card-resend .portal-icon {
+    color: var(--bright-blue);
+    background: rgba(0, 168, 255, 0.12);
+    border-color: rgba(0, 168, 255, 0.28);
+  }
+
+  .portal-card-recurring .portal-icon {
+    color: var(--cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  /* Eyebrow label */
+  .portal-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+
+  .portal-card-resend .portal-eyebrow {
+    color: var(--bright-blue);
+  }
+
+  /* Typography inside card */
   .portal-card h2 {
     margin: 0 0 12px 0;
     font-size: 22px;
     line-height: 1.25;
-    color: var(--dark);
-  }
-
-  .portal-card-primary h2 {
     color: var(--white);
+    font-weight: 700;
+    letter-spacing: -0.2px;
   }
 
   .portal-card p {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.82);
     line-height: 1.65;
     margin: 0 0 14px 0;
     font-size: 15px;
   }
 
-  .portal-card-primary p {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
   .portal-card code {
-    background: rgba(0, 168, 255, 0.12);
-    color: var(--bright-blue);
+    background: rgba(0, 212, 255, 0.16);
+    color: var(--cyan);
     padding: 2px 7px;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 0.88em;
     font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
-  .portal-card-primary code {
-    background: rgba(0, 212, 255, 0.18);
-    color: var(--cyan);
-  }
-
-  .portal-badge {
-    display: inline-block;
-    background: rgba(0, 168, 255, 0.15);
-    color: var(--bright-blue);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    align-self: flex-start;
-  }
-
-  .portal-card-primary .portal-badge {
-    background: rgba(0, 212, 255, 0.2);
-    color: var(--cyan);
-  }
-
-  .portal-badge-alt {
-    background: rgba(0, 102, 204, 0.1);
-    color: var(--accent-blue);
-  }
-
+  /* CTAs */
   .portal-cta {
     display: inline-block;
     margin-top: auto;
     margin-bottom: 14px;
-    padding: 14px 24px !important;
+    padding: 13px 22px !important;
     font-size: 15px !important;
     text-align: center;
-  }
-
-  .portal-card-primary .portal-cta {
-    background: var(--bright-blue);
+    background: var(--bright-blue) !important;
     color: var(--dark) !important;
+    border-radius: 8px;
   }
 
-  .portal-card-primary .portal-cta:hover {
-    background: var(--cyan);
+  .portal-cta:hover {
+    background: var(--cyan) !important;
   }
 
+  /* Secondary toggle (Request a Resend) on dark card */
   .portal-cta-secondary {
-    margin-top: auto;
     padding: 12px 22px !important;
     font-size: 14px !important;
+    background: transparent !important;
+    color: var(--cyan) !important;
+    border: 1px solid rgba(0, 212, 255, 0.45) !important;
+    width: 100%;
   }
 
-  /* .btn-secondary is white-on-transparent by default (designed for dark
-     hero backgrounds); restyle when used inside the light resend card. */
-  .portal-card:not(.portal-card-primary) .portal-cta-secondary {
-    color: var(--accent-blue);
-    border-color: var(--accent-blue);
-  }
-
-  .portal-card:not(.portal-card-primary) .portal-cta-secondary:hover {
-    background: var(--accent-blue);
-    color: var(--white);
-    border-color: var(--accent-blue);
+  .portal-cta-secondary:hover {
+    background: rgba(0, 212, 255, 0.1) !important;
+    border-color: var(--cyan) !important;
+    color: var(--cyan) !important;
   }
 
   .portal-fineprint {
@@ -317,57 +370,104 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     line-height: 1.5;
   }
 
-  /* HTML `hidden` attribute is overridden by .btn-secondary's inline-block
-     display; force it for the resend toggle + form. */
+  /* ------------------------------------------------------------------
+     Resend card internal layout — horizontal at desktop, stacked on
+     narrow viewports.
+     ------------------------------------------------------------------ */
+
+  .portal-resend-inner {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .portal-resend-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .portal-resend-text p {
+    margin-bottom: 0;
+    max-width: 620px;
+  }
+
+  .portal-resend-action {
+    width: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .portal-resend-inner {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .portal-resend-text p {
+      max-width: none;
+    }
+  }
+
+  /* HTML `hidden` is overridden by btn display rules — force it for
+     the resend toggle + form. */
   .portal-card-resend [hidden] {
     display: none !important;
   }
 
   /* Inline resend form (revealed when "Request a Resend" is clicked) */
   .portal-resend-form {
-    margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
   .portal-resend-form input {
-    padding: 11px 14px;
+    padding: 12px 14px;
     border-radius: 6px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--white);
     font-size: 14px;
     width: 100%;
     font-family: inherit;
-    color: var(--text);
-    background: var(--white);
+  }
+
+  .portal-resend-form input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
   }
 
   .portal-resend-form input:focus {
     outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    border-color: var(--cyan);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.18);
   }
 
   .portal-resend-submit {
-    padding: 11px 18px !important;
+    padding: 12px 18px !important;
     font-size: 14px !important;
+    background: var(--bright-blue) !important;
+    color: var(--dark) !important;
+    width: 100%;
+  }
+
+  .portal-resend-submit:hover {
+    background: var(--cyan) !important;
   }
 
   .portal-resend-status {
-    margin: 10px 0 0 0 !important;
+    margin: 12px 0 0 0 !important;
     font-size: 13px;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.5;
     min-height: 1px;
   }
 
   .portal-resend-status.success {
-    color: #1a7f37;
+    color: var(--cyan);
     font-weight: 600;
   }
 
   .portal-resend-status.error {
-    color: #d1242f;
+    color: #ff6b6b;
     font-weight: 500;
   }
 
@@ -381,6 +481,10 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
+
+  /* ------------------------------------------------------------------
+     Trust block (unchanged section)
+     ------------------------------------------------------------------ */
 
   .portal-trust {
     display: grid;
