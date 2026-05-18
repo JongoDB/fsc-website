@@ -60,14 +60,25 @@ import SectionHeader from '../components/SectionHeader.astro';
             <label for="interest">I'm interested in *</label>
             <select id="interest" name="interest" required>
               <option value="">Select an option</option>
-              <option value="consulting">Cybersecurity Consulting</option>
-              <option value="training">Operator-Led Training</option>
-              <option value="soc-self">SOC-in-a-Box (Self-Service)</option>
-              <option value="soc-managed">SOC-in-a-Box (Managed)</option>
-              <option value="secure-k8s">Secure Kubernetes Core</option>
-              <option value="app-bundles">App Bundles & Catalog</option>
-              <option value="advisory">Advisory & Strategic Consulting</option>
-              <option value="other">Other</option>
+              <optgroup label="Solutions">
+                <option value="ai-readiness">AI Readiness Assessment</option>
+                <option value="consulting">Consulting & Advisory</option>
+                <option value="security-assessments">Security Assessments</option>
+                <option value="custom-saas">Custom SaaS Development</option>
+              </optgroup>
+              <optgroup label="Training">
+                <option value="training">Operator-Led Training</option>
+              </optgroup>
+              <optgroup label="Platforms">
+                <option value="soc-self">SOC-in-a-Box (Self-Service)</option>
+                <option value="soc-managed">SOC-in-a-Box (Managed)</option>
+                <option value="secure-runtime">Secure Runtime Environment</option>
+                <option value="cyroid">CYROID Cyber Range</option>
+              </optgroup>
+              <optgroup label="Bundles">
+                <option value="app-bundles">App Bundles & Catalog</option>
+              </optgroup>
+              <option value="other">Other / Not Sure</option>
             </select>
           </div>
 

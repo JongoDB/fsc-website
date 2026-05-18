@@ -191,5 +191,5 @@ export const siteConfig = {
   // recurring training plans launch. Replace stripePortalLoginUrl with the URL
   // from Stripe Dashboard → Settings → Customer portal → "Login link".
   stripePortalRootUrl: 'https://portal.fightingsmartcyber.com',
-  stripePortalLoginUrl: 'https://portal.fightingsmartcyber.com/p/login/REPLACE_ME',
+  stripePortalLoginUrl: 'https://portal.fightingsmartcyber.com/p/login/cNi14nauP6iJaxah0157W00',
 };
