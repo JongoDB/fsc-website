@@ -71,9 +71,6 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
           description="Manage your billing from any device, anytime. No call queues, no email back-and-forth for routine requests."
         />
       </div>
-      <p class="portal-roadmap">
-        <strong>Coming soon:</strong> recurring subscription management — pause, change plans, and update payment methods — for SaaS and recurring training offerings, hosted at <code>portal.fightingsmartcyber.com</code>.
-      </p>
     </div>
   </section>
 
@@ -81,13 +78,13 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     <section class="content-section">
       <div class="container">
         <div class="portal-subs-card">
-          <div class="portal-badge portal-badge-alt">Subscription Customers</div>
-          <h2>Manage your recurring plan</h2>
-          <p>If you're on a recurring SaaS, training, or managed-service plan, manage your subscription, change plans, or update your payment method at our Stripe-hosted portal.</p>
+          <div class="portal-badge portal-badge-alt">Subscriptions &amp; Payment Methods</div>
+          <h2>Manage your subscription or card on file</h2>
+          <p>For recurring SaaS, training, or managed-service plans — change plans, view subscription history, or update the card or bank account on file at our Stripe-hosted portal on <code>portal.fightingsmartcyber.com</code>.</p>
           <a href={stripePortalLoginUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
-            Manage Subscription &rarr;
+            Open Stripe Portal &rarr;
           </a>
-          <p class="portal-fineprint-dark">A one-time sign-in link is sent to your billing email. No password required.</p>
+          <p class="portal-fineprint-dark">Sign in with the email on your account. A one-time sign-in link is sent to your inbox — no password required.</p>
         </div>
       </div>
     </section>
@@ -244,32 +241,6 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     line-height: 1.5;
   }
 
-  .portal-roadmap {
-    max-width: 820px;
-    margin: 40px auto 0;
-    padding: 18px 24px;
-    background: rgba(0, 168, 255, 0.06);
-    border-left: 4px solid var(--bright-blue);
-    border-radius: 6px;
-    color: var(--text-light);
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: left;
-  }
-
-  .portal-roadmap strong {
-    color: var(--primary-blue);
-  }
-
-  .portal-roadmap code {
-    background: rgba(0, 168, 255, 0.12);
-    color: var(--accent-blue);
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 0.92em;
-    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  }
-
   .portal-subs-card {
     max-width: 820px;
     margin: 0 auto;
@@ -300,6 +271,15 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 
   .portal-subs-card .portal-cta:hover {
     background: var(--cyan);
+  }
+
+  .portal-subs-card code {
+    background: rgba(0, 212, 255, 0.18);
+    color: var(--cyan);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   .portal-trust {
