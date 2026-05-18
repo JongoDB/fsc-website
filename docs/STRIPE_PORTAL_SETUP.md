@@ -1,6 +1,6 @@
-# Stripe Customer Portal Setup — portal.fightingsmartcyber.com
+# Stripe Customer Portal Setup — subscriptions.fightingsmartcyber.com
 
-This guide walks through configuring the **Stripe-hosted Customer Portal** to serve from `portal.fightingsmartcyber.com` with FSC branding.
+This guide walks through configuring the **Stripe-hosted Customer Portal** to serve from `subscriptions.fightingsmartcyber.com` with FSC branding.
 
 Total time: **~30–45 minutes**, most of it waiting for DNS to propagate.
 
@@ -10,8 +10,8 @@ Total time: **~30–45 minutes**, most of it waiting for DNS to propagate.
 
 When this is done:
 
-- Customers receive invoice / subscription emails from Stripe with links to `portal.fightingsmartcyber.com/...` instead of `invoice.stripe.com/...` or `billing.stripe.com/...`.
-- A single, sharable **login link** lives at `portal.fightingsmartcyber.com/p/login/<id>` — customers enter their email, get a one-time sign-in link, and can manage billing.
+- Customers receive invoice / subscription emails from Stripe with links to `subscriptions.fightingsmartcyber.com/...` instead of `invoice.stripe.com/...` or `billing.stripe.com/...`.
+- A single, sharable **login link** lives at `subscriptions.fightingsmartcyber.com/p/login/<id>` — customers enter their email, get a one-time sign-in link, and can manage billing.
 - The hosted UI uses FSC's logo, accent color, and brand fonts.
 - The FSC main site has a `/client-portal` landing page and header/footer entries pointing customers in.
 
@@ -29,7 +29,7 @@ When this is done:
 
 1. In the Stripe Dashboard, go to **Settings → Branding → Custom domains** (or **Settings → Custom domains** depending on the dashboard version).
 2. Click **Add domain**.
-3. Enter `portal.fightingsmartcyber.com`.
+3. Enter `subscriptions.fightingsmartcyber.com`.
 4. Stripe will show a **CNAME target** like `hosted-checkout-domains.stripe.com.` — copy it.
 
 ## Step 2 — Add the DNS record
@@ -105,7 +105,7 @@ This is the killer feature that makes the portal usable without you building any
 2. Toggle it **On**.
 3. Stripe will generate a public URL that looks like:
    ```
-   https://portal.fightingsmartcyber.com/p/login/aBcDeFgHi
+   https://subscriptions.fightingsmartcyber.com/p/login/aBcDeFgHi
    ```
 4. Copy that URL.
 
@@ -114,7 +114,7 @@ This is the killer feature that makes the portal usable without you building any
 1. Open `src/data/navigation.ts` in this repo.
 2. Replace the placeholder:
    ```ts
-   portalLoginUrl: 'https://portal.fightingsmartcyber.com/p/login/REPLACE_ME',
+   portalLoginUrl: 'https://subscriptions.fightingsmartcyber.com/p/login/REPLACE_ME',
    ```
    with the real URL from Step 6.
 3. Commit and push. Vercel will redeploy automatically.
@@ -125,8 +125,8 @@ The `/client-portal` page will now show an active **Sign In to Portal** button i
 
 ## Step 8 — Test end-to-end
 
-1. **Login flow** — Visit `fightingsmartcyber.com/client-portal`, click **Sign In to Portal**. You should land on the Stripe-hosted login page at `portal.fightingsmartcyber.com`. Enter a test customer's email. Confirm the magic-link email arrives. Click it; verify you land in the branded portal.
-2. **Invoice flow** — Create a test invoice in Stripe Dashboard, finalize it, and click the hosted-invoice link from the email. Confirm the URL is `portal.fightingsmartcyber.com/i/...` and the page is branded correctly.
+1. **Login flow** — Visit `fightingsmartcyber.com/client-portal`, click **Sign In to Portal**. You should land on the Stripe-hosted login page at `subscriptions.fightingsmartcyber.com`. Enter a test customer's email. Confirm the magic-link email arrives. Click it; verify you land in the branded portal.
+2. **Invoice flow** — Create a test invoice in Stripe Dashboard, finalize it, and click the hosted-invoice link from the email. Confirm the URL is `subscriptions.fightingsmartcyber.com/i/...` and the page is branded correctly.
 3. **Checkout flow** *(optional)* — Create a Payment Link in Stripe, open it. Confirm the URL is on the custom domain.
 
 ---
@@ -144,7 +144,7 @@ Stripe-sent emails (invoices, subscription notices, receipts) use Stripe's defau
 
 ## When to graduate beyond Stripe-hosted
 
-The Stripe-hosted portal is great for v1: zero infrastructure, PCI-DSS Level 1 security, fast to deploy. You should consider building a custom portal on `portal.fightingsmartcyber.com` (replacing the Stripe domain mapping) when:
+The Stripe-hosted portal is great for v1: zero infrastructure, PCI-DSS Level 1 security, fast to deploy. You should consider building a custom portal on `subscriptions.fightingsmartcyber.com` (replacing the Stripe domain mapping) when:
 
 - You need **file sharing** (deliverables, reports, signed contracts).
 - You want **engagement-specific dashboards** (e.g. an AI Readiness Assessment progress tracker for ESO).
@@ -164,7 +164,7 @@ I'd estimate ~2-3 weeks of focused build for an MVP of that. Not needed today �
 
 | Thing | Value |
 |---|---|
-| Subdomain | `portal.fightingsmartcyber.com` |
+| Subdomain | `subscriptions.fightingsmartcyber.com` |
 | DNS record type | CNAME |
 | CNAME target | *(provided by Stripe at setup time)* |
 | FSC accent color | `#00a8ff` |

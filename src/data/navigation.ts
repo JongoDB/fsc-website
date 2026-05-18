@@ -190,6 +190,6 @@ export const siteConfig = {
   // Stripe Customer Portal — reserved for subscription management once SaaS /
   // recurring training plans launch. Replace stripePortalLoginUrl with the URL
   // from Stripe Dashboard → Settings → Customer portal → "Login link".
-  stripePortalRootUrl: 'https://portal.fightingsmartcyber.com',
-  stripePortalLoginUrl: 'https://portal.fightingsmartcyber.com/p/login/cNi14nauP6iJaxah0157W00',
+  stripePortalRootUrl: 'https://subscriptions.fightingsmartcyber.com',
+  stripePortalLoginUrl: 'https://subscriptions.fightingsmartcyber.com/p/login/cNi14nauP6iJaxah0157W00',
 };
