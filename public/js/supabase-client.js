@@ -5,47 +5,29 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Initialize Supabase client (use different name to avoid conflict with CDN global)
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Submit contact form (handles both contact and bundle request forms)
+// Submit contact or bundle-request form via the /api/submit Vercel function.
+// The endpoint persists to Supabase AND emails team@fightingsmartcyber.com
+// via Resend, so we no longer write to Supabase directly from the browser.
 async function submitContactForm(formData) {
-    let record;
+    const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
 
-    if (formData.formType === 'bundle-request') {
-        record = {
-            form_type: 'bundle-request',
-            name: formData.name,
-            email: formData.email,
-            organization: formData.organization,
-            role: formData.role || null,
-            interest: 'Custom Bundle Request',
-            timeframe: formData.timeframe || null,
-            use_case: formData.useCase || null,
-            environment: formData.environment || null,
-            requirements: formData.requirements || null
-        };
-    } else {
-        record = {
-            form_type: 'contact',
-            name: formData.name,
-            email: formData.email,
-            organization: formData.organization,
-            role: formData.role || null,
-            org_type: formData.orgType,
-            interest: formData.interest,
-            timeframe: formData.timeframe,
-            message: formData.message
-        };
+    if (!response.ok) {
+        let detail = '';
+        try {
+            const body = await response.json();
+            detail = body && body.error ? body.error : JSON.stringify(body);
+        } catch (e) {
+            detail = await response.text().catch(() => '');
+        }
+        console.error('Form submission failed:', response.status, detail);
+        throw new Error(detail || 'Submission failed (' + response.status + ')');
     }
 
-    const { data, error } = await supabaseClient
-        .from('submissions')
-        .insert([record]);
-
-    if (error) {
-        console.error('Error submitting form:', error);
-        throw error;
-    }
-
-    return { success: true };
+    return response.json();
 }
 
 // Auth functions for admin
