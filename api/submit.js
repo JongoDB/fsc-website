@@ -43,7 +43,7 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function renderEmailHtml(body, isBundle) {
+function renderEmailHtml(body, formType) {
   const rows = (entries) =>
     entries
       .filter(([, v]) => v !== null && v !== undefined && v !== '')
@@ -60,31 +60,39 @@ function renderEmailHtml(body, isBundle) {
       )
       .join('');
 
-  const fields = isBundle
-    ? [
-        ['Name', body.name],
-        ['Email', body.email],
-        ['Organization', body.organization],
-        ['Role', body.role],
-        ['Timeframe', body.timeframe],
-        ['Use Case', body.useCase],
-        ['Environment', body.environment],
-        ['Requirements', body.requirements],
-      ]
-    : [
-        ['Name', body.name],
-        ['Email', body.email],
-        ['Organization', body.organization],
-        ['Role', body.role],
-        ['Org Type', body.orgType],
-        ['Interest', body.interest],
-        ['Timeframe', body.timeframe],
-        ['Message', body.message],
-      ];
-
-  const title = isBundle
-    ? 'New bundle request from ' + escapeHtml(body.name)
-    : 'New contact form submission from ' + escapeHtml(body.name);
+  let fields;
+  let title;
+  if (formType === 'bundle-request') {
+    fields = [
+      ['Name', body.name],
+      ['Email', body.email],
+      ['Organization', body.organization],
+      ['Role', body.role],
+      ['Timeframe', body.timeframe],
+      ['Use Case', body.useCase],
+      ['Environment', body.environment],
+      ['Requirements', body.requirements],
+    ];
+    title = 'New bundle request from ' + escapeHtml(body.name);
+  } else if (formType === 'invoice-resend') {
+    fields = [
+      ['Email', body.email],
+      ['Action requested', 'Resend most recent invoice / payment link'],
+    ];
+    title = 'Invoice resend request from ' + escapeHtml(body.email);
+  } else {
+    fields = [
+      ['Name', body.name],
+      ['Email', body.email],
+      ['Organization', body.organization],
+      ['Role', body.role],
+      ['Org Type', body.orgType],
+      ['Interest', body.interest],
+      ['Timeframe', body.timeframe],
+      ['Message', body.message],
+    ];
+    title = 'New contact form submission from ' + escapeHtml(body.name);
+  }
 
   return (
     '<!doctype html><html><body style="margin:0;padding:24px;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#24292f;">' +
@@ -123,7 +131,19 @@ export default async function handler(req, res) {
     }
     if (!body || typeof body !== 'object') body = {};
 
-    if (!body.name || !isEmail(body.email) || !body.organization) {
+    const formType = body.formType === 'bundle-request'
+      ? 'bundle-request'
+      : body.formType === 'invoice-resend'
+      ? 'invoice-resend'
+      : 'contact';
+
+    // Per-formType validation. invoice-resend only needs an email; the
+    // other two need name + email + organization.
+    if (formType === 'invoice-resend') {
+      if (!isEmail(body.email)) {
+        return res.status(400).json({ error: 'A valid email is required' });
+      }
+    } else if (!body.name || !isEmail(body.email) || !body.organization) {
       return res
         .status(400)
         .json({ error: 'Missing required fields (name, email, organization)' });
@@ -137,12 +157,14 @@ export default async function handler(req, res) {
       });
     }
 
-    const isBundle = body.formType === 'bundle-request';
     const toEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
     const fromEmail = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
-    const subject = isBundle
-      ? 'New bundle request from ' + body.name
-      : 'New contact form submission from ' + body.name;
+    const subject =
+      formType === 'bundle-request'
+        ? 'New bundle request from ' + body.name
+        : formType === 'invoice-resend'
+        ? 'Invoice resend request from ' + body.email
+        : 'New contact form submission from ' + body.name;
 
     let emailRes;
     try {
@@ -157,7 +179,7 @@ export default async function handler(req, res) {
           to: [toEmail],
           reply_to: body.email,
           subject,
-          html: renderEmailHtml(body, isBundle),
+          html: renderEmailHtml(body, formType),
         }),
       });
     } catch (netErr) {

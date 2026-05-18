@@ -17,24 +17,47 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 >
   <section class="content-section">
     <div class="container">
-      <div class="portal-grid">
+      <div class={stripeSubscriptionsLive ? 'portal-grid portal-grid-three' : 'portal-grid'}>
         <div class="portal-card portal-card-primary">
           <div class="portal-badge">Existing Customer</div>
           <h2>Sign in to your billing portal</h2>
-          <p>View open and historical invoices, accept estimates, download statements, and pay securely. Your portal is hosted by Zoho Books on our custom <code>books.fightingsmartcyber.com</code> domain.</p>
+          <p>View open and historical invoices, accept estimates, download statements, and pay securely. Hosted by Zoho Books on our custom <code>books.fightingsmartcyber.com</code> domain.</p>
           <a href={zohoPortalUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
             Sign In to Portal &rarr;
           </a>
-          <p class="portal-fineprint">Sign in with the email on your account. First-time users: check your invoice email for a portal invite, or contact us and we'll resend it.</p>
+          <p class="portal-fineprint">Sign in with the email on your account. First-time users: check your invoice email for a portal invite.</p>
         </div>
 
-        <div class="portal-card">
+        <div class="portal-card portal-card-resend">
           <div class="portal-badge portal-badge-alt">Have an Invoice?</div>
           <h2>Pay directly from your invoice email</h2>
           <p>Every invoice we send includes a secure Stripe payment link — pay by ACH or card without signing in to anything.</p>
-          <p>If you've misplaced an invoice, <a href="/contact">contact us</a> and we'll resend it.</p>
-          <a href="/contact" class="btn-secondary portal-cta-secondary">Request a Resend</a>
+          <p>Misplaced it? Click below and we'll resend it.</p>
+
+          <button type="button" class="btn-secondary portal-cta-secondary" id="resendToggle">
+            Request a Resend
+          </button>
+
+          <form id="resendForm" class="portal-resend-form" hidden>
+            <label for="resendEmail" class="visually-hidden">Your email address</label>
+            <input type="email" id="resendEmail" name="email" placeholder="your@email.com" autocomplete="email" required />
+            <button type="submit" class="btn-primary portal-resend-submit" id="resendSubmit">Send Request</button>
+          </form>
+
+          <p class="portal-resend-status" id="resendStatus" role="status" aria-live="polite"></p>
         </div>
+
+        {stripeSubscriptionsLive && (
+          <div class="portal-card portal-card-primary portal-card-stripe">
+            <div class="portal-badge">Subscriptions</div>
+            <h2>Manage your subscription</h2>
+            <p>For recurring SaaS, training, or managed-service plans — change plans, view subscription history, or update the card or bank account on file. Hosted by Stripe on <code>portal.fightingsmartcyber.com</code>.</p>
+            <a href={stripePortalLoginUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
+              Open Stripe Portal &rarr;
+            </a>
+            <p class="portal-fineprint">A one-time sign-in link is sent to your inbox. No password required.</p>
+          </div>
+        )}
       </div>
     </div>
   </section>
@@ -74,22 +97,6 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     </div>
   </section>
 
-  {stripeSubscriptionsLive && (
-    <section class="content-section">
-      <div class="container">
-        <div class="portal-subs-card">
-          <div class="portal-badge portal-badge-alt">Subscriptions &amp; Payment Methods</div>
-          <h2>Manage your subscription or card on file</h2>
-          <p>For recurring SaaS, training, or managed-service plans — change plans, view subscription history, or update the card or bank account on file at our Stripe-hosted portal on <code>portal.fightingsmartcyber.com</code>.</p>
-          <a href={stripePortalLoginUrl} class="btn-primary portal-cta" target="_blank" rel="noopener">
-            Open Stripe Portal &rarr;
-          </a>
-          <p class="portal-fineprint-dark">Sign in with the email on your account. A one-time sign-in link is sent to your inbox — no password required.</p>
-        </div>
-      </div>
-    </section>
-  )}
-
   <section class="content-section">
     <div class="container">
       <div class="portal-trust">
@@ -108,16 +115,82 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   </section>
 </ContentPageLayout>
 
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById('resendToggle');
+    var form = document.getElementById('resendForm');
+    var input = document.getElementById('resendEmail');
+    var submitBtn = document.getElementById('resendSubmit');
+    var status = document.getElementById('resendStatus');
+    if (!toggle || !form || !input || !submitBtn || !status) return;
+
+    toggle.addEventListener('click', function () {
+      toggle.hidden = true;
+      form.hidden = false;
+      input.focus();
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!email) return;
+
+      var originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      status.className = 'portal-resend-status';
+      status.textContent = '';
+
+      try {
+        var res = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formType: 'invoice-resend', email: email })
+        });
+        if (!res.ok) {
+          var detail = 'Sorry, something went wrong.';
+          try {
+            var body = await res.json();
+            if (body && body.error) detail = body.error;
+          } catch (_) {}
+          throw new Error(detail);
+        }
+        form.hidden = true;
+        status.className = 'portal-resend-status success';
+        status.textContent = '✓ Request received. We’ll resend your invoice to ' + email + ' shortly.';
+      } catch (err) {
+        status.className = 'portal-resend-status error';
+        status.textContent =
+          (err && err.message) ||
+          'Sorry, something went wrong. Please email team@fightingsmartcyber.com directly.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  })();
+</script>
+
 <style>
   .portal-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 32px;
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
   }
 
-  @media (max-width: 860px) {
-    .portal-grid {
+  .portal-grid-three {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 1100px) {
+    .portal-grid-three {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .portal-grid,
+    .portal-grid-three {
       grid-template-columns: 1fr;
     }
   }
@@ -126,9 +199,11 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 40px;
+    padding: 32px;
     box-shadow: 0 4px 20px rgba(10, 37, 64, 0.05);
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .portal-card-primary {
@@ -139,8 +214,9 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .portal-card h2 {
-    margin: 0 0 14px 0;
-    font-size: 26px;
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    line-height: 1.25;
     color: var(--dark);
   }
 
@@ -150,8 +226,9 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 
   .portal-card p {
     color: var(--text-light);
-    line-height: 1.7;
-    margin: 0 0 16px 0;
+    line-height: 1.65;
+    margin: 0 0 14px 0;
+    font-size: 15px;
   }
 
   .portal-card-primary p {
@@ -182,7 +259,8 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
     text-transform: uppercase;
     padding: 5px 12px;
     border-radius: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+    align-self: flex-start;
   }
 
   .portal-card-primary .portal-badge {
@@ -197,8 +275,11 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
 
   .portal-cta {
     display: inline-block;
-    margin-top: 14px;
-    margin-bottom: 18px;
+    margin-top: auto;
+    margin-bottom: 14px;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    text-align: center;
   }
 
   .portal-card-primary .portal-cta {
@@ -211,11 +292,13 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .portal-cta-secondary {
-    margin-top: 8px;
+    margin-top: auto;
+    padding: 12px 22px !important;
+    font-size: 14px !important;
   }
 
-  /* .btn-secondary is white-on-transparent by default (designed for dark hero
-     backgrounds); restyle when used inside the light "Have an Invoice?" card. */
+  /* .btn-secondary is white-on-transparent by default (designed for dark
+     hero backgrounds); restyle when used inside the light resend card. */
   .portal-card:not(.portal-card-primary) .portal-cta-secondary {
     color: var(--accent-blue);
     border-color: var(--accent-blue);
@@ -228,58 +311,75 @@ const stripeSubscriptionsLive = !stripePortalLoginUrl.includes('REPLACE_ME');
   }
 
   .portal-fineprint {
-    font-size: 13px;
+    font-size: 12.5px;
     color: rgba(255, 255, 255, 0.55) !important;
     margin: 0 !important;
     line-height: 1.5;
   }
 
-  .portal-fineprint-dark {
+  /* HTML `hidden` attribute is overridden by .btn-secondary's inline-block
+     display; force it for the resend toggle + form. */
+  .portal-card-resend [hidden] {
+    display: none !important;
+  }
+
+  /* Inline resend form (revealed when "Request a Resend" is clicked) */
+  .portal-resend-form {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .portal-resend-form input {
+    padding: 11px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    width: 100%;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  .portal-resend-form input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  }
+
+  .portal-resend-submit {
+    padding: 11px 18px !important;
+    font-size: 14px !important;
+  }
+
+  .portal-resend-status {
+    margin: 10px 0 0 0 !important;
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.65) !important;
-    margin: 0 !important;
+    color: var(--text-light);
     line-height: 1.5;
+    min-height: 1px;
   }
 
-  .portal-subs-card {
-    max-width: 820px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, #0a2540 0%, #1e4d7b 100%);
-    color: var(--white);
-    border: 1px solid rgba(0, 168, 255, 0.25);
-    border-radius: 16px;
-    padding: 36px 40px;
-    box-shadow: 0 8px 32px rgba(10, 37, 64, 0.2);
+  .portal-resend-status.success {
+    color: #1a7f37;
+    font-weight: 600;
   }
 
-  .portal-subs-card h2 {
-    color: var(--white);
-    margin: 0 0 12px 0;
-    font-size: 24px;
+  .portal-resend-status.error {
+    color: #d1242f;
+    font-weight: 500;
   }
 
-  .portal-subs-card p {
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-    margin: 0 0 16px 0;
-  }
-
-  .portal-subs-card .portal-cta {
-    background: var(--bright-blue);
-    color: var(--dark) !important;
-  }
-
-  .portal-subs-card .portal-cta:hover {
-    background: var(--cyan);
-  }
-
-  .portal-subs-card code {
-    background: rgba(0, 212, 255, 0.18);
-    color: var(--cyan);
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 
   .portal-trust {
