@@ -22,7 +22,25 @@ const DEFAULT_SUPABASE_ANON_KEY =
 const DEFAULT_TO = 'team@fightingsmartcyber.com';
 const DEFAULT_FROM = 'FSC Forms <forms@fightingsmartcyber.com>';
 
-const isEmail = (s) => typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+const isEmail = (s) =>
+  typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+// Read the request body explicitly. Vercel's auto-parsing has bitten us in
+// the past, so we just consume the raw stream and parse JSON ourselves.
+async function readJsonBody(req) {
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    return req.body;
+  }
+  if (typeof req.body === 'string') {
+    return req.body ? JSON.parse(req.body) : {};
+  }
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  const raw = Buffer.concat(chunks).toString('utf8');
+  return raw ? JSON.parse(raw) : {};
+}
 
 function buildRecord(body) {
   const isBundle = body.formType === 'bundle-request';
@@ -52,24 +70,30 @@ function buildRecord(body) {
   };
 }
 
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function renderEmailHtml(record) {
   const isBundle = record.form_type === 'bundle-request';
-  const escape = (s) =>
-    String(s ?? '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
 
   const rows = (entries) =>
     entries
       .filter(([, v]) => v !== null && v !== undefined && v !== '')
       .map(
-        ([label, v]) => `
-          <tr>
-            <td style="padding:8px 14px;background:#f6f8fa;color:#57606a;font-weight:600;width:170px;vertical-align:top;border-bottom:1px solid #d0d7de;">${escape(label)}</td>
-            <td style="padding:8px 14px;color:#24292f;border-bottom:1px solid #d0d7de;white-space:pre-wrap;">${escape(v)}</td>
-          </tr>`
+        ([label, v]) =>
+          '<tr>' +
+            '<td style="padding:8px 14px;background:#f6f8fa;color:#57606a;font-weight:600;width:170px;vertical-align:top;border-bottom:1px solid #d0d7de;">' +
+            escapeHtml(label) +
+            '</td>' +
+            '<td style="padding:8px 14px;color:#24292f;border-bottom:1px solid #d0d7de;white-space:pre-wrap;">' +
+            escapeHtml(v) +
+            '</td>' +
+          '</tr>'
       )
       .join('');
 
@@ -96,107 +120,112 @@ function renderEmailHtml(record) {
       ];
 
   const title = isBundle
-    ? `New bundle request from ${escape(record.name)}`
-    : `New contact form submission from ${escape(record.name)}`;
+    ? 'New bundle request from ' + escapeHtml(record.name)
+    : 'New contact form submission from ' + escapeHtml(record.name);
 
-  return `<!doctype html>
-<html><body style="margin:0;padding:24px;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#24292f;">
-  <table role="presentation" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:8px;border:1px solid #d0d7de;overflow:hidden;">
-    <tr>
-      <td style="padding:20px 24px;background:#0a2540;color:#ffffff;">
-        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#00d4ff;margin-bottom:6px;">Fighting Smart Cyber</div>
-        <h1 style="margin:0;font-size:20px;font-weight:700;">${title}</h1>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;">
-          ${rows(fields)}
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:14px 24px;background:#f6f8fa;color:#57606a;font-size:12px;">
-        Sent automatically from <a href="https://fightingsmartcyber.com" style="color:#0066cc;text-decoration:none;">fightingsmartcyber.com</a>.
-        Reply directly to this email to respond to the submitter.
-      </td>
-    </tr>
-  </table>
-</body></html>`;
+  return (
+    '<!doctype html><html><body style="margin:0;padding:24px;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#24292f;">' +
+      '<table role="presentation" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:8px;border:1px solid #d0d7de;overflow:hidden;">' +
+        '<tr><td style="padding:20px 24px;background:#0a2540;color:#ffffff;">' +
+          '<div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#00d4ff;margin-bottom:6px;">Fighting Smart Cyber</div>' +
+          '<h1 style="margin:0;font-size:20px;font-weight:700;">' + title + '</h1>' +
+        '</td></tr>' +
+        '<tr><td>' +
+          '<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;">' +
+            rows(fields) +
+          '</table>' +
+        '</td></tr>' +
+        '<tr><td style="padding:14px 24px;background:#f6f8fa;color:#57606a;font-size:12px;">' +
+          'Sent automatically from <a href="https://fightingsmartcyber.com" style="color:#0066cc;text-decoration:none;">fightingsmartcyber.com</a>. ' +
+          'Reply directly to this email to respond to the submitter.' +
+        '</td></tr>' +
+      '</table>' +
+    '</body></html>'
+  );
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    let body;
+    try {
+      body = await readJsonBody(req);
+    } catch (parseErr) {
+      console.error('JSON parse error', parseErr);
+      return res.status(400).json({ error: 'Invalid JSON body' });
+    }
+    if (!body || typeof body !== 'object') body = {};
+
+    if (!body.name || !isEmail(body.email) || !body.organization) {
+      return res.status(400).json({ error: 'Missing required fields (name, email, organization)' });
+    }
+
+    const record = buildRecord(body);
+    const supabaseUrl = process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
+
+    // 1. Persist to Supabase.
+    const supabaseRes = await fetch(supabaseUrl + '/rest/v1/submissions', {
+      method: 'POST',
+      headers: {
+        apikey: supabaseKey,
+        Authorization: 'Bearer ' + supabaseKey,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify(record),
+    });
+
+    if (!supabaseRes.ok) {
+      const detail = await supabaseRes.text().catch(() => '');
+      console.error('Supabase insert failed', supabaseRes.status, detail);
+      return res.status(500).json({ error: 'Failed to save submission', supabase_status: supabaseRes.status });
+    }
+
+    // 2. Send email via Resend (graceful skip if not configured).
+    const resendKey = process.env.RESEND_API_KEY;
+    if (!resendKey) {
+      console.warn('RESEND_API_KEY not set — skipping email notification');
+      return res.status(200).json({ success: true, emailed: false, reason: 'no_resend_key' });
+    }
+
+    const toEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
+    const subject =
+      record.form_type === 'bundle-request'
+        ? 'New bundle request from ' + record.name
+        : 'New contact form submission from ' + record.name;
+
+    const emailRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + resendKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [toEmail],
+        reply_to: record.email,
+        subject,
+        html: renderEmailHtml(record),
+      }),
+    });
+
+    if (!emailRes.ok) {
+      const detail = await emailRes.text().catch(() => '');
+      console.error('Resend send failed', emailRes.status, detail);
+      return res.status(200).json({ success: true, emailed: false, resend_status: emailRes.status });
+    }
+
+    return res.status(200).json({ success: true, emailed: true });
+  } catch (err) {
+    console.error('Unhandled error in /api/submit', err && err.stack ? err.stack : err);
+    return res
+      .status(500)
+      .json({ error: 'Internal error', message: err && err.message ? err.message : String(err) });
   }
-
-  const body = req.body && typeof req.body === 'object' ? req.body : {};
-
-  if (!body.name || !isEmail(body.email) || !body.organization) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  const record = buildRecord(body);
-  const supabaseUrl = process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
-
-  // 1. Persist to Supabase. This is the load-bearing step — if it fails, the
-  //    submission is lost, so return 500 and let the client surface it.
-  const supabaseRes = await fetch(`${supabaseUrl}/rest/v1/submissions`, {
-    method: 'POST',
-    headers: {
-      apikey: supabaseKey,
-      Authorization: `Bearer ${supabaseKey}`,
-      'Content-Type': 'application/json',
-      Prefer: 'return=minimal',
-    },
-    body: JSON.stringify(record),
-  });
-
-  if (!supabaseRes.ok) {
-    const detail = await supabaseRes.text().catch(() => '');
-    console.error('Supabase insert failed', supabaseRes.status, detail);
-    return res.status(500).json({ error: 'Failed to save submission' });
-  }
-
-  // 2. Send notification email. If Resend isn't configured, log and return
-  //    success — the form should not break because the email leg isn't set up.
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
-    console.warn('RESEND_API_KEY not set — skipping email notification');
-    return res.status(200).json({ success: true, emailed: false });
-  }
-
-  const toEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
-  const subject =
-    record.form_type === 'bundle-request'
-      ? `New bundle request from ${record.name}`
-      : `New contact form submission from ${record.name}`;
-
-  const emailRes = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${resendKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [toEmail],
-      reply_to: record.email,
-      subject,
-      html: renderEmailHtml(record),
-    }),
-  });
-
-  if (!emailRes.ok) {
-    const detail = await emailRes.text().catch(() => '');
-    console.error('Resend send failed', emailRes.status, detail);
-    // Submission is already saved; surface as partial success so the user
-    // still sees the success banner, but log so we know email is broken.
-    return res.status(200).json({ success: true, emailed: false });
-  }
-
-  return res.status(200).json({ success: true, emailed: true });
 }
