@@ -770,6 +770,7 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
    give the wide Hoplynk mark more height (contain = no distortion) */
 #client-logo-pallas[data-filled], .client-card img[src*="pallas"] { filter: brightness(2.1); }
 .client-card img[src*="hoplynk"] { max-height: 82px; }
+.client-card img[src*="defcon"] { max-width: 85%; max-height: 32px; }
 .client-cta { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
 .client-cta p { color: var(--ink-dim); font-size: 1rem; }
 @media (max-width: 1080px) { .client-grid { grid-template-columns: repeat(2, 1fr); } }
