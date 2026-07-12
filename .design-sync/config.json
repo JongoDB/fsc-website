@@ -1,0 +1,11 @@
+{
+  "projectId": "76bdecdd-d185-4f4b-9e56-4b5ecfd361a6",
+  "shape": "package",
+  "pkg": "fsc-website",
+  "globalName": "FscWebsite",
+  "entry": ".design-sync/entry.mjs",
+  "cssEntry": ".design-sync/.cache/ds-styles.css",
+  "buildCmd": "mkdir -p .design-sync/.cache && cat src/styles/main.css src/styles/modern.css src/styles/visuals.css > .design-sync/.cache/ds-styles.css",
+  "guidelinesGlob": [],
+  "readmeHeader": ".design-sync/conventions.md"
+}
