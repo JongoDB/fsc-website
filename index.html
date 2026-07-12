@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" data-motion="subtle">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fighting Smart Cyber | Operator-Led Offensive and Defensive Cyber Solutions</title>
+<meta name="description" content="Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber training, SOC platforms, and strategic advisory from proven cyber operations leaders.">
+<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_ds/fsc-design-system-76bdecdd-d185-4f4b-9e56-4b5ecfd361a6/styles.css">
+<link rel="stylesheet" href="assets/redesign.css">
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <a class="brand" href="index.html" aria-label="Fighting Smart Cyber home">
+    <img class="brand-logo" src="public/images/brand/white.png" alt="Fighting Smart Cyber">
+  </a>
+  <div class="nav-links">
+    <div class="nav-dd">
+      <a href="about/who-we-are.html">About <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="about/who-we-are.html">Who We Are</a>
+        <a href="about/leadership.html">Leadership</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="solutions/index.html">Solutions <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="solutions/ai-readiness-assessment.html">AI Readiness Assessment</a>
+        <a href="solutions/consulting.html">Consulting &amp; Advisory</a>
+        <a href="solutions/security-assessments.html">Security Assessments</a>
+        <a href="solutions/training.html">Training Services</a>
+        <a href="solutions/custom-saas.html">Custom SaaS Development</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="training/index.html">Training <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="training/custom-training.html">Custom Training</a>
+        <a href="training/cyber-kill-chain.html">Cyber Kill Chain</a>
+        <a href="training/incident-response.html">Incident Response</a>
+        <a href="training/kubernetes-security.html">Kubernetes Security</a>
+        <a href="training/threat-hunting.html">Threat Hunting</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="platforms/index.html">Platforms <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="platforms/soc-in-a-box.html">SOC-in-a-Box</a>
+        <a href="platforms/secure-kubernetes.html">Secure Runtime</a>
+        <a href="platforms/cyroid.html">CYROID</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="bundles/index.html">Bundles <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="bundles/devsecops-bundle.html">DevSecOps Bundle</a>
+        <a href="bundles/dfir-bundle.html">DFIR Bundle</a>
+        <a href="bundles/productivity-suite.html">Productivity Suite</a>
+        <a href="bundles/soc-stack.html">SOC Stack</a>
+        <a href="bundles/request-bundle.html">Request Bundle</a>
+      </div>
+    </div>
+    <a href="resources/index.html">Resources</a>
+    <a class="portal-link" href="client-portal.html">Client Portal</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn btn-ghost portal-btn" href="client-portal.html">Client Portal</a>
+    <a class="btn btn-primary" href="contact.html">Contact <span class="arw">→</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top" data-screen-label="Hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hud-tick hud-tl">FSC // GRID:04<br>SEC:HIGH</div>
+  <div class="hud-tick hud-tr" id="hud-coord">LAT 38.951  LON -77.146</div>
+  <div class="hud-tick hud-bl">STATUS: OPERATIONAL</div>
+  <div class="hud-tick hud-br">TS/SCI · OPERATOR-LED</div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow center reveal">Operator-Led Cyber Solutions</span>
+    <h1 class="display reveal" style="--d:.05s">Fight <span class="grad">Smarter</span>.<br>Think Like an <span class="grad">Operator</span>.</h1>
+    <p class="lead reveal" style="--d:.12s">Offensive and defensive cyber solutions from proven operations leaders with TS/SCI-level experience. We build, deploy, and operate — not just advise.</p>
+    <div class="hero-cta reveal" style="--d:.18s">
+      <a class="btn btn-primary" href="solutions/index.html">Explore Solutions <span class="arw">→</span></a>
+      <a class="btn btn-ghost" href="contact.html">Talk to an Operator</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STATS ================= -->
+<section class="stats" data-screen-label="Stats">
+  <div class="stat"><div class="stat-num"><span data-count="20">20</span><span class="u">+</span></div><div class="stat-lbl">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">TS<span class="u">/</span>SCI</div><div class="stat-lbl">Clearances</div></div>
+  <div class="stat"><div class="stat-num"><span data-count="100">100</span><span class="u">%</span></div><div class="stat-lbl">Operator-Led</div></div>
+  <div class="stat"><div class="stat-num"><span data-count="1000">1000</span><span class="u">+</span></div><div class="stat-lbl">Real-World Operations</div></div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Train</span><span>Deploy</span><span>Defend</span><span>Advise</span><span>Build</span><span>Operate</span>
+    <span>Train</span><span>Deploy</span><span>Defend</span><span>Advise</span><span>Build</span><span>Operate</span>
+  </div>
+</div>
+
+<!-- ================= SCROLL FRAMES: SEE THE FULL PICTURE ================= -->
+<section class="scroll-animation-section" id="scroll-animation" data-screen-label="See the Full Picture">
+  <div class="scroll-animation-sticky">
+    <canvas id="scroll-canvas" class="scroll-canvas" width="1880" height="1004"></canvas>
+    <div class="scroll-animation-overlay">
+      <div class="wrap">
+        <div class="scroll-animation-content reveal">
+          <span class="eyebrow">01 — Full Spectrum</span>
+          <h2>See the Full Picture.<br>Act with Precision.</h2>
+          <p>From strategic advisory and hands-on training to production-ready platforms and custom development — we deliver the full spectrum of cybersecurity capabilities your mission demands.</p>
+          <a class="btn btn-primary" href="solutions/index.html">View Our Solutions <span class="arw">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUTIONS ================= -->
+<section class="section" id="solutions" data-screen-label="Choose Your Mission" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center reveal">02 — Choose Your Mission</span>
+      <h2 class="section-title reveal" style="--d:.06s">Choose Your Mission</h2>
+      <p class="lead reveal" style="--d:.1s">Select the capability that matches your cybersecurity needs. From training to turnkey platforms, every solution is operator-tested.</p>
+    </div>
+    <div class="mission-grid reveal">
+      <!-- 01 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">01</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"></circle></svg></span></div>
+        <h3>Cyber Readiness Assessments</h3>
+        <p>Comprehensive gap analysis using the <span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span> framework to identify operational weaknesses.</p>
+        <a class="mcard-link" href="solutions/consulting.html">Learn More <span class="arw">→</span></a>
+      </article>
+      <!-- 02 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">02</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4L2 9l10 5 10-5-10-5z"></path><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"></path><path d="M22 9v6"></path></svg></span></div>
+        <h3>Operator-Led Training &amp; Labs</h3>
+        <p>Hands-on training from operators with real-world experience. <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>, <span class="tooltip-trigger">IR<span class="tooltip-inline">Incident Response</span></span>, threat hunting, red team perspectives, and Kubernetes security.</p>
+        <a class="mcard-link" href="training/index.html">View Courses <span class="arw">→</span></a>
+      </article>
+      <!-- 03 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">03</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg></span></div>
+        <h3>SOC-in-a-Box</h3>
+        <p>Turnkey, accreditation-ready security operations center. Kubernetes-based with integrated <span class="tooltip-trigger">SIEM<span class="tooltip-inline">Security Information and Event Management</span></span>, <span class="tooltip-trigger">EDR<span class="tooltip-inline">Endpoint Detection and Response</span></span>, threat intel, and vulnerability management.</p>
+        <a class="mcard-link" href="platforms/soc-in-a-box.html">Explore Platform <span class="arw">→</span></a>
+      </article>
+      <!-- 04 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">04</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z"></path><circle cx="12" cy="11" r="3"></circle></svg></span></div>
+        <h3>Secure Runtime Environment</h3>
+        <p>Opinionated, secure <span class="tooltip-trigger">K8s<span class="tooltip-inline">Kubernetes</span></span> baseline built with Zero Trust principles, comprehensive observability, and GitOps integration.</p>
+        <a class="mcard-link" href="platforms/secure-kubernetes.html">View Details <span class="arw">→</span></a>
+      </article>
+      <!-- 05 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">05</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span></div>
+        <h3>App Bundles &amp; Catalog</h3>
+        <p>Pre-curated software stacks: SOC bundles, <span class="tooltip-trigger">DFIR<span class="tooltip-inline">Digital Forensics and Incident Response</span></span> tools, productivity suites, DevSecOps stacks for any environment.</p>
+        <a class="mcard-link" href="bundles/index.html">Browse Catalog <span class="arw">→</span></a>
+      </article>
+      <!-- 06 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">06</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span></div>
+        <h3>Advisory &amp; Strategic Consulting</h3>
+        <p>Capability development, organizational design, acquisition strategy, Zero Trust roadmaps from leaders who've built and operated at scale.</p>
+        <a class="mcard-link" href="solutions/consulting.html">Schedule Call <span class="arw">→</span></a>
+      </article>
+      <!-- 07 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">07</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></span></div>
+        <h3>CYROID</h3>
+        <p>Enterprise cyber range orchestration platform. Deploy isolated, networked training environments in minutes with visual range builder, <span class="tooltip-trigger">MSEL<span class="tooltip-inline">Master Scenario Events List</span></span> automation, and web-based <span class="tooltip-trigger">VM<span class="tooltip-inline">Virtual Machine</span></span> console access.</p>
+        <a class="mcard-link" href="platforms/cyroid.html">Explore CYROID <span class="arw">→</span></a>
+      </article>
+      <!-- 08 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">08</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 12l9 5 9-5M3 16l9 5 9-5"></path></svg></span></div>
+        <h3>Custom SaaS Development</h3>
+        <p>Purpose-built applications tailored to your mission requirements. From workflow automation to specialized security tools, we design, build, and deploy secure cloud-native solutions that solve your unique challenges.</p>
+        <a class="mcard-link" href="solutions/custom-saas.html">Start a Project <span class="arw">→</span></a>
+      </article>
+      <!-- 09 -->
+      <article class="mcard">
+        <div class="mcard-top"><span class="mcard-idx">09</span>
+          <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"></circle><path d="M12 12l6-4"></path><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle><path d="M12 6a6 6 0 0 1 6 6"></path></svg></span></div>
+        <h3>Security Assessments</h3>
+        <p>Operator-led penetration testing, vulnerability assessments, and red team exercises. Find your weaknesses before adversaries do.</p>
+        <a class="mcard-link" href="solutions/security-assessments.html">Learn More <span class="arw">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about" data-screen-label="Operator-Led">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-body reveal-left">
+        <span class="eyebrow">03 — Who We Are</span>
+        <h2 style="margin-top:16px">Operator-Led.<br>Practitioner-First.</h2>
+        <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
+        <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber command experience, a senior officer with deep <span class="tooltip-trigger">DCO<span class="tooltip-inline">Defensive Cyber Operations</span></span>/<span class="tooltip-trigger">OCO<span class="tooltip-inline">Offensive Cyber Operations</span></span> expertise, and a senior enlisted leader who's built secure architectures from the ground up.</p>
+        <p>We think holistically in <strong><span class="tooltip-trigger">DOTMLPF-P<span class="tooltip-inline">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></span></strong> terms — understanding that effective cybersecurity requires alignment across all organizational dimensions.</p>
+        <a class="btn btn-primary" href="about/who-we-are.html" style="margin-top:28px">Learn More About Us <span class="arw">→</span></a>
+      </div>
+      <div class="hud reveal-right" style="--d:.1s">
+        <div class="hud-photo"><img src="public/images/site/operator-silhouette.jpg" alt=""></div>
+        <div class="hud-row"><span>MISSION CONTROL</span><span id="hud-clock">00:00:00 UTC</span></div>
+        <div class="hud-ops">
+          <div class="hud-op"><small>ENABLE</small><b>TRAIN</b><div class="bar"><i style="animation-delay:0s"></i></div></div>
+          <div class="hud-op"><small>OFFENSE</small><b>DEPLOY</b><div class="bar"><i style="animation-delay:.6s"></i></div></div>
+          <div class="hud-op"><small>DEFENSE</small><b>DEFEND</b><div class="bar"><i style="animation-delay:1.1s"></i></div></div>
+          <div class="hud-op"><small>STRATEGY</small><b>ADVISE</b><div class="bar"><i style="animation-delay:1.6s"></i></div></div>
+        </div>
+        <div class="hud-clock"><span class="live">LIVE OPS</span><span>DOTMLPF-P ALIGNED</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY FIGHTING SMART ================= -->
+<section class="section" id="why" data-screen-label="Why Fighting Smart" style="border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 55%, #000)">
+  <div class="wrap">
+    <div class="split">
+      <div class="radar-fig reveal-left">
+        <svg viewBox="0 0 440 380" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FSC capability radar: Train, Deploy, Defend, Advise">
+          <circle cx="220" cy="190" r="170" fill="url(#radarGlow)" opacity="0.12"></circle>
+          <circle cx="220" cy="190" r="160" stroke="rgba(0,168,255,0.1)" stroke-width="1"></circle>
+          <circle cx="220" cy="190" r="120" stroke="rgba(0,168,255,0.14)" stroke-width="1"></circle>
+          <circle cx="220" cy="190" r="80" stroke="rgba(0,168,255,0.18)" stroke-width="1"></circle>
+          <circle cx="220" cy="190" r="40" stroke="rgba(0,168,255,0.22)" stroke-width="1"></circle>
+          <line x1="220" y1="28" x2="220" y2="352" stroke="rgba(0,168,255,0.08)" stroke-width="0.8"></line>
+          <line x1="58" y1="190" x2="382" y2="190" stroke="rgba(0,168,255,0.08)" stroke-width="0.8"></line>
+          <line x1="107" y1="77" x2="333" y2="303" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"></line>
+          <line x1="333" y1="77" x2="107" y2="303" stroke="rgba(0,168,255,0.04)" stroke-width="0.5"></line>
+          <g stroke="rgba(0,168,255,0.15)" stroke-width="1">
+            <line x1="220" y1="28" x2="220" y2="38"></line>
+            <line x1="220" y1="342" x2="220" y2="352"></line>
+            <line x1="58" y1="190" x2="68" y2="190"></line>
+            <line x1="372" y1="190" x2="382" y2="190"></line>
+          </g>
+          <g class="radar-sweep">
+            <path d="M220 190 L220 28 A162 162 0 0 1 380 140 Z" fill="url(#sweepConeWide)" opacity="0.3"></path>
+            <path d="M220 190 L220 28 A162 162 0 0 1 320 80 Z" fill="url(#sweepConeTight)" opacity="0.5"></path>
+            <line x1="220" y1="190" x2="220" y2="28" stroke="url(#sweepLine)" stroke-width="2"></line>
+            <circle cx="220" cy="28" r="4" fill="#00a8ff" opacity="0.6"></circle>
+          </g>
+          <g class="radar-word radar-word-train">
+            <circle cx="220" cy="70" r="14" fill="rgba(0,168,255,0.08)" stroke="rgba(0,168,255,0.2)" stroke-width="1.5"></circle>
+            <circle cx="220" cy="70" r="3" class="radar-dot" fill="#00a8ff" opacity="0.5"></circle>
+            <text x="220" y="44" text-anchor="middle" class="radar-label" font-size="12" font-weight="800" font-family="Inter, sans-serif" letter-spacing="1.5">TRAIN</text>
+          </g>
+          <g class="radar-word radar-word-deploy">
+            <circle cx="340" cy="190" r="14" fill="rgba(0,168,255,0.08)" stroke="rgba(0,168,255,0.2)" stroke-width="1.5"></circle>
+            <circle cx="340" cy="190" r="3" class="radar-dot" fill="#00a8ff" opacity="0.5"></circle>
+            <text x="368" y="194" text-anchor="start" class="radar-label" font-size="12" font-weight="800" font-family="Inter, sans-serif" letter-spacing="1.5">DEPLOY</text>
+          </g>
+          <g class="radar-word radar-word-defend">
+            <circle cx="220" cy="310" r="14" fill="rgba(0,168,255,0.08)" stroke="rgba(0,168,255,0.2)" stroke-width="1.5"></circle>
+            <circle cx="220" cy="310" r="3" class="radar-dot" fill="#00a8ff" opacity="0.5"></circle>
+            <text x="220" y="340" text-anchor="middle" class="radar-label" font-size="12" font-weight="800" font-family="Inter, sans-serif" letter-spacing="1.5">DEFEND</text>
+          </g>
+          <g class="radar-word radar-word-advise">
+            <circle cx="100" cy="190" r="14" fill="rgba(0,168,255,0.08)" stroke="rgba(0,168,255,0.2)" stroke-width="1.5"></circle>
+            <circle cx="100" cy="190" r="3" class="radar-dot" fill="#00a8ff" opacity="0.5"></circle>
+            <text x="72" y="194" text-anchor="end" class="radar-label" font-size="12" font-weight="800" font-family="Inter, sans-serif" letter-spacing="1.5">ADVISE</text>
+          </g>
+          <circle cx="270" cy="85" r="3" fill="rgba(0,168,255,0.3)"></circle>
+          <circle cx="325" cy="130" r="2.5" fill="rgba(0,212,255,0.25)"></circle>
+          <circle cx="348" cy="245" r="2" fill="rgba(0,168,255,0.2)"></circle>
+          <circle cx="290" cy="305" r="3" fill="rgba(0,212,255,0.25)"></circle>
+          <circle cx="150" cy="300" r="2.5" fill="rgba(0,168,255,0.2)"></circle>
+          <circle cx="95" cy="135" r="2" fill="rgba(0,212,255,0.25)"></circle>
+          <circle cx="165" cy="75" r="2.5" fill="rgba(0,168,255,0.3)"></circle>
+          <circle cx="110" cy="250" r="2" fill="rgba(0,212,255,0.2)"></circle>
+          <circle cx="305" cy="85" r="2" fill="rgba(0,168,255,0.2)"></circle>
+          <circle cx="160" cy="130" r="1.5" fill="rgba(0,212,255,0.15)"></circle>
+          <circle cx="280" cy="260" r="1.5" fill="rgba(0,168,255,0.15)"></circle>
+          <circle cx="140" cy="240" r="2" fill="rgba(0,212,255,0.18)"></circle>
+          <circle cx="270" cy="85" r="3" fill="none" stroke="rgba(0,168,255,0.3)" stroke-width="0.8">
+            <animate attributeName="r" values="3;12;3" dur="4s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"></animate>
+          </circle>
+          <circle cx="150" cy="300" r="3" fill="none" stroke="rgba(0,212,255,0.25)" stroke-width="0.8">
+            <animate attributeName="r" values="3;10;3" dur="5s" begin="1.5s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="5s" begin="1.5s" repeatCount="indefinite"></animate>
+          </circle>
+          <circle cx="325" cy="130" r="2" fill="none" stroke="rgba(0,168,255,0.2)" stroke-width="0.5">
+            <animate attributeName="r" values="2;8;2" dur="3.5s" begin="3s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="3.5s" begin="3s" repeatCount="indefinite"></animate>
+          </circle>
+          <path d="M230 70 Q 310 100 340 180" stroke="rgba(0,168,255,0.1)" stroke-width="1" fill="none"></path>
+          <path d="M340 200 Q 310 280 230 310" stroke="rgba(0,212,255,0.08)" stroke-width="1" fill="none"></path>
+          <path d="M210 310 Q 130 280 100 200" stroke="rgba(0,168,255,0.1)" stroke-width="1" fill="none"></path>
+          <path d="M100 180 Q 130 100 210 70" stroke="rgba(0,212,255,0.08)" stroke-width="1" fill="none"></path>
+          <circle r="2" fill="#00a8ff" opacity="0.6">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M230 70 Q 310 100 340 180"></animateMotion>
+          </circle>
+          <circle r="2" fill="#00d4ff" opacity="0.5">
+            <animateMotion dur="7s" repeatCount="indefinite" begin="2s" path="M340 200 Q 310 280 230 310"></animateMotion>
+          </circle>
+          <circle r="1.5" fill="#00a8ff" opacity="0.5">
+            <animateMotion dur="8s" repeatCount="indefinite" begin="4s" path="M100 180 Q 130 100 210 70"></animateMotion>
+          </circle>
+          <circle cx="220" cy="190" r="36" fill="rgba(0,10,20,0.8)" stroke="rgba(0,168,255,0.35)" stroke-width="2"></circle>
+          <circle cx="220" cy="190" r="32" fill="none" stroke="rgba(0,168,255,0.12)" stroke-width="0.5"></circle>
+          <image href="public/images/brand/white.png" x="194" y="175" width="52" height="30" opacity="0.9"></image>
+          <circle cx="220" cy="190" r="36" fill="none" stroke="rgba(0,168,255,0.25)" stroke-width="1">
+            <animate attributeName="r" values="36;48;36" dur="3s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"></animate>
+          </circle>
+          <circle cx="220" cy="190" r="36" fill="none" stroke="rgba(0,212,255,0.15)" stroke-width="0.5">
+            <animate attributeName="r" values="36;56;36" dur="3s" begin="0.5s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.2;0;0.2" dur="3s" begin="0.5s" repeatCount="indefinite"></animate>
+          </circle>
+          <text x="66" y="46" fill="rgba(0,168,255,0.2)" font-size="7" font-family="monospace">00:00</text>
+          <text x="354" y="46" fill="rgba(0,168,255,0.2)" font-size="7" font-family="monospace">23:59</text>
+          <text x="66" y="365" fill="rgba(0,168,255,0.15)" font-size="7" font-family="monospace">GRID:04</text>
+          <text x="345" y="365" fill="rgba(0,168,255,0.15)" font-size="7" font-family="monospace">SEC:HIGH</text>
+          <defs>
+            <linearGradient id="sweepLine" x1="220" y1="190" x2="220" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00a8ff" stop-opacity="0"></stop>
+              <stop offset="30%" stop-color="#00a8ff" stop-opacity="0.3"></stop>
+              <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.8"></stop>
+            </linearGradient>
+            <radialGradient id="sweepConeWide" cx="220" cy="190" r="162" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00a8ff" stop-opacity="0"></stop>
+              <stop offset="60%" stop-color="#00a8ff" stop-opacity="0.06"></stop>
+              <stop offset="100%" stop-color="#00a8ff" stop-opacity="0.02"></stop>
+            </radialGradient>
+            <radialGradient id="sweepConeTight" cx="220" cy="190" r="162" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"></stop>
+              <stop offset="50%" stop-color="#00a8ff" stop-opacity="0.1"></stop>
+              <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.04"></stop>
+            </radialGradient>
+            <radialGradient id="radarGlow">
+              <stop offset="0%" stop-color="#00a8ff" stop-opacity="0.15"></stop>
+              <stop offset="100%" stop-color="#00a8ff" stop-opacity="0"></stop>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="split-body reveal-right" style="--d:.08s">
+        <span class="eyebrow">04 — Why Fighting Smart</span>
+        <h2 style="margin-top:16px">Why Fighting Smart?</h2>
+        <p>Most cybersecurity companies are led by sales teams or career consultants. We're different. Our founders have:</p>
+        <ul class="creds">
+          <li data-n="01"><span><b>Commanded cyber operations</b> at the highest levels</span></li>
+          <li data-n="02"><span><b>Conducted real offensive and defensive ops</b> in classified environments</span></li>
+          <li data-n="03"><span><b>Designed and built</b> secure architectures and cyber ranges</span></li>
+          <li data-n="04"><span><b>Navigated government acquisition</b> and compliance frameworks</span></li>
+          <li data-n="05"><span><b>Deployed full stacks</b> that are production-ready and exercise-tested</span></li>
+        </ul>
+        <p class="quote-text">"We bridge the gap between policy, acquisition, technology, and hands-on execution. That's what makes us different."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEADERSHIP ================= -->
+<section class="section" id="leadership" data-screen-label="Leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">05 — Leadership Team</span>
+        <h2 class="section-title">Leadership Team</h2>
+      </div>
+      <p class="lead reveal" style="--d:.08s">Proven operators with unmatched experience in cyber operations, command, and capability development</p>
+    </div>
+    <div class="lead-grid">
+      <article class="pcard reveal">
+        <div class="pcard-role">Chief Executive Officer</div>
+        <div class="pcard-tag">Retired Three-Star General | Cyber Domain Leader</div>
+        <p>Former elite cyber unit commander and pilot with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber defense.</p>
+      </article>
+      <article class="pcard reveal" style="--d:.08s">
+        <div class="pcard-role">Chief Operating Officer</div>
+        <div class="pcard-tag">Senior Enlisted | Defense Architecture Specialist</div>
+        <p>Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, and defensive cyber operations.</p>
+      </article>
+      <article class="pcard reveal" style="--d:.16s">
+        <div class="pcard-role">Chief Technology Officer</div>
+        <div class="pcard-tag">Senior Officer | Cyber Operations Technician</div>
+        <p>Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks.</p>
+      </article>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:44px">
+      <a class="btn btn-primary" href="about/leadership.html">View Full Leadership Profiles <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLIENTELE ================= -->
+<section class="section" id="clientele" data-screen-label="Clientele" style="border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 55%, #000)">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center reveal">06 — Clientele</span>
+      <h2 class="section-title reveal" style="--d:.06s">Who We Work With</h2>
+    </div>
+    <div class="client-grid reveal">
+      <div class="client-card"><img class="client-logo" src="public/images/clients/eso.webp" alt="ESO Architecture + Design" loading="lazy"></div>
+      <div class="client-card"><img class="client-logo" src="public/images/clients/pallas.webp" alt="Pallas Advisors" loading="lazy"></div>
+      <div class="client-card"><img class="client-logo" src="public/images/clients/defcon-ai.webp" alt="DEFCON AI" loading="lazy"></div>
+      <div class="client-card"><img class="client-logo" src="public/images/clients/hoplynk.webp" alt="Hoplynk" loading="lazy"></div>
+    </div>
+    <div class="client-cta reveal" style="--d:.08s">
+      <p>Interested in working together?</p>
+      <a class="btn btn-primary" href="contact.html">Partner With Us <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust" aria-label="Trusted credentials">
+  <div class="trust-track">
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="11" rx="2" stroke="currentColor" stroke-width="2"></rect><path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>TS/SCI Cleared</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"></circle><circle cx="12" cy="12" r="2" fill="currentColor"></circle></svg>Operator-Tested</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Accreditation-Ready</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle><path d="M2 12h20" stroke="currentColor" stroke-width="2"></path><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"></path></svg>Multi-Environment</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="11" rx="2" stroke="currentColor" stroke-width="2"></rect><path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>TS/SCI Cleared</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"></circle><circle cx="12" cy="12" r="2" fill="currentColor"></circle></svg>Operator-Tested</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"></path><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Accreditation-Ready</span>
+    <span class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle><path d="M2 12h20" stroke="currentColor" stroke-width="2"></path><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"></path></svg>Multi-Environment</span>
+  </div>
+</div>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact" data-screen-label="CTA">
+  <div class="wrap rel">
+    <span class="eyebrow center reveal">07 — Ready When You Are</span>
+    <h2 class="reveal" style="--d:.06s;margin-top:20px">Ready to Fight Smarter?</h2>
+    <p class="lead reveal" style="--d:.12s">Let's discuss how Fighting Smart Cyber can strengthen your cybersecurity posture. Training, platforms, or strategic advisory — we're here to help.</p>
+    <div class="cta-cta reveal" style="--d:.18s">
+      <a class="btn btn-primary" href="contact.html">Schedule a Call <span class="arw">→</span></a>
+      <a class="btn btn-ghost" href="contact.html">Request Information</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html"><img class="foot-logo" src="public/images/brand/white.png" alt="Fighting Smart Cyber"></a>
+        <p>Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber solutions from proven cyber operations leaders.</p>
+        <div class="foot-tagline">Operator-Led Offensive &amp; Defensive Cyber Solutions</div>
+      </div>
+      <div class="foot-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="solutions/ai-readiness-assessment.html">AI Readiness Assessment</a></li>
+          <li><a href="solutions/consulting.html">Cybersecurity Consulting</a></li>
+          <li><a href="solutions/security-assessments.html">Security Assessments</a></li>
+          <li><a href="solutions/training.html">Operator-Led Training</a></li>
+          <li><a href="platforms/soc-in-a-box.html">SOC-in-a-Box Platform</a></li>
+          <li><a href="platforms/secure-kubernetes.html">Secure Runtime Environment</a></li>
+          <li><a href="bundles/index.html">App Bundles &amp; Catalog</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about/who-we-are.html">Who We Are</a></li>
+          <li><a href="about/leadership.html">Leadership</a></li>
+          <li><a href="resources/index.html">Resources</a></li>
+          <li><a href="client-portal.html">Client Portal</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:team@fightingsmartcyber.com">team@fightingsmartcyber.com</a></li>
+          <li><a href="contact.html">Ready to discuss your mission? Let's talk.</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Fighting Smart Cyber. All rights reserved.</span>
+      <div class="foot-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="aup.html">Acceptable Use Policy</a>
+        <a href="privacy.html">Privacy &amp; Data Handling</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- radar sweep + word highlight animations (ported from MissionMap.astro) -->
+<style>
+  .radar-sweep { transform-origin: 220px 190px; animation: radarSweep 8s linear infinite; }
+  @keyframes radarSweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .radar-label { fill: rgba(0,168,255,0.3); transition: fill 0.3s ease; }
+  .radar-dot { transition: opacity 0.3s ease; }
+  .radar-word circle { transition: all 0.3s ease; }
+  .radar-word-train .radar-label { animation: highlightTrain 8s linear infinite; }
+  .radar-word-train circle:first-of-type { animation: glowTrain 8s linear infinite; }
+  .radar-word-train .radar-dot { animation: dotTrain 8s linear infinite; }
+  .radar-word-deploy .radar-label { animation: highlightDeploy 8s linear infinite; }
+  .radar-word-deploy circle:first-of-type { animation: glowDeploy 8s linear infinite; }
+  .radar-word-deploy .radar-dot { animation: dotDeploy 8s linear infinite; }
+  .radar-word-defend .radar-label { animation: highlightDefend 8s linear infinite; }
+  .radar-word-defend circle:first-of-type { animation: glowDefend 8s linear infinite; }
+  .radar-word-defend .radar-dot { animation: dotDefend 8s linear infinite; }
+  .radar-word-advise .radar-label { animation: highlightAdvise 8s linear infinite; }
+  .radar-word-advise circle:first-of-type { animation: glowAdvise 8s linear infinite; }
+  .radar-word-advise .radar-dot { animation: dotAdvise 8s linear infinite; }
+  @keyframes highlightTrain { 0%,3% { fill:#00d4ff; } 15%,90% { fill:rgba(0,168,255,0.3); } 97% { fill:rgba(0,168,255,0.6); } }
+  @keyframes glowTrain { 0%,3% { stroke:#00d4ff; stroke-width:2; fill:rgba(0,168,255,0.2); } 15%,90% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } 97% { stroke:rgba(0,168,255,0.4); fill:rgba(0,168,255,0.12); } }
+  @keyframes dotTrain { 0%,3% { opacity:1; } 15%,90% { opacity:0.5; } 97% { opacity:0.7; } }
+  @keyframes highlightDeploy { 0%,15% { fill:rgba(0,168,255,0.3); } 22%,28% { fill:#00d4ff; } 40%,100% { fill:rgba(0,168,255,0.3); } }
+  @keyframes glowDeploy { 0%,15% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } 22%,28% { stroke:#00d4ff; stroke-width:2; fill:rgba(0,168,255,0.2); } 40%,100% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } }
+  @keyframes dotDeploy { 0%,15% { opacity:0.5; } 22%,28% { opacity:1; } 40%,100% { opacity:0.5; } }
+  @keyframes highlightDefend { 0%,40% { fill:rgba(0,168,255,0.3); } 47%,53% { fill:#00d4ff; } 65%,100% { fill:rgba(0,168,255,0.3); } }
+  @keyframes glowDefend { 0%,40% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } 47%,53% { stroke:#00d4ff; stroke-width:2; fill:rgba(0,168,255,0.2); } 65%,100% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } }
+  @keyframes dotDefend { 0%,40% { opacity:0.5; } 47%,53% { opacity:1; } 65%,100% { opacity:0.5; } }
+  @keyframes highlightAdvise { 0%,65% { fill:rgba(0,168,255,0.3); } 72%,78% { fill:#00d4ff; } 90%,100% { fill:rgba(0,168,255,0.3); } }
+  @keyframes glowAdvise { 0%,65% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } 72%,78% { stroke:#00d4ff; stroke-width:2; fill:rgba(0,168,255,0.2); } 90%,100% { stroke:rgba(0,168,255,0.2); stroke-width:1.5; fill:rgba(0,168,255,0.08); } }
+  @keyframes dotAdvise { 0%,65% { opacity:0.5; } 72%,78% { opacity:1; } 90%,100% { opacity:0.5; } }
+  [data-motion="off"] .radar-sweep,
+  [data-motion="off"] .radar-word .radar-label,
+  [data-motion="off"] .radar-word circle,
+  [data-motion="off"] .radar-word .radar-dot { animation: none !important; }
+  [data-motion="off"] .radar-label { fill: rgba(0,168,255,0.7) !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .radar-sweep, .radar-word .radar-label, .radar-word circle, .radar-word .radar-dot { animation: none !important; }
+    .radar-label { fill: rgba(0,168,255,0.7) !important; }
+  }
+</style>
+
+<!-- bundler splash -->
+<template id="__bundler_thumbnail">
+  <div style="width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%, #0a2540, #05070d)">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;letter-spacing:.1em;color:#00d4ff;border:2px solid rgba(0,212,255,.4);border-radius:16px;padding:24px 30px">FSC</div>
+  </div>
+</template>
+
+<!-- scripts -->
+<script src="assets/globe.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/scroll-frames.js"></script>
+</body>
+</html>

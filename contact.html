@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-motion="subtle">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Fighting Smart Cyber</title>
+<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_ds/fsc-design-system-76bdecdd-d185-4f4b-9e56-4b5ecfd361a6/styles.css">
+<link rel="stylesheet" href="assets/redesign.css">
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <a class="brand" href="index.html" aria-label="Fighting Smart Cyber home">
+    <img class="brand-logo" src="public/images/brand/white.png" alt="Fighting Smart Cyber">
+  </a>
+  <div class="nav-links">
+    <div class="nav-dd">
+      <a href="about/who-we-are.html">About <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="about/who-we-are.html">Who We Are</a>
+        <a href="about/leadership.html">Leadership</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="solutions/index.html">Solutions <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="solutions/ai-readiness-assessment.html">AI Readiness Assessment</a>
+        <a href="solutions/consulting.html">Consulting &amp; Advisory</a>
+        <a href="solutions/security-assessments.html">Security Assessments</a>
+        <a href="solutions/training.html">Training Services</a>
+        <a href="solutions/custom-saas.html">Custom SaaS Development</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="training/index.html">Training <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="training/custom-training.html">Custom Training</a>
+        <a href="training/cyber-kill-chain.html">Cyber Kill Chain</a>
+        <a href="training/incident-response.html">Incident Response</a>
+        <a href="training/kubernetes-security.html">Kubernetes Security</a>
+        <a href="training/threat-hunting.html">Threat Hunting</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="platforms/index.html">Platforms <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="platforms/soc-in-a-box.html">SOC-in-a-Box</a>
+        <a href="platforms/secure-kubernetes.html">Secure Runtime</a>
+        <a href="platforms/cyroid.html">CYROID</a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a href="bundles/index.html">Bundles <span class="caret">▾</span></a>
+      <div class="dd-menu">
+        <a href="bundles/devsecops-bundle.html">DevSecOps Bundle</a>
+        <a href="bundles/dfir-bundle.html">DFIR Bundle</a>
+        <a href="bundles/productivity-suite.html">Productivity Suite</a>
+        <a href="bundles/soc-stack.html">SOC Stack</a>
+        <a href="bundles/request-bundle.html">Request Bundle</a>
+      </div>
+    </div>
+    <a href="resources/index.html">Resources</a>
+    <a class="portal-link" href="client-portal.html">Client Portal</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn btn-ghost portal-btn" href="client-portal.html">Client Portal</a>
+    <a class="btn btn-primary" href="contact.html">Contact <span class="arw">→</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero" data-screen-label="Contact Hero">
+  <div class="wrap">
+    <span class="eyebrow center reveal">Contact</span>
+    <h1 class="reveal" style="--d:.05s;margin-top:18px">Get in <span class="grad">Touch</span></h1>
+    <p class="lead reveal" style="--d:.1s">Let's discuss how Fighting Smart Cyber can help strengthen your cybersecurity posture</p>
+  </div>
+</header>
+
+<section class="section" data-screen-label="Contact Form" style="padding-top:40px">
+  <div class="wrap">
+    <div class="form-card reveal">
+      <h2 style="text-align:center;margin-bottom:34px;font-size:1.6rem">Contact Us</h2>
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
+          <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="organization">Organization *</label><input type="text" id="organization" name="organization" required></div>
+          <div class="form-group"><label for="role">Role/Title</label><input type="text" id="role" name="role"></div>
+        </div>
+        <div class="form-group"><label for="orgType">Type of Organization *</label>
+          <select id="orgType" name="orgType" required>
+            <option value="">Select an option</option>
+            <option value="government">Government</option>
+            <option value="dib">Defense Industrial Base (DIB)</option>
+            <option value="critical-infra">Critical Infrastructure</option>
+            <option value="smb">Small/Medium Business</option>
+            <option value="enterprise">Enterprise</option>
+            <option value="contractor">Government Contractor</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="interest">I'm interested in *</label>
+          <select id="interest" name="interest" required>
+            <option value="">Select an option</option>
+            <optgroup label="Solutions">
+              <option value="ai-readiness">AI Readiness Assessment</option>
+              <option value="consulting">Consulting &amp; Advisory</option>
+              <option value="security-assessments">Security Assessments</option>
+              <option value="custom-saas">Custom SaaS Development</option>
+            </optgroup>
+            <optgroup label="Training">
+              <option value="training">Operator-Led Training</option>
+            </optgroup>
+            <optgroup label="Platforms">
+              <option value="soc-self">SOC-in-a-Box (Self-Service)</option>
+              <option value="soc-managed">SOC-in-a-Box (Managed)</option>
+              <option value="secure-runtime">Secure Runtime Environment</option>
+              <option value="cyroid">CYROID Cyber Range</option>
+            </optgroup>
+            <optgroup label="Bundles">
+              <option value="app-bundles">App Bundles &amp; Catalog</option>
+            </optgroup>
+            <option value="other">Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="timeframe">Urgency/Timeframe *</label>
+          <select id="timeframe" name="timeframe" required>
+            <option value="">Select an option</option>
+            <option value="asap">ASAP</option>
+            <option value="30-days">Within 30 days</option>
+            <option value="60-90-days">60-90 days</option>
+            <option value="exploring">Exploring options</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Tell us about your mission, requirements, or questions..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-image-section" data-screen-label="Other Ways to Reach Us" style="border-top:1px solid var(--line)">
+  <img src="public/images/site/contact-bg.jpg" alt="" class="bg-image" loading="lazy">
+  <div class="bg-image-overlay"></div>
+  <div class="wrap rel">
+    <div class="section-head center">
+      <span class="eyebrow center reveal">Other Channels</span>
+      <h2 class="section-title reveal" style="--d:.06s">Other Ways to Reach Us</h2>
+    </div>
+    <div class="value-grid reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div class="vcard">
+        <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 6l-10 7L2 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <h3>Email</h3>
+        <p><a href="mailto:team@fightingsmartcyber.com">team@fightingsmartcyber.com</a></p>
+      </div>
+      <div class="vcard">
+        <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.61.68 2.36a2 2 0 01-.45 2.11L8.09 9.44a16 16 0 006.47 6.47l1.25-1.25a2 2 0 012.11-.45c.75.32 1.55.55 2.36.68A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <h3>Schedule a Call</h3>
+        <p>Use the form above to request a call, and we'll reach out to schedule a time that works for you.</p>
+      </div>
+      <div class="vcard">
+        <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg></div>
+        <h3>Location</h3>
+        <p>United States<br>Supporting clients globally</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var form = this;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    try {
+      var res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'contact',
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          organization: document.getElementById('organization').value,
+          role: document.getElementById('role').value,
+          orgType: document.getElementById('orgType').value,
+          interest: document.getElementById('interest').value,
+          timeframe: document.getElementById('timeframe').value,
+          message: document.getElementById('message').value
+        })
+      });
+      if (!res.ok) throw new Error('Submit failed: HTTP ' + res.status);
+      showSuccessBanner();
+      form.reset();
+    } catch (err) {
+      console.error('Error:', err);
+      alert('Sorry, there was an error sending your message. Please try again or email us directly at team@fightingsmartcyber.com');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  function showSuccessBanner() {
+    var banner = document.getElementById('successBanner');
+    if (banner) banner.remove();
+    banner = document.createElement('div');
+    banner.id = 'successBanner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);color:#04121f;padding:20px;text-align:center;z-index:10000;box-shadow:0 4px 20px rgba(0,0,0,.3)';
+    var h = document.createElement('h3');
+    h.style.cssText = 'margin:0 0 8px;font-size:20px;font-weight:700';
+    h.textContent = '\u2713 Message Sent Successfully!';
+    var p = document.createElement('p');
+    p.style.cssText = 'margin:0;font-size:15px;opacity:.85';
+    p.textContent = "Thank you for reaching out! Your message has been received and we'll get back to you soon. We typically respond within 24-48 hours.";
+    banner.appendChild(h); banner.appendChild(p);
+    document.body.appendChild(banner);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(function(){ if (banner.parentNode) banner.remove(); }, 8000);
+  }
+</script>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html"><img class="foot-logo" src="public/images/brand/white.png" alt="Fighting Smart Cyber"></a>
+        <p>Fight smarter by thinking like an operator. Operator-led offensive and defensive cyber solutions from proven cyber operations leaders.</p>
+        <div class="foot-tagline">Operator-Led Offensive &amp; Defensive Cyber Solutions</div>
+      </div>
+      <div class="foot-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="solutions/ai-readiness-assessment.html">AI Readiness Assessment</a></li>
+          <li><a href="solutions/consulting.html">Cybersecurity Consulting</a></li>
+          <li><a href="solutions/security-assessments.html">Security Assessments</a></li>
+          <li><a href="solutions/training.html">Operator-Led Training</a></li>
+          <li><a href="platforms/soc-in-a-box.html">SOC-in-a-Box Platform</a></li>
+          <li><a href="platforms/secure-kubernetes.html">Secure Runtime Environment</a></li>
+          <li><a href="bundles/index.html">App Bundles &amp; Catalog</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about/who-we-are.html">Who We Are</a></li>
+          <li><a href="about/leadership.html">Leadership</a></li>
+          <li><a href="resources/index.html">Resources</a></li>
+          <li><a href="client-portal.html">Client Portal</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:team@fightingsmartcyber.com">team@fightingsmartcyber.com</a></li>
+          <li><a href="contact.html">Ready to discuss your mission? Let's talk.</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Fighting Smart Cyber. All rights reserved.</span>
+      <div class="foot-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="aup.html">Acceptable Use Policy</a>
+        <a href="privacy.html">Privacy &amp; Data Handling</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

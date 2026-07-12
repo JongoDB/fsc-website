@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+# Fighting Smart Cyber — Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Static site for [fightingsmartcyber.com](https://fightingsmartcyber.com). Plain HTML/CSS/JS — no framework, no build step.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
 ```text
 /
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+├── index.html            Homepage
+├── about/  solutions/  training/  platforms/  bundles/  resources/
+│                         Site pages (one .html per route)
+├── assets/               Shared CSS (redesign.css) and JS (site.js, globe.js, scroll-frames.js)
+├── _ds/                  FSC design-system token bundle (loaded before redesign.css)
+├── public/               Images, favicons, and other static assets
+├── api/submit.js         Vercel serverless function — contact / bundle-request /
+│                         invoice-resend form submissions, emailed via Resend
+└── vercel.json           Clean URLs, security headers, static deploy config
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Local development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Any static file server works. To match Vercel's clean-URL behavior (`/about/who-we-are` → `about/who-we-are.html`):
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+npx serve .
+```
 
-## 🧞 Commands
+Form submissions require the serverless function, which `serve` doesn't run. To exercise forms locally use `vercel dev`, or test against production.
 
-All commands are run from the root of the project, from a terminal:
+## Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Pushes to `main` deploy to production via Vercel. `vercel.json` pins the project to a no-build static deploy; `api/` functions deploy automatically.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Required env var (already set in Vercel): `RESEND_API_KEY` — used by `api/submit.js` to email form submissions to team@fightingsmartcyber.com. Optional: `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`.
