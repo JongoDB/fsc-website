@@ -229,6 +229,13 @@ header.hero, header.page-hero {
 .dd-menu .dd-head { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); padding: 8px 12px 4px; }
 .brand-logo { height: 30px; width: auto; display: block; }
 
+/* desktop: equal flex on both sides so .nav-links sits at true center
+   (space-between alone skews it left — brand is narrower than nav-right) */
+@media (min-width: 1081px) {
+  .brand { flex: 1 1 0; }
+  .nav-right { flex: 1 1 0; justify-content: flex-end; }
+}
+
 @media (max-width: 1080px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }

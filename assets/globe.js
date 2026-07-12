@@ -54,7 +54,9 @@
   /* ---------- scene data ---------- */
   let R = 240;
   let nodes = [], arcs = [], gridPts = [], stars = [], netNodes = [];
-  let curX = -1000, curY = -1000; // cursor (network mode)
+  let curX = -1000, curY = -1000; // cursor (network + grid modes)
+  let scx = -1000, scy = -1000;   // smoothed cursor (grid push)
+  let gridProjPrev = null;        // last frame's projected grid, for screen-space cursor influence
 
   function sph(lat, lon, rad) {
     return {
@@ -89,6 +91,7 @@
     for (let ix = 0; ix < G; ix++) for (let iz = 0; iz < G; iz++) {
       gridPts.push({ gx: -span / 2 + ix * step, gz: -span / 2 + iz * step, ix, iz, G });
     }
+    gridProjPrev = null;
 
     // background stars
     stars = [];
@@ -213,13 +216,30 @@
     const tilt = p => rotY(rotX(p, ax), ay);
     const amp = motion === 'off' ? 0 : 1;
 
-    // vertices with wave height
-    const proj = gridPts.map(g => {
+    // smoothed cursor — trails the real cursor so the push feels physical
+    if (curX < -500) { scx = -1000; scy = -1000; }
+    else if (scx < -500) { scx = curX; scy = curY; }
+    else { scx += (curX - scx) * 0.16; scy += (curY - scy) * 0.16; }
+    const PUSH_R = Math.max(120, Math.min(W, H) * 0.16);
+    const PUSH_DEPTH = 60;
+
+    // vertices with wave height + cursor depression (screen-space influence
+    // uses last frame's projection — one frame of lag is invisible)
+    const proj = gridPts.map((g, idx) => {
       const d = Math.hypot(g.gx, g.gz);
-      const h = Math.sin(d * 0.02 - t * 1.6) * 26 * amp + Math.sin(g.gx * 0.03 + t) * 10 * amp;
+      let h = Math.sin(d * 0.02 - t * 1.6) * 26 * amp + Math.sin(g.gx * 0.03 + t) * 10 * amp;
+      let infl = 0;
+      const prev = gridProjPrev && gridProjPrev[idx];
+      if (prev && amp && scx > -500) {
+        const ds = Math.hypot(prev.x - scx, prev.y - scy);
+        infl = Math.max(0, 1 - ds / PUSH_R);
+        infl *= infl;
+        h -= infl * PUSH_DEPTH;
+      }
       const p = tilt({ x: g.gx, y: -h - 40, z: g.gz });
-      return { ...project(p.x, p.y, p.z), h, ix: g.ix, iz: g.iz, G: g.G };
+      return { ...project(p.x, p.y, p.z), h, infl, ix: g.ix, iz: g.iz, G: g.G };
     });
+    gridProjPrev = proj;
     const at = (ix, iz) => proj[ix * gridPts[0].G + iz];
     const G = gridPts[0].G;
 
@@ -231,13 +251,17 @@
     }
     function line(p, q) {
       const hot = Math.max(p.h, q.h);
-      const a = 0.05 + Math.min(0.5, Math.max(0, hot / 40) * 0.5);
-      ctx.strokeStyle = rgba(hot > 14 ? accent2 : accent, a);
+      const push = Math.max(p.infl, q.infl);
+      const a = 0.05 + Math.min(0.5, Math.max(0, hot / 40) * 0.5) + push * 0.35;
+      ctx.strokeStyle = rgba(push > 0.22 ? accent2 : hot > 14 ? accent2 : accent, Math.min(0.85, a));
+      ctx.lineWidth = 1 + push * 0.8;
       ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
     }
-    // peak nodes
+    ctx.lineWidth = 1;
+    // peak nodes + cursor-push rim glow
     for (const p of proj) {
       if (p.h > 20) { ctx.fillStyle = rgba(accent2, 0.8); ctx.beginPath(); ctx.arc(p.x, p.y, 1.8, 0, 7); ctx.fill(); }
+      else if (p.infl > 0.4) { ctx.fillStyle = rgba(accent2, 0.25 + p.infl * 0.45); ctx.beginPath(); ctx.arc(p.x, p.y, 1.2 + p.infl * 1.4, 0, 7); ctx.fill(); }
     }
   }
 
@@ -372,16 +396,16 @@
   window.addEventListener('resize', resize);
   resize();
 
-  // cursor tracking for the network mode (canvas is pointer-transparent,
-  // so listen on the hero section it fills)
-  const heroEl = canvas.closest('.hero') || canvas.parentElement;
-  if (heroEl) {
-    heroEl.addEventListener('mousemove', (e) => {
+  // cursor tracking (grid scatter + network mode). Window-level so the grid
+  // reacts wherever the mouse roams while the hero is on screen — the canvas
+  // itself is pointer-transparent. Fine pointers only (no touch ghosts).
+  if (window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('mousemove', (e) => {
       const r = canvas.getBoundingClientRect();
       curX = e.clientX - r.left;
       curY = e.clientY - r.top;
-    });
-    heroEl.addEventListener('mouseleave', () => { curX = -1000; curY = -1000; });
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', () => { curX = -1000; curY = -1000; });
   }
 
   // pause when off-screen for perf
