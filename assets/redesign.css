@@ -963,13 +963,17 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 /* ============================================================
    CLIENTELE
    ============================================================ */
-.client-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+/* Five partners. Column counts are chosen so no row is ever left with a
+   single stranded card: 5 -> one row, 3 -> 3+2, 2 -> 2+2 with the last card
+   spanning the full width, 1 -> a plain stack. */
+.client-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 .client-card {
   border: 1px solid var(--line); border-radius: 14px;
   min-height: 108px; display: grid; place-items: center; text-align: center;
   padding: 22px 18px; background: var(--panel);
   font-weight: 800; font-size: clamp(1.02rem, 1.4vw, 1.22rem);
   letter-spacing: -0.01em; color: var(--ink); text-wrap: balance;
+  text-decoration: none;
   transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
 .client-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); background: var(--panel-2); }
@@ -986,10 +990,19 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 #client-logo-pallas[data-filled], .client-card img[src*="pallas"] { filter: brightness(2.1); }
 .client-card img[src*="hoplynk"] { max-height: 82px; }
 .client-card img[src*="defcon"] { max-width: 85%; max-height: 32px; }
+.client-card img[src*="core-thread"] { max-height: 40px; }
 .client-cta { margin-top: 36px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
 .client-cta p { color: var(--ink-dim); font-size: 1rem; }
-@media (max-width: 1080px) { .client-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .client-grid { grid-template-columns: 1fr; } .client-card { min-height: 78px; } }
+@media (max-width: 1080px) { .client-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) {
+  .client-grid { grid-template-columns: repeat(2, 1fr); }
+  .client-grid > :last-child { grid-column: span 2; }
+}
+@media (max-width: 520px) {
+  .client-grid { grid-template-columns: 1fr; }
+  .client-grid > :last-child { grid-column: auto; }
+  .client-card { min-height: 78px; }
+}
 
 /* ============================================================
    TRUST STRIP
