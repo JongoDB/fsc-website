@@ -9,13 +9,13 @@
   /* tweakable — production defaults: 2nd accent pair, black bg, subtle motion */
   --accent: #0066cc;
   --accent-2: #00a8ff;
-  --bg: #000000;
+  --bg: #08090b;
   --type-scale: 1;
 
   /* derived surface palette (dark) */
   --ink: #eef3fb;
   --ink-dim: #9aa7bd;
-  --ink-faint: #5d6b83;
+  --ink-faint: #737f92;   /* 4.91:1 on --bg; #5d6b83 measured 3.70 and failed AA */
   --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.16);
   --panel: rgba(255, 255, 255, 0.025);
@@ -29,6 +29,20 @@
   --gutter: clamp(20px, 5vw, 64px);
 
   --dur: 0.6;             /* motion multiplier — subtle default, tweak-driven */
+
+  /* ---- motion system ----
+     Strong curves + UI-tier durations. Built-in CSS easings are too weak to
+     read as intentional; ease-in is never used (it delays the exact moment
+     the user is watching). Reference: emilkowalski/skills. */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --t-press:  140ms;   /* press feedback            */
+  --t-hover:  200ms;   /* hover / colour change     */
+  --t-reveal: 260ms;   /* scroll-reveal entrance    */
+  --t-return: 420ms;   /* settle back from 3D tilt  */
+  --stagger:   45ms;   /* per-item cascade step     */
+  --lift:      -3px;   /* the one hover-lift value  */
+  --press:     0.97;   /* button press scale        */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,8 +83,28 @@ body::before {
   z-index: 0;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-2); }
+/* --accent (#0066cc) measures 3.58:1 on this ground — every prose link on the
+   site failed AA. --accent-2 is 7.63:1. The homepage hid this because its links
+   are .mcard-link / .svc-item, which already used --accent-2. */
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { color: #fff; }
+
+/* Keyboard focus. This layer defined no focus state at all, so every control
+   fell back to the UA ring or, where a reset had removed it, to nothing.
+   :focus-visible keeps it off mouse clicks and on for keyboard traversal. */
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* the bundle rings a/button at (0,1,1) — match it so one ring governs */
+a:focus-visible,
+button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
+/* and it fires button:focus on mouse click; a ring should mean keyboard */
+:focus:not(:focus-visible) { outline: none; }
+/* the ring needs to clear the element, and cards/nav clip their own overflow */
+.mcard:focus-within { z-index: 3; }
+.btn:focus-visible { outline-offset: 4px; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 .rel { position: relative; z-index: 1; }
@@ -106,16 +140,12 @@ a:hover { color: var(--accent-2); }
   text-transform: uppercase;
 }
 
-h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
 .display {
   font-size: clamp(2.6rem, 7vw, 5.4rem);
-  font-weight: 900;
+  font-weight: 800;
 }
-.grad {
-  background: linear-gradient(115deg, var(--accent) 0%, var(--accent-2) 60%, #fff 130%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
+.grad { color: var(--accent-2); }
 
 .lead { color: var(--ink-dim); font-size: clamp(1.05rem, 1.6vw, 1.32rem); font-weight: 400; line-height: 1.6; }
 
@@ -128,18 +158,16 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .3s, background .3s, border-color .3s;
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out), border-color var(--t-hover) var(--ease-out);
   white-space: nowrap;
 }
-.btn .arw { transition: transform .3s cubic-bezier(.2,.7,.3,1); }
-.btn:hover .arw { transform: translateX(4px); }
+.btn .arw { transition: transform var(--t-hover) var(--ease-out); }
 .btn-primary {
-  background: var(--accent); color: #04121f;
+  background: var(--accent); color: #fff;
   box-shadow: 0 0 0 0 var(--glow), 0 10px 30px -12px var(--glow);
 }
 .btn-primary:hover {
-  color: #04121f;
-  transform: translateY(-2px);
+  color: #fff;
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent), 0 18px 44px -14px var(--glow);
 }
 .btn-ghost {
@@ -147,7 +175,18 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
   border-color: var(--line-strong);
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 }
-.btn-ghost:hover { border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+.btn-ghost:hover { border-color: var(--accent); color: #fff; }
+
+/* Hover lift and the arrow nudge are pointer-only: touch fires :hover on tap
+   and latches it there. Press feedback is universal — every pressable thing
+   must visibly acknowledge the press. */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover           { transform: translateY(var(--lift)); }
+  .btn:hover .arw      { transform: translateX(4px); }
+}
+.btn:active,
+.btn-primary:active,
+.btn-ghost:active { transform: scale(var(--press)); transition-duration: var(--t-press); }
 
 /* neutralize DS bundle's bare-header (sticky nav) rule on hero headers */
 header.hero, header.page-hero {
@@ -170,7 +209,10 @@ header.hero, header.page-hero {
   background: color-mix(in srgb, var(--bg) 72%, transparent);
   -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
   border-bottom: 1px solid transparent;
-  transition: border-color .4s, background .4s, padding .4s;
+  /* padding is a layout property — it can't run on the compositor. Kept
+     because the nav genuinely shrinks, but pulled down to UI tempo so the
+     one-shot reflow is over quickly. */
+  transition: border-color var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out), padding var(--t-hover) var(--ease-out);
 }
 .nav.scrolled { border-bottom-color: var(--line); padding-top: 10px; padding-bottom: 10px; }
 .brand { display: flex; align-items: center; gap: 11px; }
@@ -202,7 +244,11 @@ header.hero, header.page-hero {
    buttons under 768px, which is too tall for the fixed header */
 .nav-right .btn { padding: 0.5em 1.15em !important; min-height: 0 !important; border-radius: 7px; }
 @media (max-width: 768px) {
-  .nav-right .btn { min-height: 38px !important; }
+  /* was 38px, which undercut the 44px touch target this sheet already applies
+     to the footer and dropdown links. The nav grows ~6px on phones; that is
+     the right trade for a control this important. */
+  .nav-right .btn { min-height: 44px !important; }
+  .nav-toggle { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
 }
 .nav-toggle { display: none; background: none; border: 0; color: #fff; cursor: pointer; padding: 6px; }
 
@@ -267,10 +313,23 @@ header.hero, header.page-hero {
   border-bottom: 1px dotted var(--accent-2);
   cursor: help;
 }
+/* The trigger is a real <button> so a keyboard or screen-reader user can reach
+   the definition at all — it used to be a bare <span>, unreachable without a
+   mouse. Strip the UA chrome so it still reads as a word in running text. */
+button.tooltip-trigger {
+  display: inline; appearance: none; -webkit-appearance: none;
+  background: none; border: 0; border-bottom: 1px dotted var(--accent-2);
+  padding: 0; margin: 0;
+  font: inherit; color: inherit; line-height: inherit; text-align: inherit;
+}
 .tooltip-inline {
   position: absolute; bottom: calc(100% + 9px); left: 50%;
-  transform: translateX(-50%) translateY(5px);
-  width: max-content; max-width: 250px;
+  /* The bubble is centred on the word, so a trigger near a viewport edge threw
+     up to half of it off-screen. --tt-shift (set by site.js, 0 whenever it
+     already fits) slides it back in; the arrow below compensates so it keeps
+     pointing at the word. */
+  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(5px);
+  width: max-content; max-width: min(250px, calc(100vw - 32px));
   background: color-mix(in srgb, var(--bg) 82%, #000);
   border: 1px solid var(--line-strong); border-radius: 8px;
   padding: 7px 10px;
@@ -283,10 +342,15 @@ header.hero, header.page-hero {
   box-shadow: 0 14px 40px -12px rgba(0,0,0,.9);
 }
 .tooltip-inline::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  content: ''; position: absolute; top: 100%;
+  /* cancel the bubble's shift so the arrow stays on the word, clamped so it
+     can never walk off the bubble's own rounded corners */
+  left: clamp(10px, calc(50% - var(--tt-shift, 0px)), calc(100% - 10px));
+  transform: translateX(-50%);
   border: 5px solid transparent; border-top-color: var(--line-strong);
 }
-.tooltip-trigger:hover .tooltip-inline { opacity: 1; visibility: visible; transform: translateX(-50%); }
+.tooltip-trigger:hover .tooltip-inline,
+.tooltip-trigger:focus-visible .tooltip-inline { opacity: 1; visibility: visible; transform: translateX(calc(-50% + var(--tt-shift, 0px))); }
 
 /* ============================================================
    HERO
@@ -332,7 +396,7 @@ header.hero, header.page-hero {
 .stat { padding: 34px var(--gutter); border-left: 1px solid var(--line); }
 .stat:first-child { border-left: 0; }
 .stat-num { font-size: clamp(2rem, 3.4vw, 2.9rem); font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-.stat-num .u { color: var(--accent-2); }
+.stat-num .u { color: var(--ink-faint); }
 .stat-lbl { margin-top: 8px; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
 @media (max-width: 720px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
@@ -343,13 +407,7 @@ header.hero, header.page-hero {
 /* ============================================================
    MARQUEE
    ============================================================ */
-.marquee { overflow: hidden; border-bottom: 1px solid var(--line); padding: 18px 0; }
-.marquee-track { display: flex; gap: 3rem; width: max-content; animation: marq calc(28s / var(--dur)) linear infinite; }
-.marquee-track span {
-  font-family: var(--mono); font-weight: 500; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-dim); display: inline-flex; align-items: center; gap: 3rem;
-}
-.marquee-track span::after { content: '/'; color: var(--accent); }
+/* the verb marquee lived here; marq still drives the trust strip */
 @keyframes marq { to { transform: translateX(-50%); } }
 
 /* ============================================================
@@ -362,7 +420,7 @@ header.hero, header.page-hero {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(70% 90% at 50% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
 }
-.page-hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 900; position: relative; }
+.page-hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); position: relative; }
 .page-hero .lead { margin: 20px auto 0; max-width: 56ch; position: relative; }
 .page-hero .eyebrow { position: relative; }
 
@@ -394,11 +452,11 @@ header.hero, header.page-hero {
 @media (max-width: 620px) { .feature-grid { grid-template-columns: 1fr; } }
 .fitem {
   border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px;
-  background: var(--panel); transition: border-color .35s, transform .35s, background .35s;
+  background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
-.fitem:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(-3px); background: var(--panel-2); }
+.fitem:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(var(--lift)); background: var(--panel-2); }
 .fitem h3 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
-.fitem h3::before { content: ''; width: 7px; height: 7px; flex: none; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); transform: rotate(45deg); }
+.fitem h3::before { content: ''; width: 7px; height: 7px; flex: none; background: var(--ink-faint); transform: rotate(45deg); }
 .fitem p { color: var(--ink-dim); font-size: 0.9rem; line-height: 1.65; margin-top: 10px; }
 
 /* value cards (icon-topped, centered) */
@@ -407,15 +465,15 @@ header.hero, header.page-hero {
 @media (max-width: 620px) { .value-grid { grid-template-columns: 1fr; } }
 .vcard {
   border: 1px solid var(--line); border-radius: 16px; padding: 30px 24px; text-align: center;
-  background: var(--panel); transition: border-color .35s, transform .35s;
+  background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.vcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(-4px); }
+.vcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
 .vicon {
   width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
   display: grid; place-items: center;
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-  color: var(--accent-2);
+  background: var(--panel-2);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
 }
 .vicon svg { width: 26px; height: 26px; }
 .vcard h3 { font-size: 1.12rem; font-weight: 700; }
@@ -433,7 +491,7 @@ header.hero, header.page-hero {
 /* prose lists inside split-body */
 .split-body ul.plain { margin-top: 16px; padding-left: 0; list-style: none; display: grid; gap: 9px; }
 .split-body ul.plain li { color: var(--ink-dim); font-size: 0.98rem; line-height: 1.6; padding-left: 22px; position: relative; }
-.split-body ul.plain li::before { content: ''; position: absolute; left: 4px; top: 0.62em; width: 6px; height: 6px; background: var(--accent); transform: rotate(45deg); }
+.split-body ul.plain li::before { content: ''; position: absolute; left: 4px; top: 0.62em; width: 6px; height: 6px; background: var(--ink-faint); transform: rotate(45deg); }
 .split-body ul.plain li strong, .split-body ul.plain li b { color: var(--ink); }
 
 /* course cards (training catalog) */
@@ -442,9 +500,9 @@ header.hero, header.page-hero {
   border: 1px solid var(--line); border-radius: 16px; padding: 30px 30px 26px;
   background: color-mix(in srgb, var(--bg) 72%, transparent);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  transition: border-color .35s, transform .35s;
+  transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.course-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(-3px); }
+.course-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
 .course-card h3 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
 .course-meta { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 14px; }
 .course-meta-item { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-dim); }
@@ -458,15 +516,15 @@ header.hero, header.page-hero {
 .delivery-option {
   display: flex; gap: 18px; align-items: flex-start;
   border: 1px solid var(--line); border-radius: 14px; padding: 22px;
-  background: var(--panel); transition: border-color .35s, transform .35s;
+  background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.delivery-option:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(-3px); }
+.delivery-option:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(var(--lift)); }
 .delivery-option-icon {
   width: 44px; height: 44px; flex: none; border-radius: 10px;
   display: grid; place-items: center;
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: var(--accent-2);
+  border: 1px solid var(--line-strong);
+  background: var(--panel-2);
+  color: var(--ink-dim);
 }
 .delivery-option-icon svg { width: 21px; height: 21px; }
 .delivery-option h4 { font-size: 1.05rem; font-weight: 700; }
@@ -600,7 +658,7 @@ html::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--accent) 30%
 html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accent) 50%, transparent); }
 
 /* touch tooltip open state */
-.tooltip-trigger.tt-open .tooltip-inline { opacity: 1; visibility: visible; transform: translateX(-50%); }
+.tooltip-trigger.tt-open .tooltip-inline { opacity: 1; visibility: visible; transform: translateX(calc(-50% + var(--tt-shift, 0px))); }
 
 /* ============================================================
    MOBILE QA FIXES (audited at 390×844)
@@ -608,12 +666,12 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 /* inline grid-template styles (3-col/2-col section grids) must collapse
    on small screens — !important defeats the per-section inline styles */
 @media (max-width: 700px) {
-  .mission-grid, .feature-grid, .value-grid, .lead-grid, .course-list {
+  .mission-grid:not(.tiered), .feature-grid, .value-grid, .lead-grid, .course-list {
     grid-template-columns: 1fr !important;
   }
 }
 @media (min-width: 701px) and (max-width: 1080px) {
-  .mission-grid, .feature-grid, .value-grid {
+  .mission-grid:not(.tiered), .feature-grid, .value-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
@@ -629,22 +687,43 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
   .foot-legal { gap: 8px 18px; }
   .foot-legal a { display: inline-flex; align-items: center; min-height: 44px; }
   .cta-cta .btn, .hero-cta .btn { width: 100%; max-width: 320px; justify-content: center; }
+  /* every standalone control clears 44px on touch; inline links in running
+     prose are exempt and stay as they are */
+  .btn { min-height: 44px; }
+  .brand { min-height: 44px; align-items: center; }
+  .linkedin-link { min-height: 44px; }
 }
 
 /* ============================================================
    SECTION SHELL
    ============================================================ */
 .section { position: relative; padding: clamp(80px, 12vh, 150px) 0; }
-.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 54px; }
-.section-head.center { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
-.section-title { font-size: clamp(2rem, 4.4vw, 3.4rem); font-weight: 800; max-width: 18ch; margin-top: 14px; }
+/* Two fixed columns rather than flex-wrap. With wrapping, whether the lead sat
+   beside the heading or dropped beneath it came down to how many characters the
+   title happened to have — the same component landing two different ways on
+   sibling pages. A heading with no lead spans the full width.
+   (.section-head.center is gone; every section head is left-aligned now. Page
+   heroes and CTAs stay centred via .eyebrow.center / .cta.) */
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 24px clamp(32px, 5vw, 80px);
+  margin-bottom: 54px;
+}
+.section-head > :only-child { grid-column: 1 / -1; }
+@media (max-width: 900px) { .section-head { grid-template-columns: 1fr; } }
+.section-title { font-size: clamp(2rem, 4.4vw, 3.4rem); font-weight: 700; max-width: 18ch; margin-top: 14px; }
 .section-head .lead { max-width: 46ch; }
-.section-head.center .lead { max-width: 60ch; }
 
 /* ============================================================
    MISSION / SOLUTIONS GRID  (3D tilt cards)
    ============================================================ */
-.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+/* overflow: clip, not hidden — hidden makes this a scroll container, and a
+   view() timeline resolves against its nearest scroll container. That made
+   every scroll-driven reveal inside it degenerate (progress pinned at 1).
+   clip does the same visual clipping without the scroll container. */
+.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: clip; }
 @media (max-width: 940px) { .mission-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .mission-grid { grid-template-columns: 1fr; } }
 
@@ -654,12 +733,12 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
   padding: 30px 28px 26px;
   min-height: 240px;
   display: flex; flex-direction: column;
-  transition: background .4s;
+  transition: background var(--t-hover) var(--ease-out), transform var(--t-return) var(--ease-out);
   transform-style: preserve-3d;
   will-change: transform;
 }
 .mcard::before { /* hover glow that follows cursor */
-  content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .4s;
+  content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity var(--t-hover) var(--ease-out);
   background: radial-gradient(240px 240px at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   pointer-events: none;
 }
@@ -670,14 +749,106 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 .mcard-ico {
   width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
   border: 1px solid var(--line-strong); background: var(--panel-2);
-  color: var(--accent-2);
+  color: var(--ink-dim);
 }
 .mcard-ico svg { width: 20px; height: 20px; }
 .mcard h3 { font-size: 1.32rem; font-weight: 700; margin-top: 22px; letter-spacing: -0.02em; transform: translateZ(24px); }
 .mcard p { color: var(--ink-dim); font-size: 0.94rem; line-height: 1.6; margin-top: 10px; flex: 1; transform: translateZ(16px); }
 .mcard-link { margin-top: 18px; font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.06em; color: var(--accent-2); display: inline-flex; align-items: center; gap: 8px; transform: translateZ(20px); }
-.mcard-link .arw { transition: transform .3s; }
-.mcard:hover .mcard-link .arw { transform: translateX(5px); }
+.mcard-link .arw { transition: transform var(--t-hover) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .mcard:hover .mcard-link .arw { transform: translateX(5px); }
+}
+.mcard-link:active { transform: translateZ(20px) scale(var(--press)); transition: transform var(--t-press) var(--ease-out); }
+/* while the pointer is driving the tilt, transitions would lag the cursor */
+.mcard.tilting,
+.stagger.in > .mcard.tilting { transition: background var(--t-hover) var(--ease-out); }
+
+/* ---- offer hierarchy (homepage) ----
+   Nine equal cards asserted that the flagship platform and an advisory
+   engagement deserve identical attention. The site's own IA already separates
+   three Platforms from six Solutions — the layout now says what the nav says.
+   Six columns so a lead can span all of them and two majors can halve them. */
+.mission-grid.tiered { grid-template-columns: repeat(6, 1fr); }
+.mission-grid.tiered .is-lead  { grid-column: span 6; }
+.mission-grid.tiered .is-major { grid-column: span 3; }
+@media (max-width: 820px) {
+  .mission-grid.tiered { grid-template-columns: 1fr; }
+  .mission-grid.tiered .is-lead,
+  .mission-grid.tiered .is-major { grid-column: span 1; }
+}
+
+.mcard-kind {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.mcard.is-lead { padding: clamp(30px, 4vw, 44px) clamp(28px, 3.4vw, 40px) clamp(28px, 3vw, 36px); }
+.mcard.is-lead h3 { font-size: clamp(1.7rem, 3.2vw, 2.35rem); margin-top: clamp(20px, 2.4vw, 30px); }
+.mcard.is-lead > p { font-size: 1.05rem; max-width: 64ch; flex: none; }
+
+/* capability names lifted verbatim from the SOC-in-a-Box page, not invented */
+.spec {
+  /* 8 tags in an even grid. As free-flowing flex they wrapped 7 + 1, leaving
+     DOCUMENTATION orphaned on a line of its own — the wrap point depended on
+     the character count of the tags, not on any decision. 4 and 2 both divide
+     8 evenly, so every row is full at every width. */
+  list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px; margin-top: 24px; transform: translateZ(12px);
+}
+.spec li {
+  font-family: var(--mono); font-size: 0.67rem; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink-dim);
+  border: 1px solid var(--line); border-radius: 5px;
+  padding: 7px 11px; background: var(--panel); text-align: center;
+  transition: border-color var(--t-hover) var(--ease-out), color var(--t-hover) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .spec li:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--ink); }
+}
+/* Stay on the grid all the way down. Falling back to flex at narrow widths
+   reintroduced exactly the orphan it was meant to cure — the long tags flowed
+   3, 1, 1, 1, 1, 1. Two columns divides 8 evenly; the two-word tags wrap to a
+   second line inside their cell and the row stretches to match. */
+@media (max-width: 1080px) { .spec { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.spec li { display: flex; align-items: center; justify-content: center; }
+.mcard.is-lead .mcard-link { margin-top: 26px; }
+
+/* ---- solutions: the six that are services, not products ---- */
+.svc {
+  /* clip, not hidden — see .mission-grid: hidden would make this a scroll
+     container and pin the rows' view() timelines at progress 1 */
+  margin-top: 20px; border: 1px solid var(--line); border-radius: 16px; overflow: clip;
+}
+.svc-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; padding: 20px clamp(20px, 2.6vw, 30px);
+  border-bottom: 1px solid var(--line);
+}
+.svc-list {
+  list-style: none; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+}
+.svc-item {
+  position: relative;
+  background: var(--bg); padding: 24px clamp(20px, 2.6vw, 30px) 22px;
+  transition: background var(--t-hover) var(--ease-out);
+}
+/* stretch the heading's link over the whole row so the tap target is the card */
+.svc-item h4 a::after { content: ''; position: absolute; inset: 0; }
+/* ...but keep the acronym buttons in the description above that overlay,
+   or the stretched link would swallow every tooltip in the list */
+.svc-item .tooltip-trigger { z-index: 2; }
+.svc-item h4 a:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: -4px; border-radius: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .svc-item:hover { background: var(--panel); }
+  .svc-item:hover h4 a { color: var(--accent-2); }
+}
+.svc-item h4 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; }
+.svc-item h4 a { color: var(--ink); }
+.svc-item h4 a:hover { color: var(--accent-2); }
+.svc-item p { color: var(--ink-dim); font-size: 0.88rem; line-height: 1.6; margin-top: 9px; }
+@media (max-width: 940px) { .svc-list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .svc-list { grid-template-columns: 1fr; } }
 
 /* ============================================================
    ABOUT / SPLIT
@@ -690,7 +861,7 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 .creds { list-style: none; margin-top: 28px; display: grid; gap: 2px; border-top: 1px solid var(--line); }
 .creds li { display: flex; gap: 14px; align-items: baseline; padding: 15px 4px; border-bottom: 1px solid var(--line); color: var(--ink-dim); font-size: 0.98rem; }
 .creds li b { color: var(--ink); font-weight: 600; }
-.creds li::before { content: attr(data-n); font-family: var(--mono); color: var(--accent); font-size: 0.72rem; letter-spacing: 0.1em; flex: none; }
+.creds li::before { content: attr(data-n); font-family: var(--mono); color: var(--ink-faint); font-size: 0.72rem; letter-spacing: 0.1em; flex: none; }
 
 /* HUD panel */
 .hud {
@@ -709,16 +880,53 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 .hud::before { content: ''; position: absolute; inset: 0; background: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 34px 34px; opacity: .5; -webkit-mask-image: radial-gradient(80% 80% at 70% 30%, #000, transparent); mask-image: radial-gradient(80% 80% at 70% 30%, #000, transparent); }
 .hud-row { position: relative; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
 .hud-ops { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.hud-op { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--panel); }
+.hud-op {
+  border: 1px solid var(--line); border-radius: 10px; padding: 16px 16px 14px;
+  background: var(--panel);
+  transition: border-color var(--t-hover) var(--ease-out),
+              background var(--t-hover) var(--ease-out),
+              transform var(--t-hover) var(--ease-out);
+}
+/* The rule draws to full width — it is a reveal, not a gauge. A bar that stops
+   at 62% would be reading out a number nothing measures; one that completes is
+   simply an underline arriving. Motion here answers the reader, not a fiction. */
+.op-rule {
+  position: relative;
+  display: block; height: 2px; margin-top: 13px; border-radius: 2px;
+  background: var(--line-strong); overflow: hidden;
+}
+/* Continuously growing and shrinking, matching production. Driven with
+   scaleX rather than width: the visual is identical, but width relayouts on
+   every frame where a transform stays on the compositor. */
+@keyframes op-pulse {
+  0%, 100% { transform: scaleX(0.3); }
+  50%      { transform: scaleX(0.92); }
+}
+.op-rule i {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0.3); transform-origin: left;
+  transition: filter var(--t-hover) var(--ease-out);
+}
+.hud.in .op-rule i {
+  animation: op-pulse calc(3s / var(--dur)) ease-in-out infinite;
+  animation-delay: var(--od, 0s);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hud-op:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    background: var(--panel-2);
+    transform: translateY(var(--lift));
+  }
+  .hud-op:hover .op-rule i { filter: brightness(1.45); animation-duration: calc(1.5s / var(--dur)); }
+}
+.hud-op:active { transform: scale(var(--press)); transition-duration: var(--t-press); }
 .hud-op b { display: block; font-family: var(--mono); font-size: 1.05rem; letter-spacing: 0.08em; color: #fff; }
 .hud-op small { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent-2); }
-.hud-op .bar { height: 3px; margin-top: 12px; border-radius: 2px; background: var(--line-strong); overflow: hidden; }
-.hud-op .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); animation: barpulse calc(3s / var(--dur)) ease-in-out infinite; }
-@keyframes barpulse { 0%,100% { width: 30%; } 50% { width: 92%; } }
+/* the pulsing progress bars that used to live here encoded nothing — removed */
 .hud-clock { position: relative; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--ink-dim); display: flex; justify-content: space-between; }
 .hud-clock .live { color: var(--accent-2); display: inline-flex; align-items: center; gap: 7px; }
-.hud-clock .live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2); animation: blink calc(1.4s / var(--dur)) step-end infinite; }
-@keyframes blink { 50% { opacity: .2; } }
+.hud-clock .live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2); }
 
 /* ---------- Why Fighting Smart (radar illustration) ---------- */
 .quote-text {
@@ -740,8 +948,8 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
    ============================================================ */
 .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 820px) { .lead-grid { grid-template-columns: 1fr; } }
-.pcard { border: 1px solid var(--line); border-radius: 16px; padding: 28px; background: var(--panel); transition: border-color .4s, transform .4s; position: relative; overflow: hidden; }
-.pcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(-4px); }
+.pcard { border: 1px solid var(--line); border-radius: 16px; padding: 28px; background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out); position: relative; overflow: hidden; }
+.pcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
 .pcard-role { font-family: var(--mono); font-size: 0.92rem; letter-spacing: 0.16em; color: var(--accent-2); text-transform: uppercase; }
 .pcard-tag { font-size: 1.15rem; font-weight: 700; margin-top: 14px; letter-spacing: -0.02em; }
 .pcard p { color: var(--ink-dim); font-size: 0.92rem; line-height: 1.6; margin-top: 12px; }
@@ -762,9 +970,9 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
   padding: 22px 18px; background: var(--panel);
   font-weight: 800; font-size: clamp(1.02rem, 1.4vw, 1.22rem);
   letter-spacing: -0.01em; color: var(--ink); text-wrap: balance;
-  transition: border-color .35s, transform .35s, background .35s;
+  transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
-.client-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(-3px); background: var(--panel-2); }
+.client-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); background: var(--panel-2); }
 /* logo drop-slots: the component's empty-state text/ring are dark-on-transparent,
    so give the slot a light backdrop until an image is dropped (data-filled) */
 .client-card image-slot:not([data-filled]) {
@@ -778,7 +986,7 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 #client-logo-pallas[data-filled], .client-card img[src*="pallas"] { filter: brightness(2.1); }
 .client-card img[src*="hoplynk"] { max-height: 82px; }
 .client-card img[src*="defcon"] { max-width: 85%; max-height: 32px; }
-.client-cta { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.client-cta { margin-top: 36px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
 .client-cta p { color: var(--ink-dim); font-size: 1rem; }
 @media (max-width: 1080px) { .client-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .client-grid { grid-template-columns: 1fr; } .client-card { min-height: 78px; } }
@@ -789,14 +997,14 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 .trust { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 26px 0; background: color-mix(in srgb, var(--bg) 60%, #000); }
 .trust-track { display: flex; gap: 4rem; width: max-content; animation: marq calc(34s / var(--dur)) linear infinite; }
 .trust-track .ti { display: inline-flex; align-items: center; gap: 4rem; font-weight: 600; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
-.trust-track .ti::before { content: ''; width: 8px; height: 8px; border: 1px solid var(--accent); transform: rotate(45deg); }
+.trust-track .ti::before { content: ''; width: 8px; height: 8px; border: 1px solid var(--line-strong); transform: rotate(45deg); }
 
 /* ============================================================
    CTA
    ============================================================ */
 .cta { position: relative; text-align: center; padding: clamp(90px, 14vh, 160px) 0; overflow: hidden; }
 .cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 100% at 50% 100%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%); pointer-events: none; }
-.cta h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 900; }
+.cta h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; }
 .cta .lead { margin: 22px auto 0; max-width: 52ch; }
 .cta-cta { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
@@ -822,27 +1030,142 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 /* ============================================================
    SCROLL REVEAL
    ============================================================ */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1); transition-delay: var(--d, 0s); }
-.reveal.in { opacity: 1; transform: none; }
+/* `translate`, not `transform`: transform is contested — the mission cards
+   drive it from JS for the tilt, .pcard uses it for the hover lift, and the
+   scroll-driven reveals below need it too. translate is an independent
+   property, so the reveal composes with all three instead of fighting them. */
+.reveal { opacity: 0; translate: 0 12px; transition: opacity var(--t-reveal) var(--ease-out), translate var(--t-reveal) var(--ease-out); transition-delay: var(--d, 0s); }
+.reveal.in { opacity: 1; translate: none; }
+
+/* .stagger cascades its own children instead of fading in as one slab.
+   Steps stay short — long delays read as a slow page, and the cascade must
+   never gate interaction. Capped at 8 so a 9-up grid still lands quickly.
+
+   .in drives the entrance; site.js swaps it for .done once the cascade has
+   played. That swap matters: the entrance delay lives on the .in state, and
+   leaving it there would postpone every later hover on the card by up to
+   300ms. After .done the child is back under its own component transition. */
+.stagger > * { opacity: 0; translate: 0 10px; }
+.stagger.in > * { opacity: 1; translate: none; transition: opacity var(--t-reveal) var(--ease-out), translate var(--t-reveal) var(--ease-out); }
+.stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+.stagger.in > *:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+.stagger.in > *:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
+.stagger.in > *:nth-child(4) { transition-delay: calc(var(--stagger) * 3); }
+.stagger.in > *:nth-child(5) { transition-delay: calc(var(--stagger) * 4); }
+.stagger.in > *:nth-child(6) { transition-delay: calc(var(--stagger) * 5); }
+.stagger.in > *:nth-child(7) { transition-delay: calc(var(--stagger) * 6); }
+.stagger.in > *:nth-child(n+8) { transition-delay: calc(var(--stagger) * 7); }
+.stagger.done > * { opacity: 1; translate: none; }
+
+/* ============================================================
+   SCROLL-DRIVEN PLATFORM REVEALS
+   The .stagger cascade above fires once at 12% visibility and then stops
+   caring where the page is. These three cards instead track scroll position
+   continuously — the card's state is a function of how far it has travelled
+   through the viewport, so scrolling back up runs it backwards. Native view()
+   timelines run off the main thread; no JS, no scroll listener.
+
+   Two deliberate choices:
+   · @supports gates the whole thing. Where view() is unavailable the
+     IntersectionObserver cascade is untouched and still does the work.
+   · The reveal animates `translate`, not `transform`. The cards carry a
+     JS-driven 3D tilt on `transform`, and a filling animation on that
+     property would override the inline tilt permanently — the hover would
+     simply stop working once you scrolled past. `translate` is an independent
+     property that composes with `transform` instead of fighting it.
+   ============================================================ */
+@keyframes platform-enter {
+  from { opacity: 0; translate: 0 30px; }
+  to   { opacity: 1; translate: none; }
+}
+@keyframes spec-settle {
+  from { opacity: 0; translate: 0 10px; }
+  to   { opacity: 1; translate: none; }
+}
+/* smaller travel for the rows — a 30px rise on a short row reads as a lurch */
+@keyframes row-enter {
+  from { opacity: 0; translate: 0 18px; }
+  to   { opacity: 1; translate: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .mission-grid.tiered > .mcard {
+      animation: platform-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 88%;
+    }
+    /* the two majors sit side by side and would otherwise move in lockstep */
+    .mission-grid.tiered > .mcard.is-major:last-of-type {
+      animation-range: entry 16% entry 96%;
+    }
+    /* the tags settle after their card, on a later range of the same timeline */
+    .mcard.is-lead .spec li {
+      animation: spec-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 26% entry 100%;
+    }
+
+    /* the six service rows — the wrapper's own fade would double with them */
+    .svc.reveal { opacity: 1; translate: none; }
+    .svc-item {
+      animation: row-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 78%;
+    }
+    /* three to a row, so offset by column or they arrive in lockstep */
+    .svc-item:nth-child(3n+2) { animation-range: entry 16% entry 84%; }
+    .svc-item:nth-child(3n+3) { animation-range: entry 22% entry 90%; }
+
+    /* leadership cards, same idea across their three columns */
+    .lead-grid .pcard {
+      animation: row-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 80%;
+    }
+    .lead-grid .pcard:nth-child(2) { animation-range: entry 17% entry 87%; }
+    .lead-grid .pcard:nth-child(3) { animation-range: entry 24% entry 94%; }
+  }
+}
+
+/* the site's own motion toggle still wins over all of it */
+[data-motion="off"] .mission-grid.tiered > .mcard,
+[data-motion="off"] .mcard.is-lead .spec li,
+[data-motion="off"] .svc-item,
+[data-motion="off"] .lead-grid .pcard {
+  animation: none; opacity: 1; translate: none;
+}
 
 /* left/right slide-ins (ported from original .scroll-animate-left/right) */
-.reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity .8s ease-out, transform .8s ease-out; transition-delay: var(--d, 0s); }
-.reveal-right { opacity: 0; transform: translateX(50px); transition: opacity .8s ease-out, transform .8s ease-out; transition-delay: var(--d, 0s); }
-.reveal-left.in, .reveal-right.in { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; translate: -20px 0; transition: opacity var(--t-reveal) var(--ease-out), translate var(--t-reveal) var(--ease-out); transition-delay: var(--d, 0s); }
+.reveal-right { opacity: 0; translate: 20px 0; transition: opacity var(--t-reveal) var(--ease-out), translate var(--t-reveal) var(--ease-out); transition-delay: var(--d, 0s); }
+.reveal-left.in, .reveal-right.in { opacity: 1; translate: none; }
 
 /* motion off */
-[data-motion="off"] .marquee-track,
-[data-motion="off"] .trust-track,
-[data-motion="off"] .hud-op .bar i,
-[data-motion="off"] .hud-clock .live::before { animation: none; }
+[data-motion="off"] .trust-track { animation: none; }
 [data-motion="off"] .reveal,
 [data-motion="off"] .reveal-left,
-[data-motion="off"] .reveal-right { transition: none; opacity: 1; transform: none; }
-[data-motion="off"] .hud-op .bar i { width: 70%; }
+[data-motion="off"] .reveal-right { transition: none; opacity: 1; translate: none; }
+[data-motion="off"] .stagger > * { opacity: 1; translate: none; }
+[data-motion="off"] .op-rule i { animation: none; transform: scaleX(0.7); }
 
+/* Reduced motion means fewer and gentler animations, not zero: colour and
+   opacity still aid comprehension — it's positional movement that goes. */
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-left, .reveal-right { transition: none; opacity: 1; transform: none; }
+  .reveal, .reveal-left, .reveal-right { transition: none; opacity: 1; translate: none; }
+  .stagger > * { opacity: 1; translate: none; }
+  .op-rule i { animation: none; transform: scaleX(0.7); }
+  .hud-op:hover { transform: none; }
+  .trust-track { animation: none; }
+  .btn:hover, .fitem:hover, .vcard:hover, .course-card:hover,
+  .delivery-option:hover, .pcard:hover, .client-card:hover { transform: none; }
   html { scroll-behavior: auto; }
+}
+
+/* Touch devices fire :hover on tap and leave it stuck there. */
+@media (hover: none), (pointer: coarse) {
+  .fitem:hover, .vcard:hover, .course-card:hover,
+  .delivery-option:hover, .pcard:hover, .client-card:hover { transform: none; }
 }
 
 /* ============================================================
@@ -852,6 +1175,9 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
    ============================================================ */
 .hero { background: none; }
 .hero::before { content: none; }
+/* the bundle sets .hero h1 { font-weight: 900 } at (0,1,1), which out-specifies
+   .display — Inter at 900 is what makes a hero read as generated */
+.hero h1, .page-hero h1 { font-weight: 800; }
 .nav-links a::after { content: none; }
 .btn::before, .btn-primary::before { content: none; }
 .course-card h3 { color: var(--ink); }
@@ -861,8 +1187,24 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 .legal-content h2, .legal-content h3 { color: var(--ink); border: 0; }
 .legal-content > p { color: var(--ink-dim); }
 .legal-meta { background: var(--panel); color: var(--ink-dim); }
+.legal-meta p { color: var(--ink-dim); }
+
+/* Emphasis and sub-headings still inherited the bundle's light-theme navy,
+   #0a2540 — 1.28:1 on near-black, i.e. invisible. The token itself can't be
+   retargeted because five background gradients also read from it, so these
+   are the text uses that actually surface on the dark pages. */
+.legal-content strong, .legal-content b, .legal-content h4,
+.legal-meta strong, .legal-emphasis,
+.wrap h4, .section h4, .split-body h4, .delivery-option h4,
+.course-card h4, .fitem h4, .vcard h4 { color: var(--ink); }
 .legal-toc { background: var(--panel); }
 .legal-emphasis { background: none; color: var(--ink); }
+/* the bundle out-specifies the bare selectors: .legal-content a is (0,1,1) and
+   .legal-content .legal-emphasis is (0,2,0). Match them — this sheet loads
+   second, so an equal-specificity rule wins. */
+.legal-content a { color: var(--accent-2); }
+.legal-content a:hover { color: #fff; }
+.legal-content .legal-emphasis { color: var(--ink); background: none; }
 .legal-contact-block { background: transparent; border-radius: 0; padding-top: 6px; padding-bottom: 6px; }
 .legal-contact-block p { color: var(--ink-dim); }
 .legal-contact-block strong { color: var(--ink); }

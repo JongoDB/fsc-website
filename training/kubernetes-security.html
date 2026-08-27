@@ -91,7 +91,7 @@
       <div class="split-body reveal">
         <span class="eyebrow">01 — Overview</span>
         <h2 style="margin-top:16px">Course Overview</h2>
-        <p>Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, <span class="tooltip-trigger">RBAC<span class="tooltip-inline">Role-Based Access Control</span></span>, secrets management, runtime security, and compliance frameworks.</p>
+        <p>Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, <button type="button" class="tooltip-trigger" aria-describedby="tt-1">RBAC<span class="tooltip-inline" id="tt-1" role="tooltip">Role-Based Access Control</span></button>, secrets management, runtime security, and compliance frameworks.</p>
         <p>Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies. This is hands-on technical training for DevOps engineers and platform teams.</p>
         <h3 style="font-size:1.3rem;margin-top:32px">Course Details</h3>
         <ul class="plain">
@@ -110,7 +110,7 @@
           <li><strong>RBAC</strong> — Role-based access control and service account management</li>
           <li><strong>Secrets Management</strong> — Secure secret storage and rotation</li>
           <li><strong>Runtime Security</strong> — Detecting and preventing runtime threats</li>
-          <li><strong>Compliance</strong> — Meeting <span class="tooltip-trigger">NIST<span class="tooltip-inline">National Institute of Standards and Technology</span></span>, <span class="tooltip-trigger">CIS<span class="tooltip-inline">Center for Internet Security</span></span>, and other security frameworks</li>
+          <li><strong>Compliance</strong> — Meeting <button type="button" class="tooltip-trigger" aria-describedby="tt-2">NIST<span class="tooltip-inline" id="tt-2" role="tooltip">National Institute of Standards and Technology</span></button>, <button type="button" class="tooltip-trigger" aria-describedby="tt-3">CIS<span class="tooltip-inline" id="tt-3" role="tooltip">Center for Internet Security</span></button>, and other security frameworks</li>
           <li><strong>Observability</strong> — Security monitoring and logging</li>
         </ul>
       </div>
@@ -122,10 +122,12 @@
   <img src="../public/images/site/kubernetes-security-bg.jpg" alt="" class="bg-image" loading="lazy">
   <div class="bg-image-overlay"></div>
   <div class="wrap rel">
-    <div class="section-head center">
-      <span class="eyebrow center reveal">03 — Hands-On</span>
-      <h2 class="section-title reveal" style="--d:.06s">Hands-On Labs</h2>
-      <p class="lead reveal" style="--d:.1s">Build and secure a Kubernetes cluster from scratch</p>
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">03 — Hands-On</span>
+        <h2 class="section-title">Hands-On Labs</h2>
+      </div>
+      <p class="lead reveal" style="--d:.08s">Build and secure a Kubernetes cluster from scratch</p>
     </div>
     <div class="value-grid reveal" style="grid-template-columns:repeat(2,1fr)">
       <div class="fitem"><h3>Lab 1: Cluster Hardening</h3><p>Configure a Kubernetes cluster with security best practices from the ground up.</p></div>

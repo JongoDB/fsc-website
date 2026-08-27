@@ -111,10 +111,12 @@
   <img src="../public/images/site/training-bg.jpg" alt="" class="bg-image" loading="lazy">
   <div class="bg-image-overlay"></div>
   <div class="wrap rel">
-    <div class="section-head center">
-      <span class="eyebrow center reveal">02 — Catalog</span>
-      <h2 class="section-title reveal" style="--d:.06s">Course Catalog</h2>
-      <p class="lead reveal" style="--d:.1s">Comprehensive cybersecurity training designed by operators for defenders</p>
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">02 — Catalog</span>
+        <h2 class="section-title">Course Catalog</h2>
+      </div>
+      <p class="lead reveal" style="--d:.08s">Comprehensive cybersecurity training designed by operators for defenders</p>
     </div>
     <div class="course-list">
       <div class="course-card reveal">
@@ -122,30 +124,30 @@
         <div class="course-meta">
           <div class="course-meta-item"><strong>Duration:</strong> 3-5 days</div>
           <div class="course-meta-item"><strong>Format:</strong> Hybrid classroom &amp; hands-on labs</div>
-          <div class="course-meta-item"><strong>Audience:</strong> Security teams, <span class="tooltip-trigger">SOC<span class="tooltip-inline">Security Operations Center</span></span> analysts, incident responders</div>
+          <div class="course-meta-item"><strong>Audience:</strong> Security teams, <button type="button" class="tooltip-trigger" aria-describedby="tt-1">SOC<span class="tooltip-inline" id="tt-1" role="tooltip">Security Operations Center</span></button> analysts, incident responders</div>
         </div>
         <p>Deep dive into how attackers operate from initial reconnaissance through data exfiltration. Students learn to identify and disrupt each phase of the attack chain using real-world scenarios based on actual operations. Includes hands-on labs where students defend against simulated advanced persistent threats.</p>
-        <a href="cyber-kill-chain.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
+        <a href="/training/cyber-kill-chain.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
       </div>
       <div class="course-card reveal" style="--d:.05s">
         <h3>Advanced Threat Hunting</h3>
         <div class="course-meta">
           <div class="course-meta-item"><strong>Duration:</strong> 5 days</div>
           <div class="course-meta-item"><strong>Format:</strong> Advanced lab-based training</div>
-          <div class="course-meta-item"><strong>Audience:</strong> Senior <span class="tooltip-trigger">SOC<span class="tooltip-inline">Security Operations Center</span></span> analysts, threat hunters, blue team leads</div>
+          <div class="course-meta-item"><strong>Audience:</strong> Senior <button type="button" class="tooltip-trigger" aria-describedby="tt-2">SOC<span class="tooltip-inline" id="tt-2" role="tooltip">Security Operations Center</span></button> analysts, threat hunters, blue team leads</div>
         </div>
-        <p>Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using <span class="tooltip-trigger">SIEM<span class="tooltip-inline">Security Information and Event Management</span></span>, <span class="tooltip-trigger">EDR<span class="tooltip-inline">Endpoint Detection and Response</span></span>, and network traffic analysis. Curriculum includes hunting for <span class="tooltip-trigger">APT<span class="tooltip-inline">Advanced Persistent Threat</span></span> techniques, living-off-the-land binaries, and sophisticated evasion tactics.</p>
-        <a href="threat-hunting.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
+        <p>Elite training in proactive threat hunting methodologies and techniques. Students learn to hunt for advanced threats in enterprise environments using <button type="button" class="tooltip-trigger" aria-describedby="tt-3">SIEM<span class="tooltip-inline" id="tt-3" role="tooltip">Security Information and Event Management</span></button>, <button type="button" class="tooltip-trigger" aria-describedby="tt-4">EDR<span class="tooltip-inline" id="tt-4" role="tooltip">Endpoint Detection and Response</span></button>, and network traffic analysis. Curriculum includes hunting for <button type="button" class="tooltip-trigger" aria-describedby="tt-5">APT<span class="tooltip-inline" id="tt-5" role="tooltip">Advanced Persistent Threat</span></button> techniques, living-off-the-land binaries, and sophisticated evasion tactics.</p>
+        <a href="/training/threat-hunting.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
       </div>
       <div class="course-card reveal" style="--d:.1s">
         <h3>Incident Response Training</h3>
         <div class="course-meta">
           <div class="course-meta-item"><strong>Duration:</strong> 3-4 days</div>
           <div class="course-meta-item"><strong>Format:</strong> Classroom &amp; tabletop exercises</div>
-          <div class="course-meta-item"><strong>Audience:</strong> <span class="tooltip-trigger">IT<span class="tooltip-inline">Information Technology</span></span> professionals, security teams, executives</div>
+          <div class="course-meta-item"><strong>Audience:</strong> <button type="button" class="tooltip-trigger" aria-describedby="tt-6">IT<span class="tooltip-inline" id="tt-6" role="tooltip">Information Technology</span></button> professionals, security teams, executives</div>
         </div>
         <p>Foundational training in cyber incident response methodologies, playbooks, and procedures. Covers preparation, detection, analysis, containment, eradication, and recovery. Includes tabletop exercises simulating ransomware, data breaches, and insider threats based on real incidents.</p>
-        <a href="incident-response.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
+        <a href="/training/incident-response.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
       </div>
       <div class="course-card reveal" style="--d:.15s">
         <h3>Kubernetes Security Fundamentals</h3>
@@ -154,8 +156,8 @@
           <div class="course-meta-item"><strong>Format:</strong> Technical workshop with lab environments</div>
           <div class="course-meta-item"><strong>Audience:</strong> DevOps engineers, cloud architects, platform teams</div>
         </div>
-        <p>Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, <span class="tooltip-trigger">RBAC<span class="tooltip-inline">Role-Based Access Control</span></span>, secrets management, runtime security, and compliance frameworks. Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies.</p>
-        <a href="kubernetes-security.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
+        <p>Comprehensive introduction to securing Kubernetes deployments. Covers container security, network policies, <button type="button" class="tooltip-trigger" aria-describedby="tt-7">RBAC<span class="tooltip-inline" id="tt-7" role="tooltip">Role-Based Access Control</span></button>, secrets management, runtime security, and compliance frameworks. Students build and secure a Kubernetes cluster from the ground up, implementing defense-in-depth strategies.</p>
+        <a href="/training/kubernetes-security.html" class="mcard-link">View Course Details <span class="arw">→</span></a>
       </div>
       <div class="course-card reveal" style="--d:.2s">
         <h3>Custom Training Packages</h3>
@@ -165,7 +167,7 @@
           <div class="course-meta-item"><strong>Audience:</strong> Your organization</div>
         </div>
         <p>We can design custom training programs tailored to your specific needs, environment, and skill levels. Whether you need executive cyber risk workshops, technical deep-dives, or comprehensive security team training, we'll create a curriculum that fits.</p>
-        <a href="custom-training.html" class="mcard-link">Request Custom Training <span class="arw">→</span></a>
+        <a href="/training/custom-training.html" class="mcard-link">Request Custom Training <span class="arw">→</span></a>
       </div>
     </div>
   </div>
@@ -174,9 +176,11 @@
 <!-- Delivery options -->
 <section class="section" data-screen-label="Delivery Options" style="border-top:1px solid var(--line)">
   <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center reveal">03 — Delivery</span>
-      <h2 class="section-title reveal" style="--d:.06s">Delivery Options</h2>
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">03 — Delivery</span>
+        <h2 class="section-title">Delivery Options</h2>
+      </div>
     </div>
     <div class="delivery-list reveal">
       <div class="delivery-option">
@@ -206,7 +210,7 @@
     <p class="lead reveal" style="--d:.06s">Let's discuss which training courses best fit your team's needs and skill levels.</p>
     <div class="cta-cta reveal" style="--d:.12s">
       <a class="btn btn-primary" href="../contact.html">Request Training Information <span class="arw">→</span></a>
-      <a class="btn btn-ghost" href="index.html">View Course Catalog</a>
+      <a class="btn btn-ghost" href="/training/index.html">View Course Catalog</a>
     </div>
   </div>
 </section>

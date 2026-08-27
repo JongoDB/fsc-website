@@ -31,21 +31,40 @@
   });
 
   /* ---- scroll reveal ---- */
+  /* longest cascade step (7) + the reveal itself + a little slack */
+  const STAGGER_SETTLE = 7 * 45 + 260 + 60;
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.classList.add('in');
+      io.unobserve(el);
+      /* hand the children back to their own transitions once the cascade has
+         played — the entrance delay lives on .in and would otherwise sit on
+         every subsequent hover */
+      if (el.classList.contains('stagger')) {
+        setTimeout(() => { el.classList.add('done'); el.classList.remove('in'); }, STAGGER_SETTLE);
+      }
+    });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach((el) => {
     io.observe(el);
   });
 
   /* ---- 3D tilt on mission cards ---- */
-  const tiltMax = 8;
+  const tiltMax = 5;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   function bindTilt(card) {
-    let rect = null;
-    const enter = () => { rect = card.getBoundingClientRect(); };
-    const move = (e) => {
-      if (document.documentElement.getAttribute('data-motion') === 'off') return;
-      if (!rect) rect = card.getBoundingClientRect();
+    let rect = null, queued = null;
+    const enter = () => {
+      rect = card.getBoundingClientRect();
+      /* drop the transition while the pointer drives the tilt, or the card
+         lags the cursor; it goes back on for the settle in leave() */
+      card.classList.add('tilting');
+    };
+    const apply = (e) => {
+      queued = null;
+      if (!rect) return;
       const px = (e.clientX - rect.left) / rect.width;
       const py = (e.clientY - rect.top) / rect.height;
       card.style.setProperty('--mx', (px * 100) + '%');
@@ -54,12 +73,25 @@
       const rx = -(py - 0.5) * tiltMax * 2;
       card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
     };
-    const leave = () => { card.style.transform = ''; rect = null; };
+    const move = (e) => {
+      if (document.documentElement.getAttribute('data-motion') === 'off') return;
+      if (!rect) rect = card.getBoundingClientRect();
+      if (queued) cancelAnimationFrame(queued);
+      queued = requestAnimationFrame(() => apply(e));
+    };
+    const leave = () => {
+      if (queued) { cancelAnimationFrame(queued); queued = null; }
+      card.classList.remove('tilting');
+      card.style.transform = '';
+      rect = null;
+    };
     card.addEventListener('mouseenter', enter);
     card.addEventListener('mousemove', move);
     card.addEventListener('mouseleave', leave);
   }
-  document.querySelectorAll('.mcard').forEach(bindTilt);
+  if (finePointer.matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.mcard').forEach(bindTilt);
+  }
 
   /* ---- animated counters ---- */
   function animateCount(el) {
@@ -94,15 +126,6 @@
     tick(); setInterval(tick, 1000);
   }
 
-  /* ---- hero coordinate ticker (decorative) ---- */
-  const coordEl = document.getElementById('hud-coord');
-  if (coordEl) {
-    const rnd = () => (Math.random() * 180 - 90).toFixed(3);
-    setInterval(() => {
-      if (document.documentElement.getAttribute('data-motion') === 'off') return;
-      coordEl.textContent = `LAT ${rnd()}  LON ${(Math.random()*360-180).toFixed(3)}`;
-    }, 1400);
-  }
 })();
 
 /* ============================================================
@@ -149,14 +172,61 @@
     document.documentElement.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
   }
 
-  /* ---- tap-to-toggle acronym tooltips on touch (tooltips.js) ---- */
+  /* ---- acronym tooltips: keep the bubble inside the viewport ----
+     Centred on the word, a trigger near an edge put much of the bubble
+     off-screen — the EDR tooltip on threat-hunting lost 108px of its 228px at
+     390 wide. --tt-shift slides it back; the CSS arrow cancels the shift so it
+     still points at the word. */
+  const TT_PAD = 12;
+  const ttTriggers = Array.prototype.slice.call(document.querySelectorAll('.tooltip-trigger'));
+
+  function placeTip(tr) {
+    const tip = tr.querySelector('.tooltip-inline');
+    if (!tip) return;
+    /* measure against the shift already applied and correct from there — a
+       reset-then-measure would force a second synchronous layout */
+    const cur = parseFloat(tip.style.getPropertyValue('--tt-shift')) || 0;
+    const r = tip.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    let shift = cur;
+    if (r.left < TT_PAD) shift += TT_PAD - r.left;
+    else if (r.right > vw - TT_PAD) shift -= r.right - (vw - TT_PAD);
+    if (Math.abs(shift - cur) > 0.5) tip.style.setProperty('--tt-shift', shift.toFixed(1) + 'px');
+  }
+  const placeAllTips = () => ttTriggers.forEach(placeTip);
+
+  /* up-front pass so the hidden bubbles don't overhang the page box either */
+  placeAllTips();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeAllTips);
+
+  let ttResize;
+  window.addEventListener('resize', () => {
+    clearTimeout(ttResize);
+    ttResize = setTimeout(() => {
+      ttTriggers.forEach(tr => {
+        const tip = tr.querySelector('.tooltip-inline');
+        if (tip) tip.style.removeProperty('--tt-shift');
+      });
+      placeAllTips();
+    }, 150);
+  });
+
+  /* re-measure at the moment of display: by then any reveal transform on an
+     ancestor has settled and the text may have reflowed */
+  if (window.matchMedia('(hover: hover)').matches) {
+    ttTriggers.forEach(tr => tr.addEventListener('mouseenter', () => placeTip(tr)));
+  }
+  /* keyboard traversal reveals it too, so it needs placing on focus as well */
+  ttTriggers.forEach(tr => tr.addEventListener('focus', () => placeTip(tr)));
+
+  /* tap-to-toggle on touch (tooltips.js) */
   if (window.matchMedia('(hover: none)').matches) {
-    document.querySelectorAll('.tooltip-trigger').forEach(tr => {
+    ttTriggers.forEach(tr => {
       tr.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = tr.classList.contains('tt-open');
         document.querySelectorAll('.tooltip-trigger.tt-open').forEach(o => o.classList.remove('tt-open'));
-        if (!open) tr.classList.add('tt-open');
+        if (!open) { placeTip(tr); tr.classList.add('tt-open'); }
       });
     });
     document.addEventListener('click', () =>
