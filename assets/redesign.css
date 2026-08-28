@@ -462,6 +462,29 @@ button.tooltip-trigger {
 .page-hero .lead { margin: 20px auto 0; max-width: 56ch; position: relative; }
 .page-hero .eyebrow { position: relative; }
 
+/* The interior heroes were a title, one line, and nothing to do — none of the
+   31 carried an action. These two rows fix that: facts the page already states,
+   and the page's own closing CTA lifted to the top so both ends agree.
+   The chip language is the one the homepage lead card already uses. */
+.hero-facts {
+  position: relative; list-style: none;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; margin: 24px auto 0; max-width: 62ch;
+}
+.hero-facts li {
+  font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink-dim);
+  border: 1px solid var(--e0-line); border-radius: 5px;
+  padding: 7px 12px; background: var(--e0-bg);
+}
+.hero-cta-row {
+  position: relative; margin-top: 30px;
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+@media (max-width: 620px) {
+  .hero-cta-row .btn { width: 100%; max-width: 320px; justify-content: center; }
+}
+
 /* bg-image section (repo pattern: .bg-image-section + overlay) */
 .bg-image-section { position: relative; overflow: hidden; }
 .bg-image-section .bg-image {
