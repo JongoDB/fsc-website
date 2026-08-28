@@ -30,6 +30,16 @@
      proportions — .split was 1.05fr 0.95fr, .foot-grid was 1.6fr repeat(3,1fr),
      .section-head was minmax(0,1.15fr) minmax(0,1fr). Three unrelated ratios
      meant nothing lined up with anything above or below it. */
+  /* ---- elevation ----
+     Depth used to come only from a 3px hover lift, so at rest every surface sat
+     on the same plane and the page read flat until you touched it. Three levels,
+     each bundling ground, border and shadow so they move together. */
+  --e0-bg: var(--panel);      --e0-line: var(--line);        --e0-shadow: none;
+  --e1-bg: var(--panel-2);    --e1-line: var(--line-strong); --e1-shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -18px rgba(0,0,0,.75);
+  --e2-bg: color-mix(in srgb, var(--bg) 82%, #fff 4%);
+  --e2-line: var(--line-strong);
+  --e2-shadow: 0 2px 6px rgba(0,0,0,.5), 0 26px 60px -28px rgba(0,0,0,.9);
+
   --grid-cols: 12;
   --grid-gap: clamp(20px, 2.4vw, 36px);
 
@@ -142,7 +152,7 @@ button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; 
   font-size: var(--fs-n2);
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--accent-2);
+  color: var(--ink-faint);
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
@@ -150,12 +160,12 @@ button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; 
 .eyebrow::before {
   content: '';
   width: 26px; height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+  background: linear-gradient(90deg, var(--line-strong), transparent);
 }
 .eyebrow.center::after {
   content: '';
   width: 26px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent));
+  background: linear-gradient(90deg, transparent, var(--line-strong));
 }
 .eyebrow.center { justify-content: center; }
 
@@ -286,6 +296,7 @@ header.hero, header.page-hero {
 .dd-menu {
   position: absolute; top: calc(100% + 6px); left: 0; min-width: 236px;
   padding: 7px; border: 1px solid var(--line-strong); border-radius: 12px;
+  box-shadow: var(--e2-shadow);
   background: color-mix(in srgb, var(--bg) 88%, #000);
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
   box-shadow: 0 24px 60px -20px rgba(0,0,0,.8);
@@ -478,10 +489,10 @@ button.tooltip-trigger {
 @media (max-width: 1080px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .feature-grid { grid-template-columns: 1fr; } }
 .fitem {
-  border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px;
-  background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
+  border: 1px solid var(--e0-line); border-radius: 14px; padding: 24px 22px;
+  background: var(--e0-bg); box-shadow: var(--e0-shadow); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
-.fitem:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(var(--lift)); background: var(--panel-2); }
+.fitem:hover { border-color: var(--e1-line); transform: translateY(var(--lift)); background: var(--e1-bg); box-shadow: var(--e1-shadow); }
 .fitem h3 { font-size: var(--fs-0); font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
 .fitem h3::before { content: ''; width: 7px; height: 7px; flex: none; background: var(--ink-faint); transform: rotate(45deg); }
 .fitem p { color: var(--ink-dim); font-size: var(--fs-n1); line-height: 1.65; margin-top: 10px; }
@@ -491,10 +502,10 @@ button.tooltip-trigger {
 @media (max-width: 1080px) { .value-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .value-grid { grid-template-columns: 1fr; } }
 .vcard {
-  border: 1px solid var(--line); border-radius: 16px; padding: 30px 24px; text-align: center;
-  background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
+  border: 1px solid var(--e0-line); border-radius: 16px; padding: 30px 24px; text-align: center;
+  background: var(--e0-bg); box-shadow: var(--e0-shadow); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.vcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
+.vcard:hover { border-color: var(--e1-line); background: var(--e1-bg); box-shadow: var(--e1-shadow); transform: translateY(var(--lift)); }
 .vicon {
   width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
   display: grid; place-items: center;
@@ -529,7 +540,7 @@ button.tooltip-trigger {
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.course-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
+.course-card:hover { border-color: var(--e1-line); background: var(--e1-bg); box-shadow: var(--e1-shadow); transform: translateY(var(--lift)); }
 .course-card h3 { font-size: var(--fs-1); font-weight: 700; letter-spacing: -0.02em; }
 .course-meta { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 14px; }
 .course-meta-item { font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.05em; color: var(--ink-dim); }
@@ -545,7 +556,7 @@ button.tooltip-trigger {
   border: 1px solid var(--line); border-radius: 14px; padding: 22px;
   background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out);
 }
-.delivery-option:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); transform: translateY(var(--lift)); }
+.delivery-option:hover { border-color: var(--e1-line); background: var(--e1-bg); box-shadow: var(--e1-shadow); transform: translateY(var(--lift)); }
 .delivery-option-icon {
   width: 44px; height: 44px; flex: none; border-radius: 10px;
   display: grid; place-items: center;
@@ -970,7 +981,7 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
 }
 .hud-op:active { transform: scale(var(--press)); transition-duration: var(--t-press); }
 .hud-op b { display: block; font-family: var(--mono); font-size: var(--fs-0); letter-spacing: 0.08em; color: #fff; }
-.hud-op small { font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.18em; color: var(--accent-2); }
+.hud-op small { font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.18em; color: var(--ink-faint); }
 /* the pulsing progress bars that used to live here encoded nothing — removed */
 .hud-clock { position: relative; font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.14em; color: var(--ink-dim); display: flex; justify-content: space-between; }
 .hud-clock .live { color: var(--accent-2); display: inline-flex; align-items: center; gap: 7px; }
@@ -996,9 +1007,29 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
    ============================================================ */
 .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 820px) { .lead-grid { grid-template-columns: 1fr; } }
-.pcard { border: 1px solid var(--line); border-radius: 16px; padding: 28px; background: var(--panel); transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out); position: relative; overflow: hidden; }
-.pcard:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); }
-.pcard-role { font-family: var(--mono); font-size: var(--fs-n1); letter-spacing: 0.16em; color: var(--accent-2); text-transform: uppercase; }
+.pcard {
+  border: 1px solid var(--e0-line); border-radius: 16px; padding: 28px;
+  background: var(--e0-bg); box-shadow: var(--e0-shadow);
+  transition: border-color var(--t-hover) var(--ease-out),
+              transform var(--t-hover) var(--ease-out),
+              background var(--t-hover) var(--ease-out),
+              box-shadow var(--t-hover) var(--ease-out);
+  position: relative; overflow: hidden;
+}
+/* the faces are the point of this section — give them presence, and a shape
+   that matches the card language rather than the conventional circle */
+.pcard-photo {
+  width: 88px; height: 88px; object-fit: cover; object-position: center 22%;
+  border-radius: 14px; border: 1px solid var(--line-strong);
+  display: block; margin-bottom: 20px;
+}
+.pcard-name {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: -0.02em;
+  margin-top: 6px; color: var(--ink);
+}
+.pcard-tag { font-size: var(--fs-n1); color: var(--ink-dim); font-weight: 500; margin-top: 4px; }
+.pcard:hover { border-color: var(--e1-line); background: var(--e1-bg); box-shadow: var(--e1-shadow); transform: translateY(var(--lift)); }
+.pcard-role { font-family: var(--mono); font-size: var(--fs-n2); letter-spacing: 0.16em; color: var(--ink-faint); text-transform: uppercase; }
 .pcard-tag { font-size: var(--fs-0); font-weight: 700; margin-top: 14px; letter-spacing: -0.02em; }
 .pcard p { color: var(--ink-dim); font-size: var(--fs-n1); line-height: 1.6; margin-top: 12px; }
 .pcard-mono {
@@ -1024,7 +1055,7 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accen
   text-decoration: none;
   transition: border-color var(--t-hover) var(--ease-out), transform var(--t-hover) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
-.client-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); transform: translateY(var(--lift)); background: var(--panel-2); }
+.client-card:hover { border-color: var(--e1-line); transform: translateY(var(--lift)); background: var(--e1-bg); box-shadow: var(--e1-shadow); }
 /* logo drop-slots: the component's empty-state text/ring are dark-on-transparent,
    so give the slot a light backdrop until an image is dropped (data-filled) */
 .client-card image-slot:not([data-filled]) {

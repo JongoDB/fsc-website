@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="_ds/fsc-design-system-76bdecdd-d185-4f4b-9e56-4b5ecfd361a6/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/legacy-port.css">
 <link rel="stylesheet" href="assets/redesign.css">
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -104,6 +105,46 @@
   <div class="stat"><div class="stat-num"><span data-count="1000">1000</span><span class="u">+</span></div><div class="stat-lbl">Real-World Operations</div></div>
 </section>
 
+<!-- ================= LEADERSHIP ================= -->
+<section class="section" id="leadership" data-screen-label="Leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">Leadership Team</span>
+        <h2 class="section-title">Leadership Team</h2>
+      </div>
+      <p class="lead reveal" style="--d:.08s">Proven operators with unmatched experience in cyber operations, command, and capability development</p>
+    </div>
+    <div class="lead-grid">
+      <article class="pcard reveal">
+        <img class="pcard-photo" src="public/images/leadership/lgen-glavy.jpg" alt="" loading="lazy">
+        <div class="pcard-role">Chief Executive Officer</div>
+        <h3 class="pcard-name">Matthew &quot;Jerry&quot; Glavy</h3>
+        <div class="pcard-tag">Retired Three-Star General | Cyber Domain Leader</div>
+        <p>Former elite cyber unit commander and pilot with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber defense.</p>
+      </article>
+      <article class="pcard reveal" style="--d:.08s">
+        <img class="pcard-photo" src="public/images/leadership/jon-rannabargar.jpg" alt="" loading="lazy">
+        <div class="pcard-role">Chief Operating Officer</div>
+        <h3 class="pcard-name">Jon Rannabargar</h3>
+        <div class="pcard-tag">Senior Enlisted | Defense Architecture Specialist</div>
+        <p>Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, and defensive cyber operations.</p>
+      </article>
+      <article class="pcard reveal" style="--d:.16s">
+        <img class="pcard-photo" src="public/images/leadership/steve-katzman.jpg" alt="" loading="lazy">
+        <div class="pcard-role">Chief Technology Officer</div>
+        <h3 class="pcard-name">Steve Katzman</h3>
+        <div class="pcard-tag">Senior Officer | Cyber Operations Technician</div>
+        <p>Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks.</p>
+      </article>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:44px">
+      <a class="btn btn-primary" href="about/leadership.html">View Full Leadership Profiles <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+
 <!-- ================= SCROLL FRAMES: SEE THE FULL PICTURE ================= -->
 <section class="scroll-animation-section" id="scroll-animation" data-screen-label="See the Full Picture">
   <div class="scroll-animation-sticky">
@@ -111,7 +152,7 @@
     <div class="scroll-animation-overlay">
       <div class="wrap">
         <div class="scroll-animation-content reveal">
-          <span class="eyebrow">01 — Full Spectrum</span>
+          <span class="eyebrow">Full Spectrum</span>
           <h2>See the Full Picture.<br>Act with Precision.</h2>
           <p>From strategic advisory and hands-on training to production-ready platforms and custom development — we deliver the full spectrum of cybersecurity capabilities your mission demands.</p>
           <a class="btn btn-primary" href="solutions/index.html">View Our Solutions <span class="arw">→</span></a>
@@ -126,7 +167,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="reveal">
-        <span class="eyebrow">02 — Choose Your Mission</span>
+        <span class="eyebrow">Choose Your Mission</span>
         <h2 class="section-title">Choose Your Mission</h2>
       </div>
       <p class="lead reveal" style="--d:.08s">Select the capability that matches your cybersecurity needs. From training to turnkey platforms, every solution is operator-tested.</p>
@@ -137,7 +178,7 @@
         <div class="mcard-top"><span class="mcard-kind">Platform</span>
           <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg></span></div>
         <h3>SOC-in-a-Box</h3>
-        <p>Turnkey, accreditation-ready security operations center. Kubernetes-based with integrated <button type="button" class="tooltip-trigger" aria-describedby="tt-1">SIEM<span class="tooltip-inline" id="tt-1" role="tooltip">Security Information and Event Management</span></button>, <button type="button" class="tooltip-trigger" aria-describedby="tt-2">EDR<span class="tooltip-inline" id="tt-2" role="tooltip">Endpoint Detection and Response</span></button>, threat intel, and vulnerability management.</p>
+        <p>A turnkey, accreditation-ready security operations center — Kubernetes-native, delivered as one stack.</p>
         <ul class="spec">
           <li>SIEM</li>
           <li>EDR</li>
@@ -154,14 +195,14 @@
         <div class="mcard-top"><span class="mcard-kind">Platform</span>
           <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z"></path><circle cx="12" cy="11" r="3"></circle></svg></span></div>
         <h3>Secure Runtime Environment</h3>
-        <p>Opinionated, secure <button type="button" class="tooltip-trigger" aria-describedby="tt-3">K8s<span class="tooltip-inline" id="tt-3" role="tooltip">Kubernetes</span></button> baseline built with Zero Trust principles, comprehensive observability, and GitOps integration.</p>
+        <p>A Zero Trust <button type="button" class="tooltip-trigger" aria-describedby="tt-3">K8s<span class="tooltip-inline" id="tt-3" role="tooltip">Kubernetes</span></button> baseline with observability and GitOps integration built in, not bolted on.</p>
         <a class="mcard-link" href="platforms/secure-kubernetes.html">View Details <span class="arw">→</span></a>
       </article>
       <article class="mcard is-major">
         <div class="mcard-top"><span class="mcard-kind">Platform</span>
           <span class="mcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></span></div>
         <h3>CYROID</h3>
-        <p>Enterprise cyber range orchestration platform. Deploy isolated, networked training environments in minutes with visual range builder, <button type="button" class="tooltip-trigger" aria-describedby="tt-4">MSEL<span class="tooltip-inline" id="tt-4" role="tooltip">Master Scenario Events List</span></button> automation, and web-based <button type="button" class="tooltip-trigger" aria-describedby="tt-5">VM<span class="tooltip-inline" id="tt-5" role="tooltip">Virtual Machine</span></button> console access.</p>
+        <p>Stand up isolated, networked cyber ranges in minutes — visual range builder, <button type="button" class="tooltip-trigger" aria-describedby="tt-4">MSEL<span class="tooltip-inline" id="tt-4" role="tooltip">Master Scenario Events List</span></button> automation, browser-based <button type="button" class="tooltip-trigger" aria-describedby="tt-5">VM<span class="tooltip-inline" id="tt-5" role="tooltip">Virtual Machine</span></button> consoles.</p>
         <a class="mcard-link" href="platforms/cyroid.html">Explore CYROID <span class="arw">→</span></a>
       </article>
     </div>
@@ -174,27 +215,27 @@
       <ul class="svc-list">
         <li class="svc-item">
           <h4><a href="solutions/consulting.html">Cyber Readiness Assessments</a></h4>
-          <p>Comprehensive gap analysis using the <button type="button" class="tooltip-trigger" aria-describedby="tt-6">DOTMLPF-P<span class="tooltip-inline" id="tt-6" role="tooltip">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></button> framework to identify operational weaknesses.</p>
+          <p>Gap analysis across all eight <button type="button" class="tooltip-trigger" aria-describedby="tt-6">DOTMLPF-P<span class="tooltip-inline" id="tt-6" role="tooltip">Doctrine, Organization, Training, Materiel, Leadership, Personnel, Facilities, Policy</span></button> dimensions, not just the technology.</p>
         </li>
         <li class="svc-item">
           <h4><a href="training/index.html">Operator-Led Training &amp; Labs</a></h4>
-          <p>Hands-on training from operators with real-world experience. <button type="button" class="tooltip-trigger" aria-describedby="tt-7">DCO<span class="tooltip-inline" id="tt-7" role="tooltip">Defensive Cyber Operations</span></button>, <button type="button" class="tooltip-trigger" aria-describedby="tt-8">IR<span class="tooltip-inline" id="tt-8" role="tooltip">Incident Response</span></button>, threat hunting, red team perspectives, and Kubernetes security.</p>
+          <p>Hands-on labs in <button type="button" class="tooltip-trigger" aria-describedby="tt-7">DCO<span class="tooltip-inline" id="tt-7" role="tooltip">Defensive Cyber Operations</span></button>, <button type="button" class="tooltip-trigger" aria-describedby="tt-8">IR<span class="tooltip-inline" id="tt-8" role="tooltip">Incident Response</span></button>, threat hunting and Kubernetes security — taught by the operators who ran them.</p>
         </li>
         <li class="svc-item">
           <h4><a href="bundles/index.html">App Bundles &amp; Catalog</a></h4>
-          <p>Pre-curated software stacks: SOC bundles, <button type="button" class="tooltip-trigger" aria-describedby="tt-9">DFIR<span class="tooltip-inline" id="tt-9" role="tooltip">Digital Forensics and Incident Response</span></button> tools, productivity suites, DevSecOps stacks for any environment.</p>
+          <p>Pre-curated stacks — SOC, <button type="button" class="tooltip-trigger" aria-describedby="tt-9">DFIR<span class="tooltip-inline" id="tt-9" role="tooltip">Digital Forensics and Incident Response</span></button>, DevSecOps, productivity — ready to deploy into any environment.</p>
         </li>
         <li class="svc-item">
           <h4><a href="solutions/consulting.html">Advisory &amp; Strategic Consulting</a></h4>
-          <p>Capability development, organizational design, acquisition strategy, Zero Trust roadmaps from leaders who've built and operated at scale.</p>
+          <p>Capability development, acquisition strategy and Zero Trust roadmaps, from people who have run this at scale.</p>
         </li>
         <li class="svc-item">
           <h4><a href="solutions/custom-saas.html">Custom SaaS Development</a></h4>
-          <p>Purpose-built applications tailored to your mission requirements. From workflow automation to specialized security tools, we design, build, and deploy secure cloud-native solutions that solve your unique challenges.</p>
+          <p>Secure, cloud-native applications built for one mission — from workflow automation to purpose-built security tooling.</p>
         </li>
         <li class="svc-item">
           <h4><a href="solutions/security-assessments.html">Security Assessments</a></h4>
-          <p>Operator-led penetration testing, vulnerability assessments, and red team exercises. Find your weaknesses before adversaries do.</p>
+          <p>Penetration testing, vulnerability assessment and red team exercises — find your weaknesses before an adversary does.</p>
         </li>
       </ul>
     </div>
@@ -206,7 +247,7 @@
   <div class="wrap">
     <div class="split">
       <div class="split-body reveal-left">
-        <span class="eyebrow">03 — Who We Are</span>
+        <span class="eyebrow">Who We Are</span>
         <h2 style="margin-top:16px">Operator-Led.<br>Practitioner-First.</h2>
         <p>Fighting Smart Cyber was founded by three proven cyber operations leaders with decades of combined experience conducting offensive and defensive cyber operations at the highest classification levels.</p>
         <p>We're not career theorists. We're operators who've designed, built, and run cyber capabilities in production. Our team includes a retired three-star general with cyber command experience, a senior officer with deep <button type="button" class="tooltip-trigger" aria-describedby="tt-10">DCO<span class="tooltip-inline" id="tt-10" role="tooltip">Defensive Cyber Operations</span></button>/<button type="button" class="tooltip-trigger" aria-describedby="tt-11">OCO<span class="tooltip-inline" id="tt-11" role="tooltip">Offensive Cyber Operations</span></button> expertise, and a senior enlisted leader who's built secure architectures from the ground up.</p>
@@ -351,7 +392,7 @@
         </svg>
       </div>
       <div class="split-body reveal-right" style="--d:.08s">
-        <span class="eyebrow">04 — Why Fighting Smart</span>
+        <span class="eyebrow">Why Fighting Smart</span>
         <h2 style="margin-top:16px">Why Fighting Smart?</h2>
         <p>Most cybersecurity companies are led by sales teams or career consultants. We're different. Our founders have:</p>
         <ul class="creds">
@@ -367,45 +408,12 @@
   </div>
 </section>
 
-<!-- ================= LEADERSHIP ================= -->
-<section class="section" id="leadership" data-screen-label="Leadership">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="reveal">
-        <span class="eyebrow">05 — Leadership Team</span>
-        <h2 class="section-title">Leadership Team</h2>
-      </div>
-      <p class="lead reveal" style="--d:.08s">Proven operators with unmatched experience in cyber operations, command, and capability development</p>
-    </div>
-    <div class="lead-grid">
-      <article class="pcard reveal">
-        <div class="pcard-role">Chief Executive Officer</div>
-        <div class="pcard-tag">Retired Three-Star General | Cyber Domain Leader</div>
-        <p>Former elite cyber unit commander and pilot with extensive experience leading cyber operations at the strategic level. Brings unparalleled leadership, government relationships, and vision for next-generation cyber defense.</p>
-      </article>
-      <article class="pcard reveal" style="--d:.08s">
-        <div class="pcard-role">Chief Operating Officer</div>
-        <div class="pcard-tag">Senior Enlisted | Defense Architecture Specialist</div>
-        <p>Experienced in building secure networks, implementing defense architectures, and developing operational capabilities. Deep technical knowledge in network security, infrastructure hardening, and defensive cyber operations.</p>
-      </article>
-      <article class="pcard reveal" style="--d:.16s">
-        <div class="pcard-role">Chief Technology Officer</div>
-        <div class="pcard-tag">Senior Officer | Cyber Operations Technician</div>
-        <p>Hands-on experience conducting offensive and defensive cyber operations. Subject matter expert in operational execution, network engineering, and government acquisition processes. Deep expertise in DOTMLPF-P frameworks.</p>
-      </article>
-    </div>
-    <div class="reveal" style="text-align:center;margin-top:44px">
-      <a class="btn btn-primary" href="about/leadership.html">View Full Leadership Profiles <span class="arw">→</span></a>
-    </div>
-  </div>
-</section>
-
 <!-- ================= CLIENTELE ================= -->
 <section class="section" id="clientele" data-screen-label="Clientele" style="border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 55%, #000)">
   <div class="wrap">
     <div class="section-head">
       <div class="reveal">
-        <span class="eyebrow">06 — Clientele</span>
+        <span class="eyebrow">Clientele</span>
         <h2 class="section-title">Who We Work With</h2>
       </div>
     </div>
@@ -445,7 +453,7 @@
 <!-- ================= CTA ================= -->
 <section class="cta" id="contact" data-screen-label="CTA">
   <div class="wrap rel">
-    <span class="eyebrow center reveal">07 — Ready When You Are</span>
+    <span class="eyebrow center reveal">Ready When You Are</span>
     <h2 class="reveal" style="--d:.06s;margin-top:20px">Ready to Fight Smarter?</h2>
     <p class="lead reveal" style="--d:.12s">Let's discuss how Fighting Smart Cyber can strengthen your cybersecurity posture. Training, platforms, or strategic advisory — we're here to help.</p>
     <div class="cta-cta reveal" style="--d:.18s">
